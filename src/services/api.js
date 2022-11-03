@@ -1,13 +1,23 @@
 // import PropTypes from 'prop-types';
 
-// const MAIN_URL =
-//   'https://pixabay.com/api/?key=29727763-9de4927242ac493db1fc7e125&image_type=photo&orientation=horizontal&safesearch=true';
+const MAIN_URL = 'https://api.themoviedb.org/3';
+const API_KEY = '7944ae355bdc42ac579681e106149d6b';
 
 // export const perPage = 12;
 
 const fetchTrends = async () => {
+  return fetch(`${MAIN_URL}/trending/all/day?api_key=${API_KEY}&page=1`)
+    .then(response => response.json())
+    .then(data => {
+      // console.log(data);
+
+      return data;
+    });
+};
+
+const fetchMovies = async (query, page) => {
   return fetch(
-    'https://api.themoviedb.org/3/trending/all/day?api_key=7944ae355bdc42ac579681e106149d6b&page=1'
+    `${MAIN_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`
   )
     .then(response => response.json())
     .then(data => {
@@ -17,7 +27,7 @@ const fetchTrends = async () => {
     });
 };
 
-export { fetchTrends };
+export { fetchTrends, fetchMovies };
 
 // fetchTrends.propTypes = {
 //   search: PropTypes.string,
