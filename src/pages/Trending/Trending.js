@@ -1,4 +1,5 @@
 import { Box } from 'components/Box/Box';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchTrends } from 'services/api';
 import css from './Trending.module.css';
@@ -20,14 +21,16 @@ export const Trending = () => {
       <ul className={css.trendList}>
         {trends.map(trend => (
           <li key={trend.id}>
-            <div className={css.trend__thumb}>
-              <img
-                className={css.trend__img}
-                width="160"
-                src={`https://image.tmdb.org/t/p/w200${trend.poster_path}`}
-                alt={trend.title ?? trend.name}
-              />
-            </div>
+            <Link to={`/movies/movieId`}>
+              <div className={css.trend__thumb}>
+                <img
+                  className={css.trend__img}
+                  width="160"
+                  src={`https://image.tmdb.org/t/p/w200${trend.poster_path}`}
+                  alt={trend.title ?? trend.name}
+                />
+              </div>
+            </Link>
           </li>
         ))}
       </ul>
