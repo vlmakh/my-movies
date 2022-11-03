@@ -5,9 +5,9 @@
 
 // export const perPage = 12;
 
-const fetchTrends = async search => {
+const fetchTrends = async () => {
   return fetch(
-    'https://api.themoviedb.org/3/trending/all/day?api_key=7944ae355bdc42ac579681e106149d6b'
+    'https://api.themoviedb.org/3/trending/all/day?api_key=7944ae355bdc42ac579681e106149d6b&page=1'
   )
     .then(response => response.json())
     .then(data => {

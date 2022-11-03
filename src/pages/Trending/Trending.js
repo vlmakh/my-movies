@@ -1,22 +1,34 @@
 import { Box } from 'components/Box/Box';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchTrends } from 'services/api';
+import css from './Trending.module.css';
 
 export const Trending = () => {
   const [trends, setTrends] = useState([]);
 
-  fetchTrends().then(data => {
-    console.log(data.results);
-    setTrends(data.results);
-  });
+  useEffect(() => {
+    fetchTrends().then(data => {
+      console.log(data.results);
+      setTrends(data.results);
+    });
+  }, []);
 
   return (
     <Box p={4}>
       <h2>Trending Today</h2>
 
-      <ul>
+      <ul className={css.trendList}>
         {trends.map(trend => (
-          <li key={trend.id}>{trend.title ?? trend.name}</li>
+          <li key={trend.id}>
+            <div className={css.trend__thumb}>
+              <img
+                className={css.trend__img}
+                width="160"
+                src={`https://image.tmdb.org/t/p/w200${trend.poster_path}`}
+                alt={trend.title ?? trend.name}
+              />
+            </div>
+          </li>
         ))}
       </ul>
     </Box>
