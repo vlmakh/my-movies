@@ -1,0 +1,22 @@
+/* .movie__title {
+
+} */
+
+.movie__over {
+  margin-top: 16px;
+}
+
+.movie__genres {
+  margin-top: 16px;
+  font-weight: 700;
+}
+
+.movie__add {
+  font-weight: 700;
+  color: #bcc3ce;
+  text-decoration: none;
+}
+
+.movie__add:not(:last-of-type) {
+  margin-right: 16px;
+}

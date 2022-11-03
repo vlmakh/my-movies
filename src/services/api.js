@@ -9,8 +9,6 @@ const fetchTrends = async () => {
   return fetch(`${MAIN_URL}/trending/all/day?api_key=${API_KEY}&page=1`)
     .then(response => response.json())
     .then(data => {
-      // console.log(data);
-
       return data;
     });
 };
@@ -21,13 +19,47 @@ const fetchMovies = async (query, page) => {
   )
     .then(response => response.json())
     .then(data => {
-      // console.log(data);
-
       return data;
     });
 };
 
-export { fetchTrends, fetchMovies };
+const fetchMovieById = async id => {
+  return fetch(
+    `${MAIN_URL}/movie/${id}?api_key=${API_KEY}&language=en-US&include_adult=false`
+  )
+    .then(response => response.json())
+    .then(data => {
+      return data;
+    });
+};
+
+const fetchCastById = async id => {
+  return fetch(
+    `${MAIN_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
+  )
+    .then(response => response.json())
+    .then(data => {
+      return data;
+    });
+};
+
+const fetchReviewsById = async id => {
+  return fetch(
+    `${MAIN_URL}/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`
+  )
+    .then(response => response.json())
+    .then(data => {
+      return data;
+    });
+};
+
+export {
+  fetchTrends,
+  fetchMovies,
+  fetchMovieById,
+  fetchCastById,
+  fetchReviewsById,
+};
 
 // fetchTrends.propTypes = {
 //   search: PropTypes.string,

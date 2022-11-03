@@ -1,3 +1,4 @@
+// import PropTypes from 'prop-types';
 import { Box } from 'components/Box/Box';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -15,13 +16,13 @@ export const Trending = () => {
   }, []);
 
   return (
-    <Box p={4}>
+    <Box p={3} textAlign="center">
       <h2>Trending Today</h2>
 
       <ul className={css.trendList}>
         {trends.map(trend => (
           <li key={trend.id}>
-            <Link to={`/movies/movieId`}>
+            <Link to={`movies/${trend.id}`}>
               <div className={css.trend__thumb}>
                 <img
                   className={css.trend__img}

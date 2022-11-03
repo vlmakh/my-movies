@@ -1,3 +1,4 @@
+// import PropTypes from 'prop-types';
 import css from './Movies.module.css';
 import { Link } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
@@ -54,7 +55,7 @@ export const Movies = () => {
   // };
 
   return (
-    <Box p={4}>
+    <Box p={4} textAlign="center">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -70,7 +71,7 @@ export const Movies = () => {
       <ul className={css.moviesList}>
         {moviesFound.map(movie => (
           <li key={movie.id}>
-            <Link to={`/movies/movieId`}>
+            <Link to={`${movie.id}`}>
               <div className={css.movie__thumb}>
                 <img
                   className={css.movie__img}

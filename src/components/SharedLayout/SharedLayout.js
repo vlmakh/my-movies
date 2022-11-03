@@ -1,3 +1,4 @@
+// import PropTypes from 'prop-types';
 import { Outlet, NavLink } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
 import css from './SharedLayout.module.css';
@@ -12,13 +13,8 @@ export const SharedLayout = () => {
         borderBottom="1px solid grey"
         // position="fixed"
         width="100%"
+        background="#333"
       >
-        <div>
-          <span role="img" aria-label="computer icon">
-            💻
-          </span>
-          My Movies
-        </div>
         <nav>
           <NavLink className={css.header__link} to="/">
             Home
