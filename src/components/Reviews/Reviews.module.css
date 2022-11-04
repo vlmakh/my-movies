@@ -1,0 +1,21 @@
+.reviewList {
+
+    /* display: flex;
+    flex-wrap: wrap; */
+    /* justify-content: center; */
+    margin-top: 16px;
+    /* gap: 8px; */
+    list-style: none;
+}
+
+.reviewItem:not(:first-child) {
+    margin-top: 8px;
+}
+
+.reviewAuthor {
+    font-weight: 700;
+}
+
+.reviewText {
+    font-size: 12px;
+}

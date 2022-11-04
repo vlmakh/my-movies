@@ -2,12 +2,19 @@
 import css from './MovieItem.module.css';
 import { Box } from 'components/Box/Box';
 import { useState, useEffect } from 'react';
-import { useParams, Outlet, Link } from 'react-router-dom';
+import {
+  useParams,
+  Outlet,
+  NavLink,
+  Link,
+  useLocation,
+} from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
 
 export const MovieItem = () => {
   const params = useParams();
   const [movieItem, setMovieItem] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     fetchMovieById(params.movieId).then(data => {
@@ -19,11 +26,14 @@ export const MovieItem = () => {
     return null;
   }
 
-  console.log(movieItem);
+  // console.log(movieItem);
+  // console.log(location);
+
+  const backLinkHref = location.state?.from ?? '/';
 
   return (
     <Box p={3} textAlign="left">
-      <button type="button">Go Back</button>
+      <NavLink to={backLinkHref}>Go Back</NavLink>
       <Box display="flex" mt={3}>
         <div className={css.trend__thumb}>
           <img
@@ -45,7 +55,7 @@ export const MovieItem = () => {
         <Link className={css.movie__add} to="cast">
           Cast
         </Link>
-        <Link className={css.movie__add} to="/">
+        <Link className={css.movie__add} to="reviews">
           Reviews
         </Link>
       </Box>

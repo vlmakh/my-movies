@@ -8,12 +8,12 @@ import imageplaceholder from 'images/nophoto.png';
 
 export const Cast = () => {
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
     fetchCastById(params.movieId).then(data => {
-      console.log(data.cast);
+      // console.log(data.cast);
       setCast(data.cast);
     });
   }, [params.movieId]);

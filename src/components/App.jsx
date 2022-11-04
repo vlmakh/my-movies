@@ -6,6 +6,7 @@ import { PageError } from 'pages/PageError/PageError';
 import { MovieItem } from 'pages/MovieItem/MovieItem';
 import { Movies } from 'pages/Movies/Movies';
 import { Cast } from './Cast/Cast';
+import { Reviews } from './Reviews/Reviews';
 
 export const App = () => {
   return (
@@ -17,12 +18,13 @@ export const App = () => {
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieItem />}>
             <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<h3>Reviews</h3>} />
+            <Route path="reviews" element={<Reviews/>} />
             <Route path="*" element={<PageError />} />
           </Route>
           <Route path="*" element={<PageError />} />
         </Route>
       </Routes>
+      
     </>
   );
 };

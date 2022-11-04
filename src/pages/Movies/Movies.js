@@ -2,7 +2,7 @@
 import css from './Movies.module.css';
 import { Link } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import { fetchMovies } from 'services/api';
 
@@ -10,9 +10,16 @@ export const Movies = () => {
   const [movieSearch, setMovieSearch] = useState('');
   const [moviesFound, setMoviesFound] = useState([]);
   const [page, setPage] = useState(1);
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const filterParams = searchParams.get('filter') ?? '';
+  console.log(searchParams);
 
   const onSearchInput = event => {
-    setMovieSearch(event.currentTarget.value);
+    setMovieSearch(event.target.value);
+    setSearchParams(
+      event.target.value !== '' ? { filter: event.target.value } : {}
+    );
   };
 
   const handleSubmit = event => {
@@ -34,8 +41,8 @@ export const Movies = () => {
     // }
 
     fetchMovies(movieSearch, page).then(data => {
-      console.log(data.results);
-      console.log(data);
+      // console.log(data.results);
+      // console.log(data);
       if (!data.results.length) {
         alert('No results found due to your search inquiry');
       } else {
@@ -54,6 +61,8 @@ export const Movies = () => {
   //   setPage(prevPage => prevPage + 1);
   // };
 
+  console.log(location);
+
   return (
     <Box p={4} textAlign="center">
       <form onSubmit={handleSubmit}>
@@ -71,7 +80,7 @@ export const Movies = () => {
       <ul className={css.moviesList}>
         {moviesFound.map(movie => (
           <li key={movie.id}>
-            <Link to={`${movie.id}`}>
+            <Link to={`${movie.id}`} state={{ from: location }}>
               <div className={css.movie__thumb}>
                 <img
                   className={css.movie__img}
