@@ -42,7 +42,7 @@ export const MovieItem = () => {
         </Box>
       </Box>
       <Box mt={3} textAlign="center">
-        <Link className={css.movie__add} to="/">
+        <Link className={css.movie__add} to="cast">
           Cast
         </Link>
         <Link className={css.movie__add} to="/">
