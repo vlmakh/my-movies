@@ -5,7 +5,7 @@ import { Box } from 'components/Box/Box';
 import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import { fetchMovies } from 'services/api';
-import imageplaceholder from 'images/noposter.jpg';
+import { MovieCard } from 'components/MovieCard/MovieCard';
 
 export const Movies = () => {
   const [query, setQuery] = useState('');
@@ -76,18 +76,7 @@ export const Movies = () => {
         {moviesFound.map(movie => (
           <li key={movie.id}>
             <Link to={`${movie.id}`} state={{ from: searchRoute }}>
-              <div className={css.movie__thumb}>
-                <img
-                  className={css.movie__img}
-                  width="160"
-                  src={
-                    movie.poster_path
-                      ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-                      : imageplaceholder
-                  }
-                  alt={movie.title ?? movie.name}
-                />
-              </div>
+              <MovieCard movie={movie} />
             </Link>
           </li>
         ))}
