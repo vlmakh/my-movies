@@ -8,7 +8,7 @@ import { fetchMovies } from 'services/api';
 import imageplaceholder from 'images/noposter.jpg';
 
 export const Movies = () => {
-  const [movieSearch, setMovieSearch] = useState('');
+  const [query, setQuery] = useState('');
   const [moviesFound, setMoviesFound] = useState([]);
   const [page, setPage] = useState(1);
   const location = useLocation();
@@ -17,59 +17,46 @@ export const Movies = () => {
   // console.log(searchParams);
 
   useEffect(() => {
-    const filmName = searchParams.get('search');
-    //   if (!filmName) {
-    //     return;
-    //   }
-    console.log(filmName);
+    // const filmName = searchParams.get('search');
+    // //   if (!filmName) {
+    // //     return;
+    // //   }
+    console.log(searchParams);
 
-    //   fetchMovies(movieSearch, page).then(data => {
-    //     if (!data.results.length) {
-    //       alert('No results found due to your search inquiry');
-    //     } else {
-    //       setMoviesFound(prevState => {
-    //         return [...prevState, ...data.results];
-    //       });
-
-    //     }
-    //   });
+    // searchQuery(searchParams);
   }, [searchParams]);
 
   const onSearchInput = event => {
-    setMovieSearch(event.target.value);
-    setSearchParams(
-      event.target.value !== '' ? { search: event.target.value } : {}
-    );
+    setQuery(event.target.value);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (movieSearch.trim() === '') {
+    if (query.trim() === '') {
       return alert('Empty query. Please input something for search');
     }
-    searchQuery(movieSearch);
+    searchQuery(query);
+    setSearchParams(query !== '' ? { search: query } : {});
   };
 
   const searchQuery = newQuery => {
-    if (movieSearch === '') {
+    if (query === '') {
       return;
     }
-    // if (newQuery.trim() !== query) {
-    setPage(1);
-    // setQuery(newQuery.trim());
-    setMoviesFound([]);
-    // }
+    if (newQuery.trim() !== query) {
+      setPage(1);
+      setQuery(newQuery.trim());
+      setMoviesFound([]);
+    }
 
-    fetchMovies(movieSearch, page).then(data => {
-      // console.log(data.results);
-      // console.log(data);
+    fetchMovies(query, page).then(data => {
       if (!data.results.length) {
         alert('No results found due to your search inquiry');
       } else {
-        setMoviesFound(prevState => {
-          return [...prevState, ...data.results];
-        });
-        // setMoviesFound([...data.results]);
+        // setMoviesFound(prevState => {
+        //   return [...prevState, ...data.results];
+        // });
+        setMoviesFound([...data.results]);
       }
     });
   };
@@ -86,7 +73,7 @@ export const Movies = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={movieSearch}
+          value={query}
           onChange={onSearchInput}
           className={css.search}
         />
