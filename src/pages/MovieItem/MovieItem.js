@@ -27,7 +27,7 @@ export const MovieItem = () => {
   }
 
   // console.log(movieItem);
-  // console.log(location.state);
+  console.log(location.state);
 
   const backLink = location.state?.from ?? '/';
 

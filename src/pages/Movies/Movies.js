@@ -3,7 +3,7 @@ import css from './Movies.module.css';
 import { Link } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
 import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { fetchMovies } from 'services/api';
 import imageplaceholder from 'images/noposter.jpg';
 
@@ -13,18 +13,8 @@ export const Movies = () => {
   const [page, setPage] = useState(1);
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  // const filterParams = searchParams.get('filter') ?? '';
-  // console.log(searchParams);
-
-  useEffect(() => {
-    // const filmName = searchParams.get('search');
-    // //   if (!filmName) {
-    // //     return;
-    // //   }
-    console.log(searchParams);
-
-    // searchQuery(searchParams);
-  }, [searchParams]);
+  const queryParams = searchParams.get('search') ?? '';
+  console.log(queryParams);
 
   const onSearchInput = event => {
     setQuery(event.target.value);
@@ -65,7 +55,7 @@ export const Movies = () => {
   //   setPage(prevPage => prevPage + 1);
   // };
 
-  const a = `${location.pathname}${location.search}`;
+  const searchRoute = `${location.pathname}${location.search}`;
   // console.log(a);
 
   return (
@@ -85,7 +75,7 @@ export const Movies = () => {
       <ul className={css.moviesList}>
         {moviesFound.map(movie => (
           <li key={movie.id}>
-            <Link to={`${movie.id}`} state={{ from: a }}>
+            <Link to={`${movie.id}`} state={{ from: searchRoute }}>
               <div className={css.movie__thumb}>
                 <img
                   className={css.movie__img}
