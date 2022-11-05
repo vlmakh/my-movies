@@ -27,13 +27,15 @@ export const MovieItem = () => {
   }
 
   // console.log(movieItem);
-  // console.log(location);
+  console.log(location.state);
 
-  const backLinkHref = location.state?.from ?? '/';
+  const backLink = location.state?.from ?? '/';
 
   return (
-    <Box p={3} textAlign="left">
-      <NavLink to={backLinkHref}>Go Back</NavLink>
+    <Box p={3} mt="48px" textAlign="left">
+      <NavLink to={backLink} className={css.goback__btn}>
+        Go Back
+      </NavLink>
       <Box display="flex" mt={3}>
         <div className={css.trend__thumb}>
           <img

@@ -9,10 +9,13 @@ export const SharedLayout = () => {
       <Box
         as="header"
         display="flex"
-        p={3}
+        alignItems="center"
+        px={4}
         borderBottom="1px solid grey"
-        // position="fixed"
+        position="fixed"
         width="100%"
+        height="48px"
+        top="0"
         background="#333"
       >
         <nav>

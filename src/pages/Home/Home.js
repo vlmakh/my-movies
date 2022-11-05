@@ -3,9 +3,10 @@ import { Box } from 'components/Box/Box';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchTrends } from 'services/api';
-import css from './Trending.module.css';
+import css from './Home.module.css';
+import imageplaceholder from 'images/noposter.jpg';
 
-export const Trending = () => {
+export const Home = () => {
   const [trends, setTrends] = useState([]);
   const location = useLocation();
 
@@ -16,10 +17,10 @@ export const Trending = () => {
     });
   }, []);
 
-  console.log(location);
+  // console.log(location);
 
   return (
-    <Box p={3} textAlign="center">
+    <Box p={3} mt="48px" textAlign="center">
       <h2>Trending Today</h2>
 
       <ul className={css.trendList}>
@@ -30,7 +31,11 @@ export const Trending = () => {
                 <img
                   className={css.trend__img}
                   width="160"
-                  src={`https://image.tmdb.org/t/p/w200${trend.poster_path}`}
+                  src={
+                    trend.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${trend.poster_path}`
+                      : imageplaceholder
+                  }
                   alt={trend.title ?? trend.name}
                 />
               </div>

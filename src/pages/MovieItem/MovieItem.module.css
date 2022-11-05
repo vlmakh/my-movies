@@ -20,3 +20,12 @@
 .movie__add:not(:last-of-type) {
   margin-right: 16px;
 }
+
+.goback__btn {
+  padding: 4px 8px;
+  color: #333;
+  background-color: #bcc3ce;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+}

@@ -4,7 +4,7 @@ import css from './Cast.module.css';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchCastById } from 'services/api';
-import imageplaceholder from 'images/nophoto.png';
+import imageplaceholder from 'images/nophoto.jpg';
 
 export const Cast = () => {
   const params = useParams();
