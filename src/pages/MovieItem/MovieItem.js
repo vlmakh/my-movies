@@ -17,9 +17,14 @@ export const MovieItem = () => {
   const location = useLocation();
 
   useEffect(() => {
-    fetchMovieById(params.movieId).then(data => {
-      setMovieItem(data);
-    });
+    try {
+      fetchMovieById(params.movieId).then(data => {
+        console.log(data);
+        setMovieItem(data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }, [params.movieId]);
 
   if (!movieItem) {
@@ -27,7 +32,7 @@ export const MovieItem = () => {
   }
 
   // console.log(movieItem);
-  console.log(location.state);
+  // console.log(location.state);
 
   const backLink = location.state?.from ?? '/';
 
