@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import { Box } from 'components/Box/Box';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';

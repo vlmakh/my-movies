@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { Home } from 'pages/Home/Home';

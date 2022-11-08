@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import css from './Movies.module.css';
 import { Link } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
@@ -10,18 +9,27 @@ import { MovieCard } from 'components/MovieCard/MovieCard';
 export const Movies = () => {
   const [moviesFound, setMoviesFound] = useState([]);
   const [page, setPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useSearchParams();
+  const query = searchQuery.get('search') ?? '';
+  const [input, setInput] = useState(query ? query : '');
   const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const queryParams = searchParams.get('search') ?? '';
-  const [input, setInput] = useState(queryParams ? queryParams : '');
-  console.log('queryParams: ', queryParams);
-  console.log('input: ', input);
 
-  // useEffect(() => {
-  //   if (!queryParams) {
-  //     return;
-  //   }
-  // }, [page, queryParams]);
+  useEffect(() => {
+    if (!query) {
+      return;
+    }
+
+    fetchMovies(query, page).then(data => {
+      if (!data.results.length) {
+        alert('No results found due to your search inquiry');
+      } else {
+        // setMoviesFound(prevState => {
+        //   return [...prevState, ...data.results];
+        // });
+        setMoviesFound([...data.results]);
+      }
+    });
+  }, [page, query]);
 
   const onSearchInput = event => {
     setInput(event.target.value);
@@ -32,27 +40,11 @@ export const Movies = () => {
     if (input.trim() === '') {
       return alert('Empty query. Please input something for search');
     }
-    searchQuery(input);
-    setSearchParams(input !== '' ? { search: input } : {});
-  };
-
-  const searchQuery = newQuery => {
-    if (newQuery.trim() !== input) {
+    if (input.trim() !== query) {
       setPage(1);
-      setInput(newQuery.trim());
       setMoviesFound([]);
+      setSearchQuery({ search: input });
     }
-
-    fetchMovies(input, page).then(data => {
-      if (!data.results.length) {
-        alert('No results found due to your search inquiry');
-      } else {
-        // setMoviesFound(prevState => {
-        //   return [...prevState, ...data.results];
-        // });
-        setMoviesFound([...data.results]);
-      }
-    });
   };
 
   // const loadMore = () => {
