@@ -16,8 +16,6 @@ export const Home = () => {
     });
   }, []);
 
-  // console.log(location);
-
   return (
     <Box p={3} mt="48px" textAlign="center">
       <h2>Trending Today</h2>

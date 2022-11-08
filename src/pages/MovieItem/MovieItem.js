@@ -16,12 +16,9 @@ export const MovieItem = () => {
   const params = useParams();
   const backLink = useRef(location.state?.from ?? '/');
 
-  // const backLink = location.state?.from ?? '/';
-
   useEffect(() => {
     fetchMovieById(params.movieId)
       .then(data => {
-        // console.log(data);
         setMovieItem(data);
       })
       .catch(error => {
@@ -29,12 +26,6 @@ export const MovieItem = () => {
         alert(error.message);
       });
   }, [params.movieId]);
-
-  // if (!movieItem) {
-  //   return null;
-  // }
-
-  // console.log(backLink.current);
 
   return (
     <Box p={3} mt="48px" textAlign="left">
