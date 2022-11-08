@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchTrends().then(data => {
-      // console.log(data.results);
+      // console.log(data);
       setTrends(data.results);
     });
   }, []);

@@ -1,7 +1,7 @@
 import css from './Movies.module.css';
 import { Link } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
-import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
@@ -9,6 +9,7 @@ import { MovieCard } from 'components/MovieCard/MovieCard';
 export default function Movies() {
   const [moviesFound, setMoviesFound] = useState([]);
   const [page, setPage] = useState(1);
+  const [totalFound, setTotalFound] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search') ?? '';
   const [input, setInput] = useState(query ? query : '');
@@ -23,10 +24,14 @@ export default function Movies() {
       if (!data.results.length) {
         alert('No results found due to your search inquiry');
       } else {
-        // setMoviesFound(prevState => {
-        //   return [...prevState, ...data.results];
-        // });
-        setMoviesFound([...data.results]);
+        setMoviesFound(prevState => {
+          return [...prevState, ...data.results];
+        });
+        console.log(data);
+        setTotalFound(data.total_results);
+
+        // setMoviesFound([...data.results]);
+        // setTotalPages(data.total_pages);
       }
     });
   }, [page, query]);
@@ -47,9 +52,9 @@ export default function Movies() {
     }
   };
 
-  // const loadMore = () => {
-  //   setPage(prevPage => prevPage + 1);
-  // };
+  const loadMore = () => {
+    setPage(prevPage => prevPage + 1);
+  };
 
   const searchRoute = `${location.pathname}${location.search}`;
 
@@ -77,7 +82,11 @@ export default function Movies() {
         ))}
       </ul>
 
-      <Outlet />
+      {moviesFound.length > 0 && moviesFound.length < totalFound && (
+        <button type="button" onClick={loadMore} className={css.loadmore__btn}>
+          Load More
+        </button>
+      )}
     </Box>
   );
 }
