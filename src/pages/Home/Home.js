@@ -5,7 +5,7 @@ import { fetchTrends } from 'services/api';
 import css from './Home.module.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 
-export const Home = () => {
+export default function Home() {
   const [trends, setTrends] = useState([]);
   const location = useLocation();
 
@@ -31,4 +31,4 @@ export const Home = () => {
       </ul>
     </Box>
   );
-};
+}

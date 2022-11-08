@@ -1,7 +1,7 @@
-// import PropTypes from 'prop-types';
 import { Outlet, NavLink } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
 import css from './SharedLayout.module.css';
+import { Suspense } from 'react';
 
 export const SharedLayout = () => {
   return (
@@ -27,7 +27,9 @@ export const SharedLayout = () => {
           </NavLink>
         </nav>
       </Box>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

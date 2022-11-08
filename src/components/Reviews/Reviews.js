@@ -1,6 +1,4 @@
-// import PropTypes from 'prop-types';
 import css from './Reviews.module.css';
-// import { Box } from 'components/Box/Box';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviewsById } from 'services/api';

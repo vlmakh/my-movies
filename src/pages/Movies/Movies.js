@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 
-export const Movies = () => {
+export default function Movies() {
   const [moviesFound, setMoviesFound] = useState([]);
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
@@ -80,4 +80,4 @@ export const Movies = () => {
       <Outlet />
     </Box>
   );
-};
+}

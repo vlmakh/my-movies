@@ -6,7 +6,7 @@ export const PageError = () => {
     <Box textAlign="center" mt={4}>
       <h1>Error 404</h1>
       <p>Something's wrong...</p>
-      <img src={errorImage} alt="error 404" />
+      <img src={errorImage} alt="error 404" width="800" />
     </Box>
   );
 };

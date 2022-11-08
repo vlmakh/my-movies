@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
 
-export const MovieItem = () => {
+export default function MovieItem() {
   const [movieItem, setMovieItem] = useState(null);
   const location = useLocation();
   const params = useParams();
@@ -65,4 +65,4 @@ export const MovieItem = () => {
       )}
     </Box>
   );
-};
+}
