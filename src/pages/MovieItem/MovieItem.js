@@ -3,38 +3,37 @@ import css from './MovieItem.module.css';
 import { Box } from 'components/Box/Box';
 import { useState, useEffect } from 'react';
 import {
-  useParams,
   Outlet,
   NavLink,
   Link,
   useLocation,
+  useParams,
 } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
 
 export const MovieItem = () => {
-  const params = useParams();
   const [movieItem, setMovieItem] = useState(null);
   const location = useLocation();
+  const params = useParams();
+
+  const backLink = location.state?.from ?? '/';
 
   useEffect(() => {
-    try {
-      fetchMovieById(params.movieId).then(data => {
-        console.log(data);
+    fetchMovieById(params.movieId)
+      .then(data => {
         setMovieItem(data);
+      })
+      .catch(error => {
+        // console.log(error.message);
+        alert('Page not found');
       });
-    } catch (error) {
-      console.log(error);
-    }
   }, [params.movieId]);
 
   if (!movieItem) {
     return null;
   }
 
-  // console.log(movieItem);
-  // console.log(location.state);
-
-  const backLink = location.state?.from ?? '/';
+  // console.log(backLink);
 
   return (
     <Box p={3} mt="48px" textAlign="left">

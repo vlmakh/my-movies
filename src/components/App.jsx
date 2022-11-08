@@ -10,8 +10,7 @@ import { Reviews } from './Reviews/Reviews';
 
 export const App = () => {
   return (
-    <>
-      {/* <SharedLayout /> */}
+    <>      
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
@@ -20,7 +19,7 @@ export const App = () => {
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews/>} />
             <Route path="*" element={<PageError />} />
-          </Route>
+          </Route>          
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>
       </Routes>
