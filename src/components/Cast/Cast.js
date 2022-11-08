@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { fetchCastById } from 'services/api';
 import imageplaceholder from 'images/nophoto.jpg';
 
-export const Cast = () => {
+export default function Cast() {
   const params = useParams();
   // console.log(params);
   const [cast, setCast] = useState([]);
@@ -39,4 +39,4 @@ export const Cast = () => {
       </ul>
     </>
   );
-};
+}

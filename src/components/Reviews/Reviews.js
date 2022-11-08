@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviewsById } from 'services/api';
 
-export const Reviews = () => {
+export default function Reviews() {
   const params = useParams();
   //   console.log(params);
   const [reviews, setReviews] = useState([]);
@@ -35,4 +35,4 @@ export const Reviews = () => {
       </ul>
     </>
   );
-};
+}
