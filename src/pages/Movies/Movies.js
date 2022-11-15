@@ -5,6 +5,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
+// import toast from 'react-hot-toast';
 
 export default function Movies() {
   const [moviesFound, setMoviesFound] = useState([]);
@@ -28,6 +29,7 @@ export default function Movies() {
           return [...prevState, ...data.results];
         });
         console.log(data);
+        // toast(`Total found ${data.total_results} matches`);
         setTotalFound(data.total_results);
 
         // setMoviesFound([...data.results]);
