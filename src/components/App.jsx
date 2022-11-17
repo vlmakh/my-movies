@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { lazy } from 'react';
-import { Toaster } from 'react-hot-toast';
+// import { Toaster } from 'react-hot-toast';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
@@ -25,7 +25,7 @@ export const App = () => {
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>
       </Routes>
-     <Toaster />
+     {/* <Toaster /> */}
     </>
   );
 };

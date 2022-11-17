@@ -9,9 +9,11 @@ import {
   useParams,
 } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
+import PageError from 'pages/PageError/PageError';
 
 export default function MovieItem() {
   const [movieItem, setMovieItem] = useState(null);
+  const [error, setError] = useState(false);
   const location = useLocation();
   const params = useParams();
   const backLink = useRef(location.state?.from ?? '/');
@@ -23,7 +25,8 @@ export default function MovieItem() {
       })
       .catch(error => {
         // console.log(error.message);
-        alert(error.message);
+        // alert(error.message);
+        setError(true);
       });
   }, [params.movieId]);
 
@@ -32,6 +35,8 @@ export default function MovieItem() {
       <NavLink to={backLink.current} className={css.goback__btn}>
         Go Back
       </NavLink>
+
+      {error && <PageError />}
 
       {movieItem && (
         <>
