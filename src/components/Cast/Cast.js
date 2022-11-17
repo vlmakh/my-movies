@@ -11,7 +11,7 @@ export default function Cast() {
 
   useEffect(() => {
     fetchCastById(params.movieId).then(data => {
-      // console.log(data.cast);
+      console.log(data.cast);
       setCast(data.cast);
     });
   }, [params.movieId]);

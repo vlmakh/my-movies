@@ -45,14 +45,14 @@ export default function MovieItem() {
             <div>
               <img
                 className={css.movie__img}
-                width="160"
+                width="200"
                 src={`https://image.tmdb.org/t/p/w200/${movieItem.poster_path}`}
                 alt={`${movieItem.original_title}`}
                 onClick={toggleModal}
               />
             </div>
             <Box ml={3}>
-              <h3>{movieItem.original_title}</h3>
+              <h2>{movieItem.original_title}</h2>
               <p className={css.movie__over}>{movieItem.overview}</p>
               <p className={css.movie__genres}>
                 {movieItem.genres.map(genre => genre.name).join(', ')}
