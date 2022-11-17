@@ -1,9 +1,10 @@
 .trendList {
-    
-    display: flex;
-    flex-wrap: wrap;
-    /* justify-content: center; */
-    margin-top: 16px;
-    gap: 8px;
-    list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  margin-top: 16px;
+  gap: 8px;
+  list-style: none;
 }
+
+

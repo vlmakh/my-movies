@@ -1,16 +1,20 @@
 import css from './Movies.module.css';
-import { Link } from 'react-router-dom';
+import 'index.css';
+import { NavLink } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
-import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 
 export default function Movies() {
   const [moviesFound, setMoviesFound] = useState([]);
-  const [page, setPage] = useState(1);
+
+  const [totalFound, setTotalFound] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search') ?? '';
+  const currentPage = searchQuery.get('page');
+  const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
   const [input, setInput] = useState(query ? query : '');
   const location = useLocation();
 
@@ -19,16 +23,22 @@ export default function Movies() {
       return;
     }
 
-    fetchMovies(query, page).then(data => {
-      if (!data.results.length) {
-        alert('No results found due to your search inquiry');
-      } else {
-        // setMoviesFound(prevState => {
-        //   return [...prevState, ...data.results];
-        // });
-        setMoviesFound([...data.results]);
-      }
-    });
+    fetchMovies(query, page)
+      .then(data => {
+        if (!data.results.length) {
+          alert('No results found due to your search inquiry');
+        } else {
+          setMoviesFound(prevState => {
+            return [...prevState, ...data.results];
+          });
+          // console.log(data);
+          setTotalFound(data.total_results);
+
+          // setMoviesFound([...data.results]);
+          // setTotalPages(data.total_pages);
+        }
+      })
+      .catch(error => console.log(error));
   }, [page, query]);
 
   const onSearchInput = event => {
@@ -43,13 +53,20 @@ export default function Movies() {
     if (input.trim() !== query) {
       setPage(1);
       setMoviesFound([]);
-      setSearchQuery({ search: input });
+      setSearchQuery({ search: input, page: page });
     }
   };
 
-  // const loadMore = () => {
-  //   setPage(prevPage => prevPage + 1);
-  // };
+  const increasePage = () => {
+    setPage(prevPage => prevPage + 1);
+    setSearchQuery({ search: input, page: page + 1 });
+  };
+
+  const clearAll = () => {
+    setInput('');
+    setMoviesFound([]);
+    setSearchQuery({ search: '', page: 1 });
+  };
 
   const searchRoute = `${location.pathname}${location.search}`;
 
@@ -65,19 +82,34 @@ export default function Movies() {
         <button type="submit" className={css.search__btn}>
           Search
         </button>
+        <button type="button" className={css.search__btn} onClick={clearAll}>
+          Clear
+        </button>
       </form>
 
       <ul className={css.moviesList}>
         {moviesFound.map(movie => (
-          <li key={movie.id}>
-            <Link to={`${movie.id}`} state={{ from: searchRoute }}>
+          <li key={movie.id} className="item">
+            <NavLink
+              to={`${movie.id}`}
+              state={{ from: searchRoute }}
+              className="link"
+            >
               <MovieCard movie={movie} />
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>
 
-      <Outlet />
+      {moviesFound.length > 0 && moviesFound.length < totalFound && (
+        <button
+          type="button"
+          onClick={increasePage}
+          className={css.loadmore__btn}
+        >
+          Load More
+        </button>
+      )}
     </Box>
   );
 }

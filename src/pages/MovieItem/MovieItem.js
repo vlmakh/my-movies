@@ -1,20 +1,23 @@
 import css from './MovieItem.module.css';
 import { Box } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
-import {
-  Outlet,
-  NavLink,
-  Link,
-  useLocation,
-  useParams,
-} from 'react-router-dom';
+import { Outlet, NavLink, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
+import PageError from 'pages/PageError/PageError';
+import Modal from 'components/Modal/Modal';
 
 export default function MovieItem() {
   const [movieItem, setMovieItem] = useState(null);
+  const [error, setError] = useState(false);
   const location = useLocation();
   const params = useParams();
   const backLink = useRef(location.state?.from ?? '/');
+
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   useEffect(() => {
     fetchMovieById(params.movieId)
@@ -23,7 +26,8 @@ export default function MovieItem() {
       })
       .catch(error => {
         // console.log(error.message);
-        alert(error.message);
+        // alert(error.message);
+        setError(true);
       });
   }, [params.movieId]);
 
@@ -33,19 +37,22 @@ export default function MovieItem() {
         Go Back
       </NavLink>
 
+      {error && <PageError />}
+
       {movieItem && (
         <>
           <Box display="flex" mt={3}>
-            <div className={css.trend__thumb}>
+            <div>
               <img
-                className={css.trend__img}
-                width="160"
+                className={css.movie__img}
+                width="200"
                 src={`https://image.tmdb.org/t/p/w200/${movieItem.poster_path}`}
                 alt={`${movieItem.original_title}`}
+                onClick={toggleModal}
               />
             </div>
             <Box ml={3}>
-              <h3>{movieItem.original_title}</h3>
+              <h2>{movieItem.original_title}</h2>
               <p className={css.movie__over}>{movieItem.overview}</p>
               <p className={css.movie__genres}>
                 {movieItem.genres.map(genre => genre.name).join(', ')}
@@ -53,14 +60,22 @@ export default function MovieItem() {
             </Box>
           </Box>
           <Box mt={3} textAlign="center">
-            <Link className={css.movie__add} to="cast">
+            <NavLink className={css.movie__add} to="cast">
               Cast
-            </Link>
-            <Link className={css.movie__add} to="reviews">
+            </NavLink>
+            <NavLink className={css.movie__add} to="reviews">
               Reviews
-            </Link>
+            </NavLink>
           </Box>
           <Outlet />
+          {showModal && (
+            <Modal onClose={toggleModal}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${movieItem.poster_path}`}
+                alt={`${movieItem.original_title}`}
+              />
+            </Modal>
+          )}
         </>
       )}
     </Box>
