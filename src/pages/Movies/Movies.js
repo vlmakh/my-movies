@@ -8,10 +8,12 @@ import { MovieCard } from 'components/MovieCard/MovieCard';
 
 export default function Movies() {
   const [moviesFound, setMoviesFound] = useState([]);
-  const [page, setPage] = useState(1);
+
   const [totalFound, setTotalFound] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search') ?? '';
+  const currentPage = searchQuery.get('page');
+  const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
   const [input, setInput] = useState(query ? query : '');
   const location = useLocation();
 
@@ -50,12 +52,19 @@ export default function Movies() {
     if (input.trim() !== query) {
       setPage(1);
       setMoviesFound([]);
-      setSearchQuery({ search: input });
+      setSearchQuery({ search: input, page: page });
     }
   };
 
   const increasePage = () => {
     setPage(prevPage => prevPage + 1);
+    setSearchQuery({ search: input, page: page + 1 });
+  };
+
+  const clearAll = () => {
+    setInput('');
+    setMoviesFound([]);
+    setSearchQuery({ search: '', page: 1 });
   };
 
   const searchRoute = `${location.pathname}${location.search}`;
@@ -71,6 +80,9 @@ export default function Movies() {
         />
         <button type="submit" className={css.search__btn}>
           Search
+        </button>
+        <button type="button" className={css.search__btn} onClick={clearAll}>
+          Clear
         </button>
       </form>
 
