@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchTrends } from 'services/api';
 import css from './Home.module.css';
+import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 
 export default function Home() {
@@ -22,8 +23,12 @@ export default function Home() {
 
       <ul className={css.trendList}>
         {trends.map(trend => (
-          <li key={trend.id}>
-            <NavLink to={`movies/${trend.id}`} state={{ from: location }}>
+          <li key={trend.id} className="item">
+            <NavLink
+              to={`movies/${trend.id}`}
+              state={{ from: location }}
+              className="link"
+            >
               <MovieCard movie={trend} />
             </NavLink>
           </li>

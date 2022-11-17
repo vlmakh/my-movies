@@ -1,5 +1,6 @@
 import css from './Movies.module.css';
-import { Link } from 'react-router-dom';
+import 'index.css';
+import { NavLink } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -88,10 +89,14 @@ export default function Movies() {
 
       <ul className={css.moviesList}>
         {moviesFound.map(movie => (
-          <li key={movie.id}>
-            <Link to={`${movie.id}`} state={{ from: searchRoute }}>
+          <li key={movie.id} className="item">
+            <NavLink
+              to={`${movie.id}`}
+              state={{ from: searchRoute }}
+              className="link"
+            >
               <MovieCard movie={movie} />
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>
