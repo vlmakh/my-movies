@@ -5,7 +5,6 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
-// import toast from 'react-hot-toast';
 
 export default function Movies() {
   const [moviesFound, setMoviesFound] = useState([]);
@@ -21,21 +20,22 @@ export default function Movies() {
       return;
     }
 
-    fetchMovies(query, page).then(data => {
-      if (!data.results.length) {
-        alert('No results found due to your search inquiry');
-      } else {
-        setMoviesFound(prevState => {
-          return [...prevState, ...data.results];
-        });
-        console.log(data);
-        // toast(`Total found ${data.total_results} matches`);
-        setTotalFound(data.total_results);
+    fetchMovies(query, page)
+      .then(data => {
+        if (!data.results.length) {
+          alert('No results found due to your search inquiry');
+        } else {
+          setMoviesFound(prevState => {
+            return [...prevState, ...data.results];
+          });
+          // console.log(data);
+          setTotalFound(data.total_results);
 
-        // setMoviesFound([...data.results]);
-        // setTotalPages(data.total_pages);
-      }
-    });
+          // setMoviesFound([...data.results]);
+          // setTotalPages(data.total_pages);
+        }
+      })
+      .catch(error => console.log(error));
   }, [page, query]);
 
   const onSearchInput = event => {
@@ -54,7 +54,7 @@ export default function Movies() {
     }
   };
 
-  const loadMore = () => {
+  const increasePage = () => {
     setPage(prevPage => prevPage + 1);
   };
 
@@ -85,7 +85,11 @@ export default function Movies() {
       </ul>
 
       {moviesFound.length > 0 && moviesFound.length < totalFound && (
-        <button type="button" onClick={loadMore} className={css.loadmore__btn}>
+        <button
+          type="button"
+          onClick={increasePage}
+          className={css.loadmore__btn}
+        >
           Load More
         </button>
       )}
