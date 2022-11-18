@@ -53,13 +53,19 @@ export default function MovieItem() {
             </div>
             <Box ml={3}>
               <h2>{movieItem.original_title}</h2>
+              <h4>
+                {(movieItem.release_date ?? movieItem.first_air_date).slice(
+                  0,
+                  4
+                )}
+              </h4>
               <p className={css.movie__over}>{movieItem.overview}</p>
               <p className={css.movie__genres}>
                 {movieItem.genres.map(genre => genre.name).join(', ')}
               </p>
             </Box>
           </Box>
-          <Box mt={3} textAlign="center">
+          <Box mt={3}>
             <NavLink className={css.movie__add} to="cast">
               Cast
             </NavLink>

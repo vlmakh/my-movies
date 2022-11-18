@@ -16,20 +16,20 @@ code {
     monospace;
 }
 
-h1, h2, h3, h4, h5, h6, ul, p {
+ul, p {
   margin: 0;
   padding: 0;
 }
 
 .item {
-  transform: scale(1);
+  box-shadow: none;
 
-  transition: transform 250ms linear;
+  transition: box-shadow 250ms linear;
 }
 
 .item:hover,
 .item:focus {
-  transform: scale(1.03);
+  box-shadow: 0 0 8px rgba(188, 195, 206, 0.6);
 }
 
 .link {

@@ -2,7 +2,9 @@ import css from './MovieCard.module.css';
 import imageplaceholder from 'images/noposter.jpg';
 import { Box } from 'components/Box/Box';
 
-export const MovieCard = ({ movie, location }) => {
+export const MovieCard = ({ movie }) => {
+  const movieYear = (movie.release_date ?? movie.first_air_date).slice(0, 4);
+
   return (
     <Box width="160px" background="#bcc3ce" height="100%">
       <div className={css.movie__thumb}>
@@ -16,8 +18,12 @@ export const MovieCard = ({ movie, location }) => {
           }
           alt={movie.title ?? movie.name}
         />
+        <div className={css.overlay__title}>
+          <p>{movie.title ?? movie.name}</p>
+          <p>{movieYear}</p>
+        </div>
       </div>
-      <p className={css.movie__title}>{movie.title ?? movie.name}</p>
+      {/* <p className={css.movie__title}>{movie.title ?? movie.name}</p> */}
     </Box>
   );
 };
