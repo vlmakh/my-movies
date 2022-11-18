@@ -3,7 +3,10 @@ import imageplaceholder from 'images/noposter.jpg';
 import { Box } from 'components/Box/Box';
 
 export const MovieCard = ({ movie }) => {
-  const movieYear = (movie.release_date ?? movie.first_air_date).slice(0, 4);
+  let movieYear = '';
+  if (movie.release_date ?? movie.first_air_date) {
+    movieYear = (movie.release_date ?? movie.first_air_date).slice(0, 4);
+  }
 
   return (
     <Box width="160px" background="#bcc3ce" height="100%">
