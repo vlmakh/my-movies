@@ -17,6 +17,7 @@ export const SharedLayout = () => {
         height="48px"
         top="0"
         background="#333"
+        zIndex="100"
       >
         <nav>
           <NavLink className={css.header__link} to="/">

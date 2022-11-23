@@ -11,12 +11,13 @@ const PageError = lazy(() => import ('pages/PageError/PageError'));
 
 export const App = () => {
   return (
-    <>
+    <>      
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieItem />}>
+            {/* <Route index element={<div>Overview</div>} /> */}
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
             <Route path="*" element={<PageError />} />

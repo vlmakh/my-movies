@@ -1,6 +1,9 @@
-/* .movie__title {
-
-} */
+.movie__title {
+  margin-top: 0;
+  font-size: 36px;
+  color: #ffffff;
+  text-align: center;
+}
 
 .movie__over {
   margin-top: 16px;
