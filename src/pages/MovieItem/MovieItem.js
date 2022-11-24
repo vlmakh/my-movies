@@ -46,8 +46,8 @@ export default function MovieItem() {
           <h2 className={css.movie__title}>{movieItem.original_title}</h2>
           <Box display="flex" mt={3}>
             <Box
-              width="200"
-              height="300"
+              width="200px"
+              height="300px"
               boxShadow="0 0 8px rgba(0, 0, 0, 0.6)"
             >
               <img

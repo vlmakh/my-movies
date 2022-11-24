@@ -30,7 +30,7 @@ ul, p {
 
 .item:hover,
 .item:focus {
-  box-shadow: 0 0 8px rgba(188, 195, 206, 0.6);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }
 
 .link {
