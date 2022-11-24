@@ -34,5 +34,6 @@
 }
 
 .movie__img {
+  display: block;
   cursor: pointer;
 }

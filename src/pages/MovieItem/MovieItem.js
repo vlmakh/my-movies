@@ -5,6 +5,7 @@ import { Outlet, NavLink, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
 import PageError from 'pages/PageError/PageError';
 import Modal from 'components/Modal/Modal';
+import imageplaceholder from 'images/noposter.jpg';
 
 export default function MovieItem() {
   const [movieItem, setMovieItem] = useState(null);
@@ -44,15 +45,23 @@ export default function MovieItem() {
         <>
           <h2 className={css.movie__title}>{movieItem.original_title}</h2>
           <Box display="flex" mt={3}>
-            <div>
+            <Box
+              width="200"
+              height="300"
+              boxShadow="0 0 8px rgba(0, 0, 0, 0.6)"
+            >
               <img
                 className={css.movie__img}
                 width="200"
-                src={`https://image.tmdb.org/t/p/w200/${movieItem.poster_path}`}
+                src={
+                  movieItem.poster_path
+                    ? `https://image.tmdb.org/t/p/w200/${movieItem.poster_path}`
+                    : imageplaceholder
+                }
                 alt={`${movieItem.original_title}`}
                 onClick={toggleModal}
               />
-            </div>
+            </Box>
 
             <Box ml={3}>
               <p className={css.movie__descr}>
@@ -87,7 +96,11 @@ export default function MovieItem() {
           {showModal && (
             <Modal onClose={toggleModal}>
               <img
-                src={`https://image.tmdb.org/t/p/w500/${movieItem.poster_path}`}
+                src={
+                  movieItem.poster_path
+                    ? `https://image.tmdb.org/t/p/w500/${movieItem.poster_path}`
+                    : imageplaceholder
+                }
                 alt={`${movieItem.original_title}`}
               />
             </Modal>
