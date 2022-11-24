@@ -31,7 +31,7 @@ const fetchMovieById = async id => {
   //   `${MAIN_URL}/movie/${id}?api_key=${API_KEY}&language=en-US&include_adult=false`
   // ).then(response => response.json());
   const response = await axios.get(
-    `${MAIN_URL}/movie/${id}?api_key=${API_KEY}&language=en-US&include_adult=false`
+    `${MAIN_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`
   );
   return response.data;
 };

@@ -18,7 +18,7 @@ export default function Reviews() {
   if (reviews.length === 0) {
     return (
       <>
-        <p>No reviews found</p>
+        <p className={css.reviewNot}>No reviews found</p>
       </>
     );
   }

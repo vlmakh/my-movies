@@ -33,7 +33,7 @@ export default function Cast() {
                 alt={actor.name}
               />
             </div>
-            <p className={css.castName}>{actor.name}</p>
+            <p className={css.cast__name}>{actor.name}</p>
           </li>
         ))}
       </ul>

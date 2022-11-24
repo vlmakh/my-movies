@@ -1,14 +1,17 @@
-/* .movie__title {
-
-} */
+.movie__title {
+  margin-top: 0;
+  font-size: 36px;
+  color: #ffffff;
+  text-align: center;
+}
 
 .movie__over {
   margin-top: 16px;
 }
 
-.movie__genres {
+.movie__descr {
   margin-top: 16px;
-  font-weight: 700;
+  /* font-weight: 700; */
 }
 
 .movie__add {
