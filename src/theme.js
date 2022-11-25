@@ -1,12 +1,12 @@
 export const darkTheme = {
   colors: {
-    title: '#ffffff',
     bcgMain: '#3b4351',
     bcgHeader: '#333333',
     bcgBtn: '#bcc3ce',
     bcgTitle: '#bcc3ce99',
     textPrimary: '#bcc3ce',
     textSecondary: '#212121',
+    textTitle: '#ffffff',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fontSizes: {

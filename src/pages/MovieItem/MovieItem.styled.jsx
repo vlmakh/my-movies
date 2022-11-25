@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 export const MovieTitle = styled.h2`
   margin-top: 0;
   font-size: ${p => p.theme.fontSizes.l};
-  color: ${p => p.theme.colors.title};
+  color: ${p => p.theme.colors.textTitle};
   text-align: center;
 `;
 export const MovieImg = styled.img`
