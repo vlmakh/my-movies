@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const ReviewList = styled.ul`
   margin-top: ${p => p.theme.space[4]}px;
-  padding-top: ${p => p.theme.space[3]}px;
+  /* padding-top: ${p => p.theme.space[3]}px; */
   list-style: none;
 `;
 

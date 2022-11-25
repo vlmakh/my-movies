@@ -1,7 +1,12 @@
-import css from './MovieItem.module.css';
+import {
+  MovieTitle,
+  MovieImg,
+  MovieDescr,
+  GobackLink,
+} from './MovieItem.styled';
 import { Box } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
-import { Outlet, NavLink, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
 import PageError from 'pages/PageError/PageError';
 import Modal from 'components/Modal/Modal';
@@ -35,24 +40,23 @@ export default function MovieItem() {
 
   return (
     <Box p={3} mt="48px" textAlign="left">
-      <NavLink to={backLink.current} className={css.goback__btn}>
-        Go Back
-      </NavLink>
+      <GobackLink to={backLink.current}>Go Back</GobackLink>
 
       {error && <PageError />}
 
       {movieItem && (
         <>
-          <h2 className={css.movie__title}>{movieItem.original_title}</h2>
+          <MovieTitle>{movieItem.original_title}</MovieTitle>
           <Box display="flex" mt={3}>
             <Box
               width="200px"
               height="300px"
               boxShadow="0 0 8px rgba(0, 0, 0, 0.6)"
+              // overflow="hidden"
             >
-              <img
-                className={css.movie__img}
+              <MovieImg
                 width="200"
+                height="100%"
                 src={
                   movieItem.poster_path
                     ? `https://image.tmdb.org/t/p/w200/${movieItem.poster_path}`
@@ -63,30 +67,26 @@ export default function MovieItem() {
               />
             </Box>
 
-            <Box ml={3}>
-              <p className={css.movie__descr}>
+            <Box ml={4}>
+              <MovieDescr>
                 {movieItem.genres.map(genre => genre.name).join(', ')}
-              </p>
-              <p className={css.movie__descr}>
+              </MovieDescr>
+              <MovieDescr>
                 {(movieItem.release_date ?? movieItem.first_air_date).slice(
                   0,
                   4
                 )}
-              </p>
-              <p className={css.movie__over}>{movieItem.overview}</p>
-              <Box mt={3}>
+              </MovieDescr>
+              <MovieDescr>{movieItem.overview}</MovieDescr>
+              <Box mt={4}>
                 {/* <NavLink
                   className={css.movie__add}
                   to={`/movies/${movieItem.id}`}
                 >
                   Overview
                 </NavLink> */}
-                <NavLink className={css.movie__add} to="cast">
-                  Cast
-                </NavLink>
-                <NavLink className={css.movie__add} to="reviews">
-                  Reviews
-                </NavLink>
+                <GobackLink to="cast">Cast</GobackLink>
+                <GobackLink to="reviews">Reviews</GobackLink>
               </Box>
               {/* <p className={css.movie__over}>{movieItem.overview}</p> */}
               <Outlet />
