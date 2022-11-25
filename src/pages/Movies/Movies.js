@@ -1,9 +1,9 @@
-import css from './Movies.module.css';
 import {
   MoviesList,
   MoviesItem,
   SearchBtn,
   SearchInput,
+  LoadMoreBtn,
 } from './Movies.styled';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import 'index.css';
@@ -117,13 +117,9 @@ export default function Movies() {
       </Box> */}
 
       {moviesFound.length > 0 && moviesFound.length < totalFound && (
-        <button
-          type="button"
-          onClick={increasePage}
-          className={css.loadmore__btn}
-        >
+        <LoadMoreBtn type="button" onClick={increasePage}>
           Load More
-        </button>
+        </LoadMoreBtn>
       )}
     </Box>
   );
