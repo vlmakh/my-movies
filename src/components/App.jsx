@@ -3,6 +3,7 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { ThemeProvider } from 'theme-ui';
 import { darkTheme } from '../theme';
+// import { lightTheme } from '../theme';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));

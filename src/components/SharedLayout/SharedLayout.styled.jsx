@@ -18,6 +18,6 @@ export const HeaderLink = styled(NavLink)`
   margin-right: ${p => p.theme.space[4]}px;
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: 700;
-  color: ${p => p.theme.colors.lightText};
+  color: ${p => p.theme.colors.textPrimary};
   text-decoration: none;
 `;

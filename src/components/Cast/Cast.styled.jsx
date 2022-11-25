@@ -11,7 +11,7 @@ export const CastList = styled.ul`
 export const CastCard = styled.li`
   width: 100px;
   padding-bottom: ${p => p.theme.space[2]}px;
-  background-color: ${p => p.theme.colors.lightText};
+  background-color: ${p => p.theme.colors.textPrimary};
 `;
 
 export const CastImg = styled.img`
@@ -22,8 +22,8 @@ export const CastImg = styled.img`
 
 export const CastName = styled.p`
   padding-top: ${p => p.theme.space[2]}px;
-  color: ${p => p.theme.colors.bcgHeader};
+  color: ${p => p.theme.colors.textSecondary};
   font-size: ${p => p.theme.fontSizes.xs};
-  font-weight: ${p => p.theme.fontWeights.bold};
+  font-weight: 700;
   text-align: center;
 `;

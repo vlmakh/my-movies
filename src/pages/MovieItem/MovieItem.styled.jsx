@@ -3,27 +3,24 @@ import { NavLink } from 'react-router-dom';
 
 export const MovieTitle = styled.h2`
   margin-top: 0;
-  font-size: 36px;
-  color: #ffffff;
+  font-size: ${p => p.theme.fontSizes.l};
+  color: ${p => p.theme.colors.title};
   text-align: center;
 `;
 export const MovieImg = styled.img`
-  cursor: pointer;
-   /* width: 100%; */
-  /* height: 100%;*/
-  /* object-fit: cover;  */
+  cursor: pointer;   
 `;
 
 export const MovieDescr = styled.p`
-  margin-top: 16px;
+  margin-top: ${p => p.theme.space[4]}px;
 `;
 
 export const GobackLink = styled(NavLink)`
   display: inline-block;
-  margin-right: 4px;
+  margin-right: ${p => p.theme.space[2]}px;
   padding: 4px 8px;
-  color: #333;
-  background-color: #bcc3ce;
+  color: ${p => p.theme.colors.textSecondary};
+  background-color: ${p => p.theme.colors.bcgBtn};
   text-decoration: none;
   font-size: 16px;
   font-weight: 700;

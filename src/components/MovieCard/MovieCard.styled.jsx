@@ -19,7 +19,7 @@ export const MovieTitle = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(188, 195, 206, 0.6);
+  background-color: #bcc3ce99;
   color: #212121;
   font-weight: 700;
 
