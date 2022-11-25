@@ -25,3 +25,7 @@ export const SearchBtn = styled.button`
     font-weight: 700;
     padding: 4px 8px;
 `
+
+export const SearchInput = styled.input`
+    padding: 4px 8px;
+`

@@ -1,5 +1,10 @@
 import css from './Movies.module.css';
-import { MoviesList, MoviesItem, SearchBtn } from './Movies.styled';
+import {
+  MoviesList,
+  MoviesItem,
+  SearchBtn,
+  SearchInput,
+} from './Movies.styled';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
@@ -8,18 +13,18 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
 
-import Pagination from '@mui/material/Pagination';
+// import Pagination from '@mui/material/Pagination';
 
 export default function Movies() {
   const [moviesFound, setMoviesFound] = useState([]);
-  // const [totalFound, setTotalFound] = useState(1);
+  const [totalFound, setTotalFound] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search') ?? '';
   const currentPage = searchQuery.get('page');
   const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
   const [input, setInput] = useState(query ? query : '');
   const location = useLocation();
-  const [totalPages, setTotalPages] = useState(0);
+  // const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     if (!query) {
@@ -31,13 +36,13 @@ export default function Movies() {
         if (!data.results.length) {
           alert('No results found due to your search inquiry');
         } else {
-          // setMoviesFound(prevState => {
-          //   return [...prevState, ...data.results];
-          // });
+          setMoviesFound(prevState => {
+            return [...prevState, ...data.results];
+          });
           // console.log(data);
-          // setTotalFound(data.total_results);
-          setTotalPages(data.total_pages);
-          setMoviesFound([...data.results]);
+          setTotalFound(data.total_results);
+          // setTotalPages(data.total_pages);
+          // setMoviesFound([...data.results]);
         }
       })
       .catch(error => console.log(error));
@@ -59,16 +64,16 @@ export default function Movies() {
     }
   };
 
-  // const increasePage = () => {
-  //   setPage(prevPage => prevPage + 1);
-  //   setSearchQuery({ search: input, page: page + 1 });
-  // };
+  const increasePage = () => {
+    setPage(prevPage => prevPage + 1);
+    setSearchQuery({ search: input, page: page + 1 });
+  };
 
   const clearAll = () => {
     setInput('');
     setMoviesFound([]);
     setSearchQuery({ search: '', page: 1 });
-    setTotalPages(0);
+    // setTotalPages(0);
   };
 
   const searchRoute = `${location.pathname}${location.search}`;
@@ -76,12 +81,7 @@ export default function Movies() {
   return (
     <Box p={4} textAlign="center" mt="48px">
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={input}
-          onChange={onSearchInput}
-          className={css.search}
-        />
+        <SearchInput type="text" value={input} onChange={onSearchInput} />
         <SearchBtn type="submit">Search</SearchBtn>
         <SearchBtn type="button" onClick={clearAll}>
           Clear
@@ -116,7 +116,7 @@ export default function Movies() {
         )}
       </Box> */}
 
-      {/* {moviesFound.length > 0 && moviesFound.length < totalFound && (
+      {moviesFound.length > 0 && moviesFound.length < totalFound && (
         <button
           type="button"
           onClick={increasePage}
@@ -124,7 +124,7 @@ export default function Movies() {
         >
           Load More
         </button>
-      )} */}
+      )}
     </Box>
   );
 }
