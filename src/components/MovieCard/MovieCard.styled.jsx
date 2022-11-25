@@ -19,8 +19,8 @@ export const MovieTitle = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #bcc3ce99;
-  color: #212121;
+  background-color:  ${p => p.theme.colors.bcgTitle};
+  color:  ${p => p.theme.colors.textSecondary};
   font-weight: 700;
 
   transform: translateY(100%);

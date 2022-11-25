@@ -2,7 +2,7 @@ import { Box } from 'components/Box/Box';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchTrends } from 'services/api';
-import { TrendsList, TrendsItem } from './Home.styled';
+import { HomeTitle, TrendsList, TrendsItem } from './Home.styled';
 import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 
@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <Box p={3} mt="48px" textAlign="center">
-      <h2>Trending Today</h2>
+      <HomeTitle>Trending Today</HomeTitle>
 
       <TrendsList>
         {trends.map(trend => (

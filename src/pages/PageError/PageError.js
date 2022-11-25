@@ -9,7 +9,7 @@ export default function PageError() {
         Something's wrong... probably information isn't added yet, please try
         later
       </p>
-      <Box mt={3}>
+      <Box mt={3} maxWidth="800px" mx="auto">
         <img src={errorImage} alt="error 404" width="100%" />
       </Box>
     </Box>

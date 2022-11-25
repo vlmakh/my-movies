@@ -1,6 +1,13 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
+export const Layout = styled.div`
+  min-width: 100vw;
+  min-height: 100vh;
+  padding-right: ${p => p.theme.space[4]}px;
+  background: ${p => p.theme.colors.bcgMain};
+`;
+
 export const Header = styled.div`
   display: flex;
   align-items: center;

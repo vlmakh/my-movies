@@ -6,7 +6,7 @@ export const darkTheme = {
     bcgBtn: '#bcc3ce',
     bcgTitle: '#bcc3ce99',
     textPrimary: '#bcc3ce',
-    textSecondary: '#333333',
+    textSecondary: '#212121',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fontSizes: {
@@ -37,9 +37,9 @@ export const lightTheme = {
     bcgMain: '#fff',
     bcgHeader: '#bcc3ce',
     bcgBtn: '#333',
-    bcgTitle: '#bcc3ce99',
-    textPrimary: '#333',
-    textSecondary: '#333333',
+    bcgTitle: '#333333cc',
+    textPrimary: '#333333',
+    textSecondary: '#bcc3ce',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fontSizes: {

@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const HomeTitle = styled.h2`
+  color: ${p => p.theme.colors.textPrimary}
+`
+
 export const TrendsList = styled.ul`
   display: flex;
   flex-wrap: wrap;

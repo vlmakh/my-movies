@@ -21,8 +21,13 @@ export const MoviesItem = styled.li`
 `;
 
 export const SearchBtn = styled.button`
+  margin-left: ${p => p.theme.space[1]}px;
   font-weight: 700;
   padding: 4px 8px;
+  color: ${p => p.theme.colors.textSecondary};
+  background-color: ${p => p.theme.colors.bcgBtn};
+  border-color: ${p => p.theme.colors.bcgBtn};
+  cursor: pointer;
 `;
 
 export const SearchInput = styled.input`
@@ -30,12 +35,14 @@ export const SearchInput = styled.input`
 `;
 
 export const LoadMoreBtn = styled.button`
-  margin-top: 16px;
+  margin-top: ${p => p.theme.space[4]}px;
+
   padding: 4px 8px;
-  color: #333;
-  background-color: #bcc3ce;
+  color: ${p => p.theme.colors.textSecondary};
+  background-color: ${p => p.theme.colors.bcgBtn};
   text-decoration: none;
-  font-size: 16px;
+  /* font-size: 16px; */
   font-weight: 700;
+  border-color: ${p => p.theme.colors.bcgBtn};
   cursor: pointer;
 `;
