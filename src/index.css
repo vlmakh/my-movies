@@ -17,11 +17,14 @@ code {
     font-size: 16px;
 }
 
-ul, p {
+h4, ul, p {
   margin: 0;
   padding: 0;
 }
 
+img {
+  display: block;
+}
 .item {
   box-shadow: none;
 

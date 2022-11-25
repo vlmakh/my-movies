@@ -1,4 +1,9 @@
-import css from './MovieCard.module.css';
+// import css from './MovieCard.module.css';
+import {
+  MovieThumb,
+  MovieImg,
+  MovieTitle,
+} from 'components/MovieCard/MovieCard.styled';
 import imageplaceholder from 'images/noposter.jpg';
 import { Box } from 'components/Box/Box';
 
@@ -10,9 +15,8 @@ export const MovieCard = ({ movie }) => {
 
   return (
     <Box width="160px" background="#bcc3ce" height="100%">
-      <div className={css.movie__thumb}>
-        <img
-          className={css.movie__img}
+      <MovieThumb>
+        <MovieImg
           width="160"
           src={
             movie.poster_path
@@ -21,12 +25,11 @@ export const MovieCard = ({ movie }) => {
           }
           alt={movie.title ?? movie.name}
         />
-        <div className={css.overlay__title}>
+        <MovieTitle>
           <p>{movie.title ?? movie.name}</p>
           <p>{movieYear}</p>
-        </div>
-      </div>
-      {/* <p className={css.movie__title}>{movie.title ?? movie.name}</p> */}
+        </MovieTitle>
+      </MovieThumb>
     </Box>
   );
 };

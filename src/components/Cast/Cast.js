@@ -1,4 +1,5 @@
-import css from './Cast.module.css';
+import { CastList, CastCard, CastImg, CastName } from './Cast.styled';
+import { Box } from 'components/Box/Box';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchCastById } from 'services/api';
@@ -18,12 +19,11 @@ export default function Cast() {
 
   return (
     <>
-      <ul className={css.castList}>
+      <CastList>
         {cast.map(actor => (
-          <li key={actor.id} className={css.castCard}>
-            <div className={css.cast__thumb}>
-              <img
-                className={css.cast__img}
+          <CastCard key={actor.id}>
+            <Box width="100px" height="150px" overflow="hidden">
+              <CastImg
                 width="100"
                 src={
                   actor.profile_path
@@ -32,11 +32,11 @@ export default function Cast() {
                 }
                 alt={actor.name}
               />
-            </div>
-            <p className={css.cast__name}>{actor.name}</p>
-          </li>
+            </Box>
+            <CastName>{actor.name}</CastName>
+          </CastCard>
         ))}
-      </ul>
+      </CastList>
     </>
   );
 }

@@ -1,11 +1,13 @@
 import css from './Movies.module.css';
+import { MoviesList, MoviesItem, SearchBtn } from './Movies.styled';
+import { MovieCard } from 'components/MovieCard/MovieCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
-import { MovieCard } from 'components/MovieCard/MovieCard';
+
 import Pagination from '@mui/material/Pagination';
 
 export default function Movies() {
@@ -80,30 +82,24 @@ export default function Movies() {
           onChange={onSearchInput}
           className={css.search}
         />
-        <button type="submit" className={css.search__btn}>
-          Search
-        </button>
-        <button type="button" className={css.search__btn} onClick={clearAll}>
+        <SearchBtn type="submit">Search</SearchBtn>
+        <SearchBtn type="button" onClick={clearAll}>
           Clear
-        </button>
+        </SearchBtn>
       </form>
 
-      <ul className={css.moviesList}>
+      <MoviesList>
         {moviesFound.map(movie => (
-          <li key={movie.id} className="item">
-            <NavLink
-              to={`${movie.id}`}
-              state={{ from: searchRoute }}
-              className="link"
-            >
+          <MoviesItem key={movie.id}>
+            <NavLink to={`${movie.id}`} state={{ from: searchRoute }}>
               <MovieCard movie={movie} />
             </NavLink>
-          </li>
+          </MoviesItem>
         ))}
-      </ul>
+      </MoviesList>
 
-      <Box py={3} display="flex" justifyContent="center">
-        {!!totalPages && (
+      {/* <Box py={3} display="flex" justifyContent="center">
+        {totalPages > 0 && (
           <Pagination
             count={totalPages}
             page={Number(currentPage)}
@@ -118,7 +114,7 @@ export default function Movies() {
             showLastButton
           />
         )}
-      </Box>
+      </Box> */}
 
       {/* {moviesFound.length > 0 && moviesFound.length < totalFound && (
         <button
