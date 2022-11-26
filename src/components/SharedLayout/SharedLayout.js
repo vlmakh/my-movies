@@ -1,36 +1,29 @@
-import { Outlet, NavLink } from 'react-router-dom';
-import { Box } from 'components/Box/Box';
-import css from './SharedLayout.module.css';
+import { Outlet } from 'react-router-dom';
+import {
+  StyledSwitch,
+  Layout,
+  Header,
+  HeaderLink,
+} from './SharedLayout.styled';
 import { Suspense } from 'react';
+import { Box } from 'theme-ui';
 
-export const SharedLayout = () => {
+export const SharedLayout = ({ toggleTheme }) => {
   return (
-    <>
-      <Box
-        as="header"
-        display="flex"
-        alignItems="center"
-        px={4}
-        borderBottom="1px solid grey"
-        position="fixed"
-        width="100%"
-        height="48px"
-        top="0"
-        background="#333"
-        zIndex="100"
-      >
+    <Layout>
+      <Header>
         <nav>
-          <NavLink className={css.header__link} to="/">
-            Home
-          </NavLink>
-          <NavLink className={css.header__link} to="/movies">
-            Movies
-          </NavLink>
+          <HeaderLink to="/">Home</HeaderLink>
+          <HeaderLink to="/movies">Movies</HeaderLink>
         </nav>
-      </Box>
+        <Box width="40px">
+          <StyledSwitch onClick={toggleTheme} />
+        </Box>
+      </Header>
+
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
-    </>
+    </Layout>
   );
 };

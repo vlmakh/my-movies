@@ -1,4 +1,9 @@
-import css from './Reviews.module.css';
+import {
+  ReviewList,
+  ReviewAuthor,
+  ReviewText,
+  ReviewNot,
+} from './Reviews.styled';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviewsById } from 'services/api';
@@ -18,21 +23,21 @@ export default function Reviews() {
   if (reviews.length === 0) {
     return (
       <>
-        <p className={css.reviewNot}>No reviews found</p>
+        <ReviewNot>No reviews found</ReviewNot>
       </>
     );
   }
 
   return (
     <>
-      <ul className={css.reviewList}>
+      <ReviewList>
         {reviews.map(review => (
-          <li key={review.id} className={css.reviewItem}>
-            <p className={css.reviewAuthor}>{review.author}</p>
-            <p className={css.reviewText}>{review.content}</p>
+          <li key={review.id}>
+            <ReviewAuthor>{review.author}</ReviewAuthor>
+            <ReviewText>{review.content}</ReviewText>
           </li>
         ))}
-      </ul>
+      </ReviewList>
     </>
   );
 }

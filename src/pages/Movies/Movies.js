@@ -1,16 +1,23 @@
-import css from './Movies.module.css';
+import {
+  MoviesList,
+  MoviesItem,
+  SearchBtn,
+  SearchInput,
+  LoadMoreBtn,
+} from './Movies.styled';
+import { MovieCard } from 'components/MovieCard/MovieCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
-import { MovieCard } from 'components/MovieCard/MovieCard';
-import Pagination from '@mui/material/Pagination';
+
+// import Pagination from '@mui/material/Pagination';
 
 export default function Movies() {
   const [moviesFound, setMoviesFound] = useState([]);
-  // const [totalFound, setTotalFound] = useState(1);
+  const [totalFound, setTotalFound] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search') ?? '';
   const currentPage = searchQuery.get('page');
@@ -33,7 +40,7 @@ export default function Movies() {
           //   return [...prevState, ...data.results];
           // });
           // console.log(data);
-          // setTotalFound(data.total_results);
+          setTotalFound(data.total_results);
           setTotalPages(data.total_pages);
           setMoviesFound([...data.results]);
         }
@@ -52,20 +59,25 @@ export default function Movies() {
     }
     if (input.trim() !== query) {
       setPage(1);
-      // setMoviesFound([]);
+      setMoviesFound([]);
       setSearchQuery({ search: input, page: Number(page) });
     }
   };
 
-  // const increasePage = () => {
-  //   setPage(prevPage => prevPage + 1);
-  //   setSearchQuery({ search: input, page: page + 1 });
-  // };
+  const increasePage = () => {
+    setPage(prevPage => prevPage + 1);
+    setSearchQuery({ search: input, page: page + 1 });
+  };
+
+  const decreasePage = () => {
+    setPage(prevPage => prevPage - 1);
+    setSearchQuery({ search: input, page: page - 1 });
+  };
 
   const clearAll = () => {
     setInput('');
     setMoviesFound([]);
-    setSearchQuery({ search: '', page: 1 });
+    setSearchQuery({ search: '', page: 0 });
     setTotalPages(0);
   };
 
@@ -74,36 +86,25 @@ export default function Movies() {
   return (
     <Box p={4} textAlign="center" mt="48px">
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={input}
-          onChange={onSearchInput}
-          className={css.search}
-        />
-        <button type="submit" className={css.search__btn}>
-          Search
-        </button>
-        <button type="button" className={css.search__btn} onClick={clearAll}>
+        <SearchInput type="text" value={input} onChange={onSearchInput} />
+        <SearchBtn type="submit">Search</SearchBtn>
+        <SearchBtn type="button" onClick={clearAll}>
           Clear
-        </button>
+        </SearchBtn>
       </form>
 
-      <ul className={css.moviesList}>
+      <MoviesList>
         {moviesFound.map(movie => (
-          <li key={movie.id} className="item">
-            <NavLink
-              to={`${movie.id}`}
-              state={{ from: searchRoute }}
-              className="link"
-            >
+          <MoviesItem key={movie.id}>
+            <NavLink to={`${movie.id}`} state={{ from: searchRoute }}>
               <MovieCard movie={movie} />
             </NavLink>
-          </li>
+          </MoviesItem>
         ))}
-      </ul>
+      </MoviesList>
 
-      <Box py={3} display="flex" justifyContent="center">
-        {!!totalPages && (
+      {/* <Box py={3} display="flex" justifyContent="center">
+        {totalPages > 0 && (
           <Pagination
             count={totalPages}
             page={Number(currentPage)}
@@ -118,17 +119,26 @@ export default function Movies() {
             showLastButton
           />
         )}
-      </Box>
+      </Box> */}
 
-      {/* {moviesFound.length > 0 && moviesFound.length < totalFound && (
-        <button
-          type="button"
-          onClick={increasePage}
-          className={css.loadmore__btn}
-        >
-          Load More
-        </button>
-      )} */}
+      {moviesFound.length > 0 && moviesFound.length < totalFound && (
+        <>
+          <LoadMoreBtn
+            type="button"
+            onClick={decreasePage}
+            disabled={page === 1 ? true : false}
+          >
+            Prev Page
+          </LoadMoreBtn>
+          <LoadMoreBtn
+            type="button"
+            onClick={increasePage}
+            disabled={page === totalPages ? true : false}
+          >
+            Next Page
+          </LoadMoreBtn>
+        </>
+      )}
     </Box>
   );
 }
