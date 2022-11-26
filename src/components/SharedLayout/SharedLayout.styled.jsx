@@ -4,15 +4,13 @@ import { Switch } from 'theme-ui';
 
 export const StyledSwitch = styled(Switch)`
 
-  background-color: #bcc3ce;
+  background-color: ${p => p.theme.colors.textPrimary};
   // This will not be visible since the input is hidden
-  // '&:checked': {
-  //   backgroundColor: 'primary'
-  // },
+  //
   // This will be visible
-  input:checked ~ & {
+  /* input:checked ~ & {
     background-color: #333;
-  }
+  } */
 `;
 
 export const Layout = styled.div`
