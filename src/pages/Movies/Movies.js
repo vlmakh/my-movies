@@ -24,7 +24,7 @@ export default function Movies() {
   const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
   const [input, setInput] = useState(query ? query : '');
   const location = useLocation();
-  // const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     if (!query) {
@@ -36,13 +36,13 @@ export default function Movies() {
         if (!data.results.length) {
           alert('No results found due to your search inquiry');
         } else {
-          setMoviesFound(prevState => {
-            return [...prevState, ...data.results];
-          });
+          // setMoviesFound(prevState => {
+          //   return [...prevState, ...data.results];
+          // });
           // console.log(data);
           setTotalFound(data.total_results);
-          // setTotalPages(data.total_pages);
-          // setMoviesFound([...data.results]);
+          setTotalPages(data.total_pages);
+          setMoviesFound([...data.results]);
         }
       })
       .catch(error => console.log(error));
@@ -59,7 +59,7 @@ export default function Movies() {
     }
     if (input.trim() !== query) {
       setPage(1);
-      // setMoviesFound([]);
+      setMoviesFound([]);
       setSearchQuery({ search: input, page: Number(page) });
     }
   };
@@ -69,11 +69,16 @@ export default function Movies() {
     setSearchQuery({ search: input, page: page + 1 });
   };
 
+  const decreasePage = () => {
+    setPage(prevPage => prevPage - 1);
+    setSearchQuery({ search: input, page: page - 1 });
+  };
+
   const clearAll = () => {
     setInput('');
     setMoviesFound([]);
-    setSearchQuery({ search: '', page: 1 });
-    // setTotalPages(0);
+    setSearchQuery({ search: '', page: 0 });
+    setTotalPages(0);
   };
 
   const searchRoute = `${location.pathname}${location.search}`;
@@ -117,9 +122,22 @@ export default function Movies() {
       </Box> */}
 
       {moviesFound.length > 0 && moviesFound.length < totalFound && (
-        <LoadMoreBtn type="button" onClick={increasePage}>
-          Load More
-        </LoadMoreBtn>
+        <>
+          <LoadMoreBtn
+            type="button"
+            onClick={decreasePage}
+            disabled={page === 1 ? true : false}
+          >
+            Prev Page
+          </LoadMoreBtn>
+          <LoadMoreBtn
+            type="button"
+            onClick={increasePage}
+            disabled={page === totalPages ? true : false}
+          >
+            Next Page
+          </LoadMoreBtn>
+        </>
       )}
     </Box>
   );

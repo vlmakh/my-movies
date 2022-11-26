@@ -16,7 +16,6 @@ export const App = () => {
   const [currentTheme, setCurrentTheme] = useState(darkTheme);
 
   const toggleTheme = () => {
-    console.log(currentTheme);
     setCurrentTheme(currentTheme === darkTheme ? lightTheme : darkTheme);
   };
 
