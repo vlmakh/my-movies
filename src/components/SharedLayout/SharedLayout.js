@@ -1,8 +1,14 @@
 import { Outlet } from 'react-router-dom';
-import { Layout, Header, HeaderLink } from './SharedLayout.styled';
+import {
+  StyledSwitch,
+  Layout,
+  Header,
+  HeaderLink,
+} from './SharedLayout.styled';
 import { Suspense } from 'react';
+import { Box } from 'theme-ui';
 
-export const SharedLayout = () => {
+export const SharedLayout = ({ toggleTheme }) => {
   return (
     <Layout>
       <Header>
@@ -10,7 +16,11 @@ export const SharedLayout = () => {
           <HeaderLink to="/">Home</HeaderLink>
           <HeaderLink to="/movies">Movies</HeaderLink>
         </nav>
+        <Box width="40px">
+          <StyledSwitch onClick={toggleTheme} />
+        </Box>
       </Header>
+
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>

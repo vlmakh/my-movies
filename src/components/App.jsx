@@ -2,8 +2,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { lazy } from 'react';
 import { ThemeProvider } from 'theme-ui';
-import { darkTheme } from '../theme';
-// import { lightTheme } from '../theme';
+import { darkTheme, lightTheme } from '../theme';
+import { useState } from 'react';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
@@ -12,13 +12,18 @@ const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
-
-
 export const App = () => {
+  const [currentTheme, setCurrentTheme] = useState(darkTheme);
+
+  const toggleTheme = () => {
+    console.log(currentTheme);
+    setCurrentTheme(currentTheme === darkTheme ? lightTheme : darkTheme);
+  };
+
   return (
-   <ThemeProvider theme={darkTheme}>   
-      <Routes >
-        <Route  path="/" element={<SharedLayout />}>
+    <ThemeProvider theme={currentTheme}>
+      <Routes>
+        <Route path="/" element={<SharedLayout toggleTheme={toggleTheme} />}>
           <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieItem />}>

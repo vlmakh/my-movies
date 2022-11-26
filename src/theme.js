@@ -33,13 +33,13 @@ export const darkTheme = {
 
 export const lightTheme = {
   colors: {
-    title: '#212121',
     bcgMain: '#fff',
     bcgHeader: '#bcc3ce',
     bcgBtn: '#333',
     bcgTitle: '#333333cc',
     textPrimary: '#333333',
     textSecondary: '#bcc3ce',
+    textTitle: '#212121',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fontSizes: {

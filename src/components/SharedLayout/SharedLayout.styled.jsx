@@ -1,5 +1,19 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
+import { Switch } from 'theme-ui';
+
+export const StyledSwitch = styled(Switch)`
+
+  background-color: #bcc3ce;
+  // This will not be visible since the input is hidden
+  // '&:checked': {
+  //   backgroundColor: 'primary'
+  // },
+  // This will be visible
+  input:checked ~ & {
+    background-color: #333;
+  }
+`;
 
 export const Layout = styled.div`
   min-width: 100vw;
@@ -11,7 +25,9 @@ export const Layout = styled.div`
 export const Header = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding-left: ${p => p.theme.space[4]}px;
+  padding-right: ${p => p.theme.space[4]}px;
   border-bottom: 1px solid grey;
   position: fixed;
   width: 100%;
