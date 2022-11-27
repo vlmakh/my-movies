@@ -74,9 +74,14 @@ export default function ActorPage() {
                 <MovieDescr>Death date: {personInfo.deathday}</MovieDescr>
               )}
 
-              <Box mt={4}>
+              <GobackLink to="biography" state={personInfo.biography}>
+                Biography
+              </GobackLink>
+              <GobackLink to="movies">Movies</GobackLink>
+
+              {/* <Box mt={4}>
                 <MovieDescr>{personInfo.biography}</MovieDescr>
-              </Box>
+              </Box> */}
 
               <Outlet />
             </Box>

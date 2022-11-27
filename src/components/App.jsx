@@ -35,7 +35,10 @@ export const App = () => {
             <Route path="*" element={<PageError />} />
           </Route>
           <Route path="actors" element={<Actors />} />
-          <Route path="actors/:actorId" element={<ActorPage />}></Route>
+          <Route path="actors/:actorId" element={<ActorPage />}>
+            <Route path="biography" element={<Overview/>} />
+            <Route path="movies" element={<Cast />} />
+          </Route>
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>
       </Routes>

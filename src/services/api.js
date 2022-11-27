@@ -56,6 +56,13 @@ const fetchActorById = async id => {
   return response.data;
 };
 
+const fetchMoviesByActor = async id => {
+  const response = await axios.get(
+    `${MAIN_URL}/person/${id}/movie_credits?api_key=${API_KEY}&language=en-US`
+  );
+  return response.data;
+};
+
 export {
   fetchTrends,
   fetchMovies,
@@ -64,6 +71,7 @@ export {
   fetchReviewsById,
   fetchActors,
   fetchActorById,
+  fetchMoviesByActor,
 };
 
 fetchMovies.propTypes = {

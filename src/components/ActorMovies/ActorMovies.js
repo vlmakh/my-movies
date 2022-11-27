@@ -1,45 +1,50 @@
-import { CastList, CastCard, CastImg, CastName } from './Cast.styled';
+import {
+  MovieList,
+  MovieCard,
+  MovieImg,
+  MovieName,
+} from './ActorMovies.styled';
 import { Box } from 'components/Box/Box';
 import { useState, useEffect } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
-import { fetchCastById } from 'services/api';
+import { fetchMoviesByActor } from 'services/api';
 import imageplaceholder from 'images/nophoto.jpg';
 
 export default function Cast() {
   const params = useParams();
   // console.log(params);
-  const [cast, setCast] = useState([]);
+  const [movies, setMovies] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
-    fetchCastById(params.movieId).then(data => {
-      // console.log(data.cast);
-      setCast(data.cast);
+    fetchMoviesByActor(params.actorId).then(data => {
+      console.log(data.results);
+      setMovies(data.results);
     });
-  }, [params.movieId]);
+  }, [params.actorId]);
 
   return (
     <>
-      <CastList>
-        {cast.map(actor => (
-          <CastCard key={actor.id}>
-            <Link to={`/actor-${actor.id}`} state={location}>
+      <MovieList>
+        {movies.map(movie => (
+          <MovieCard key={movie.id}>
+            <Link to={`/movies/${movie.id}`} state={location}>
               <Box width="100px" height="150px" overflow="hidden">
-                <CastImg
+                <MovieImg
                   width="100"
                   src={
-                    actor.profile_path
-                      ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
                       : imageplaceholder
                   }
-                  alt={actor.name}
+                  alt={movie.title ?? movie.name}
                 />
               </Box>
-              <CastName>{actor.name}</CastName>
+              <MovieName>{movie.title ?? movie.name}</MovieName>
             </Link>
-          </CastCard>
+          </MovieCard>
         ))}
-      </CastList>
+      </MovieList>
     </>
   );
 }
