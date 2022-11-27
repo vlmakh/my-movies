@@ -11,6 +11,7 @@ import { fetchActorById } from 'services/api';
 import PageError from 'pages/PageError/PageError';
 import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/noposter.jpg';
+import { formatDateEn } from 'services/formatDate';
 
 export default function ActorPage() {
   const [personInfo, setPersonInfo] = useState(null);
@@ -69,9 +70,13 @@ export default function ActorPage() {
             </Box>
 
             <Box ml={4}>
-              <ActorDescr>Birth date: {personInfo.birthday}</ActorDescr>
+              <ActorDescr>
+                Birth date: {formatDateEn(personInfo.birthday)}
+              </ActorDescr>
               {personInfo.deathday && (
-                <ActorDescr>Death date: {personInfo.deathday}</ActorDescr>
+                <ActorDescr>
+                  Death date: {formatDateEn(personInfo.deathday)}
+                </ActorDescr>
               )}
 
               <Box mt={4}>
