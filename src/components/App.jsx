@@ -1,10 +1,9 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { ThemeProvider } from 'theme-ui';
 import { darkTheme, lightTheme } from '../theme';
 import { useState } from 'react';
-import { Bars } from 'react-loader-spinner';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
@@ -28,39 +27,25 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={currentTheme}>
-      <Suspense
-        fallback={
-          <Bars
-            height="80"
-            width="80"
-            color="#bcc3ce"
-            ariaLabel="bars-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-          />
-        }
-      >
-        <Routes>
-          <Route path="/" element={<SharedLayout toggleTheme={toggleTheme} />}>
-            <Route index element={<Home />} />
-            <Route path="movies" element={<Movies />} />
-            <Route path="movies/:movieId" element={<MovieItem />}>
-              <Route path="overview" element={<Overview />} />
-              <Route path="cast" element={<Cast />} />
-              <Route path="reviews" element={<Reviews />} />
-              <Route path="*" element={<PageError />} />
-            </Route>
-            <Route path="actors" element={<Actors />} />
-            <Route path="actors/:actorId" element={<ActorPage />}>
-              <Route path="biography" element={<Biography />} />
-              <Route path="movies" element={<ActorMovies />} />
-              <Route path="images" element={<ActorImages />} />
-            </Route>
-            <Route path="*" element={<Navigate to="/" />}></Route>
+      <Routes>
+        <Route path="/" element={<SharedLayout toggleTheme={toggleTheme} />}>
+          <Route index element={<Home />} />
+          <Route path="movies" element={<Movies />} />
+          <Route path="movies/:movieId" element={<MovieItem />}>
+            <Route path="overview" element={<Overview />} />
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="*" element={<PageError />} />
           </Route>
-        </Routes>
-      </Suspense>
+          <Route path="actors" element={<Actors />} />
+          <Route path="actors/:actorId" element={<ActorPage />}>
+            <Route path="biography" element={<Biography />} />
+            <Route path="movies" element={<ActorMovies />} />
+            <Route path="images" element={<ActorImages />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />}></Route>
+        </Route>
+      </Routes>
     </ThemeProvider>
   );
 };

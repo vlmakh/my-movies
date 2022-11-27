@@ -4,6 +4,7 @@ import {
   SearchBtn,
   SearchInput,
   LoadMoreBtn,
+  Background,
 } from './Movies.styled';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import 'index.css';
@@ -96,6 +97,8 @@ export default function Movies() {
           Clear
         </SearchBtn>
       </form>
+
+      {moviesFound.length === 0 && <Background />}
 
       <MoviesList>
         {moviesFound.map(movie => (

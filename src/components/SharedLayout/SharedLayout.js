@@ -9,6 +9,7 @@ import {
 import { Suspense } from 'react';
 import { Box } from 'theme-ui';
 import logo from 'images/logo.png';
+import { Bars } from 'react-loader-spinner';
 
 export const SharedLayout = ({ toggleTheme }) => {
   return (
@@ -26,7 +27,17 @@ export const SharedLayout = ({ toggleTheme }) => {
         </Box>
       </Header>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <Bars
+            height="180"
+            width="180"
+            color="#bcc3ce"
+            ariaLabel="bars-loading"
+            visible={true}
+          />
+        }
+      >
         <Outlet />
       </Suspense>
     </Layout>
