@@ -4,14 +4,14 @@ import {
   SearchBtn,
   SearchInput,
   LoadMoreBtn,
-} from './Movies.styled';
-import { MovieCard } from 'components/MovieCard/MovieCard';
+} from './Actors.styled';
+import { ActorCard } from 'components/ActorCard/ActorCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { fetchMovies } from 'services/api';
+import { fetchActors } from 'services/api';
 
 // import Pagination from '@mui/material/Pagination';
 
@@ -32,7 +32,7 @@ export default function Movies() {
       return;
     }
 
-    fetchMovies(query, page)
+    fetchActors(query, page)
       .then(data => {
         if (!data.results.length) {
           alert('No results found due to your search inquiry');
@@ -91,7 +91,7 @@ export default function Movies() {
           type="text"
           value={input}
           onChange={onSearchInput}
-          placeholder="Film"
+          placeholder="Name"
         />
         <SearchBtn type="submit">Search</SearchBtn>
         <SearchBtn type="button" onClick={clearAll}>
@@ -103,7 +103,7 @@ export default function Movies() {
         {moviesFound.map(movie => (
           <MoviesItem key={movie.id}>
             <NavLink to={`${movie.id}`} state={{ from: location }}>
-              <MovieCard movie={movie} />
+              <ActorCard actor={movie} />
             </NavLink>
           </MoviesItem>
         ))}

@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
+const Actors = lazy(() => import('pages/Actors/Actors'));
 const MovieItem = lazy(() => import('pages/MovieItem/MovieItem'));
 const ActorPage = lazy(() => import('pages/ActorPage/ActorPage'));
 const Cast = lazy(() => import('./Cast/Cast'));
@@ -33,6 +34,7 @@ export const App = () => {
             <Route path="reviews" element={<Reviews />} />
             <Route path="*" element={<PageError />} />
           </Route>
+          <Route path="actors" element={<Actors />} />
           <Route path="actors/:actorId" element={<ActorPage />}></Route>
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>
