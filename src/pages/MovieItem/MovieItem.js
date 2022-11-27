@@ -18,7 +18,7 @@ export default function MovieItem() {
   const location = useLocation();
   const params = useParams();
   const backLink = useRef(location.state?.from ?? '/');
-  console.log(location);
+  // console.log(location);
 
   const [showModal, setShowModal] = useState(false);
 
