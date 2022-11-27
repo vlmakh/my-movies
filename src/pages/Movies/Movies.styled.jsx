@@ -41,7 +41,6 @@ export const LoadMoreBtn = styled.button`
   color: ${p => p.disabled ? "grey" : p.theme.colors.textSecondary};
   background-color: ${p => p.theme.colors.bcgBtn};
   text-decoration: none;
-  /* font-size: 16px; */
   font-weight: 700;
   border-color: ${p => p.theme.colors.bcgBtn};
   cursor: ${p => p.disabled ? 'default' : 'pointer'};

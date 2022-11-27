@@ -9,25 +9,19 @@ export const MovieList = styled.ul`
   list-style: none;
 `;
 
-export const MovieCard = styled.li`
-  width: 100px;
-  padding-bottom: ${p => p.theme.space[2]}px;
-  background-color: ${p => p.theme.colors.textPrimary};
+export const MovieItem = styled.li`
+  box-shadow: none;
+
+  transition: box-shadow 250ms linear;
+
+  :hover,
+  :focus {
+    box-shadow: ${p => p.theme.shadows.blackShadow};
+  }
+
 `;
 
-export const MovieImg = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
 
-export const MovieName = styled.p`
-  padding-top: ${p => p.theme.space[2]}px;
-  color: ${p => p.theme.colors.textSecondary};
-  font-size: ${p => p.theme.fontSizes.xs};
-  font-weight: 700;
-  text-align: center;
-`;
 
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;

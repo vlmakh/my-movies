@@ -1,15 +1,8 @@
-import {
-  MovieList,
-  MovieCard,
-  MovieImg,
-  MovieName,
-  StyledNavLink,
-} from './ActorMovies.styled';
-import { Box } from 'components/Box/Box';
+import { MovieList, MovieItem, StyledNavLink } from './ActorMovies.styled';
 import { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { fetchMoviesByActor } from 'services/api';
-import imageplaceholder from 'images/nophoto.jpg';
+import { MovieCard } from 'components/MovieCard/MovieCard';
 
 export default function ActorMovies() {
   const params = useParams();
@@ -28,22 +21,14 @@ export default function ActorMovies() {
     <>
       <MovieList>
         {movies.map(movie => (
-          <MovieCard key={movie.id}>
-            <StyledNavLink to={`/movies/${movie.id}`} state={location}>
-              <Box width="100px" height="150px" overflow="hidden">
-                <MovieImg
-                  width="100"
-                  src={
-                    movie.poster_path
-                      ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-                      : imageplaceholder
-                  }
-                  alt={movie.title ?? movie.name}
-                />
-              </Box>
-              <MovieName>{movie.title ?? movie.name}</MovieName>
+          <MovieItem key={movie.id}>
+            <StyledNavLink
+              to={`/movies/${movie.id}`}
+              state={{ from: location }}
+            >
+              <MovieCard movie={movie} />
             </StyledNavLink>
-          </MovieCard>
+          </MovieItem>
         ))}
       </MovieList>
     </>

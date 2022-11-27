@@ -11,7 +11,7 @@ export const ImageList = styled.ul`
 
 export const ImageCard = styled.li`
   width: 100px;
-  padding-bottom: ${p => p.theme.space[2]}px;
+  /* padding-bottom: ${p => p.theme.space[2]}px; */
   background-color: ${p => p.theme.colors.textPrimary};
 `;
 
