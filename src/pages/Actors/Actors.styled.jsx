@@ -38,11 +38,11 @@ export const LoadMoreBtn = styled.button`
   margin-top: ${p => p.theme.space[4]}px;
 
   padding: 4px 8px;
-  color: ${p => p.disabled ? "grey" : p.theme.colors.textSecondary};
+  color: ${p => (p.disabled ? 'grey' : p.theme.colors.textSecondary)};
   background-color: ${p => p.theme.colors.bcgBtn};
   text-decoration: none;
   /* font-size: 16px; */
   font-weight: 700;
   border-color: ${p => p.theme.colors.bcgBtn};
-  cursor: ${p => p.disabled ? 'default' : 'pointer'};
+  cursor: ${p => (p.disabled ? 'default' : 'pointer')};
 `;

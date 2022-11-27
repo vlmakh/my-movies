@@ -17,7 +17,7 @@ export const Layout = styled.div`
   min-width: calc(100vw - 24px);
   min-height: calc(100vh - 24px);
   padding-right: ${p => p.theme.space[4]}px;
-  background: ${p => p.theme.colors.bcgMain};
+  background-color: ${p => p.theme.colors.bcgMain};  
 `;
 
 export const Header = styled.div`
