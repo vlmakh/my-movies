@@ -78,7 +78,7 @@ export default function ActorPage() {
                 <GobackLink to="biography" state={personInfo.biography}>
                   Biography
                 </GobackLink>
-                <GobackLink to="works">Works</GobackLink>
+                <GobackLink to="movies">Movies</GobackLink>
                 <GobackLink to="images">Photos</GobackLink>
               </Box>
               <Outlet />
