@@ -33,6 +33,7 @@ export const Header = styled.div`
   top: 0;
   background: ${p => p.theme.colors.bcgHeader};
   z-index: 100;
+  box-shadow: ${p => p.theme.shadows.headerShadow};
 `;
 
 export const HeaderLink = styled(NavLink)`
