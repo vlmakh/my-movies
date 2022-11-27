@@ -4,19 +4,23 @@ import {
   Layout,
   Header,
   HeaderLink,
+  Nav,
 } from './SharedLayout.styled';
 import { Suspense } from 'react';
 import { Box } from 'theme-ui';
+import logo from 'images/logo.png';
 
 export const SharedLayout = ({ toggleTheme }) => {
   return (
     <Layout>
       <Header>
-        <nav>
-          <HeaderLink to="/">Home</HeaderLink>
+        <Nav>
+          <HeaderLink to="/">
+            <img src={logo} alt="logo" width="32" height="32" />
+          </HeaderLink>
           <HeaderLink to="/movies">Movies</HeaderLink>
           <HeaderLink to="/actors">Actors</HeaderLink>
-        </nav>
+        </Nav>
         <Box width="40px">
           <StyledSwitch onClick={toggleTheme} />
         </Box>
