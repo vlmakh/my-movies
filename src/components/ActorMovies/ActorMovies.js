@@ -23,7 +23,7 @@ export default function Cast() {
       <CastList>
         {cast.map(actor => (
           <CastCard key={actor.id}>
-            <Link to={`/actors/${actor.id}`} state={{ from: location }}>
+            <Link to={`/actor-${actor.id}`} state={location}>
               <Box width="100px" height="150px" overflow="hidden">
                 <CastImg
                   width="100"

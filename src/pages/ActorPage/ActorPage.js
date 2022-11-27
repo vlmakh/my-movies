@@ -3,22 +3,22 @@ import {
   MovieImg,
   MovieDescr,
   GobackLink,
-} from './MovieItem.styled';
+} from './ActorPage.styled';
 import { Box } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
-import { fetchMovieById } from 'services/api';
+import { fetchActorById } from 'services/api';
 import PageError from 'pages/PageError/PageError';
 import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/noposter.jpg';
 
-export default function MovieItem() {
-  const [movieItem, setMovieItem] = useState(null);
+export default function ActorPage() {
+  const [personInfo, setPersonInfo] = useState(null);
   const [error, setError] = useState(false);
   const location = useLocation();
   const params = useParams();
   const backLink = useRef(location.state?.from ?? '/');
-  console.log(location);
+  // console.log(location);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -27,9 +27,9 @@ export default function MovieItem() {
   };
 
   useEffect(() => {
-    fetchMovieById(params.movieId)
+    fetchActorById(params.actorId)
       .then(data => {
-        setMovieItem(data);
+        setPersonInfo(data);
         // console.log(data);
       })
       .catch(error => {
@@ -37,7 +37,7 @@ export default function MovieItem() {
         // alert(error.message);
         setError(true);
       });
-  }, [params.movieId]);
+  }, [params.actorId]);
 
   return (
     <Box p={3} mt="48px" textAlign="left">
@@ -45,9 +45,9 @@ export default function MovieItem() {
 
       {error && <PageError />}
 
-      {movieItem && (
+      {personInfo && (
         <>
-          <MovieTitle>{movieItem.original_title}</MovieTitle>
+          <MovieTitle>{personInfo.name}</MovieTitle>
           <Box display="flex" mt={3}>
             <Box
               width="200px"
@@ -59,32 +59,23 @@ export default function MovieItem() {
                 width="200"
                 height="100%"
                 src={
-                  movieItem.poster_path
-                    ? `https://image.tmdb.org/t/p/w200/${movieItem.poster_path}`
+                  personInfo.profile_path
+                    ? `https://image.tmdb.org/t/p/w200/${personInfo.profile_path}`
                     : imageplaceholder
                 }
-                alt={`${movieItem.original_title}`}
+                alt={`${personInfo.name}`}
                 onClick={toggleModal}
               />
             </Box>
 
             <Box ml={4}>
-              <MovieDescr>
-                {movieItem.genres.map(genre => genre.name).join(', ')}
-              </MovieDescr>
-              <MovieDescr>
-                {(movieItem.release_date ?? movieItem.first_air_date).slice(
-                  0,
-                  4
-                )}
-              </MovieDescr>
-              {/* <MovieDescr>{movieItem.overview}</MovieDescr> */}
+              <MovieDescr>Birth date: {personInfo.birthday}</MovieDescr>
+              {personInfo.deathday && (
+                <MovieDescr>Death date: {personInfo.deathday}</MovieDescr>
+              )}
+
               <Box mt={4}>
-                <GobackLink to="overview" state={movieItem.overview}>
-                  Overview
-                </GobackLink>
-                <GobackLink to="cast">Cast</GobackLink>
-                <GobackLink to="reviews">Reviews</GobackLink>
+                <MovieDescr>{personInfo.biography}</MovieDescr>
               </Box>
 
               <Outlet />
@@ -95,11 +86,11 @@ export default function MovieItem() {
             <Modal onClose={toggleModal}>
               <img
                 src={
-                  movieItem.poster_path
-                    ? `https://image.tmdb.org/t/p/w500/${movieItem.poster_path}`
+                  personInfo.profile_path
+                    ? `https://image.tmdb.org/t/p/w500/${personInfo.profile_path}`
                     : imageplaceholder
                 }
-                alt={`${movieItem.original_title}`}
+                alt={`${personInfo.name}`}
               />
             </Modal>
           )}

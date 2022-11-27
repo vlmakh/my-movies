@@ -24,6 +24,7 @@ export default function Movies() {
   const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
   const [input, setInput] = useState(query ? query : '');
   const location = useLocation();
+  // console.log(location);
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
@@ -81,7 +82,7 @@ export default function Movies() {
     setTotalPages(0);
   };
 
-  const searchRoute = `${location.pathname}${location.search}`;
+  // const searchRoute = `${location.pathname}${location.search}`;
 
   return (
     <Box p={4} textAlign="center" mt="48px">
@@ -96,7 +97,7 @@ export default function Movies() {
       <MoviesList>
         {moviesFound.map(movie => (
           <MoviesItem key={movie.id}>
-            <NavLink to={`${movie.id}`} state={{ from: searchRoute }}>
+            <NavLink to={`${movie.id}`} state={{ from: location }}>
               <MovieCard movie={movie} />
             </NavLink>
           </MoviesItem>

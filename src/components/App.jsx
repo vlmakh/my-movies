@@ -8,7 +8,9 @@ import { useState } from 'react';
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
 const MovieItem = lazy(() => import('pages/MovieItem/MovieItem'));
+const ActorPage = lazy(() => import('pages/ActorPage/ActorPage'));
 const Cast = lazy(() => import('./Cast/Cast'));
+const Overview = lazy(() => import('./Overview/Overview'))
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
@@ -26,11 +28,12 @@ export const App = () => {
           <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieItem />}>
-            {/* <Route index element={<div>Overview</div>} /> */}
+            <Route path="overview" element={<Overview/>} />
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
             <Route path="*" element={<PageError />} />
           </Route>
+          <Route path="actors/:actorId" element={<ActorPage />}></Route>
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>
       </Routes>
