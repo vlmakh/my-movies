@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink} from 'react-router-dom';
 
 export const CastList = styled.ul`
   display: flex;
@@ -12,6 +13,7 @@ export const CastCard = styled.li`
   width: 100px;
   padding-bottom: ${p => p.theme.space[2]}px;
   background-color: ${p => p.theme.colors.textPrimary};
+  
 `;
 
 export const CastImg = styled.img`
@@ -26,4 +28,9 @@ export const CastName = styled.p`
   font-size: ${p => p.theme.fontSizes.xs};
   font-weight: 700;
   text-align: center;
+  
 `;
+
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+`

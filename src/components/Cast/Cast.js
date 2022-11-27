@@ -1,7 +1,13 @@
-import { CastList, CastCard, CastImg, CastName } from './Cast.styled';
+import {
+  CastList,
+  CastCard,
+  CastImg,
+  CastName,
+  StyledNavLink,
+} from './Cast.styled';
 import { Box } from 'components/Box/Box';
 import { useState, useEffect } from 'react';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { fetchCastById } from 'services/api';
 import imageplaceholder from 'images/nophoto.jpg';
 
@@ -23,7 +29,10 @@ export default function Cast() {
       <CastList>
         {cast.map(actor => (
           <CastCard key={actor.id}>
-            <Link to={`/actors/${actor.id}`} state={{ from: location }}>
+            <StyledNavLink
+              to={`/actors/${actor.id}`}
+              state={{ from: location }}
+            >
               <Box width="100px" height="150px" overflow="hidden">
                 <CastImg
                   width="100"
@@ -36,7 +45,7 @@ export default function Cast() {
                 />
               </Box>
               <CastName>{actor.name}</CastName>
-            </Link>
+            </StyledNavLink>
           </CastCard>
         ))}
       </CastList>
