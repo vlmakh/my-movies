@@ -3,23 +3,24 @@ import {
   MovieCard,
   MovieImg,
   MovieName,
+  StyledNavLink,
 } from './ActorMovies.styled';
 import { Box } from 'components/Box/Box';
 import { useState, useEffect } from 'react';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { fetchMoviesByActor } from 'services/api';
 import imageplaceholder from 'images/nophoto.jpg';
 
-export default function Cast() {
+export default function ActorMovies() {
   const params = useParams();
-  // console.log(params);
+  // console.log(params.actorId);
   const [movies, setMovies] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
     fetchMoviesByActor(params.actorId).then(data => {
-      console.log(data.results);
-      setMovies(data.results);
+      // console.log(data.cast);
+      setMovies(data.cast);
     });
   }, [params.actorId]);
 
@@ -28,7 +29,7 @@ export default function Cast() {
       <MovieList>
         {movies.map(movie => (
           <MovieCard key={movie.id}>
-            <Link to={`/movies/${movie.id}`} state={location}>
+            <StyledNavLink to={`/movies/${movie.id}`} state={location}>
               <Box width="100px" height="150px" overflow="hidden">
                 <MovieImg
                   width="100"
@@ -41,7 +42,7 @@ export default function Cast() {
                 />
               </Box>
               <MovieName>{movie.title ?? movie.name}</MovieName>
-            </Link>
+            </StyledNavLink>
           </MovieCard>
         ))}
       </MovieList>

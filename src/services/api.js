@@ -63,6 +63,13 @@ const fetchMoviesByActor = async id => {
   return response.data;
 };
 
+const fetchImagesByActor = async id => {
+  const response = await axios.get(
+    `${MAIN_URL}/person/${id}/images?api_key=${API_KEY}&language=en-US`
+  );
+  return response.data;
+};
+
 export {
   fetchTrends,
   fetchMovies,
@@ -72,6 +79,7 @@ export {
   fetchActors,
   fetchActorById,
   fetchMoviesByActor,
+  fetchImagesByActor,
 };
 
 fetchMovies.propTypes = {

@@ -1,7 +1,7 @@
 import {
-  MovieTitle,
-  MovieImg,
-  MovieDescr,
+  ActorName,
+  ActorImg,
+  ActorDescr,
   GobackLink,
 } from './ActorPage.styled';
 import { Box } from 'components/Box/Box';
@@ -47,7 +47,7 @@ export default function ActorPage() {
 
       {personInfo && (
         <>
-          <MovieTitle>{personInfo.name}</MovieTitle>
+          <ActorName>{personInfo.name}</ActorName>
           <Box display="flex" mt={3}>
             <Box
               width="200px"
@@ -55,7 +55,7 @@ export default function ActorPage() {
               boxShadow="0 0 8px rgba(0, 0, 0, 0.6)"
               // overflow="hidden"
             >
-              <MovieImg
+              <ActorImg
                 width="200"
                 height="100%"
                 src={
@@ -69,20 +69,18 @@ export default function ActorPage() {
             </Box>
 
             <Box ml={4}>
-              <MovieDescr>Birth date: {personInfo.birthday}</MovieDescr>
+              <ActorDescr>Birth date: {personInfo.birthday}</ActorDescr>
               {personInfo.deathday && (
-                <MovieDescr>Death date: {personInfo.deathday}</MovieDescr>
+                <ActorDescr>Death date: {personInfo.deathday}</ActorDescr>
               )}
 
-              <GobackLink to="biography" state={personInfo.biography}>
-                Biography
-              </GobackLink>
-              <GobackLink to="movies">Movies</GobackLink>
-
-              {/* <Box mt={4}>
-                <MovieDescr>{personInfo.biography}</MovieDescr>
-              </Box> */}
-
+              <Box mt={4}>
+                <GobackLink to="biography" state={personInfo.biography}>
+                  Biography
+                </GobackLink>
+                <GobackLink to="works">Works</GobackLink>
+                <GobackLink to="images">Photos</GobackLink>
+              </Box>
               <Outlet />
             </Box>
           </Box>

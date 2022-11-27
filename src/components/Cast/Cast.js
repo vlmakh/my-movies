@@ -28,7 +28,7 @@ export default function Cast() {
     <>
       <CastList>
         {cast.map(actor => (
-          <CastCard key={actor.id}>
+          <CastCard key={actor.cast_id}>
             <StyledNavLink
               to={`/actors/${actor.id}`}
               state={{ from: location }}

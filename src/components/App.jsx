@@ -10,9 +10,12 @@ const Movies = lazy(() => import('pages/Movies/Movies'));
 const Actors = lazy(() => import('pages/Actors/Actors'));
 const MovieItem = lazy(() => import('pages/MovieItem/MovieItem'));
 const ActorPage = lazy(() => import('pages/ActorPage/ActorPage'));
-const Cast = lazy(() => import('./Cast/Cast'));
-const Overview = lazy(() => import('./Overview/Overview'))
-const Reviews = lazy(() => import('./Reviews/Reviews'));
+const Biography = lazy(() => import('components/Biography/Biography'))
+const ActorMovies = lazy(() => import('components/ActorMovies/ActorMovies'));
+const ActorImages = lazy(() => import('components/ActorImages/ActorImages'));
+const Cast = lazy(() => import('components/Cast/Cast'));
+const Overview = lazy(() => import('components/Overview/Overview'))
+const Reviews = lazy(() => import('components/Reviews/Reviews'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
 export const App = () => {
@@ -36,8 +39,9 @@ export const App = () => {
           </Route>
           <Route path="actors" element={<Actors />} />
           <Route path="actors/:actorId" element={<ActorPage />}>
-            <Route path="biography" element={<Overview/>} />
-            <Route path="movies" element={<Cast />} />
+            <Route path="biography" element={<Biography/>} />
+            <Route path="works" element={<ActorMovies />} />
+            <Route path="images" element={<ActorImages />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>

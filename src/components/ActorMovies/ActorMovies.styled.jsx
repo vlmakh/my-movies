@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink} from 'react-router-dom';
 
 export const MovieList = styled.ul`
   display: flex;
@@ -27,3 +28,7 @@ export const MovieName = styled.p`
   font-weight: 700;
   text-align: center;
 `;
+
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+`
