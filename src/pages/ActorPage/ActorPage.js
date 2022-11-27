@@ -30,7 +30,7 @@ export default function ActorPage() {
     fetchActorById(params.actorId)
       .then(data => {
         setPersonInfo(data);
-        console.log(data);
+        // console.log(data);
       })
       .catch(error => {
         // console.log(error.message);
