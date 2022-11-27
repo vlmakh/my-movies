@@ -36,12 +36,17 @@ export const Header = styled.div`
   box-shadow: ${p => p.theme.shadows.headerShadow};
 `;
 
-export const HeaderLink = styled(NavLink)`
-  
+export const HeaderLink = styled(NavLink)`  
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: 700;
   color: ${p => p.theme.colors.textPrimary};
   text-decoration: none;
+
+  transition: color 250ms linear;
+
+  :hover {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
 
 export const Nav = styled.nav`

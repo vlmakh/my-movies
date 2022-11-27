@@ -28,6 +28,12 @@ export const SearchBtn = styled.button`
   background-color: ${p => p.theme.colors.bcgBtn};
   border-color: ${p => p.theme.colors.bcgBtn};
   cursor: pointer;
+
+  transition: color 250ms linear;
+
+  :hover {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -45,4 +51,10 @@ export const LoadMoreBtn = styled.button`
   font-weight: 700;
   border-color: ${p => p.theme.colors.bcgBtn};
   cursor: ${p => (p.disabled ? 'default' : 'pointer')};
+
+  transition: color 250ms linear;
+
+  :hover:not(:disabled) {
+    color: ${p => p.theme.colors.accent};
+  }
 `;

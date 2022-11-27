@@ -19,6 +19,7 @@ export const ActorTitle = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
+  padding-bottom: ${p => p.theme.space[2]}px;
   background-color:  ${p => p.theme.colors.bcgTitle};
   color:  ${p => p.theme.colors.textSecondary};
   font-weight: 700;

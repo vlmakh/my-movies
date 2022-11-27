@@ -25,4 +25,10 @@ export const GobackLink = styled(NavLink)`
   text-decoration: none;
   font-size: 16px;
   font-weight: 700;
+
+  transition: color 250ms linear;
+
+  :hover {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
