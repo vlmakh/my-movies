@@ -1,6 +1,6 @@
 import {
-  MoviesList,
-  MoviesItem,
+  ActorsList,
+  ActorsPerson,
   SearchBtn,
   SearchInput,
   LoadMoreBtn,
@@ -14,10 +14,8 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchActors } from 'services/api';
 
-// import Pagination from '@mui/material/Pagination';
-
 export default function Movies() {
-  const [moviesFound, setMoviesFound] = useState([]);
+  const [actorsFound, setActorsFound] = useState([]);
   const [totalFound, setTotalFound] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search') ?? '';
@@ -38,13 +36,13 @@ export default function Movies() {
         if (!data.results.length) {
           alert('No results found due to your search inquiry');
         } else {
-          // setMoviesFound(prevState => {
+          // setactorsFound(prevState => {
           //   return [...prevState, ...data.results];
           // });
           // console.log(data);
           setTotalFound(data.total_results);
           setTotalPages(data.total_pages);
-          setMoviesFound([...data.results]);
+          setActorsFound([...data.results]);
         }
       })
       .catch(error => console.log(error));
@@ -61,7 +59,7 @@ export default function Movies() {
     }
     if (input.trim() !== query) {
       setPage(1);
-      setMoviesFound([]);
+      setActorsFound([]);
       setSearchQuery({ search: input, page: Number(page) });
     }
   };
@@ -78,7 +76,7 @@ export default function Movies() {
 
   const clearAll = () => {
     setInput('');
-    setMoviesFound([]);
+    setActorsFound([]);
     setSearchQuery({ search: '', page: 0 });
     setTotalPages(0);
   };
@@ -100,37 +98,19 @@ export default function Movies() {
         </SearchBtn>
       </form>
 
-      {moviesFound.length === 0 && <Background />}
+      {actorsFound.length === 0 && <Background />}
 
-      <MoviesList>
-        {moviesFound.map(movie => (
-          <MoviesItem key={movie.id}>
+      <ActorsList>
+        {actorsFound.map(movie => (
+          <ActorsPerson key={movie.id}>
             <NavLink to={`${movie.id}`} state={{ from: location }}>
               <ActorCard actor={movie} />
             </NavLink>
-          </MoviesItem>
+          </ActorsPerson>
         ))}
-      </MoviesList>
+      </ActorsList>
 
-      {/* <Box py={3} display="flex" justifyContent="center">
-        {totalPages > 0 && (
-          <Pagination
-            count={totalPages}
-            page={Number(currentPage)}
-            onChange={(_, num) => {
-              setSearchQuery({ search: input, page: Number(num) });
-              setPage(num);
-            }}
-            siblingCount={1}
-            boundaryCount={2}
-            color="primary"
-            showFirstButton
-            showLastButton
-          />
-        )}
-      </Box> */}
-
-      {moviesFound.length > 0 && moviesFound.length < totalFound && (
+      {actorsFound.length > 0 && actorsFound.length < totalFound && (
         <>
           <LoadMoreBtn
             type="button"

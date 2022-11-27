@@ -11,9 +11,11 @@ export const Background = styled.div`
       ${p => p.theme.colors.bcgMain} 70%
     ),
     url(${bcgImage});
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 `;
 
-export const MoviesList = styled.ul`
+export const ActorsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -22,7 +24,7 @@ export const MoviesList = styled.ul`
   gap: ${p => p.theme.space[3]}px;
 `;
 
-export const MoviesItem = styled.li`
+export const ActorsPerson = styled.li`
   box-shadow: none;
 
   transition: box-shadow 250ms linear;
