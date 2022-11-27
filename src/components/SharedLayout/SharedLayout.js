@@ -7,9 +7,9 @@ import {
   Nav,
 } from './SharedLayout.styled';
 import { Suspense } from 'react';
-import { Box } from 'theme-ui';
+import { Box } from 'components/Box/Box';
 import logo from 'images/logo.png';
-import { Bars } from 'react-loader-spinner';
+import { ThreeCircles } from 'react-loader-spinner';
 
 export const SharedLayout = ({ toggleTheme }) => {
   return (
@@ -29,13 +29,15 @@ export const SharedLayout = ({ toggleTheme }) => {
 
       <Suspense
         fallback={
-          <Bars
-            height="180"
-            width="180"
-            color="#bcc3ce"
-            ariaLabel="bars-loading"
-            visible={true}
-          />
+          <Box width="100vw" display="flex" justifyContent="center" pt={7}>
+            <ThreeCircles
+              height="120"
+              width="120"
+              color="#bcc3ce"
+              ariaLabel="Three-Circles-rotating"
+              visible={true}
+            />
+          </Box>
         }
       >
         <Outlet />

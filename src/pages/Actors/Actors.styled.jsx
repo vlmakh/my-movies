@@ -19,7 +19,7 @@ export const ActorsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  /* justify-content: center; */
+  justify-content: center;
   margin-top: 16px;
   gap: ${p => p.theme.space[3]}px;
 `;

@@ -20,7 +20,7 @@ export default function ActorImages() {
     <>
       <ImageList>
         {images.map(image => (
-          <ImageCard key={image.id}>
+          <ImageCard key={image.file_path}>
             <ImageImg
               width="100"
               src={
