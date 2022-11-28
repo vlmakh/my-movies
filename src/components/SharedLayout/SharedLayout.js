@@ -36,10 +36,18 @@ export const SharedLayout = ({
 
         <Box display="flex" gap="16px" alignItems="center">
           <Box display="flex" mr={4} height="48px">
-            <LangBtn type="button" onClick={turnEnLang}>
+            <LangBtn
+              type="button"
+              onClick={turnEnLang}
+              disabled={currentLang === 'en-US' ? true : false}
+            >
               EN
             </LangBtn>
-            <LangBtn type="button" onClick={turnUaLang}>
+            <LangBtn
+              type="button"
+              onClick={turnUaLang}
+              disabled={currentLang === 'uk-UA' ? true : false}
+            >
               UA
             </LangBtn>
           </Box>

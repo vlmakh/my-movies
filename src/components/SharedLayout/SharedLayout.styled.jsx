@@ -68,12 +68,17 @@ export const LangBtn = styled.button`
   background-color: transparent;
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: 700;
-  cursor: pointer;
+  cursor: ${p => (p.disabled ? 'default' : 'pointer')};
   color: ${p => p.theme.colors.textPrimary};
 
   transition: color 250ms linear;
 
-  :hover {
+  :disabled {
+    color: ${p => p.theme.colors.accent};
+  }
+
+
+  :hover:not(:disabled) {
     color: ${p => p.theme.colors.accent};
   }
 `
