@@ -1,5 +1,7 @@
 # goit-react-hw-05-movies
 
+Free themoviedb.org API as backend is connected.
+
 Used libraries:
 
 - emotions;

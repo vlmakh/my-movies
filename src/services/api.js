@@ -5,67 +5,67 @@ const MAIN_URL = 'https://api.themoviedb.org/3';
 const API_KEY = '7944ae355bdc42ac579681e106149d6b';
 
 // export const perPage = 12;
-// language=uk-UA
+const lang = 'en-US'; // 'uk-UA'; 'en-US'
 
 const fetchTrends = async () => {
   const response = await axios.get(
-    `${MAIN_URL}/trending/all/day?api_key=${API_KEY}&page=1`
+    `${MAIN_URL}/trending/all/day?api_key=${API_KEY}&language=${lang}&page=1`
   );
   return response.data;
 };
 
 const fetchMovies = async (query, page) => {
   const response = await axios.get(
-    `${MAIN_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`
+    `${MAIN_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=${lang}&page=${page}&include_adult=false`
   );
   return response.data;
 };
 
 const fetchMovieById = async id => {
   const response = await axios.get(
-    `${MAIN_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`
+    `${MAIN_URL}/movie/${id}?api_key=${API_KEY}&language=${lang}`
   );
   return response.data;
 };
 
 const fetchCastById = async id => {
   const response = await axios.get(
-    `${MAIN_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
+    `${MAIN_URL}/movie/${id}/credits?api_key=${API_KEY}&language=${lang}`
   );
   return response.data;
 };
 
 const fetchReviewsById = async id => {
   const response = await axios.get(
-    `${MAIN_URL}/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`
+    `${MAIN_URL}/movie/${id}/reviews?api_key=${API_KEY}&language=${lang}&page=1`
   );
   return response.data;
 };
 
 const fetchActors = async (query, page) => {
   const response = await axios.get(
-    `${MAIN_URL}/search/person?api_key=${API_KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`
+    `${MAIN_URL}/search/person?api_key=${API_KEY}&query=${query}&language=${lang}&page=${page}&include_adult=false`
   );
   return response.data;
 };
 
 const fetchActorById = async id => {
   const response = await axios.get(
-    `${MAIN_URL}/person/${id}?api_key=${API_KEY}&language=en-US`
+    `${MAIN_URL}/person/${id}?api_key=${API_KEY}&language=${lang}`
   );
   return response.data;
 };
 
 const fetchMoviesByActor = async id => {
   const response = await axios.get(
-    `${MAIN_URL}/person/${id}/movie_credits?api_key=${API_KEY}&language=en-US`
+    `${MAIN_URL}/person/${id}/movie_credits?api_key=${API_KEY}&language=${lang}`
   );
   return response.data;
 };
 
 const fetchImagesByActor = async id => {
   const response = await axios.get(
-    `${MAIN_URL}/person/${id}/images?api_key=${API_KEY}&language=en-US`
+    `${MAIN_URL}/person/${id}/images?api_key=${API_KEY}&language=${lang}`
   );
   return response.data;
 };
