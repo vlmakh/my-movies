@@ -33,3 +33,8 @@ export const MovieTitle = styled.div`
     transform: translateY(0);
   }
 `;
+
+export const MovieYear = styled.p`
+  font-style: italic;
+  font-weight: 400;
+`

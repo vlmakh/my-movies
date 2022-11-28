@@ -101,10 +101,10 @@ export default function Movies() {
       {actorsFound.length === 0 && <Background />}
 
       <ActorsList>
-        {actorsFound.map(movie => (
-          <ActorsPerson key={movie.id}>
-            <NavLink to={`${movie.id}`} state={{ from: location }}>
-              <ActorCard actor={movie} />
+        {actorsFound.map(actor => (
+          <ActorsPerson key={actor.id}>
+            <NavLink to={`${actor.id}`} state={{ from: location }}>
+              <ActorCard actor={actor} />
             </NavLink>
           </ActorsPerson>
         ))}

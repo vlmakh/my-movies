@@ -23,6 +23,7 @@ export const ActorTitle = styled.div`
   background-color:  ${p => p.theme.colors.bcgTitle};
   color:  ${p => p.theme.colors.textSecondary};
   font-weight: 700;
+  text-align: center;
 
   transform: translateY(100%);
   transition: transform 250ms ease;
@@ -32,3 +33,8 @@ export const ActorTitle = styled.div`
     transform: translateY(0);
   }
 `;
+
+export const Character = styled.p`
+  font-style: italic;
+  font-weight: 400;
+`

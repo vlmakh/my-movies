@@ -3,6 +3,7 @@ import {
   MovieThumb,
   MovieImg,
   MovieTitle,
+  MovieYear,
 } from 'components/MovieCard/MovieCard.styled';
 import imageplaceholder from 'images/noposter.jpg';
 import { Box } from 'components/Box/Box';
@@ -27,7 +28,7 @@ export const MovieCard = ({ movie }) => {
         />
         <MovieTitle>
           <p>{movie.title ?? movie.name}</p>
-          <p>{movieYear}</p>
+          <MovieYear>{movieYear}</MovieYear>
         </MovieTitle>
       </MovieThumb>
     </Box>

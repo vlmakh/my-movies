@@ -3,6 +3,7 @@ import {
   ActorThumb,
   ActorImg,
   ActorTitle,
+  Character,
 } from 'components/ActorCard/ActorCard.styled';
 import imageplaceholder from 'images/noposter.jpg';
 import { Box } from 'components/Box/Box';
@@ -22,6 +23,7 @@ export const ActorCard = ({ actor }) => {
         />
         <ActorTitle>
           <p>{actor.name}</p>
+          {actor.character && <Character>{actor.character}</Character>}
         </ActorTitle>
       </ActorThumb>
     </Box>

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const CastList = styled.ul`
   display: flex;
@@ -10,27 +10,16 @@ export const CastList = styled.ul`
 `;
 
 export const CastCard = styled.li`
-  width: 100px;
-  padding-bottom: ${p => p.theme.space[2]}px;
-  background-color: ${p => p.theme.colors.textPrimary};
-  
-`;
+  box-shadow: none;
 
-export const CastImg = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
+  transition: box-shadow 250ms linear;
 
-export const CastName = styled.p`
-  padding-top: ${p => p.theme.space[2]}px;
-  color: ${p => p.theme.colors.textSecondary};
-  font-size: ${p => p.theme.fontSizes.xs};
-  font-weight: 700;
-  text-align: center;
-  
+  :hover,
+  :focus {
+    box-shadow: ${p => p.theme.shadows.blackShadow};
+  }
 `;
 
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-`
+`;
