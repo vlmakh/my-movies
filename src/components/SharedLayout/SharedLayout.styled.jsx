@@ -2,9 +2,7 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import { Switch } from 'theme-ui';
 
-
 export const StyledSwitch = styled(Switch)`
-
   background-color: ${p => p.theme.colors.textPrimary};
   // This will not be visible since the input is hidden
   //
@@ -14,13 +12,13 @@ export const StyledSwitch = styled(Switch)`
   } */
 `;
 
-
-
 export const Layout = styled.div`
   min-width: calc(100vw - 24px);
   min-height: calc(100vh - 24px);
   padding-right: ${p => p.theme.space[4]}px;
-  background-color: ${p => p.theme.colors.bcgMain};  
+  background-color: ${p => p.theme.colors.bcgMain};
+
+  transition: background-color 250ms linear;
 `;
 
 export const Header = styled.div`
@@ -37,9 +35,11 @@ export const Header = styled.div`
   background: ${p => p.theme.colors.bcgHeader};
   z-index: 100;
   box-shadow: ${p => p.theme.shadows.headerShadow};
+
+  transition: background-color 250ms linear;
 `;
 
-export const HeaderLink = styled(NavLink)`  
+export const HeaderLink = styled(NavLink)`
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: 700;
   color: ${p => p.theme.colors.textPrimary};
@@ -56,4 +56,4 @@ export const Nav = styled.nav`
   display: flex;
   align-items: center;
   gap: ${p => p.theme.space[4]}px;
-`
+`;
