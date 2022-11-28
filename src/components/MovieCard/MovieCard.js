@@ -3,6 +3,7 @@ import {
   MovieThumb,
   MovieImg,
   MovieTitle,
+  MovieYear,
 } from 'components/MovieCard/MovieCard.styled';
 import imageplaceholder from 'images/noposter.jpg';
 import { Box } from 'components/Box/Box';
@@ -23,11 +24,11 @@ export const MovieCard = ({ movie }) => {
               ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
               : imageplaceholder
           }
-          alt={movie.title ?? movie.name}
+          alt={movie.original_title ?? movie.name}
         />
         <MovieTitle>
           <p>{movie.title ?? movie.name}</p>
-          <p>{movieYear}</p>
+          <MovieYear>{movieYear}</MovieYear>
         </MovieTitle>
       </MovieThumb>
     </Box>

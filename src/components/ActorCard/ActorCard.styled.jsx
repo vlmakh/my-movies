@@ -1,20 +1,20 @@
 // import styled from '@emotion/styled';
 import styled from "@emotion/styled/macro";
 
-export const MovieThumb = styled.div`
+export const ActorThumb = styled.div`
   position: relative;
   width: 160px;
   height: 240px;
   overflow: hidden;
 `;
 
-export const MovieImg = styled.img`
+export const ActorImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
 
-export const MovieTitle = styled.div`
+export const ActorTitle = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -28,13 +28,13 @@ export const MovieTitle = styled.div`
   transform: translateY(100%);
   transition: transform 250ms ease;
 
-  ${MovieThumb}:hover &,
-  ${MovieThumb}:focus & {
+  ${ActorThumb}:hover &,
+  ${ActorThumb}:focus & {
     transform: translateY(0);
   }
 `;
 
-export const MovieYear = styled.p`
+export const Character = styled.p`
   font-style: italic;
   font-weight: 400;
 `

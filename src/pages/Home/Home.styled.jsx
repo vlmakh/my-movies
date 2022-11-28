@@ -7,7 +7,7 @@ export const HomeTitle = styled.h2`
 export const TrendsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: center; */
+  justify-content: center;
   /* margin-top: 16px; */
   gap: ${p => p.theme.space[3]}px;
   list-style: none;

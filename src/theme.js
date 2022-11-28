@@ -1,4 +1,5 @@
 export const darkTheme = {
+  name: 'darkTheme',
   colors: {
     bcgMain: '#3b4351',
     bcgHeader: '#333333',
@@ -7,6 +8,7 @@ export const darkTheme = {
     textPrimary: '#bcc3ce',
     textSecondary: '#212121',
     textTitle: '#ffffff',
+    accent: '#ff0000',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fontSizes: {
@@ -16,7 +18,6 @@ export const darkTheme = {
     l: '36px',
     xl: '44px',
   },
-
   borders: {
     none: 'none',
     normal: '1px solid',
@@ -28,10 +29,12 @@ export const darkTheme = {
   },
   shadows: {
     blackShadow: '0 0 8px rgba(0, 0, 0, 0.6)',
+    headerShadow: '0 4px 8px rgba(255, 255, 255, 0.6)',
   },
 };
 
 export const lightTheme = {
+  name: 'lightTheme',
   colors: {
     bcgMain: '#fff',
     bcgHeader: '#bcc3ce',
@@ -40,6 +43,7 @@ export const lightTheme = {
     textPrimary: '#333333',
     textSecondary: '#bcc3ce',
     textTitle: '#212121',
+    accent: '#ff0000',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fontSizes: {
@@ -61,5 +65,6 @@ export const lightTheme = {
   },
   shadows: {
     blackShadow: '0 0 8px rgba(0, 0, 0, 0.6)',
+    headerShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
   },
 };

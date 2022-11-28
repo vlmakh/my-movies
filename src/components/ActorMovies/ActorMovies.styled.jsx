@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 
-export const CastList = styled.ul`
+export const MovieList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   margin-top: ${p => p.theme.space[4]}px;
@@ -9,7 +9,7 @@ export const CastList = styled.ul`
   list-style: none;
 `;
 
-export const CastCard = styled.li`
+export const MovieItem = styled.li`
   box-shadow: none;
 
   transition: box-shadow 250ms linear;
@@ -18,8 +18,11 @@ export const CastCard = styled.li`
   :focus {
     box-shadow: ${p => p.theme.shadows.blackShadow};
   }
+
 `;
+
+
 
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-`;
+`

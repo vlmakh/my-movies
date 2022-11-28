@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { Switch } from 'theme-ui';
 
 export const StyledSwitch = styled(Switch)`
-
   background-color: ${p => p.theme.colors.textPrimary};
   // This will not be visible since the input is hidden
   //
@@ -14,10 +13,13 @@ export const StyledSwitch = styled(Switch)`
 `;
 
 export const Layout = styled.div`
-  min-width: 100vw;
+  min-width: calc(100vw - 24px);
   min-height: 100vh;
+  padding-top: ${p => p.theme.space[1]}px;
   padding-right: ${p => p.theme.space[4]}px;
-  background: ${p => p.theme.colors.bcgMain};
+  background-color: ${p => p.theme.colors.bcgMain};
+
+  transition: background-color 250ms linear;
 `;
 
 export const Header = styled.div`
@@ -33,12 +35,50 @@ export const Header = styled.div`
   top: 0;
   background: ${p => p.theme.colors.bcgHeader};
   z-index: 100;
+  box-shadow: ${p => p.theme.shadows.headerShadow};
+
+  transition: background-color 250ms linear;
 `;
 
 export const HeaderLink = styled(NavLink)`
-  margin-right: ${p => p.theme.space[4]}px;
+  display: flex;
+  align-items: center;
+  height: 100%;
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: 700;
   color: ${p => p.theme.colors.textPrimary};
   text-decoration: none;
+
+  transition: color 250ms linear;
+
+  :hover {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
+
+export const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  height: 48px;
+  gap: ${p => p.theme.space[4]}px;
+`;
+
+export const LangBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  font-size: ${p => p.theme.fontSizes.s};
+  font-weight: 700;
+  cursor: ${p => (p.disabled ? 'default' : 'pointer')};
+  color: ${p => p.theme.colors.textPrimary};
+
+  transition: color 250ms linear;
+
+  :disabled {
+    color: ${p => p.theme.colors.accent};
+  }
+
+
+  :hover:not(:disabled) {
+    color: ${p => p.theme.colors.accent};
+  }
+`

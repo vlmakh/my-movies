@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import bcgImage from 'images/bcg-movies01.jpg';
+import bcgImage from 'images/bcg-actors01.jpg';
 
 export const Background = styled.div`
   margin: ${p => p.theme.space[4]}px auto 0;
@@ -15,7 +15,7 @@ export const Background = styled.div`
   background-position: 50% 50%;
 `;
 
-export const MoviesList = styled.ul`
+export const ActorsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -24,7 +24,7 @@ export const MoviesList = styled.ul`
   gap: ${p => p.theme.space[3]}px;
 `;
 
-export const MoviesItem = styled.li`
+export const ActorsPerson = styled.li`
   box-shadow: none;
 
   transition: box-shadow 250ms linear;
@@ -62,6 +62,7 @@ export const LoadMoreBtn = styled.button`
   color: ${p => (p.disabled ? 'grey' : p.theme.colors.textSecondary)};
   background-color: ${p => p.theme.colors.bcgBtn};
   text-decoration: none;
+  /* font-size: 16px; */
   font-weight: 700;
   border-color: ${p => p.theme.colors.bcgBtn};
   cursor: ${p => (p.disabled ? 'default' : 'pointer')};

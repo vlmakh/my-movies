@@ -1,23 +1,21 @@
 import {
-  MoviesList,
-  MoviesItem,
+  ActorsList,
+  ActorsPerson,
   SearchBtn,
   SearchInput,
   LoadMoreBtn,
   Background,
-} from './Movies.styled';
-import { MovieCard } from 'components/MovieCard/MovieCard';
+} from './Actors.styled';
+import { ActorCard } from 'components/ActorCard/ActorCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
 import { Box } from 'components/Box/Box';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { fetchMovies } from 'services/api';
-
-// import Pagination from '@mui/material/Pagination';
+import { fetchActors } from 'services/api';
 
 export default function Movies({ currentLang }) {
-  const [moviesFound, setMoviesFound] = useState([]);
+  const [actorsFound, setActorsFound] = useState([]);
   const [totalFound, setTotalFound] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search') ?? '';
@@ -33,18 +31,18 @@ export default function Movies({ currentLang }) {
       return;
     }
 
-    fetchMovies(query, page, currentLang)
+    fetchActors(query, page, currentLang)
       .then(data => {
         if (!data.results.length) {
           alert('No results found due to your search inquiry');
         } else {
-          // setMoviesFound(prevState => {
+          // setactorsFound(prevState => {
           //   return [...prevState, ...data.results];
           // });
-          // console.log(data);
+          // console.log(data.results);
           setTotalFound(data.total_results);
           setTotalPages(data.total_pages);
-          setMoviesFound([...data.results]);
+          setActorsFound([...data.results]);
         }
       })
       .catch(error => console.log(error));
@@ -61,7 +59,7 @@ export default function Movies({ currentLang }) {
     }
     if (input.trim() !== query) {
       setPage(1);
-      setMoviesFound([]);
+      setActorsFound([]);
       setSearchQuery({ search: input, page: Number(page) });
     }
   };
@@ -78,10 +76,12 @@ export default function Movies({ currentLang }) {
 
   const clearAll = () => {
     setInput('');
-    setMoviesFound([]);
+    setActorsFound([]);
     setSearchQuery({ search: '', page: 0 });
     setTotalPages(0);
   };
+
+  // const searchRoute = `${location.pathname}${location.search}`;
 
   return (
     <Box p={4} textAlign="center" mt="48px">
@@ -90,7 +90,7 @@ export default function Movies({ currentLang }) {
           type="text"
           value={input}
           onChange={onSearchInput}
-          placeholder={currentLang === 'uk-UA' ? 'Назва фільму' : 'Film'}
+          placeholder={currentLang === 'uk-UA' ? "Ім'я" : 'Name'}
         />
         <SearchBtn type="submit">
           {currentLang === 'uk-UA' ? 'Пошук' : 'Search'}
@@ -100,37 +100,19 @@ export default function Movies({ currentLang }) {
         </SearchBtn>
       </form>
 
-      {moviesFound.length === 0 && <Background />}
+      {actorsFound.length === 0 && <Background />}
 
-      <MoviesList>
-        {moviesFound.map(movie => (
-          <MoviesItem key={movie.id}>
-            <NavLink to={`${movie.id}`} state={{ from: location }}>
-              <MovieCard movie={movie} />
+      <ActorsList>
+        {actorsFound.map(actor => (
+          <ActorsPerson key={actor.id}>
+            <NavLink to={`${actor.id}`} state={{ from: location }}>
+              <ActorCard actor={actor} />
             </NavLink>
-          </MoviesItem>
+          </ActorsPerson>
         ))}
-      </MoviesList>
+      </ActorsList>
 
-      {/* <Box py={3} display="flex" justifyContent="center">
-        {totalPages > 0 && (
-          <Pagination
-            count={totalPages}
-            page={Number(currentPage)}
-            onChange={(_, num) => {
-              setSearchQuery({ search: input, page: Number(num) });
-              setPage(num);
-            }}
-            siblingCount={1}
-            boundaryCount={2}
-            color="primary"
-            showFirstButton
-            showLastButton
-          />
-        )}
-      </Box> */}
-
-      {moviesFound.length > 0 && moviesFound.length < totalFound && (
+      {actorsFound.length > 0 && actorsFound.length < totalFound && (
         <>
           <LoadMoreBtn
             type="button"

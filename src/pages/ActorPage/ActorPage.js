@@ -1,19 +1,20 @@
 import {
-  MovieTitle,
-  MovieImg,
-  MovieDescr,
+  ActorName,
+  ActorImg,
+  ActorDescr,
   GobackLink,
-} from './MovieItem.styled';
+} from './ActorPage.styled';
 import { Box } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
-import { fetchMovieById } from 'services/api';
+import { fetchActorById } from 'services/api';
 import PageError from 'pages/PageError/PageError';
 import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/noposter.jpg';
+import { formatDateEn, formatDateUa } from 'services/formatDate';
 
-export default function MovieItem({ currentLang }) {
-  const [movieItem, setMovieItem] = useState(null);
+export default function ActorPage({ currentLang }) {
+  const [personInfo, setPersonInfo] = useState(null);
   const [error, setError] = useState(false);
   const location = useLocation();
   const params = useParams();
@@ -27,9 +28,9 @@ export default function MovieItem({ currentLang }) {
   };
 
   useEffect(() => {
-    fetchMovieById(params.movieId, currentLang)
+    fetchActorById(params.actorId, currentLang)
       .then(data => {
-        setMovieItem(data);
+        setPersonInfo(data);
         // console.log(data);
       })
       .catch(error => {
@@ -37,7 +38,7 @@ export default function MovieItem({ currentLang }) {
         // alert(error.message);
         setError(true);
       });
-  }, [currentLang, params.movieId]);
+  }, [currentLang, params.actorId]);
 
   return (
     <Box p={3} mt="48px" textAlign="left">
@@ -47,9 +48,9 @@ export default function MovieItem({ currentLang }) {
 
       {error && <PageError />}
 
-      {movieItem && (
+      {personInfo && (
         <>
-          <MovieTitle>{movieItem.title}</MovieTitle>
+          <ActorName>{personInfo.name}</ActorName>
           <Box display="flex" mt={3}>
             <Box
               width="200px"
@@ -57,42 +58,46 @@ export default function MovieItem({ currentLang }) {
               boxShadow="0 0 8px rgba(0, 0, 0, 0.6)"
               // overflow="hidden"
             >
-              <MovieImg
+              <ActorImg
                 width="200"
                 height="100%"
                 src={
-                  movieItem.poster_path
-                    ? `https://image.tmdb.org/t/p/w200/${movieItem.poster_path}`
+                  personInfo.profile_path
+                    ? `https://image.tmdb.org/t/p/w200/${personInfo.profile_path}`
                     : imageplaceholder
                 }
-                alt={`${movieItem.title}`}
+                alt={`${personInfo.name}`}
                 onClick={toggleModal}
               />
             </Box>
 
             <Box ml={4}>
-              <MovieDescr>
-                {movieItem.genres.map(genre => genre.name).join(', ')}
-              </MovieDescr>
-              <MovieDescr>
-                {(movieItem.release_date ?? movieItem.first_air_date).slice(
-                  0,
-                  4
-                )}
-              </MovieDescr>
-              {/* <MovieDescr>{movieItem.overview}</MovieDescr> */}
+              {personInfo.birthday && (
+                <ActorDescr>
+                  {currentLang === 'uk-UA'
+                    ? `Дата народження: ${formatDateUa(personInfo.birthday)}`
+                    : `Birth date: ${formatDateEn(personInfo.birthday)}`}
+                </ActorDescr>
+              )}
+              {personInfo.deathday && (
+                <ActorDescr>
+                  {currentLang === 'uk-UA'
+                    ? `Дата смерті: ${formatDateUa(personInfo.deathday)}`
+                    : `Death date: ${formatDateEn(personInfo.deathday)}`}
+                </ActorDescr>
+              )}
+
               <Box mt={4}>
-                <GobackLink to="overview" state={movieItem.overview}>
-                  {currentLang === 'uk-UA' ? 'Опис' : 'Overview'}
+                <GobackLink to="biography" state={personInfo.biography}>
+                  {currentLang === 'uk-UA' ? 'Біографія' : 'Biography'}
                 </GobackLink>
-                <GobackLink to="cast">
-                  {currentLang === 'uk-UA' ? 'В ролях' : 'Cast'}
+                <GobackLink to="movies">
+                  {currentLang === 'uk-UA' ? 'Фільми' : 'Movies'}
                 </GobackLink>
-                <GobackLink to="reviews">
-                  {currentLang === 'uk-UA' ? 'Відгуки' : 'Reviews'}
+                <GobackLink to="images">
+                  {currentLang === 'uk-UA' ? 'Фото' : 'Photos'}
                 </GobackLink>
               </Box>
-
               <Outlet />
             </Box>
           </Box>
@@ -101,11 +106,11 @@ export default function MovieItem({ currentLang }) {
             <Modal onClose={toggleModal}>
               <img
                 src={
-                  movieItem.poster_path
-                    ? `https://image.tmdb.org/t/p/w500/${movieItem.poster_path}`
+                  personInfo.profile_path
+                    ? `https://image.tmdb.org/t/p/w500/${personInfo.profile_path}`
                     : imageplaceholder
                 }
-                alt={`${movieItem.original_title}`}
+                alt={`${personInfo.name}`}
               />
             </Modal>
           )}
