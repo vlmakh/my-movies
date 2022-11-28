@@ -14,7 +14,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchActors } from 'services/api';
 
-export default function Movies() {
+export default function Movies({ currentLang }) {
   const [actorsFound, setActorsFound] = useState([]);
   const [totalFound, setTotalFound] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
@@ -31,7 +31,7 @@ export default function Movies() {
       return;
     }
 
-    fetchActors(query, page)
+    fetchActors(query, page, currentLang)
       .then(data => {
         if (!data.results.length) {
           alert('No results found due to your search inquiry');
@@ -39,14 +39,14 @@ export default function Movies() {
           // setactorsFound(prevState => {
           //   return [...prevState, ...data.results];
           // });
-          // console.log(data);
+          // console.log(data.results);
           setTotalFound(data.total_results);
           setTotalPages(data.total_pages);
           setActorsFound([...data.results]);
         }
       })
       .catch(error => console.log(error));
-  }, [page, query]);
+  }, [currentLang, page, query]);
 
   const onSearchInput = event => {
     setInput(event.target.value);
@@ -90,11 +90,13 @@ export default function Movies() {
           type="text"
           value={input}
           onChange={onSearchInput}
-          placeholder="Name"
+          placeholder={currentLang === 'uk-UA' ? "Ім'я" : 'Name'}
         />
-        <SearchBtn type="submit">Search</SearchBtn>
+        <SearchBtn type="submit">
+          {currentLang === 'uk-UA' ? 'Пошук' : 'Search'}
+        </SearchBtn>
         <SearchBtn type="button" onClick={clearAll}>
-          Clear
+          {currentLang === 'uk-UA' ? 'Очистити' : 'Clear'}
         </SearchBtn>
       </form>
 
@@ -117,14 +119,14 @@ export default function Movies() {
             onClick={decreasePage}
             disabled={page === 1 ? true : false}
           >
-            Prev Page
+            {currentLang === 'uk-UA' ? 'Назад' : 'Prev page'}
           </LoadMoreBtn>
           <LoadMoreBtn
             type="button"
             onClick={increasePage}
             disabled={page === totalPages ? true : false}
           >
-            Next Page
+            {currentLang === 'uk-UA' ? 'Далі' : 'Next page'}
           </LoadMoreBtn>
         </>
       )}

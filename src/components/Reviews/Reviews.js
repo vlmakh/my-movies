@@ -8,17 +8,17 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviewsById } from 'services/api';
 
-export default function Reviews() {
+export default function Reviews({ currentLang }) {
   const params = useParams();
   //   console.log(params);
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetchReviewsById(params.movieId).then(data => {
+    fetchReviewsById(params.movieId, currentLang).then(data => {
       //   console.log(data.results);
       setReviews(data.results);
     });
-  }, [params.movieId]);
+  }, [currentLang, params.movieId]);
 
   if (reviews.length === 0) {
     return (

@@ -25,18 +25,27 @@ export const App = () => {
   const [currentTheme, setCurrentTheme] = useState(
     state.theme === 'darkTheme' ? darkTheme : lightTheme
   );
-  // const [currentLang, setCurrentLang] = useState(startData.lang);
+  const [currentLang, setCurrentLang] = useState(state.lang);
 
   useEffect(() => {
-    setState({ theme: currentTheme.name, lang: 'en-US' });
-  }, [currentTheme.name]);
+    setState({ theme: currentTheme.name, lang: currentLang });
+  }, [currentTheme.name, currentLang]);
 
   useEffect(() => {
+    // console.log(state)
     localStorage.setItem('myvideos', JSON.stringify(state));
   }, [state]);
 
   const toggleTheme = () => {
     setCurrentTheme(currentTheme.name === 'darkTheme' ? lightTheme : darkTheme);
+  };
+
+  const turnEnLang = () => {
+    setCurrentLang('en-US');
+  };
+
+  const turnUaLang = () => {
+    setCurrentLang('uk-UA');
   };
 
   return (
@@ -48,21 +57,36 @@ export const App = () => {
             <SharedLayout
               toggleTheme={toggleTheme}
               currentTheme={currentTheme.name}
+              currentLang={currentLang}
+              turnEnLang={turnEnLang}
+              turnUaLang={turnUaLang}
             />
           }
         >
-          <Route index element={<Home />} />
-          <Route path="movies" element={<Movies />} />
-          <Route path="movies/:movieId" element={<MovieItem />}>
+          <Route index element={<Home currentLang={currentLang} />} />
+          <Route path="movies" element={<Movies currentLang={currentLang} />} />
+          <Route
+            path="movies/:movieId"
+            element={<MovieItem currentLang={currentLang} />}
+          >
             <Route path="overview" element={<Overview />} />
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
+            <Route path="cast" element={<Cast currentLang={currentLang} />} />
+            <Route
+              path="reviews"
+              element={<Reviews currentLang={currentLang} />}
+            />
             <Route path="*" element={<PageError />} />
           </Route>
-          <Route path="actors" element={<Actors />} />
-          <Route path="actors/:actorId" element={<ActorPage />}>
+          <Route path="actors" element={<Actors currentLang={currentLang} />} />
+          <Route
+            path="actors/:actorId"
+            element={<ActorPage currentLang={currentLang} />}
+          >
             <Route path="biography" element={<Biography />} />
-            <Route path="movies" element={<ActorMovies />} />
+            <Route
+              path="movies"
+              element={<ActorMovies currentLang={currentLang} />}
+            />
             <Route path="images" element={<ActorImages />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />}></Route>

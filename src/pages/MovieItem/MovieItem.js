@@ -12,7 +12,7 @@ import PageError from 'pages/PageError/PageError';
 import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/noposter.jpg';
 
-export default function MovieItem() {
+export default function MovieItem({ currentLang }) {
   const [movieItem, setMovieItem] = useState(null);
   const [error, setError] = useState(false);
   const location = useLocation();
@@ -27,7 +27,7 @@ export default function MovieItem() {
   };
 
   useEffect(() => {
-    fetchMovieById(params.movieId)
+    fetchMovieById(params.movieId, currentLang)
       .then(data => {
         setMovieItem(data);
         // console.log(data);
@@ -37,17 +37,19 @@ export default function MovieItem() {
         // alert(error.message);
         setError(true);
       });
-  }, [params.movieId]);
+  }, [currentLang, params.movieId]);
 
   return (
     <Box p={3} mt="48px" textAlign="left">
-      <GobackLink to={backLink.current}>Go Back</GobackLink>
+      <GobackLink to={backLink.current}>
+        {currentLang === 'uk-UA' ? 'Назад' : 'Back'}
+      </GobackLink>
 
       {error && <PageError />}
 
       {movieItem && (
         <>
-          <MovieTitle>{movieItem.original_title}</MovieTitle>
+          <MovieTitle>{movieItem.title}</MovieTitle>
           <Box display="flex" mt={3}>
             <Box
               width="200px"
@@ -63,7 +65,7 @@ export default function MovieItem() {
                     ? `https://image.tmdb.org/t/p/w200/${movieItem.poster_path}`
                     : imageplaceholder
                 }
-                alt={`${movieItem.original_title}`}
+                alt={`${movieItem.title}`}
                 onClick={toggleModal}
               />
             </Box>
@@ -81,10 +83,14 @@ export default function MovieItem() {
               {/* <MovieDescr>{movieItem.overview}</MovieDescr> */}
               <Box mt={4}>
                 <GobackLink to="overview" state={movieItem.overview}>
-                  Overview
+                  {currentLang === 'uk-UA' ? 'Опис' : 'Overview'}
                 </GobackLink>
-                <GobackLink to="cast">Cast</GobackLink>
-                <GobackLink to="reviews">Reviews</GobackLink>
+                <GobackLink to="cast">
+                  {currentLang === 'uk-UA' ? 'В ролях' : 'Cast'}
+                </GobackLink>
+                <GobackLink to="reviews">
+                  {currentLang === 'uk-UA' ? 'Відгуки' : 'Reviews'}
+                </GobackLink>
               </Box>
 
               <Outlet />

@@ -41,6 +41,9 @@ export const Header = styled.div`
 `;
 
 export const HeaderLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  height: 100%;
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: 700;
   color: ${p => p.theme.colors.textPrimary};
@@ -56,5 +59,21 @@ export const HeaderLink = styled(NavLink)`
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
+  height: 48px;
   gap: ${p => p.theme.space[4]}px;
 `;
+
+export const LangBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  font-size: ${p => p.theme.fontSizes.s};
+  font-weight: 700;
+  cursor: pointer;
+  color: ${p => p.theme.colors.textPrimary};
+
+  transition: color 250ms linear;
+
+  :hover {
+    color: ${p => p.theme.colors.accent};
+  }
+`

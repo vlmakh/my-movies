@@ -6,5 +6,9 @@ export default function Overview() {
   const location = useLocation();
   //   console.log(location);
 
-  return <OverviewText>{location.state}</OverviewText>;
+  return (
+    <OverviewText>
+      {location.state ? location.state : 'No information added'}
+    </OverviewText>
+  );
 }

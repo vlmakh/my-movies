@@ -5,13 +5,20 @@ import {
   Header,
   HeaderLink,
   Nav,
+  LangBtn,
 } from './SharedLayout.styled';
 import { Suspense } from 'react';
 import { Box } from 'components/Box/Box';
 import logo from 'images/logo.png';
 import { ThreeCircles } from 'react-loader-spinner';
 
-export const SharedLayout = ({ toggleTheme, currentTheme }) => {
+export const SharedLayout = ({
+  toggleTheme,
+  currentTheme,
+  currentLang,
+  turnEnLang,
+  turnUaLang,
+}) => {
   return (
     <Layout>
       <Header>
@@ -19,10 +26,23 @@ export const SharedLayout = ({ toggleTheme, currentTheme }) => {
           <HeaderLink to="/">
             <img src={logo} alt="logo" width="32" height="32" />
           </HeaderLink>
-          <HeaderLink to="/movies">Movies</HeaderLink>
-          <HeaderLink to="/actors">Actors</HeaderLink>
+          <HeaderLink to="/movies">
+            {currentLang === 'uk-UA' ? 'Фільми' : 'Movies'}
+          </HeaderLink>
+          <HeaderLink to="/actors">
+            {currentLang === 'uk-UA' ? 'Актори' : 'Actors'}
+          </HeaderLink>
         </Nav>
-        <Box width="40px">
+
+        <Box display="flex" gap="16px" alignItems="center">
+          <Box display="flex" mr={4} height="48px">
+            <LangBtn type="button" onClick={turnEnLang}>
+              EN
+            </LangBtn>
+            <LangBtn type="button" onClick={turnUaLang}>
+              UA
+            </LangBtn>
+          </Box>
           <StyledSwitch
             onChange={toggleTheme}
             checked={currentTheme === 'darkTheme' ? false : true}

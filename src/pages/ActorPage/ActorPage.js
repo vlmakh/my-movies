@@ -11,9 +11,9 @@ import { fetchActorById } from 'services/api';
 import PageError from 'pages/PageError/PageError';
 import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/noposter.jpg';
-import { formatDateEn } from 'services/formatDate';
+import { formatDateEn, formatDateUa } from 'services/formatDate';
 
-export default function ActorPage() {
+export default function ActorPage({ currentLang }) {
   const [personInfo, setPersonInfo] = useState(null);
   const [error, setError] = useState(false);
   const location = useLocation();
@@ -28,7 +28,7 @@ export default function ActorPage() {
   };
 
   useEffect(() => {
-    fetchActorById(params.actorId)
+    fetchActorById(params.actorId, currentLang)
       .then(data => {
         setPersonInfo(data);
         // console.log(data);
@@ -38,11 +38,13 @@ export default function ActorPage() {
         // alert(error.message);
         setError(true);
       });
-  }, [params.actorId]);
+  }, [currentLang, params.actorId]);
 
   return (
     <Box p={3} mt="48px" textAlign="left">
-      <GobackLink to={backLink.current}>Go Back</GobackLink>
+      <GobackLink to={backLink.current}>
+        {currentLang === 'uk-UA' ? 'Назад' : 'Back'}
+      </GobackLink>
 
       {error && <PageError />}
 
@@ -72,21 +74,29 @@ export default function ActorPage() {
             <Box ml={4}>
               {personInfo.birthday && (
                 <ActorDescr>
-                  Birth date: {formatDateEn(personInfo.birthday)}
+                  {currentLang === 'uk-UA'
+                    ? `Дата народження: ${formatDateUa(personInfo.birthday)}`
+                    : `Birth date: ${formatDateEn(personInfo.birthday)}`}
                 </ActorDescr>
               )}
               {personInfo.deathday && (
                 <ActorDescr>
-                  Death date: {formatDateEn(personInfo.deathday)}
+                  {currentLang === 'uk-UA'
+                    ? `Дата смерті: ${formatDateUa(personInfo.deathday)}`
+                    : `Death date: ${formatDateEn(personInfo.deathday)}`}
                 </ActorDescr>
               )}
 
               <Box mt={4}>
                 <GobackLink to="biography" state={personInfo.biography}>
-                  Biography
+                  {currentLang === 'uk-UA' ? 'Біографія' : 'Biography'}
                 </GobackLink>
-                <GobackLink to="movies">Movies</GobackLink>
-                <GobackLink to="images">Photos</GobackLink>
+                <GobackLink to="movies">
+                  {currentLang === 'uk-UA' ? 'Фільми' : 'Movies'}
+                </GobackLink>
+                <GobackLink to="images">
+                  {currentLang === 'uk-UA' ? 'Фото' : 'Photos'}
+                </GobackLink>
               </Box>
               <Outlet />
             </Box>
