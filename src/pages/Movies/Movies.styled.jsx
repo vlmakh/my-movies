@@ -4,7 +4,7 @@ import bcgImage from 'images/bcg-movies01.jpg';
 export const Background = styled.div`
   margin: ${p => p.theme.space[4]}px auto 0;
   max-width: 1280px;
-  height: 800px;
+  height: 720px;
   background-image: radial-gradient(
       at center,
       rgba(59, 67, 81, 0.2),
