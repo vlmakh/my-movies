@@ -70,9 +70,11 @@ export default function ActorPage() {
             </Box>
 
             <Box ml={4}>
-              <ActorDescr>
-                Birth date: {formatDateEn(personInfo.birthday)}
-              </ActorDescr>
+              {personInfo.birthday && (
+                <ActorDescr>
+                  Birth date: {formatDateEn(personInfo.birthday)}
+                </ActorDescr>
+              )}
               {personInfo.deathday && (
                 <ActorDescr>
                   Death date: {formatDateEn(personInfo.deathday)}

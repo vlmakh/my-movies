@@ -14,7 +14,8 @@ export const StyledSwitch = styled(Switch)`
 
 export const Layout = styled.div`
   min-width: calc(100vw - 24px);
-  min-height: calc(100vh - 24px);
+  min-height: 100vh;
+  padding-top: ${p => p.theme.space[1]}px;
   padding-right: ${p => p.theme.space[4]}px;
   background-color: ${p => p.theme.colors.bcgMain};
 

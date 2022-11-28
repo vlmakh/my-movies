@@ -1,9 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
-import { lazy } from 'react';
+import { lazy, useState, useEffect } from 'react';
 import { ThemeProvider } from 'theme-ui';
-import { darkTheme, lightTheme } from '../theme';
-import { useState } from 'react';
+import { darkTheme, lightTheme } from 'theme';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
@@ -18,17 +17,40 @@ const Overview = lazy(() => import('components/Overview/Overview'));
 const Reviews = lazy(() => import('components/Reviews/Reviews'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
+const startData = { theme: 'darkTheme', lang: 'en-US' };
+const savedData = JSON.parse(localStorage.getItem('myvideos'));
+
 export const App = () => {
-  const [currentTheme, setCurrentTheme] = useState(darkTheme);
+  const [state, setState] = useState(savedData ? savedData : startData);
+  const [currentTheme, setCurrentTheme] = useState(
+    state.theme === 'darkTheme' ? darkTheme : lightTheme
+  );
+  // const [currentLang, setCurrentLang] = useState(startData.lang);
+
+  useEffect(() => {
+    setState({ theme: currentTheme.name, lang: 'en-US' });
+  }, [currentTheme.name]);
+
+  useEffect(() => {
+    localStorage.setItem('myvideos', JSON.stringify(state));
+  }, [state]);
 
   const toggleTheme = () => {
-    setCurrentTheme(currentTheme === darkTheme ? lightTheme : darkTheme);
+    setCurrentTheme(currentTheme.name === 'darkTheme' ? lightTheme : darkTheme);
   };
 
   return (
     <ThemeProvider theme={currentTheme}>
       <Routes>
-        <Route path="/" element={<SharedLayout toggleTheme={toggleTheme} />}>
+        <Route
+          path="/"
+          element={
+            <SharedLayout
+              toggleTheme={toggleTheme}
+              currentTheme={currentTheme.name}
+            />
+          }
+        >
           <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieItem />}>

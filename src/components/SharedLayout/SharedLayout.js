@@ -11,7 +11,7 @@ import { Box } from 'components/Box/Box';
 import logo from 'images/logo.png';
 import { ThreeCircles } from 'react-loader-spinner';
 
-export const SharedLayout = ({ toggleTheme }) => {
+export const SharedLayout = ({ toggleTheme, currentTheme }) => {
   return (
     <Layout>
       <Header>
@@ -23,7 +23,11 @@ export const SharedLayout = ({ toggleTheme }) => {
           <HeaderLink to="/actors">Actors</HeaderLink>
         </Nav>
         <Box width="40px">
-          <StyledSwitch onClick={toggleTheme} />
+          <StyledSwitch
+            onChange={toggleTheme}
+            checked={currentTheme === 'darkTheme' ? false : true}
+            // read-only="true"
+          />
         </Box>
       </Header>
 

@@ -1,4 +1,5 @@
 export const darkTheme = {
+  name: 'darkTheme',
   colors: {
     bcgMain: '#3b4351',
     bcgHeader: '#333333',
@@ -17,7 +18,6 @@ export const darkTheme = {
     l: '36px',
     xl: '44px',
   },
-
   borders: {
     none: 'none',
     normal: '1px solid',
@@ -34,6 +34,7 @@ export const darkTheme = {
 };
 
 export const lightTheme = {
+  name: 'lightTheme',
   colors: {
     bcgMain: '#fff',
     bcgHeader: '#bcc3ce',
