@@ -11,16 +11,18 @@ export default function Home({ currentLang }) {
   const location = useLocation();
 
   useEffect(() => {
-    fetchTrends(currentLang).then(data => {
-      // console.log(data.results);
-      setTrends(data.results);
-    });
+    fetchTrends(currentLang)
+      .then(data => {
+        // console.log(data.results);
+        setTrends(data.results);
+      })
+      .catch(error => console.log(error));
   }, [currentLang]);
 
   return (
     <Box p={3} mt="48px" textAlign="center">
       <HomeTitle>
-        {currentLang === 'en-US' ? 'Trending Today' : 'Популярні сьогодні'}
+        {currentLang === 'uk-UA' ? 'Популярні сьогодні' : 'Trending Today'}
       </HomeTitle>
 
       <TrendsList>

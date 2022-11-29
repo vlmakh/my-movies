@@ -2,13 +2,13 @@
 import { OverviewText } from './Biography.styled';
 import { useLocation } from 'react-router-dom';
 
-export default function Overview() {
+export default function Biography({ currentLang }) {
   const location = useLocation();
-  //   console.log(location);
+  // console.log(location);
+  const notFoundMsg =
+    currentLang === 'uk-UA' ? 'Немає інформації' : 'No information added';
 
   return (
-    <OverviewText>
-      {location.state ? location.state : 'No information added'}
-    </OverviewText>
+    <OverviewText>{location.state ? location.state : notFoundMsg}</OverviewText>
   );
 }

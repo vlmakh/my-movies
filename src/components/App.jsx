@@ -69,20 +69,20 @@ export const App = () => {
             path="movies/:movieId"
             element={<MovieItem currentLang={currentLang} />}
           >
-            <Route path="overview" element={<Overview />} />
+            <Route path="overview" element={<Overview currentLang={currentLang}/>} />
             <Route path="cast" element={<Cast currentLang={currentLang} />} />
             <Route
               path="reviews"
               element={<Reviews currentLang={currentLang} />}
             />
-            <Route path="*" element={<PageError />} />
+            <Route path="*" element={<PageError currentLang={currentLang}/>} />
           </Route>
           <Route path="actors" element={<Actors currentLang={currentLang} />} />
           <Route
             path="actors/:actorId"
             element={<ActorPage currentLang={currentLang} />}
           >
-            <Route path="biography" element={<Biography />} />
+            <Route path="biography" element={<Biography currentLang={currentLang}/>} />
             <Route
               path="movies"
               element={<ActorMovies currentLang={currentLang} />}
