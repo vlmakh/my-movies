@@ -23,7 +23,11 @@ export default function Reviews({ currentLang }) {
   if (reviews.length === 0) {
     return (
       <>
-        <ReviewNot>No reviews found</ReviewNot>
+        <ReviewNot>
+          {currentLang === 'uk-UA'
+            ? 'Немає інформації'
+            : 'No information added'}
+        </ReviewNot>
       </>
     );
   }
