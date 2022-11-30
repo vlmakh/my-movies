@@ -35,40 +35,18 @@ export const MoviesItem = styled.li`
   }
 `;
 
-export const SearchBtn = styled.button`
-  margin-left: ${p => p.theme.space[1]}px;
-  font-weight: 700;
-  padding: 4px 8px;
-  color: ${p => p.theme.colors.textSecondary};
-  background-color: ${p => p.theme.colors.bcgBtn};
-  border-color: ${p => p.theme.colors.bcgBtn};
-  cursor: pointer;
-
-  transition: color 250ms linear;
-
-  :hover {
-    color: ${p => p.theme.colors.accent};
-  }
+export const SearchForm = styled.form`
+  display: flex;
+  margin: 0 auto;
+  max-width: 400px;
 `;
 
 export const SearchInput = styled.input`
+  width: 100%;
   padding: 4px 8px;
-`;
 
-export const LoadMoreBtn = styled.button`
-  margin-top: ${p => p.theme.space[4]}px;
-
-  padding: 4px 8px;
-  color: ${p => (p.disabled ? 'grey' : p.theme.colors.textSecondary)};
-  background-color: ${p => p.theme.colors.bcgBtn};
-  text-decoration: none;
-  font-weight: 700;
-  border-color: ${p => p.theme.colors.bcgBtn};
-  cursor: ${p => (p.disabled ? 'default' : 'pointer')};
-
-  transition: color 250ms linear;
-
-  :hover:not(:disabled) {
-    color: ${p => p.theme.colors.accent};
+  &:hover + button {
+    color: ${p => p.theme.colors.bcgBtn};
   }
 `;
+

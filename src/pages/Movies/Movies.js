@@ -1,11 +1,11 @@
 import {
   MoviesList,
   MoviesItem,
-  SearchBtn,
+  SearchForm,
   SearchInput,
-  LoadMoreBtn,
   Background,
 } from './Movies.styled';
+import { SearchBtn, ClearBtn, LoadMoreBtn } from 'components/Buttons/Buttons';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
@@ -13,6 +13,7 @@ import { Box } from 'components/Box/Box';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
+import { IoIosCloseCircle } from 'react-icons/io';
 
 // import Pagination from '@mui/material/Pagination';
 
@@ -85,20 +86,22 @@ export default function Movies({ currentLang }) {
 
   return (
     <Box p={4} textAlign="center" mt="48px">
-      <form onSubmit={handleSubmit}>
-        <SearchInput
-          type="text"
-          value={input}
-          onChange={onSearchInput}
-          placeholder={currentLang === 'uk-UA' ? 'Назва фільму' : 'Film'}
-        />
+      <SearchForm onSubmit={handleSubmit}>
+        <Box position="relative" flexGrow="1">
+          <SearchInput
+            type="text"
+            value={input}
+            onChange={onSearchInput}
+            placeholder={currentLang === 'uk-UA' ? 'Назва фільму' : 'Film'}
+          />
+          <ClearBtn type="button" onClick={clearAll}>
+            <IoIosCloseCircle size="20" />
+          </ClearBtn>
+        </Box>
         <SearchBtn type="submit">
           {currentLang === 'uk-UA' ? 'Пошук' : 'Search'}
         </SearchBtn>
-        <SearchBtn type="button" onClick={clearAll}>
-          {currentLang === 'uk-UA' ? 'Очистити' : 'Clear'}
-        </SearchBtn>
-      </form>
+      </SearchForm>
 
       {moviesFound.length === 0 && <Background />}
 

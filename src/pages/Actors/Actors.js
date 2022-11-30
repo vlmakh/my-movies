@@ -1,11 +1,11 @@
 import {
   ActorsList,
   ActorsPerson,
-  SearchBtn,
   SearchInput,
-  LoadMoreBtn,
   Background,
+  SearchForm,
 } from './Actors.styled';
+import { SearchBtn, ClearBtn, LoadMoreBtn } from 'components/Buttons/Buttons';
 import { ActorCard } from 'components/ActorCard/ActorCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
@@ -13,6 +13,7 @@ import { Box } from 'components/Box/Box';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchActors } from 'services/api';
+import { IoIosCloseCircle } from 'react-icons/io';
 
 export default function Movies({ currentLang }) {
   const [actorsFound, setActorsFound] = useState([]);
@@ -85,20 +86,22 @@ export default function Movies({ currentLang }) {
 
   return (
     <Box p={4} textAlign="center" mt="48px">
-      <form onSubmit={handleSubmit}>
-        <SearchInput
-          type="text"
-          value={input}
-          onChange={onSearchInput}
-          placeholder={currentLang === 'uk-UA' ? "Ім'я" : 'Name'}
-        />
+      <SearchForm onSubmit={handleSubmit}>
+        <Box position="relative" flexGrow="1">
+          <SearchInput
+            type="text"
+            value={input}
+            onChange={onSearchInput}
+            placeholder={currentLang === 'uk-UA' ? "Ім'я" : 'Name'}
+          />
+          <ClearBtn type="button" onClick={clearAll}>
+            <IoIosCloseCircle size="20" />
+          </ClearBtn>
+        </Box>
         <SearchBtn type="submit">
           {currentLang === 'uk-UA' ? 'Пошук' : 'Search'}
         </SearchBtn>
-        <SearchBtn type="button" onClick={clearAll}>
-          {currentLang === 'uk-UA' ? 'Очистити' : 'Clear'}
-        </SearchBtn>
-      </form>
+      </SearchForm>
 
       {actorsFound.length === 0 && <Background />}
 
