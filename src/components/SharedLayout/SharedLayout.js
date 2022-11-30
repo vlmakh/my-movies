@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router-dom';
 import {
-  StyledSwitch,
   Layout,
   Header,
   HeaderLink,
@@ -11,6 +10,8 @@ import { Suspense } from 'react';
 import { Box } from 'components/Box/Box';
 import logo from 'images/logo.png';
 import { ThreeCircles } from 'react-loader-spinner';
+import { HiSun, HiMoon } from 'react-icons/hi2';
+import { ThemeBtn } from 'components/Buttons/Buttons';
 
 export const SharedLayout = ({
   toggleTheme,
@@ -51,11 +52,17 @@ export const SharedLayout = ({
               UA
             </LangBtn>
           </Box>
-          <StyledSwitch
+          {/* <StyledSwitch
             onChange={toggleTheme}
             checked={currentTheme === 'darkTheme' ? false : true}
-            // read-only="true"
-          />
+          /> */}
+          <ThemeBtn onClick={toggleTheme}>
+            {currentTheme === 'darkTheme' ? (
+              <HiMoon size="20" />
+            ) : (
+              <HiSun size="20" />
+            )}
+          </ThemeBtn>
         </Box>
       </Header>
 

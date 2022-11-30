@@ -51,3 +51,11 @@ export const LoadMoreBtn = styled.button`
     color: ${p => p.theme.colors.accent};
   }
 `;
+
+export const ThemeBtn = styled.button`
+  padding: 8px 0;
+  border: none;
+  background-color: transparent;
+  color: ${p => p.theme.colors.bcgBtn};
+  cursor: pointer;
+`;
