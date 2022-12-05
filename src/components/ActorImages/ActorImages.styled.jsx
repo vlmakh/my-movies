@@ -10,7 +10,7 @@ export const ImageList = styled.ul`
 `;
 
 export const ImageCard = styled.li`
-  width: 100px;
+  width: 160px;
   /* padding-bottom: ${p => p.theme.space[2]}px; */
   background-color: ${p => p.theme.colors.textPrimary};
 `;
@@ -19,6 +19,7 @@ export const ImageImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* cursor: pointer; */
 `;
 
 
