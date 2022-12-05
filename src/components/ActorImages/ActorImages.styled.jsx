@@ -18,7 +18,15 @@ export const ImageImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* cursor: pointer; */
+  cursor: pointer;
+  box-shadow: none;
+
+  transition: box-shadow 250ms linear;
+
+  :hover,
+  :focus {
+    box-shadow: ${p => p.theme.shadows.blackShadow};
+  }
 `;
 
 
