@@ -110,7 +110,7 @@ export default function ActorPage({ currentLang }) {
                     ? `https://image.tmdb.org/t/p/w500/${personInfo.profile_path}`
                     : imageplaceholder
                 }
-                alt={`${personInfo.name}`}
+                alt={personInfo.name}
               />
             </Modal>
           )}
