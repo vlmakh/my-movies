@@ -50,7 +50,7 @@ export default function ActorImages() {
       {showModal && (
         <Modal onClose={toggleModal}>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${images[bigPhotoIdx].file_path}`}
+            src={`https://image.tmdb.org/t/p/w500${images[bigPhotoIdx].file_path}`}
             alt={images[bigPhotoIdx].file_path}
           />
         </Modal>
