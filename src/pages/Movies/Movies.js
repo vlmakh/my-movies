@@ -5,7 +5,8 @@ import {
   SearchInput,
   Background,
 } from './Movies.styled';
-import { SearchBtn, ClearBtn, LoadMoreBtn } from 'components/Buttons/Buttons';
+import { SearchBtn, ClearBtn } from 'components/Buttons/Buttons';
+import { PaginationStyled } from 'components/Pagination/Pagination';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
@@ -15,11 +16,8 @@ import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
 import { IoIosCloseCircle } from 'react-icons/io';
 
-// import Pagination from '@mui/material/Pagination';
-
 export default function Movies({ currentLang }) {
   const [moviesFound, setMoviesFound] = useState([]);
-  const [totalFound, setTotalFound] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search' ?? '');
   const currentPage = searchQuery.get('page' ?? '');
@@ -39,11 +37,6 @@ export default function Movies({ currentLang }) {
         if (!data.results.length) {
           alert('No results found due to your search inquiry');
         } else {
-          // setMoviesFound(prevState => {
-          //   return [...prevState, ...data.results];
-          // });
-          // console.log(data);
-          setTotalFound(data.total_results);
           setTotalPages(data.total_pages);
           setMoviesFound([...data.results]);
         }
@@ -67,21 +60,17 @@ export default function Movies({ currentLang }) {
     }
   };
 
-  const increasePage = () => {
-    setPage(prevPage => prevPage + 1);
-    setSearchQuery({ search: input, page: page + 1 });
-  };
-
-  const decreasePage = () => {
-    setPage(prevPage => prevPage - 1);
-    setSearchQuery({ search: input, page: page - 1 });
-  };
-
   const clearAll = () => {
     setInput('');
     setMoviesFound([]);
     setSearchQuery({ search: '', page: 0 });
     setTotalPages(0);
+  };
+
+  const handlePageClick = e => {
+    // console.log(e);
+    setPage(e.selected + 1);
+    setSearchQuery({ search: input, page: e.selected + 1 });
   };
 
   return (
@@ -115,42 +104,17 @@ export default function Movies({ currentLang }) {
         ))}
       </MoviesList>
 
-      {/* <Box py={3} display="flex" justifyContent="center">
-        {totalPages > 0 && (
-          <Pagination
-            count={totalPages}
-            page={Number(currentPage)}
-            onChange={(_, num) => {
-              setSearchQuery({ search: input, page: Number(num) });
-              setPage(num);
-            }}
-            siblingCount={1}
-            boundaryCount={2}
-            color="primary"
-            showFirstButton
-            showLastButton
-          />
-        )}
-      </Box> */}
-
-      {moviesFound.length > 0 && moviesFound.length < totalFound && (
-        <>
-          <LoadMoreBtn
-            type="button"
-            onClick={decreasePage}
-            disabled={page === 1 ? true : false}
-          >
-            {currentLang === 'uk-UA' ? 'Назад' : 'Prev page'}
-          </LoadMoreBtn>
-          <LoadMoreBtn
-            type="button"
-            onClick={increasePage}
-            disabled={page === totalPages ? true : false}
-          >
-            {currentLang === 'uk-UA' ? 'Далі' : 'Next page'}
-          </LoadMoreBtn>
-        </>
-      )}
+      <PaginationStyled
+        breakLabel="..."
+        nextLabel=">"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={totalPages}
+        previousLabel="<"
+        renderOnZeroPageCount={null}
+        disabledLinkClassName="disabled"
+        activeClassName="activePage"
+      />
     </Box>
   );
 }

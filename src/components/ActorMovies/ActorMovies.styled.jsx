@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const MovieList = styled.ul`
   display: flex;
@@ -18,11 +18,8 @@ export const MovieItem = styled.li`
   :focus {
     box-shadow: ${p => p.theme.shadows.blackShadow};
   }
-
 `;
-
-
 
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-`
+`;
