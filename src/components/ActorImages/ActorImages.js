@@ -1,4 +1,4 @@
-import { ImageList, ImageCard, ImageImg } from './ActorImages.styled';
+import { ImageList, ImageCard, SmallImg, BigImg } from './ActorImages.styled';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchImagesByActor } from 'services/api';
@@ -46,7 +46,7 @@ export default function ActorImages() {
       <ImageList>
         {images.map((image, idx) => (
           <ImageCard key={image.file_path}>
-            <ImageImg
+            <SmallImg
               width="160"
               src={
                 image.file_path
@@ -65,7 +65,7 @@ export default function ActorImages() {
           <Slider {...settings}>
             {images.map(image => (
               <Box key={image.file_path} display="flex" alignItems="center">
-                <img
+                <BigImg
                   src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
                   alt={image.file_path}
                 />

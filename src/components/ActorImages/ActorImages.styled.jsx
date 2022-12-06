@@ -14,7 +14,7 @@ export const ImageCard = styled.li`
   background-color: ${p => p.theme.colors.textPrimary};
 `;
 
-export const ImageImg = styled.img`
+export const SmallImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -29,4 +29,5 @@ export const ImageImg = styled.img`
   }
 `;
 
-
+export const BigImg = styled.img`
+cursor: grab;`
