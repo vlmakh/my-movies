@@ -10,15 +10,24 @@ export const ImageList = styled.ul`
 `;
 
 export const ImageCard = styled.li`
-  width: 100px;
-  /* padding-bottom: ${p => p.theme.space[2]}px; */
+  width: 160px;
   background-color: ${p => p.theme.colors.textPrimary};
 `;
 
-export const ImageImg = styled.img`
+export const SmallImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  cursor: pointer;
+  box-shadow: none;
+
+  transition: box-shadow 250ms linear;
+
+  :hover,
+  :focus {
+    box-shadow: ${p => p.theme.shadows.blackShadow};
+  }
 `;
 
-
+export const BigImg = styled.img`
+cursor: grab;`

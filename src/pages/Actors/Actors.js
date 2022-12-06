@@ -82,8 +82,6 @@ export default function Movies({ currentLang }) {
     setTotalPages(0);
   };
 
-  // const searchRoute = `${location.pathname}${location.search}`;
-
   return (
     <Box p={4} textAlign="center" mt="48px">
       <SearchForm onSubmit={handleSubmit}>
