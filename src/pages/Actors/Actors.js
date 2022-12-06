@@ -146,6 +146,7 @@ export default function Movies({ currentLang }) {
             previousLabel="<"
             renderOnZeroPageCount={null}
             disabledLinkClassName="disabled"
+            activeClassName="activePage"
           />
         </>
       )}

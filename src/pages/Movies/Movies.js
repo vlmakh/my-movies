@@ -18,7 +18,6 @@ import { IoIosCloseCircle } from 'react-icons/io';
 
 export default function Movies({ currentLang }) {
   const [moviesFound, setMoviesFound] = useState([]);
-  const [totalFound, setTotalFound] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search' ?? '');
   const currentPage = searchQuery.get('page' ?? '');
@@ -38,11 +37,6 @@ export default function Movies({ currentLang }) {
         if (!data.results.length) {
           alert('No results found due to your search inquiry');
         } else {
-          // setMoviesFound(prevState => {
-          //   return [...prevState, ...data.results];
-          // });
-          // console.log(data);
-          setTotalFound(data.total_results);
           setTotalPages(data.total_pages);
           setMoviesFound([...data.results]);
         }
@@ -110,20 +104,17 @@ export default function Movies({ currentLang }) {
         ))}
       </MoviesList>
 
-      {moviesFound.length > 0 && moviesFound.length < totalFound && (
-        <>
-          <PaginationStyled
-            breakLabel="..."
-            nextLabel=">"
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
-            pageCount={totalPages}
-            previousLabel="<"
-            renderOnZeroPageCount={null}
-            disabledLinkClassName="disabled"
-          />
-        </>
-      )}
+      <PaginationStyled
+        breakLabel="..."
+        nextLabel=">"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={totalPages}
+        previousLabel="<"
+        renderOnZeroPageCount={null}
+        disabledLinkClassName="disabled"
+        activeClassName="activePage"
+      />
     </Box>
   );
 }

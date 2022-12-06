@@ -9,9 +9,7 @@ export const PaginationStyled = styled(ReactPaginate)`
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: 700;
 
-  & a {
-    padding: 0 8px;
-    cursor: pointer;
+  & li {
     color: ${p => p.theme.colors.textPrimary};
 
     transition: color 250ms linear;
@@ -19,5 +17,14 @@ export const PaginationStyled = styled(ReactPaginate)`
     :hover:not(.disabled) {
       color: ${p => p.theme.colors.accent};
     }
+  }
+
+  & .activePage {
+    color: ${p => p.theme.colors.accent};
+  }
+
+  & a {
+    padding: 0 8px;
+    cursor: pointer;
   }
 `;
