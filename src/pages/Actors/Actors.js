@@ -18,7 +18,6 @@ import { IoIosCloseCircle } from 'react-icons/io';
 
 export default function Movies({ currentLang }) {
   const [actorsFound, setActorsFound] = useState([]);
-  const [totalFound, setTotalFound] = useState(1);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search' ?? '');
   const currentPage = searchQuery.get('page' ?? '');
@@ -38,11 +37,8 @@ export default function Movies({ currentLang }) {
         if (!data.results.length) {
           alert('No results found due to your search inquiry');
         } else {
-          // setactorsFound(prevState => {
-          //   return [...prevState, ...data.results];
-          // });
           // console.log(data.results);
-          setTotalFound(data.total_results);
+          // setTotalFound(data.total_results);
           setTotalPages(data.total_pages);
           setActorsFound([...data.results]);
         }
@@ -65,16 +61,6 @@ export default function Movies({ currentLang }) {
       setSearchQuery({ search: input, page: Number(page) });
     }
   };
-
-  // const increasePage = () => {
-  //   setPage(prevPage => prevPage + 1);
-  //   setSearchQuery({ search: input, page: page + 1 });
-  // };
-
-  // const decreasePage = () => {
-  //   setPage(prevPage => prevPage - 1);
-  //   setSearchQuery({ search: input, page: page - 1 });
-  // };
 
   const clearAll = () => {
     setInput('');
@@ -120,36 +106,17 @@ export default function Movies({ currentLang }) {
         ))}
       </ActorsList>
 
-      {actorsFound.length > 0 && actorsFound.length < totalFound && (
-        <>
-          {/* <LoadMoreBtn
-            type="button"
-            onClick={decreasePage}
-            disabled={page === 1 ? true : false}
-          >
-            {currentLang === 'uk-UA' ? 'Назад' : 'Prev page'}
-          </LoadMoreBtn>
-          <LoadMoreBtn
-            type="button"
-            onClick={increasePage}
-            disabled={page === totalPages ? true : false}
-          >
-            {currentLang === 'uk-UA' ? 'Далі' : 'Next page'}
-          </LoadMoreBtn> */}
-
-          <PaginationStyled
-            breakLabel="..."
-            nextLabel=">"
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
-            pageCount={totalPages}
-            previousLabel="<"
-            renderOnZeroPageCount={null}
-            disabledLinkClassName="disabled"
-            activeClassName="activePage"
-          />
-        </>
-      )}
+      <PaginationStyled
+        breakLabel="..."
+        nextLabel=">"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={totalPages}
+        previousLabel="<"
+        renderOnZeroPageCount={null}
+        disabledLinkClassName="disabled"
+        activeClassName="activePage"
+      />
     </Box>
   );
 }
