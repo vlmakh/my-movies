@@ -39,6 +39,7 @@ export default function ActorImages() {
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: bigPhotoIdx,
+    lazyLoad: 'ondemand',
   };
 
   return (
