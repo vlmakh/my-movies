@@ -4,6 +4,10 @@ import { useParams } from 'react-router-dom';
 import { fetchImagesByActor } from 'services/api';
 import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/nophoto.jpg';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { Box } from 'components/Box/Box';
 
 export default function ActorImages() {
   const params = useParams();
@@ -28,6 +32,15 @@ export default function ActorImages() {
     });
   }, [params.actorId]);
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: bigPhotoIdx,
+  };
+
   return (
     <>
       <ImageList>
@@ -49,10 +62,16 @@ export default function ActorImages() {
 
       {showModal && (
         <Modal onClose={toggleModal}>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${images[bigPhotoIdx].file_path}`}
-            alt={images[bigPhotoIdx].file_path}
-          />
+          <Slider {...settings}>
+            {images.map(image => (
+              <Box key={image.file_path} display="flex" alignItems="center">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
+                  alt={image.file_path}
+                />
+              </Box>
+            ))}
+          </Slider>
         </Modal>
       )}
     </>

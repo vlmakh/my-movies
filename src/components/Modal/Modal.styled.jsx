@@ -14,8 +14,11 @@ export const Overlay = styled.div`
 `;
 
 export const ModalWindow = styled.div`
-  max-width: calc(100vw - 48px);
+  /* max-width: calc(100vw - 48px); */
   max-height: calc(100vh - 24px);
-  background-color: white;
-  overflow: hidden;
+  /* background-color: white; */
+  overflow-y: clip;
+  overflow-x: visible;
+  max-width: 500px;
+  /* height: 500px; */
 `;
