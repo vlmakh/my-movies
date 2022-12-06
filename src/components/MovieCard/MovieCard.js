@@ -25,6 +25,7 @@ export const MovieCard = ({ movie }) => {
               : imageplaceholder
           }
           alt={movie.original_title ?? movie.name}
+          loading="lazy"
         />
         <MovieTitle>
           <p>{movie.title ?? movie.name}</p>

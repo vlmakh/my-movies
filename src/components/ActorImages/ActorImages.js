@@ -56,6 +56,7 @@ export default function ActorImages() {
                   : imageplaceholder
               }
               alt={image.file_path}
+              loading="lazy"
               onClick={() => onImageClick(idx)}
             />
           </ImageCard>
