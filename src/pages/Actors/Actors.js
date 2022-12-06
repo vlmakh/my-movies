@@ -4,10 +4,9 @@ import {
   SearchInput,
   Background,
   SearchForm,
-  PaginationStyled,
 } from './Actors.styled';
 import { SearchBtn, ClearBtn } from 'components/Buttons/Buttons';
-// import { LoadMoreBtn } from 'components/Buttons/Buttons';
+import { PaginationStyled } from 'components/Pagination/Pagination';
 import { ActorCard } from 'components/ActorCard/ActorCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
