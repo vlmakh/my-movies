@@ -4,8 +4,10 @@ import {
   SearchInput,
   Background,
   SearchForm,
+  PaginationStyled,
 } from './Actors.styled';
-import { SearchBtn, ClearBtn, LoadMoreBtn } from 'components/Buttons/Buttons';
+import { SearchBtn, ClearBtn } from 'components/Buttons/Buttons';
+// import { LoadMoreBtn } from 'components/Buttons/Buttons';
 import { ActorCard } from 'components/ActorCard/ActorCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
@@ -65,21 +67,27 @@ export default function Movies({ currentLang }) {
     }
   };
 
-  const increasePage = () => {
-    setPage(prevPage => prevPage + 1);
-    setSearchQuery({ search: input, page: page + 1 });
-  };
+  // const increasePage = () => {
+  //   setPage(prevPage => prevPage + 1);
+  //   setSearchQuery({ search: input, page: page + 1 });
+  // };
 
-  const decreasePage = () => {
-    setPage(prevPage => prevPage - 1);
-    setSearchQuery({ search: input, page: page - 1 });
-  };
+  // const decreasePage = () => {
+  //   setPage(prevPage => prevPage - 1);
+  //   setSearchQuery({ search: input, page: page - 1 });
+  // };
 
   const clearAll = () => {
     setInput('');
     setActorsFound([]);
     setSearchQuery({ search: '', page: 0 });
     setTotalPages(0);
+  };
+
+  const handlePageClick = e => {
+    // console.log(e);
+    setPage(e.selected + 1);
+    setSearchQuery({ search: input, page: e.selected + 1 });
   };
 
   return (
@@ -115,7 +123,7 @@ export default function Movies({ currentLang }) {
 
       {actorsFound.length > 0 && actorsFound.length < totalFound && (
         <>
-          <LoadMoreBtn
+          {/* <LoadMoreBtn
             type="button"
             onClick={decreasePage}
             disabled={page === 1 ? true : false}
@@ -128,7 +136,18 @@ export default function Movies({ currentLang }) {
             disabled={page === totalPages ? true : false}
           >
             {currentLang === 'uk-UA' ? 'Далі' : 'Next page'}
-          </LoadMoreBtn>
+          </LoadMoreBtn> */}
+
+          <PaginationStyled
+            breakLabel="..."
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={totalPages}
+            previousLabel="<"
+            renderOnZeroPageCount={null}
+            disabledLinkClassName="disabled"
+          />
         </>
       )}
     </Box>
