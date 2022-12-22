@@ -12,6 +12,8 @@ import PageError from 'pages/PageError/PageError';
 import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/noposter.jpg';
 import { formatDateEn, formatDateUa } from 'services/formatDate';
+import { Suspense } from 'react';
+import { ThreeCircles } from 'react-loader-spinner';
 
 export default function ActorPage({ currentLang }) {
   const [personInfo, setPersonInfo] = useState(null);
@@ -98,7 +100,22 @@ export default function ActorPage({ currentLang }) {
                   {currentLang === 'uk-UA' ? 'Фото' : 'Photos'}
                 </GobackLink>
               </BtnContainer>
-              <Outlet />
+
+              <Suspense
+                fallback={
+                  <Box pt={6} pl={6}>
+                    <ThreeCircles
+                      height="100"
+                      width="100"
+                      color="#bcc3ce"
+                      ariaLabel="Three-Circles-rotating"
+                      visible={true}
+                    />
+                  </Box>
+                }
+              >
+                <Outlet />
+              </Suspense>
             </Box>
           </Container>
 

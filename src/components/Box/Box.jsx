@@ -22,7 +22,7 @@ export const Box = styled('div')(
 );
 
 export const Container = styled.div`
-  @media (min-width: 480px) {
+  @media (min-width: 768px) {
     display: flex;
     gap: ${p => p.theme.space[4]}px;
   }

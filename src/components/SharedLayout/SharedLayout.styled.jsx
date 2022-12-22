@@ -45,6 +45,10 @@ export const HeaderLink = styled(NavLink)`
 
   transition: color 250ms linear;
 
+   &.active {
+    color: ${p => p.theme.colors.accent};
+  }
+
   :hover {
     color: ${p => p.theme.colors.accent};
   }

@@ -3,6 +3,7 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { lazy, useState, useEffect } from 'react';
 import { ThemeProvider } from 'theme-ui';
 import { darkTheme, lightTheme } from 'theme';
+import { Toaster } from 'react-hot-toast';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
@@ -15,6 +16,7 @@ const ActorImages = lazy(() => import('components/ActorImages/ActorImages'));
 const Cast = lazy(() => import('components/Cast/Cast'));
 const Overview = lazy(() => import('components/Overview/Overview'));
 const Reviews = lazy(() => import('components/Reviews/Reviews'));
+const Trailer = lazy(() => import('components/Trailer/Trailer'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
 const startData = { theme: 'darkTheme', lang: 'en-US' };
@@ -69,20 +71,30 @@ export const App = () => {
             path="movies/:movieId"
             element={<MovieItem currentLang={currentLang} />}
           >
-            <Route path="overview" element={<Overview currentLang={currentLang}/>} />
+            <Route
+              path="overview"
+              element={<Overview currentLang={currentLang} />}
+            />
             <Route path="cast" element={<Cast currentLang={currentLang} />} />
             <Route
               path="reviews"
               element={<Reviews currentLang={currentLang} />}
             />
-            <Route path="*" element={<PageError currentLang={currentLang}/>} />
+            <Route
+              path="trailer"
+              element={<Trailer currentLang={currentLang} />}
+            />
+            <Route path="*" element={<PageError currentLang={currentLang} />} />
           </Route>
           <Route path="actors" element={<Actors currentLang={currentLang} />} />
           <Route
             path="actors/:actorId"
             element={<ActorPage currentLang={currentLang} />}
           >
-            <Route path="biography" element={<Biography currentLang={currentLang}/>} />
+            <Route
+              path="biography"
+              element={<Biography currentLang={currentLang} />}
+            />
             <Route
               path="movies"
               element={<ActorMovies currentLang={currentLang} />}
@@ -92,6 +104,12 @@ export const App = () => {
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>
       </Routes>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+        }}
+      />
     </ThemeProvider>
   );
 };

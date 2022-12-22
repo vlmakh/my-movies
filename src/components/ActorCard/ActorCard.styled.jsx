@@ -3,8 +3,8 @@ import styled from "@emotion/styled/macro";
 
 export const ActorThumb = styled.div`
   position: relative;
-  width: 160px;
-  height: 240px;
+  width: 200px;
+  height: 300px;
   overflow: hidden;
 `;
 

@@ -49,7 +49,7 @@ export default function ActorImages() {
         {images.map((image, idx) => (
           <ImageCard key={image.file_path}>
             <ImgItemStyled
-              width="160"
+              width="200"
               src={
                 image.file_path
                   ? `https://image.tmdb.org/t/p/w200${image.file_path}`

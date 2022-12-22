@@ -5,6 +5,7 @@ import {
   Background,
   SearchForm,
 } from './Actors.styled';
+
 import { SearchBtn, ClearBtn } from 'components/Buttons/Buttons';
 import { PaginationStyled } from 'components/Pagination/Pagination';
 import { ActorCard } from 'components/ActorCard/ActorCard';
@@ -15,6 +16,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchActors } from 'services/api';
 import { IoIosCloseCircle } from 'react-icons/io';
+import toast from 'react-hot-toast';
 
 export default function Movies({ currentLang }) {
   const [actorsFound, setActorsFound] = useState([]);
@@ -26,6 +28,14 @@ export default function Movies({ currentLang }) {
   const location = useLocation();
   // console.log(location);
   const [totalPages, setTotalPages] = useState(0);
+  const noResults =
+    currentLang === 'uk-UA'
+      ? 'Немає результатів за вашим пошуковим запитом'
+      : 'No results found due to your search inquiry';
+  const emptyQuery =
+    currentLang === 'uk-UA'
+      ? 'Порожній запит. Введіть щось для пошуку'
+      : 'Empty query. Please input something for search';
 
   useEffect(() => {
     if (!query) {
@@ -35,7 +45,7 @@ export default function Movies({ currentLang }) {
     fetchActors(query, page, currentLang)
       .then(data => {
         if (!data.results.length) {
-          alert('No results found due to your search inquiry');
+          return toast.error(noResults);
         } else {
           // console.log(data.results);
           // setTotalFound(data.total_results);
@@ -44,7 +54,7 @@ export default function Movies({ currentLang }) {
         }
       })
       .catch(error => console.log(error));
-  }, [currentLang, page, query]);
+  }, [currentLang, noResults, page, query]);
 
   const onSearchInput = event => {
     setInput(event.target.value);
@@ -52,13 +62,13 @@ export default function Movies({ currentLang }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (input.trim() === '') {
-      return alert('Empty query. Please input something for search');
+    if (!input.trim()) {
+      return toast.error(emptyQuery);
     }
     if (input.trim() !== query) {
       setPage(1);
       setActorsFound([]);
-      setSearchQuery({ search: input, page: Number(page) });
+      setSearchQuery({ search: input.trim(), page: Number(page) });
     }
   };
 
@@ -94,7 +104,7 @@ export default function Movies({ currentLang }) {
         </SearchBtn>
       </SearchForm>
 
-      {actorsFound.length === 0 && <Background />}
+      {!actorsFound.length && <Background />}
 
       <ActorsList>
         {actorsFound.map(actor => (
