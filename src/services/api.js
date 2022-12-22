@@ -42,9 +42,9 @@ const fetchReviewsById = async (id, lang) => {
   return response.data;
 };
 
-const fetchMovieTrailer = async id => {
+const fetchMovieTrailer = async (id, lang) => {
   const response = await axios.get(
-    `${MAIN_URL}/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
+    `${MAIN_URL}/movie/${id}/videos?api_key=${API_KEY}&language=${lang}`
   );
   return response.data;
 };

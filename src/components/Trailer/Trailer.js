@@ -4,14 +4,16 @@ import { fetchMovieTrailer } from 'services/api';
 import { Box } from 'components/Box/Box';
 import { Text } from './Trailer.styled';
 
-export default function Trailer() {
+export default function Trailer({ currentLang }) {
   const params = useParams();
   //   console.log(params);
   const [trailer, setTrailer] = useState('plugtext');
   //   console.log(trailer);
+  const notFound =
+    currentLang === 'uk-UA' ? 'Не знайдено' : 'No information found';
 
   useEffect(() => {
-    fetchMovieTrailer(params.movieId).then(data => {
+    fetchMovieTrailer(params.movieId, currentLang).then(data => {
       //   console.log(data.results);
 
       const objTrailer = data.results.find(movie => movie.type === 'Trailer');
@@ -23,12 +25,12 @@ export default function Trailer() {
 
       setTrailer(`https://www.youtube.com/embed/${objTrailer.key}`);
     });
-  }, [params.movieId, trailer]);
+  }, [currentLang, params.movieId, trailer]);
 
   return (
     <Box mt={4}>
       {!trailer ? (
-        <Text>No information found</Text>
+        <Text>{notFound}</Text>
       ) : (
         <iframe
           width="640"

@@ -80,7 +80,10 @@ export const App = () => {
               path="reviews"
               element={<Reviews currentLang={currentLang} />}
             />
-            <Route path="trailer" element={<Trailer />} />
+            <Route
+              path="trailer"
+              element={<Trailer currentLang={currentLang} />}
+            />
             <Route path="*" element={<PageError currentLang={currentLang} />} />
           </Route>
           <Route path="actors" element={<Actors currentLang={currentLang} />} />
