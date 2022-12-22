@@ -7,7 +7,7 @@ import { Text } from './Trailer.styled';
 export default function Trailer() {
   const params = useParams();
   //   console.log(params);
-  const [trailer, setTrailer] = useState('Searching...');
+  const [trailer, setTrailer] = useState('plugtext');
   //   console.log(trailer);
 
   useEffect(() => {

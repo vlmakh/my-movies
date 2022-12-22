@@ -3,6 +3,7 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { lazy, useState, useEffect } from 'react';
 import { ThemeProvider } from 'theme-ui';
 import { darkTheme, lightTheme } from 'theme';
+import { Toaster } from 'react-hot-toast';
 
 
 const Home = lazy(() => import('pages/Home/Home'));
@@ -107,7 +108,7 @@ export const App = () => {
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>
       </Routes>
-  
+          <Toaster position="top-right" />
     </ThemeProvider>
   );
 };
