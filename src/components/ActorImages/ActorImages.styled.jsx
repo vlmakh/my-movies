@@ -10,7 +10,6 @@ export const ImageList = styled.ul`
 `;
 
 export const ImageCard = styled.li`
-  width: 160px;
   background-color: ${p => p.theme.colors.textPrimary};
 `;
 
