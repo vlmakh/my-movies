@@ -18,7 +18,7 @@ export const ActorDescr = styled.p`
 
 export const GobackLink = styled(NavLink)`
   display: inline-block;
-  margin-right: ${p => p.theme.space[2]}px;
+  /* margin-right: ${p => p.theme.space[2]}px; */
   padding: 4px 8px;
   color: ${p => p.theme.colors.textSecondary};
   background-color: ${p => p.theme.colors.bcgBtn};

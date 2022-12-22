@@ -4,7 +4,7 @@ import {
   ActorDescr,
   GobackLink,
 } from './ActorPage.styled';
-import { Box } from 'components/Box/Box';
+import { Box, Container, BtnContainer } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchActorById } from 'services/api';
@@ -51,7 +51,7 @@ export default function ActorPage({ currentLang }) {
       {personInfo && (
         <>
           <ActorName>{personInfo.name}</ActorName>
-          <Box display="flex" mt={3}>
+          <Container>
             <Box
               width="200px"
               height="300px"
@@ -71,7 +71,7 @@ export default function ActorPage({ currentLang }) {
               />
             </Box>
 
-            <Box ml={4}>
+            <Box>
               {personInfo.birthday && (
                 <ActorDescr>
                   {currentLang === 'uk-UA'
@@ -87,7 +87,7 @@ export default function ActorPage({ currentLang }) {
                 </ActorDescr>
               )}
 
-              <Box mt={4}>
+              <BtnContainer>
                 <GobackLink to="biography" state={personInfo.biography}>
                   {currentLang === 'uk-UA' ? 'Біографія' : 'Biography'}
                 </GobackLink>
@@ -97,10 +97,10 @@ export default function ActorPage({ currentLang }) {
                 <GobackLink to="images">
                   {currentLang === 'uk-UA' ? 'Фото' : 'Photos'}
                 </GobackLink>
-              </Box>
+              </BtnContainer>
               <Outlet />
             </Box>
-          </Box>
+          </Container>
 
           {showModal && (
             <Modal onClose={toggleModal}>

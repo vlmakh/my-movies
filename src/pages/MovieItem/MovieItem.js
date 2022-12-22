@@ -4,7 +4,7 @@ import {
   MovieDescr,
   GobackLink,
 } from './MovieItem.styled';
-import { Box } from 'components/Box/Box';
+import { Box, Container, BtnContainer } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
@@ -50,7 +50,7 @@ export default function MovieItem({ currentLang }) {
       {movieItem && (
         <>
           <MovieTitle>{movieItem.title}</MovieTitle>
-          <Box display="flex" mt={3}>
+          <Container>
             <Box
               width="200px"
               height="300px"
@@ -70,7 +70,7 @@ export default function MovieItem({ currentLang }) {
               />
             </Box>
 
-            <Box ml={4}>
+            <Box>
               <MovieDescr>
                 {movieItem.genres.map(genre => genre.name).join(', ')}
               </MovieDescr>
@@ -81,7 +81,7 @@ export default function MovieItem({ currentLang }) {
                 )}
               </MovieDescr>
               {/* <MovieDescr>{movieItem.overview}</MovieDescr> */}
-              <Box mt={4}>
+              <BtnContainer>
                 <GobackLink to="overview" state={movieItem.overview}>
                   {currentLang === 'uk-UA' ? 'Опис' : 'Overview'}
                 </GobackLink>
@@ -91,11 +91,11 @@ export default function MovieItem({ currentLang }) {
                 <GobackLink to="reviews">
                   {currentLang === 'uk-UA' ? 'Відгуки' : 'Reviews'}
                 </GobackLink>
-              </Box>
+              </BtnContainer>
 
               <Outlet />
             </Box>
-          </Box>
+          </Container>
 
           {showModal && (
             <Modal onClose={toggleModal}>
