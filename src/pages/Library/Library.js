@@ -26,7 +26,7 @@ export default function Library({ movies, currentLang }) {
       <LibList>
         {library.map(movie => (
           <LibItem key={movie.id}>
-            <NavLink to={`movies/${movie.id}`} state={{ from: location }}>
+            <NavLink to={`/movies/${movie.id}`} state={{ from: location }}>
               <MovieCard movie={movie} />
             </NavLink>
           </LibItem>

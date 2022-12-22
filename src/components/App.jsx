@@ -30,7 +30,6 @@ export const App = () => {
   );
   const [currentLang, setCurrentLang] = useState(state.lang);
   const [libMovies, setLibMovies] = useState(state.lib);
-  
 
   useEffect(() => {
     setState({ theme: currentTheme.name, lang: currentLang, lib: libMovies });
@@ -53,10 +52,30 @@ export const App = () => {
     setCurrentLang('uk-UA');
   };
 
-  const saveToLibrary = (id) => {
-    if (libMovies.includes(id)) {return}
-    console.log(id);
-    setLibMovies([...libMovies, id])
+  const saveToLibrary = id => {
+    if (libMovies.includes(id)) {
+      return;
+    }
+    setLibMovies([...libMovies, id]);
+  };
+
+  const delFromLibrary = id => {
+    // if (watched.includes(id)) {
+    //   watched.splice(watched.indexOf(id), 1);
+    //   setWatchedLocalStoradge(watched);
+    //   addWatchedRef.style.backgroundColor = '#ffffff';
+
+    //   getArrayofMovies(watched)
+    //     .then(data => {
+    //       if (refs.library) {
+    //         refs.library.innerHTML = createLibraryMarkup(data);
+    //       }
+    //     })
+    //     .catch(er => console.log(er));
+    // } else {
+    //   onAddToWatched(id);
+    //   setWatchedLocalStoradge(watched);
+    // }
   };
 
   return (
@@ -78,7 +97,12 @@ export const App = () => {
           <Route path="movies" element={<Movies currentLang={currentLang} />} />
           <Route
             path="movies/:movieId"
-            element={<MovieItem saveToLibrary={saveToLibrary } currentLang={currentLang} />}
+            element={
+              <MovieItem
+                saveToLibrary={saveToLibrary}
+                currentLang={currentLang}
+              />
+            }
           >
             <Route
               path="overview"
@@ -112,9 +136,7 @@ export const App = () => {
           </Route>
           <Route
             path="library"
-            element={
-              <Library movies={ libMovies} currentLang={currentLang}/>
-            }
+            element={<Library movies={libMovies} currentLang={currentLang} />}
           />
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>
