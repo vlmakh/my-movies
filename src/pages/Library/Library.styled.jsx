@@ -4,7 +4,7 @@ export const Title = styled.h2`
   color: ${p => p.theme.colors.textPrimary}
 `
 
-export const TrendsList = styled.ul`
+export const LibList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -13,7 +13,7 @@ export const TrendsList = styled.ul`
   list-style: none;
 `;
 
-export const TrendsItem = styled.li`
+export const LibItem = styled.li`
   box-shadow: none;
 
   transition: box-shadow 250ms linear;

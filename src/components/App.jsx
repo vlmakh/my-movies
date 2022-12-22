@@ -29,12 +29,12 @@ export const App = () => {
     state.theme === 'darkTheme' ? darkTheme : lightTheme
   );
   const [currentLang, setCurrentLang] = useState(state.lang);
-  const [library, setLibrary] = useState(state.lib);
+  const [libMovies, setLibMovies] = useState(state.lib);
   
 
   useEffect(() => {
-    setState({ theme: currentTheme.name, lang: currentLang, lib: library });
-  }, [currentTheme.name, currentLang, library]);
+    setState({ theme: currentTheme.name, lang: currentLang, lib: libMovies });
+  }, [currentTheme.name, currentLang, libMovies]);
 
   useEffect(() => {
     // console.log(state)
@@ -54,9 +54,9 @@ export const App = () => {
   };
 
   const saveToLibrary = (id) => {
-    if (library.includes(id)) {return}
+    if (libMovies.includes(id)) {return}
     console.log(id);
-    setLibrary([...library, id])
+    setLibMovies([...libMovies, id])
   };
 
   return (
@@ -113,7 +113,7 @@ export const App = () => {
           <Route
             path="library"
             element={
-              <Library currentLang={currentLang}/>
+              <Library movies={ libMovies} currentLang={currentLang}/>
             }
           />
           <Route path="*" element={<Navigate to="/" />}></Route>
