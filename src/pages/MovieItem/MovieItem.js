@@ -15,7 +15,7 @@ import imageplaceholder from 'images/noposter.jpg';
 import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
 
-export default function MovieItem({ currentLang }) {
+export default function MovieItem({ saveToLibrary, currentLang }) {
   const [movieItem, setMovieItem] = useState(null);
   const [error, setError] = useState(false);
   const location = useLocation();
@@ -27,6 +27,10 @@ export default function MovieItem({ currentLang }) {
 
   const toggleModal = () => {
     setShowModal(!showModal);
+  };
+
+  const handleSaveToLib = () => {
+    saveToLibrary(params.movieId);
   };
 
   useEffect(() => {
@@ -97,7 +101,7 @@ export default function MovieItem({ currentLang }) {
                 <GobackLink to="trailer">
                   {currentLang === 'uk-UA' ? 'Трейлер' : 'Trailer'}
                 </GobackLink>
-                <LibraryBtn>
+                <LibraryBtn onClick={handleSaveToLib}>
                   {currentLang === 'uk-UA' ? 'Зберегти' : 'Save'}
                 </LibraryBtn>
               </BtnContainer>

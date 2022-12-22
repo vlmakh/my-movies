@@ -20,7 +20,7 @@ const Trailer = lazy(() => import('components/Trailer/Trailer'));
 const Library = lazy(() => import('pages/Library/Library'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
-const startData = { theme: 'darkTheme', lang: 'en-US' };
+const startData = { theme: 'darkTheme', lang: 'en-US', lib: [] };
 const savedData = JSON.parse(localStorage.getItem('myvideos'));
 
 export const App = () => {
@@ -29,10 +29,12 @@ export const App = () => {
     state.theme === 'darkTheme' ? darkTheme : lightTheme
   );
   const [currentLang, setCurrentLang] = useState(state.lang);
+  const [library, setLibrary] = useState(state.lib);
+  
 
   useEffect(() => {
-    setState({ theme: currentTheme.name, lang: currentLang });
-  }, [currentTheme.name, currentLang]);
+    setState({ theme: currentTheme.name, lang: currentLang, lib: library });
+  }, [currentTheme.name, currentLang, library]);
 
   useEffect(() => {
     // console.log(state)
@@ -49,6 +51,12 @@ export const App = () => {
 
   const turnUaLang = () => {
     setCurrentLang('uk-UA');
+  };
+
+  const saveToLibrary = (id) => {
+    if (library.includes(id)) {return}
+    console.log(id);
+    setLibrary([...library, id])
   };
 
   return (
@@ -70,7 +78,7 @@ export const App = () => {
           <Route path="movies" element={<Movies currentLang={currentLang} />} />
           <Route
             path="movies/:movieId"
-            element={<MovieItem currentLang={currentLang} />}
+            element={<MovieItem saveToLibrary={saveToLibrary } currentLang={currentLang} />}
           >
             <Route
               path="overview"
@@ -105,7 +113,7 @@ export const App = () => {
           <Route
             path="library"
             element={
-              <Library/>
+              <Library currentLang={currentLang}/>
             }
           />
           <Route path="*" element={<Navigate to="/" />}></Route>

@@ -43,6 +43,7 @@ export const LibraryBtn = styled.button`
   font-size: 16px;
   font-weight: 700;
   border: none;
+  cursor: pointer;
 
   transition: color 250ms linear;
 

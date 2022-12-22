@@ -14,7 +14,7 @@ export default function Library({ currentLang }) {
   return (
     <Box p={4} mt="48px" textAlign="center">
       <Title>
-        {currentLang === 'uk-UA' ? 'ЗБережені фільми' : 'Saved movies'}
+        {currentLang === 'uk-UA' ? 'Збережені фільми' : 'Saved movies'}
       </Title>
 
       <TrendsList>
