@@ -11,7 +11,7 @@ import { fetchReviewsById } from 'services/api';
 export default function Reviews({ currentLang }) {
   const params = useParams();
   //   console.log(params);
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState(['review']);
 
   useEffect(() => {
     fetchReviewsById(params.movieId, currentLang).then(data => {

@@ -11,6 +11,8 @@ import { fetchMovieById } from 'services/api';
 import PageError from 'pages/PageError/PageError';
 import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/noposter.jpg';
+import { Suspense } from 'react';
+import { ThreeCircles } from 'react-loader-spinner';
 
 export default function MovieItem({ currentLang }) {
   const [movieItem, setMovieItem] = useState(null);
@@ -91,9 +93,24 @@ export default function MovieItem({ currentLang }) {
                 <GobackLink to="reviews">
                   {currentLang === 'uk-UA' ? 'Відгуки' : 'Reviews'}
                 </GobackLink>
+                <GobackLink to="trailer">
+                  {currentLang === 'uk-UA' ? 'Трейлер' : 'Trailer'}
+                </GobackLink>
               </BtnContainer>
 
-              <Outlet />
+              <Suspense
+                fallback={
+                  <ThreeCircles
+                    height="100"
+                    width="100"
+                    color="#bcc3ce"
+                    ariaLabel="Three-Circles-rotating"
+                    visible={true}
+                  />
+                }
+              >
+                <Outlet />
+              </Suspense>
             </Box>
           </Container>
 
