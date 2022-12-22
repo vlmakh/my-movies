@@ -32,3 +32,21 @@ export const GobackLink = styled(NavLink)`
     color: ${p => p.theme.colors.accent};
   }
 `;
+
+export const LibraryBtn = styled.button`
+  display: inline-block;
+  /* margin-right: ${p => p.theme.space[2]}px; */
+  padding: 4px 8px;
+  color: ${p => p.theme.colors.textSecondary};
+  background-color: ${p => p.theme.colors.bcgBtn};
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+
+  transition: color 250ms linear;
+
+  :hover {
+    color: ${p => p.theme.colors.accent};
+  }
+`;

@@ -1,29 +1,21 @@
 import { Box } from 'components/Box/Box';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchTrends } from 'services/api';
-import { HomeTitle, TrendsList, TrendsItem } from './Home.styled';
+import { Title, TrendsList, TrendsItem } from './Library.styled';
 import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 
-export default function Home({ currentLang }) {
+export default function Library({ currentLang }) {
   const [trends, setTrends] = useState([]);
   const location = useLocation();
 
-  useEffect(() => {
-    fetchTrends(currentLang)
-      .then(data => {
-        // console.log(data.results);
-        setTrends(data.results);
-      })
-      .catch(error => console.log(error));
-  }, [currentLang]);
+  useEffect(() => {}, []);
 
   return (
     <Box p={4} mt="48px" textAlign="center">
-      <HomeTitle>
-        {currentLang === 'uk-UA' ? 'Популярні сьогодні' : 'Trending Today'}
-      </HomeTitle>
+      <Title>
+        {currentLang === 'uk-UA' ? 'ЗБережені фільми' : 'Saved movies'}
+      </Title>
 
       <TrendsList>
         {trends.map(trend => (

@@ -3,6 +3,7 @@ import {
   MovieImg,
   MovieDescr,
   GobackLink,
+  LibraryBtn,
 } from './MovieItem.styled';
 import { Box, Container, BtnContainer } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
@@ -42,7 +43,7 @@ export default function MovieItem({ currentLang }) {
   }, [currentLang, params.movieId]);
 
   return (
-    <Box p={3} mt="48px" textAlign="left">
+    <Box pl={4} py={3} mt="48px" textAlign="left">
       <GobackLink to={backLink.current}>
         {currentLang === 'uk-UA' ? 'Назад' : 'Back'}
       </GobackLink>
@@ -96,6 +97,9 @@ export default function MovieItem({ currentLang }) {
                 <GobackLink to="trailer">
                   {currentLang === 'uk-UA' ? 'Трейлер' : 'Trailer'}
                 </GobackLink>
+                <LibraryBtn>
+                  {currentLang === 'uk-UA' ? 'Зберегти' : 'Save'}
+                </LibraryBtn>
               </BtnContainer>
 
               <Suspense

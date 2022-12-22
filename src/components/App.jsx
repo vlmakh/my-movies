@@ -17,6 +17,7 @@ const Cast = lazy(() => import('components/Cast/Cast'));
 const Overview = lazy(() => import('components/Overview/Overview'));
 const Reviews = lazy(() => import('components/Reviews/Reviews'));
 const Trailer = lazy(() => import('components/Trailer/Trailer'));
+const Library = lazy(() => import('pages/Library/Library'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
 const startData = { theme: 'darkTheme', lang: 'en-US' };
@@ -101,6 +102,12 @@ export const App = () => {
             />
             <Route path="images" element={<ActorImages />} />
           </Route>
+          <Route
+            path="library"
+            element={
+              <Library/>
+            }
+          />
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>
       </Routes>

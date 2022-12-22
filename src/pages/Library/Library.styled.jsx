@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const HomeTitle = styled.h2`
+export const Title = styled.h2`
   color: ${p => p.theme.colors.textPrimary}
 `
 
