@@ -5,7 +5,6 @@ import { ThemeProvider } from 'theme-ui';
 import { darkTheme, lightTheme } from 'theme';
 import { Toaster } from 'react-hot-toast';
 
-
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
 const Actors = lazy(() => import('pages/Actors/Actors'));
@@ -53,7 +52,6 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={currentTheme}>
-      
       <Routes>
         <Route
           path="/"
@@ -73,22 +71,17 @@ export const App = () => {
             path="movies/:movieId"
             element={<MovieItem currentLang={currentLang} />}
           >
-            
-              <Route
-                path="overview"
-                element={<Overview currentLang={currentLang} />}
-              />
-              <Route path="cast" element={<Cast currentLang={currentLang} />} />
-              <Route
-                path="reviews"
-                element={<Reviews currentLang={currentLang} />}
-              />
-              <Route path="trailer" element={<Trailer />} />
-              <Route
-                path="*"
-                element={<PageError currentLang={currentLang} />}
-              />
-            
+            <Route
+              path="overview"
+              element={<Overview currentLang={currentLang} />}
+            />
+            <Route path="cast" element={<Cast currentLang={currentLang} />} />
+            <Route
+              path="reviews"
+              element={<Reviews currentLang={currentLang} />}
+            />
+            <Route path="trailer" element={<Trailer />} />
+            <Route path="*" element={<PageError currentLang={currentLang} />} />
           </Route>
           <Route path="actors" element={<Actors currentLang={currentLang} />} />
           <Route
@@ -108,7 +101,12 @@ export const App = () => {
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>
       </Routes>
-          <Toaster position="top-right" />
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+        }}
+      />
     </ThemeProvider>
   );
 };

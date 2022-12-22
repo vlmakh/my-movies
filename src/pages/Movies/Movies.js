@@ -66,7 +66,7 @@ export default function Movies({ currentLang }) {
     if (input.trim() !== query) {
       setPage(1);
       setMoviesFound([]);
-      setSearchQuery({ search: input, page: Number(page) });
+      setSearchQuery({ search: input.trim(), page: Number(page) });
     }
   };
 
