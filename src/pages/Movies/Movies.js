@@ -51,7 +51,7 @@ export default function Movies({ currentLang }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (input.trim() === '') {
+    if (!input.trim()) {
       return alert('Empty query. Please input something for search');
     }
     if (input.trim() !== query) {
@@ -93,7 +93,7 @@ export default function Movies({ currentLang }) {
         </SearchBtn>
       </SearchForm>
 
-      {moviesFound.length === 0 && <Background />}
+      {!moviesFound.length && <Background />}
 
       <MoviesList>
         {moviesFound.map(movie => (

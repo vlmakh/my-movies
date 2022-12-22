@@ -5,6 +5,7 @@ import {
   Background,
   SearchForm,
 } from './Actors.styled';
+
 import { SearchBtn, ClearBtn } from 'components/Buttons/Buttons';
 import { PaginationStyled } from 'components/Pagination/Pagination';
 import { ActorCard } from 'components/ActorCard/ActorCard';
@@ -52,7 +53,7 @@ export default function Movies({ currentLang }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (input.trim() === '') {
+    if (!input.trim()) {
       return alert('Empty query. Please input something for search');
     }
     if (input.trim() !== query) {
@@ -94,7 +95,7 @@ export default function Movies({ currentLang }) {
         </SearchBtn>
       </SearchForm>
 
-      {actorsFound.length === 0 && <Background />}
+      {!actorsFound.length && <Background />}
 
       <ActorsList>
         {actorsFound.map(actor => (
