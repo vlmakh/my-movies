@@ -37,6 +37,7 @@ export default function Movies({ currentLang }) {
         if (!data.results.length) {
           alert('No results found due to your search inquiry');
         } else {
+          // console.log(data.results);
           setTotalPages(data.total_pages);
           setMoviesFound([...data.results]);
         }
