@@ -100,13 +100,15 @@ export default function MovieItem({ currentLang }) {
 
               <Suspense
                 fallback={
-                  <ThreeCircles
-                    height="100"
-                    width="100"
-                    color="#bcc3ce"
-                    ariaLabel="Three-Circles-rotating"
-                    visible={true}
-                  />
+                  <Box pt={6} pl={6}>
+                    <ThreeCircles
+                      height="100"
+                      width="100"
+                      color="#bcc3ce"
+                      ariaLabel="Three-Circles-rotating"
+                      visible={true}
+                    />
+                  </Box>
                 }
               >
                 <Outlet />
