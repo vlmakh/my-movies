@@ -21,7 +21,7 @@ const Library = lazy(() => import('pages/Library/Library'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
 const startData = { theme: 'darkTheme', lang: 'en-US', lib: [] };
-const savedData = JSON.parse(localStorage.getItem('myvideos'));
+const savedData = JSON.parse(localStorage.getItem('movieteka'));
 
 export const App = () => {
   const [state, setState] = useState(savedData ? savedData : startData);
@@ -37,7 +37,7 @@ export const App = () => {
 
   useEffect(() => {
     // console.log(state)
-    localStorage.setItem('myvideos', JSON.stringify(state));
+    localStorage.setItem('movieteka', JSON.stringify(state));
   }, [state]);
 
   const toggleTheme = () => {
@@ -52,18 +52,20 @@ export const App = () => {
     setCurrentLang('uk-UA');
   };
 
-  const saveToLibrary = id => {
-    if (libMovies.includes(id)) {
+  // const saveToLibrary = id => {
+  //   if (libMovies.includes(id)) {
+  //     return;
+  //   }
+  //   setLibMovies([...libMovies, id]);
+  // };
+
+  const toggleMovieInLibrary = movieId => {
+    if (libMovies.includes(movieId)) {
+      setLibMovies(libMovies.filter(id => id !== movieId));
       return;
     }
-    setLibMovies([...libMovies, id]);
-  };
-
-  const delFromLibrary = id => {
-    // if (watched.includes(id)) {
-    //   watched.splice(watched.indexOf(id), 1);
-    //   setWatchedLocalStoradge(watched);
-    //   addWatchedRef.style.backgroundColor = '#ffffff';
+    setLibMovies([...libMovies, movieId]);
+      // addWatchedRef.style.backgroundColor = '#ffffff';
 
     //   getArrayofMovies(watched)
     //     .then(data => {
@@ -99,8 +101,9 @@ export const App = () => {
             path="movies/:movieId"
             element={
               <MovieItem
-                saveToLibrary={saveToLibrary}
+                toggleMovieInLibrary={toggleMovieInLibrary}
                 currentLang={currentLang}
+                 movies={libMovies}
               />
             }
           >
