@@ -49,6 +49,20 @@ const fetchMovieTrailer = async (id, lang) => {
   return response.data;
 };
 
+const fetchLibraryMovies = async (array, lang) => {
+  const arrayOfMovies = array.map(async movie_id => {
+    return await axios
+      .get(`${MAIN_URL}/movie/${movie_id}?api_key=${API_KEY}&language=${lang}`)
+      .then(response => {
+        return response.data;
+      })
+      .catch(error => console.log(error));
+  });
+
+  const response = await Promise.all(arrayOfMovies);
+  return response;
+};
+
 const fetchActors = async (query, page, lang) => {
   const response = await axios.get(
     `${MAIN_URL}/search/person?api_key=${API_KEY}&query=${query}&language=${lang}&page=${page}&include_adult=false`
@@ -84,6 +98,7 @@ export {
   fetchCastById,
   fetchReviewsById,
   fetchMovieTrailer,
+  fetchLibraryMovies,
   fetchActors,
   fetchActorById,
   fetchMoviesByActor,

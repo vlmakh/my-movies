@@ -3,6 +3,7 @@ import {
   MovieImg,
   MovieDescr,
   GobackLink,
+  LibraryBtn,
 } from './MovieItem.styled';
 import { Box, Container, BtnContainer } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
@@ -14,18 +15,35 @@ import imageplaceholder from 'images/noposter.jpg';
 import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
 
-export default function MovieItem({ currentLang }) {
+export default function MovieItem({
+  toggleMovieInLibrary,
+  currentLang,
+  movies,
+}) {
   const [movieItem, setMovieItem] = useState(null);
   const [error, setError] = useState(false);
   const location = useLocation();
   const params = useParams();
   const backLink = useRef(location.state?.from ?? '/');
   // console.log(location);
-
+  const [saved, setSaved] = useState(
+    movies.includes(params.movieId) ? true : false
+  );
   const [showModal, setShowModal] = useState(false);
+  const textSave = currentLang === 'uk-UA' ? 'Зберегти' : 'Save';
+  const textSaved = currentLang === 'uk-UA' ? 'Збережено' : 'Saved';
 
   const toggleModal = () => {
     setShowModal(!showModal);
+  };
+
+  const toggleSaveBtn = () => {
+    setSaved(!saved);
+  };
+
+  const handleSaveToLib = () => {
+    toggleMovieInLibrary(params.movieId);
+    toggleSaveBtn();
   };
 
   useEffect(() => {
@@ -42,7 +60,7 @@ export default function MovieItem({ currentLang }) {
   }, [currentLang, params.movieId]);
 
   return (
-    <Box p={3} mt="48px" textAlign="left">
+    <Box pl={4} py={3} mt="48px" textAlign="left">
       <GobackLink to={backLink.current}>
         {currentLang === 'uk-UA' ? 'Назад' : 'Back'}
       </GobackLink>
@@ -96,6 +114,9 @@ export default function MovieItem({ currentLang }) {
                 <GobackLink to="trailer">
                   {currentLang === 'uk-UA' ? 'Трейлер' : 'Trailer'}
                 </GobackLink>
+                <LibraryBtn onClick={handleSaveToLib} saved={saved}>
+                  {saved ? textSaved : textSave}
+                </LibraryBtn>
               </BtnContainer>
 
               <Suspense

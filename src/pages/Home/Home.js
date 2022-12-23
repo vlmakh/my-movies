@@ -20,7 +20,7 @@ export default function Home({ currentLang }) {
   }, [currentLang]);
 
   return (
-    <Box p={3} mt="48px" textAlign="center">
+    <Box p={4} mt="48px" textAlign="center">
       <HomeTitle>
         {currentLang === 'uk-UA' ? 'Популярні сьогодні' : 'Trending Today'}
       </HomeTitle>

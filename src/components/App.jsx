@@ -17,10 +17,11 @@ const Cast = lazy(() => import('components/Cast/Cast'));
 const Overview = lazy(() => import('components/Overview/Overview'));
 const Reviews = lazy(() => import('components/Reviews/Reviews'));
 const Trailer = lazy(() => import('components/Trailer/Trailer'));
+const Library = lazy(() => import('pages/Library/Library'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
-const startData = { theme: 'darkTheme', lang: 'en-US' };
-const savedData = JSON.parse(localStorage.getItem('myvideos'));
+const startData = { theme: 'darkTheme', lang: 'en-US', lib: [] };
+const savedData = JSON.parse(localStorage.getItem('movieteka'));
 
 export const App = () => {
   const [state, setState] = useState(savedData ? savedData : startData);
@@ -28,14 +29,15 @@ export const App = () => {
     state.theme === 'darkTheme' ? darkTheme : lightTheme
   );
   const [currentLang, setCurrentLang] = useState(state.lang);
+  const [libMovies, setLibMovies] = useState(state.lib);
 
   useEffect(() => {
-    setState({ theme: currentTheme.name, lang: currentLang });
-  }, [currentTheme.name, currentLang]);
+    setState({ theme: currentTheme.name, lang: currentLang, lib: libMovies });
+  }, [currentTheme.name, currentLang, libMovies]);
 
   useEffect(() => {
     // console.log(state)
-    localStorage.setItem('myvideos', JSON.stringify(state));
+    localStorage.setItem('movieteka', JSON.stringify(state));
   }, [state]);
 
   const toggleTheme = () => {
@@ -48,6 +50,15 @@ export const App = () => {
 
   const turnUaLang = () => {
     setCurrentLang('uk-UA');
+  };
+
+  const toggleMovieInLibrary = movieId => {
+    if (libMovies.includes(movieId)) {
+      setLibMovies(libMovies.filter(id => id !== movieId));
+      return;
+    }
+
+    setLibMovies([...libMovies, movieId]);    
   };
 
   return (
@@ -69,7 +80,13 @@ export const App = () => {
           <Route path="movies" element={<Movies currentLang={currentLang} />} />
           <Route
             path="movies/:movieId"
-            element={<MovieItem currentLang={currentLang} />}
+            element={
+              <MovieItem
+                toggleMovieInLibrary={toggleMovieInLibrary}
+                currentLang={currentLang}
+                 movies={libMovies}
+              />
+            }
           >
             <Route
               path="overview"
@@ -101,6 +118,10 @@ export const App = () => {
             />
             <Route path="images" element={<ActorImages />} />
           </Route>
+          <Route
+            path="library"
+            element={<Library movies={libMovies} currentLang={currentLang} />}
+          />
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>
       </Routes>

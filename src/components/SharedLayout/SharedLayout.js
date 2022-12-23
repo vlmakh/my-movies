@@ -33,6 +33,9 @@ export const SharedLayout = ({
           <HeaderLink to="/actors">
             {currentLang === 'uk-UA' ? 'Актори' : 'Actors'}
           </HeaderLink>
+          <HeaderLink to="/library">
+            {currentLang === 'uk-UA' ? 'Бібліотека' : 'Library'}
+          </HeaderLink>
         </Nav>
 
         <Box display="flex" gap="16px" alignItems="center">
