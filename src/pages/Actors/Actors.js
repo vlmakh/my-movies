@@ -1,11 +1,5 @@
-import {
-  ActorsList,
-  ActorsPerson,
-  SearchInput,
-  Background,
-  SearchForm,
-} from './Actors.styled';
-
+import { SearchInput, Background, SearchForm } from './Actors.styled';
+import { List, Item } from '../Home/Home.styled';
 import { SearchBtn, ClearBtn } from 'components/Buttons/Buttons';
 import { PaginationStyled } from 'components/Pagination/Pagination';
 import { ActorCard } from 'components/ActorCard/ActorCard';
@@ -106,15 +100,15 @@ export default function Movies({ currentLang }) {
 
       {!actorsFound.length && <Background />}
 
-      <ActorsList>
+      <List>
         {actorsFound.map(actor => (
-          <ActorsPerson key={actor.id}>
+          <Item key={actor.id}>
             <NavLink to={`${actor.id}`} state={{ from: location }}>
               <ActorCard actor={actor} />
             </NavLink>
-          </ActorsPerson>
+          </Item>
         ))}
-      </ActorsList>
+      </List>
 
       <PaginationStyled
         breakLabel="..."
