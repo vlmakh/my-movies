@@ -52,32 +52,13 @@ export const App = () => {
     setCurrentLang('uk-UA');
   };
 
-  // const saveToLibrary = id => {
-  //   if (libMovies.includes(id)) {
-  //     return;
-  //   }
-  //   setLibMovies([...libMovies, id]);
-  // };
-
   const toggleMovieInLibrary = movieId => {
     if (libMovies.includes(movieId)) {
       setLibMovies(libMovies.filter(id => id !== movieId));
       return;
     }
-    setLibMovies([...libMovies, movieId]);
-      // addWatchedRef.style.backgroundColor = '#ffffff';
 
-    //   getArrayofMovies(watched)
-    //     .then(data => {
-    //       if (refs.library) {
-    //         refs.library.innerHTML = createLibraryMarkup(data);
-    //       }
-    //     })
-    //     .catch(er => console.log(er));
-    // } else {
-    //   onAddToWatched(id);
-    //   setWatchedLocalStoradge(watched);
-    // }
+    setLibMovies([...libMovies, movieId]);    
   };
 
   return (

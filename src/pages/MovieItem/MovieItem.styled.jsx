@@ -37,7 +37,8 @@ export const LibraryBtn = styled.button`
   display: inline-block;
   /* margin-right: ${p => p.theme.space[2]}px; */
   padding: 4px 8px;
-  color: ${p => p.theme.colors.textSecondary};
+  /* color: ${p => p.theme.colors.textSecondary}; */
+  color: ${p => p.saved ? p.theme.colors.accent : p.theme.colors.textSecondary};
   background-color: ${p => p.theme.colors.bcgBtn};
   text-decoration: none;
   font-size: 16px;
@@ -50,4 +51,6 @@ export const LibraryBtn = styled.button`
   :hover {
     color: ${p => p.theme.colors.accent};
   }
+
+
 `;

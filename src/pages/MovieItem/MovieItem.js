@@ -26,16 +26,24 @@ export default function MovieItem({
   const params = useParams();
   const backLink = useRef(location.state?.from ?? '/');
   // console.log(location);
-  const [saved, setSaved] = useState(false);
-
+  const [saved, setSaved] = useState(
+    movies.includes(params.movieId) ? true : false
+  );
   const [showModal, setShowModal] = useState(false);
+  const textSave = currentLang === 'uk-UA' ? 'Зберегти' : 'Save';
+  const textSaved = currentLang === 'uk-UA' ? 'Збережено' : 'Saved';
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
+  const toggleSaveBtn = () => {
+    setSaved(!saved);
+  };
+
   const handleSaveToLib = () => {
     toggleMovieInLibrary(params.movieId);
+    toggleSaveBtn();
   };
 
   useEffect(() => {
@@ -106,8 +114,8 @@ export default function MovieItem({
                 <GobackLink to="trailer">
                   {currentLang === 'uk-UA' ? 'Трейлер' : 'Trailer'}
                 </GobackLink>
-                <LibraryBtn onClick={handleSaveToLib}>
-                  {currentLang === 'uk-UA' ? 'Зберегти' : 'Save'}
+                <LibraryBtn onClick={handleSaveToLib} saved={saved}>
+                  {saved ? textSaved : textSave}
                 </LibraryBtn>
               </BtnContainer>
 
