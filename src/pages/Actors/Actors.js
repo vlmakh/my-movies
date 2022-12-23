@@ -15,8 +15,8 @@ import toast from 'react-hot-toast';
 export default function Movies({ currentLang }) {
   const [actorsFound, setActorsFound] = useState([]);
   const [searchQuery, setSearchQuery] = useSearchParams();
-  const query = searchQuery.get('search' ?? '');
-  const currentPage = searchQuery.get('page' ?? '');
+  const query = searchQuery.get('search');
+  const currentPage = searchQuery.get('page');
   const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
   const [input, setInput] = useState(query ? query : '');
   const location = useLocation();
