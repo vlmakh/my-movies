@@ -77,6 +77,20 @@ const fetchActorById = async (id, lang) => {
   return response.data;
 };
 
+const fetchAlbumActors = async (array, lang) => {
+  const arrayOfActors = array.map(async actor_id => {
+    return await axios
+      .get(`${MAIN_URL}/person/${actor_id}?api_key=${API_KEY}&language=${lang}`)
+      .then(response => {
+        return response.data;
+      })
+      .catch(error => console.log(error));
+  });
+
+  const response = await Promise.all(arrayOfActors);
+  return response;
+};
+
 const fetchMoviesByActor = async (id, lang) => {
   const response = await axios.get(
     `${MAIN_URL}/person/${id}/movie_credits?api_key=${API_KEY}&language=${lang}`
@@ -101,6 +115,7 @@ export {
   fetchLibraryMovies,
   fetchActors,
   fetchActorById,
+  fetchAlbumActors,
   fetchMoviesByActor,
   fetchImagesByActor,
 };

@@ -3,6 +3,7 @@ import {
   ActorImg,
   ActorDescr,
   GobackLink,
+  AlbumBtn,
 } from './ActorPage.styled';
 import { Box, Container, BtnContainer } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
@@ -15,15 +16,23 @@ import { formatDateEn, formatDateUa } from 'services/formatDate';
 import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
 
-export default function ActorPage({ currentLang }) {
+export default function ActorPage({
+  actors,
+  currentLang,
+  toggleActorsInAlbum,
+}) {
   const [personInfo, setPersonInfo] = useState(null);
   const [error, setError] = useState(false);
   const location = useLocation();
   const params = useParams();
+  const [saved, setSaved] = useState(
+    actors.includes(params.actorId) ? true : false
+  );
   const backLink = useRef(location.state?.from ?? '/');
   // console.log(location);
-
   const [showModal, setShowModal] = useState(false);
+  const textSave = currentLang === 'uk-UA' ? 'Зберегти' : 'Save';
+  const textSaved = currentLang === 'uk-UA' ? 'Збережено' : 'Saved';
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -41,6 +50,15 @@ export default function ActorPage({ currentLang }) {
         setError(true);
       });
   }, [currentLang, params.actorId]);
+
+  const toggleSaveBtn = () => {
+    setSaved(!saved);
+  };
+
+  const handleSaveToAlbum = () => {
+    toggleActorsInAlbum(params.actorId);
+    toggleSaveBtn();
+  };
 
   return (
     <Box p={3} mt="48px" textAlign="left">
@@ -99,6 +117,9 @@ export default function ActorPage({ currentLang }) {
                 <GobackLink to="images">
                   {currentLang === 'uk-UA' ? 'Фото' : 'Photos'}
                 </GobackLink>
+                <AlbumBtn onClick={handleSaveToAlbum} saved={saved}>
+                  {saved ? textSaved : textSave}
+                </AlbumBtn>
               </BtnContainer>
 
               <Suspense
