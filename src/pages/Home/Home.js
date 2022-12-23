@@ -5,19 +5,29 @@ import { fetchTrends } from 'services/api';
 import { PageTitle, List, Item } from './Home.styled';
 import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
+import { PaginationStyled } from 'components/Pagination/Pagination';
 
 export default function Home({ currentLang }) {
   const [trends, setTrends] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
   const location = useLocation();
 
   useEffect(() => {
-    fetchTrends(currentLang)
+    fetchTrends(currentLang, page)
       .then(data => {
         // console.log(data.results);
         setTrends(data.results);
+        setTotalPages(data.total_pages);
       })
       .catch(error => console.log(error));
-  }, [currentLang]);
+  }, [currentLang, page]);
+
+  const handlePageClick = e => {
+    // console.log(e);
+    setPage(e.selected + 1);
+    // setSearchQuery({ search: input, page: e.selected + 1 });
+  };
 
   return (
     <Box p={4} mt="48px" textAlign="center">
@@ -34,6 +44,18 @@ export default function Home({ currentLang }) {
           </Item>
         ))}
       </List>
+
+      <PaginationStyled
+        breakLabel="..."
+        nextLabel=">"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={totalPages}
+        previousLabel="<"
+        renderOnZeroPageCount={null}
+        disabledLinkClassName="disabled"
+        activeClassName="activePage"
+      />
     </Box>
   );
 }
