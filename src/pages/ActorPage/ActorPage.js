@@ -28,6 +28,8 @@ export default function ActorPage({
   const [showModal, setShowModal] = useState(false);
   const textSave = currentLang === 'uk-UA' ? 'Зберегти' : 'Save';
   const textSaved = currentLang === 'uk-UA' ? 'Збережено' : 'Saved';
+  const textBack = currentLang === 'uk-UA' ? 'Назад' : 'Back';
+  const textHome = currentLang === 'uk-UA' ? 'Старт' : 'Home';
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -58,7 +60,7 @@ export default function ActorPage({
   return (
     <Box p={4} mt="48px" textAlign="left">
       <StyledLinkBtn to={backLink.current}>
-        {currentLang === 'uk-UA' ? 'Назад' : 'Back'}
+        {!backLink.current.pathname ? textHome : textBack}
       </StyledLinkBtn>
 
       {error && <PageError />}
