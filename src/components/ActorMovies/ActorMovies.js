@@ -12,7 +12,7 @@ export default function ActorMovies({ currentLang }) {
 
   useEffect(() => {
     fetchMoviesByActor(params.actorId, currentLang).then(data => {
-      // console.log(data.cast);
+      console.log(data.cast);
       setMovies(data.cast);
     });
   }, [currentLang, params.actorId]);
@@ -20,16 +20,23 @@ export default function ActorMovies({ currentLang }) {
   return (
     <>
       <MovieList>
-        {movies.map(movie => (
-          <MovieItem key={movie.id}>
-            <StyledNavLink
-              to={`/movies/${movie.id}`}
-              state={{ from: location }}
-            >
-              <MovieCard movie={movie} />
-            </StyledNavLink>
-          </MovieItem>
-        ))}
+        {movies
+          .sort((a, b) =>
+            (b.release_date ?? b.first_air_date) >
+            (a.release_date ?? a.first_air_date)
+              ? 1
+              : -1
+          )
+          .map(movie => (
+            <MovieItem key={movie.id}>
+              <StyledNavLink
+                to={`/movies/${movie.id}`}
+                state={{ from: location }}
+              >
+                <MovieCard movie={movie} />
+              </StyledNavLink>
+            </MovieItem>
+          ))}
       </MovieList>
     </>
   );
