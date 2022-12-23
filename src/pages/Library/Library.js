@@ -20,7 +20,7 @@ export default function Library({ movies, currentLang }) {
   return (
     <Box p={4} mt="48px" textAlign="center">
       <PageTitle>
-        {currentLang === 'uk-UA' ? 'Збережені фільми' : 'Saved movies'}
+        {currentLang === 'uk-UA' ? 'Улюблені фільми' : 'Favorite movies'}
       </PageTitle>
 
       <List>
