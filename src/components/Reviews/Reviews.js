@@ -11,7 +11,7 @@ import { fetchReviewsById } from 'services/api';
 export default function Reviews({ currentLang }) {
   const params = useParams();
   //   console.log(params);
-  const [reviews, setReviews] = useState(['review']);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     fetchReviewsById(params.movieId, currentLang).then(data => {
@@ -20,7 +20,7 @@ export default function Reviews({ currentLang }) {
     });
   }, [currentLang, params.movieId]);
 
-  if (reviews.length === 0) {
+  if (!reviews.length) {
     return (
       <>
         <ReviewNot>

@@ -12,7 +12,7 @@ export default function ActorMovies({ currentLang }) {
 
   useEffect(() => {
     fetchMoviesByActor(params.actorId, currentLang).then(data => {
-      console.log(data.cast);
+      // console.log(data.cast);
       setMovies(data.cast);
     });
   }, [currentLang, params.actorId]);
