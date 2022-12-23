@@ -7,9 +7,9 @@ const API_KEY = '7944ae355bdc42ac579681e106149d6b';
 // export const perPage = 12;
 // const lang = 'en-US'; // 'uk-UA'; 'en-US'
 
-const fetchTrends = async lang => {
+const fetchTrends = async (lang, page) => {
   const response = await axios.get(
-    `${MAIN_URL}/trending/all/day?api_key=${API_KEY}&language=${lang}&page=1`
+    `${MAIN_URL}/trending/all/day?api_key=${API_KEY}&language=${lang}&page=${page}`
   );
   return response.data;
 };
@@ -77,6 +77,20 @@ const fetchActorById = async (id, lang) => {
   return response.data;
 };
 
+const fetchAlbumActors = async (array, lang) => {
+  const arrayOfActors = array.map(async actor_id => {
+    return await axios
+      .get(`${MAIN_URL}/person/${actor_id}?api_key=${API_KEY}&language=${lang}`)
+      .then(response => {
+        return response.data;
+      })
+      .catch(error => console.log(error));
+  });
+
+  const response = await Promise.all(arrayOfActors);
+  return response;
+};
+
 const fetchMoviesByActor = async (id, lang) => {
   const response = await axios.get(
     `${MAIN_URL}/person/${id}/movie_credits?api_key=${API_KEY}&language=${lang}`
@@ -101,6 +115,7 @@ export {
   fetchLibraryMovies,
   fetchActors,
   fetchActorById,
+  fetchAlbumActors,
   fetchMoviesByActor,
   fetchImagesByActor,
 };

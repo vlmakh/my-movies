@@ -18,9 +18,10 @@ const Overview = lazy(() => import('components/Overview/Overview'));
 const Reviews = lazy(() => import('components/Reviews/Reviews'));
 const Trailer = lazy(() => import('components/Trailer/Trailer'));
 const Library = lazy(() => import('pages/Library/Library'));
+const Album = lazy(() => import('pages/Album/Album'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
-const startData = { theme: 'darkTheme', lang: 'en-US', lib: [] };
+const startData = { theme: 'darkTheme', lang: 'en-US', lib: [], album: [] };
 const savedData = JSON.parse(localStorage.getItem('movieteka'));
 
 export const App = () => {
@@ -30,10 +31,11 @@ export const App = () => {
   );
   const [currentLang, setCurrentLang] = useState(state.lang);
   const [libMovies, setLibMovies] = useState(state.lib);
+  const [favActors, setFavActors] = useState(state.album);
 
   useEffect(() => {
-    setState({ theme: currentTheme.name, lang: currentLang, lib: libMovies });
-  }, [currentTheme.name, currentLang, libMovies]);
+    setState({ theme: currentTheme.name, lang: currentLang, lib: libMovies, album: favActors });
+  }, [currentTheme.name, currentLang, libMovies, favActors]);
 
   useEffect(() => {
     // console.log(state)
@@ -58,7 +60,16 @@ export const App = () => {
       return;
     }
 
-    setLibMovies([...libMovies, movieId]);    
+    setLibMovies([...libMovies, movieId]);
+  };
+
+  const toggleActorsInAlbum = actorId => {
+    if (favActors.includes(actorId)) {
+      setFavActors(favActors.filter(id => id !== actorId));
+      return;
+    }
+
+    setFavActors([...favActors, actorId]);
   };
 
   return (
@@ -84,7 +95,7 @@ export const App = () => {
               <MovieItem
                 toggleMovieInLibrary={toggleMovieInLibrary}
                 currentLang={currentLang}
-                 movies={libMovies}
+                movies={libMovies}
               />
             }
           >
@@ -106,7 +117,13 @@ export const App = () => {
           <Route path="actors" element={<Actors currentLang={currentLang} />} />
           <Route
             path="actors/:actorId"
-            element={<ActorPage currentLang={currentLang} />}
+            element={
+              <ActorPage
+                currentLang={currentLang}
+                toggleActorsInAlbum={toggleActorsInAlbum}
+                actors={favActors}
+              />
+            }
           >
             <Route
               path="biography"
@@ -121,6 +138,10 @@ export const App = () => {
           <Route
             path="library"
             element={<Library movies={libMovies} currentLang={currentLang} />}
+          />
+          <Route
+            path="album"
+            element={<Album currentLang={currentLang} actors={favActors} />}
           />
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Route>

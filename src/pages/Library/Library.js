@@ -1,7 +1,7 @@
 import { Box } from 'components/Box/Box';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Title, LibList, LibItem } from './Library.styled';
+import { PageTitle, List, Item } from '../Home/Home.styled';
 import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { fetchLibraryMovies } from 'services/api';
@@ -19,19 +19,19 @@ export default function Library({ movies, currentLang }) {
 
   return (
     <Box p={4} mt="48px" textAlign="center">
-      <Title>
-        {currentLang === 'uk-UA' ? 'Збережені фільми' : 'Saved movies'}
-      </Title>
+      <PageTitle>
+        {currentLang === 'uk-UA' ? 'Улюблені фільми' : 'Favorite movies'}
+      </PageTitle>
 
-      <LibList>
+      <List>
         {library.map(movie => (
-          <LibItem key={movie.id}>
+          <Item key={movie.id}>
             <NavLink to={`/movies/${movie.id}`} state={{ from: location }}>
               <MovieCard movie={movie} />
             </NavLink>
-          </LibItem>
+          </Item>
         ))}
-      </LibList>
+      </List>
     </Box>
   );
 }

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 // import { Switch } from 'theme-ui';
 
 // export const StyledSwitch = styled(Switch)`
-//   background-color: ${p => p.theme.colors.textPrimary};  
+//   background-color: ${p => p.theme.colors.textPrimary};
 // `;
 
 export const Layout = styled.div`
@@ -45,7 +45,7 @@ export const HeaderLink = styled(NavLink)`
 
   transition: color 250ms linear;
 
-   &.active {
+  &.active {
     color: ${p => p.theme.colors.accent};
   }
 
@@ -75,8 +75,7 @@ export const LangBtn = styled.button`
     color: ${p => p.theme.colors.accent};
   }
 
-
   :hover:not(:disabled) {
     color: ${p => p.theme.colors.accent};
   }
-`
+`;

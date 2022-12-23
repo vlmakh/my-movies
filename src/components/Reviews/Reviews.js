@@ -15,7 +15,7 @@ export default function Reviews({ currentLang }) {
 
   useEffect(() => {
     fetchReviewsById(params.movieId, currentLang).then(data => {
-      //   console.log(data.results);
+      // console.log(data.results);
       setReviews(data.results);
     });
   }, [currentLang, params.movieId]);

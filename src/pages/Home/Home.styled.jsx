@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-export const HomeTitle = styled.h2`
+export const PageTitle = styled.h2`
   color: ${p => p.theme.colors.textPrimary}
 `
 
-export const TrendsList = styled.ul`
+export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -13,7 +13,7 @@ export const TrendsList = styled.ul`
   list-style: none;
 `;
 
-export const TrendsItem = styled.li`
+export const Item = styled.li`
   box-shadow: none;
 
   transition: box-shadow 250ms linear;

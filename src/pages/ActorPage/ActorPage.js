@@ -1,9 +1,5 @@
-import {
-  ActorName,
-  ActorImg,
-  ActorDescr,
-  GobackLink,
-} from './ActorPage.styled';
+import { ActorName, ActorImg, ActorDescr } from './ActorPage.styled';
+import { StyledBtn, StyledLinkBtn } from 'components/Buttons/Buttons';
 import { Box, Container, BtnContainer } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
@@ -15,15 +11,23 @@ import { formatDateEn, formatDateUa } from 'services/formatDate';
 import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
 
-export default function ActorPage({ currentLang }) {
+export default function ActorPage({
+  actors,
+  currentLang,
+  toggleActorsInAlbum,
+}) {
   const [personInfo, setPersonInfo] = useState(null);
   const [error, setError] = useState(false);
   const location = useLocation();
   const params = useParams();
+  const [saved, setSaved] = useState(
+    actors.includes(params.actorId) ? true : false
+  );
   const backLink = useRef(location.state?.from ?? '/');
   // console.log(location);
-
   const [showModal, setShowModal] = useState(false);
+  const textSave = currentLang === 'uk-UA' ? 'Зберегти' : 'Save';
+  const textSaved = currentLang === 'uk-UA' ? 'Збережено' : 'Saved';
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -42,11 +46,20 @@ export default function ActorPage({ currentLang }) {
       });
   }, [currentLang, params.actorId]);
 
+  const toggleSaveBtn = () => {
+    setSaved(!saved);
+  };
+
+  const handleSaveToAlbum = () => {
+    toggleActorsInAlbum(params.actorId);
+    toggleSaveBtn();
+  };
+
   return (
-    <Box p={3} mt="48px" textAlign="left">
-      <GobackLink to={backLink.current}>
+    <Box p={4} mt="48px" textAlign="left">
+      <StyledLinkBtn to={backLink.current}>
         {currentLang === 'uk-UA' ? 'Назад' : 'Back'}
-      </GobackLink>
+      </StyledLinkBtn>
 
       {error && <PageError />}
 
@@ -90,15 +103,18 @@ export default function ActorPage({ currentLang }) {
               )}
 
               <BtnContainer>
-                <GobackLink to="biography" state={personInfo.biography}>
+                <StyledLinkBtn to="biography" state={personInfo.biography}>
                   {currentLang === 'uk-UA' ? 'Біографія' : 'Biography'}
-                </GobackLink>
-                <GobackLink to="movies">
+                </StyledLinkBtn>
+                <StyledLinkBtn to="movies">
                   {currentLang === 'uk-UA' ? 'Фільми' : 'Movies'}
-                </GobackLink>
-                <GobackLink to="images">
+                </StyledLinkBtn>
+                <StyledLinkBtn to="images">
                   {currentLang === 'uk-UA' ? 'Фото' : 'Photos'}
-                </GobackLink>
+                </StyledLinkBtn>
+                <StyledBtn onClick={handleSaveToAlbum} saved={saved}>
+                  {saved ? textSaved : textSave}
+                </StyledBtn>
               </BtnContainer>
 
               <Suspense

@@ -1,10 +1,5 @@
-import {
-  MovieTitle,
-  MovieImg,
-  MovieDescr,
-  GobackLink,
-  LibraryBtn,
-} from './MovieItem.styled';
+import { MovieTitle, MovieImg, MovieDescr } from './MovieItem.styled';
+import { StyledBtn, StyledLinkBtn } from 'components/Buttons/Buttons';
 import { Box, Container, BtnContainer } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
@@ -60,10 +55,10 @@ export default function MovieItem({
   }, [currentLang, params.movieId]);
 
   return (
-    <Box pl={4} py={3} mt="48px" textAlign="left">
-      <GobackLink to={backLink.current}>
+    <Box p={4} mt="48px" textAlign="left">
+      <StyledLinkBtn to={backLink.current}>
         {currentLang === 'uk-UA' ? 'Назад' : 'Back'}
-      </GobackLink>
+      </StyledLinkBtn>
 
       {error && <PageError />}
 
@@ -102,21 +97,21 @@ export default function MovieItem({
               </MovieDescr>
               {/* <MovieDescr>{movieItem.overview}</MovieDescr> */}
               <BtnContainer>
-                <GobackLink to="overview" state={movieItem.overview}>
+                <StyledLinkBtn to="overview" state={movieItem.overview}>
                   {currentLang === 'uk-UA' ? 'Опис' : 'Overview'}
-                </GobackLink>
-                <GobackLink to="cast">
+                </StyledLinkBtn>
+                <StyledLinkBtn to="cast">
                   {currentLang === 'uk-UA' ? 'В ролях' : 'Cast'}
-                </GobackLink>
-                <GobackLink to="reviews">
+                </StyledLinkBtn>
+                <StyledLinkBtn to="reviews">
                   {currentLang === 'uk-UA' ? 'Відгуки' : 'Reviews'}
-                </GobackLink>
-                <GobackLink to="trailer">
+                </StyledLinkBtn>
+                <StyledLinkBtn to="trailer">
                   {currentLang === 'uk-UA' ? 'Трейлер' : 'Trailer'}
-                </GobackLink>
-                <LibraryBtn onClick={handleSaveToLib} saved={saved}>
+                </StyledLinkBtn>
+                <StyledBtn onClick={handleSaveToLib} saved={saved}>
                   {saved ? textSaved : textSave}
-                </LibraryBtn>
+                </StyledBtn>
               </BtnContainer>
 
               <Suspense
