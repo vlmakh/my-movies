@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
 
 export const ActorName = styled.h2`
   margin-top: 0;
@@ -8,49 +7,10 @@ export const ActorName = styled.h2`
   text-align: center;
 `;
 export const ActorImg = styled.img`
-  cursor: pointer;   
+  cursor: pointer;
 `;
 
 export const ActorDescr = styled.p`
   margin-top: ${p => p.theme.space[4]}px;
   color: ${p => p.theme.colors.textPrimary};
-`;
-
-export const GobackLink = styled(NavLink)`
-  display: inline-block;
-  /* margin-right: ${p => p.theme.space[2]}px; */
-  padding: 4px 8px;
-  color: ${p => p.theme.colors.textSecondary};
-  background-color: ${p => p.theme.colors.bcgBtn};
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 700;
-
-  transition: color 250ms linear;
-
-  :hover {
-    color: ${p => p.theme.colors.accent};
-  }
-`;
-
-export const AlbumBtn = styled.button`
-  display: inline-block;
-  /* margin-right: ${p => p.theme.space[2]}px; */
-  padding: 4px 8px;
-  /* color: ${p => p.theme.colors.textSecondary}; */
-  color: ${p => p.saved ? p.theme.colors.accent : p.theme.colors.textSecondary};
-  background-color: ${p => p.theme.colors.bcgBtn};
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-
-  transition: color 250ms linear;
-
-  :hover {
-    color: ${p => p.theme.colors.accent};
-  }
-
-
 `;

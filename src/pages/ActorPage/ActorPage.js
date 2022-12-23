@@ -1,10 +1,5 @@
-import {
-  ActorName,
-  ActorImg,
-  ActorDescr,
-  GobackLink,
-  AlbumBtn,
-} from './ActorPage.styled';
+import { ActorName, ActorImg, ActorDescr } from './ActorPage.styled';
+import { StyledBtn, StyledLinkBtn } from 'components/Buttons/Buttons';
 import { Box, Container, BtnContainer } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
@@ -61,10 +56,10 @@ export default function ActorPage({
   };
 
   return (
-    <Box p={3} mt="48px" textAlign="left">
-      <GobackLink to={backLink.current}>
+    <Box p={4} mt="48px" textAlign="left">
+      <StyledLinkBtn to={backLink.current}>
         {currentLang === 'uk-UA' ? 'Назад' : 'Back'}
-      </GobackLink>
+      </StyledLinkBtn>
 
       {error && <PageError />}
 
@@ -108,18 +103,18 @@ export default function ActorPage({
               )}
 
               <BtnContainer>
-                <GobackLink to="biography" state={personInfo.biography}>
+                <StyledLinkBtn to="biography" state={personInfo.biography}>
                   {currentLang === 'uk-UA' ? 'Біографія' : 'Biography'}
-                </GobackLink>
-                <GobackLink to="movies">
+                </StyledLinkBtn>
+                <StyledLinkBtn to="movies">
                   {currentLang === 'uk-UA' ? 'Фільми' : 'Movies'}
-                </GobackLink>
-                <GobackLink to="images">
+                </StyledLinkBtn>
+                <StyledLinkBtn to="images">
                   {currentLang === 'uk-UA' ? 'Фото' : 'Photos'}
-                </GobackLink>
-                <AlbumBtn onClick={handleSaveToAlbum} saved={saved}>
+                </StyledLinkBtn>
+                <StyledBtn onClick={handleSaveToAlbum} saved={saved}>
                   {saved ? textSaved : textSave}
-                </AlbumBtn>
+                </StyledBtn>
               </BtnContainer>
 
               <Suspense
