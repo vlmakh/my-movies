@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Name = styled.h1`
-  margin-top: 0;
+  margin-top: ${p => p.theme.space[4]}px;
   font-size: ${p => p.theme.fontSizes.l};
   color: ${p => p.theme.colors.textTitle};
   text-align: center;

@@ -9,6 +9,10 @@ export const PaginationStyled = styled(ReactPaginate)`
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: 700;
 
+  @media (max-width: 479.98px) {
+    flex-wrap: wrap;
+  }
+
   & li {
     color: ${p => p.theme.colors.textPrimary};
 
