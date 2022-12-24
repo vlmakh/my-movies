@@ -1,4 +1,4 @@
-import { Box } from 'components/Box/Box';
+import { PageWrap } from 'components/Box/Box';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { PageTitle, List, Item } from '../Home/Home.styled';
@@ -18,7 +18,7 @@ export default function Library({ movies, currentLang }) {
   }, [currentLang, movies]);
 
   return (
-    <Box p={4} mt="48px" textAlign="center">
+    <PageWrap textAlign="center">
       <PageTitle>
         {currentLang === 'uk-UA' ? 'Улюблені фільми' : 'Favorite movies'}
       </PageTitle>
@@ -32,6 +32,6 @@ export default function Library({ movies, currentLang }) {
           </Item>
         ))}
       </List>
-    </Box>
+    </PageWrap>
   );
 }

@@ -1,4 +1,4 @@
-import { Box } from 'components/Box/Box';
+import { PageWrap } from 'components/Box/Box';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchTrends } from 'services/api';
@@ -30,7 +30,7 @@ export default function Home({ currentLang }) {
   };
 
   return (
-    <Box p={4} mt="48px" textAlign="center">
+    <PageWrap textAlign="center">
       <PageTitle>
         {currentLang === 'uk-UA' ? 'Популярні сьогодні' : 'Trending Today'}
       </PageTitle>
@@ -56,6 +56,6 @@ export default function Home({ currentLang }) {
         disabledLinkClassName="disabled"
         activeClassName="activePage"
       />
-    </Box>
+    </PageWrap>
   );
 }

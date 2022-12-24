@@ -21,6 +21,18 @@ export const Box = styled('div')(
   shadow
 );
 
+export const PageWrap = styled.div`
+  margin-top: 48px;
+
+  @media (max-width: 479.98px) {
+    padding: ${p => p.theme.space[3]}px;
+  }
+
+  @media (min-width: 480px) {
+    padding: ${p => p.theme.space[4]}px;
+  }
+`;
+
 export const Container = styled.div`
 margin-top: ${p => p.theme.space[4]}px;
   @media (min-width: 768px) {

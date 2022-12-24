@@ -1,7 +1,7 @@
 import { ActorImg, ActorDescr } from './ActorPage.styled';
 import { Name } from 'pages/Home/Home.styled';
 import { StyledBtn, StyledLinkBtn } from 'components/Buttons/Buttons';
-import { Box, Container, BtnContainer } from 'components/Box/Box';
+import { PageWrap, Box, Container, BtnContainer } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchActorById } from 'services/api';
@@ -59,7 +59,7 @@ export default function ActorPage({
   };
 
   return (
-    <Box p={4} mt="48px" textAlign="left">
+    <PageWrap>
       <StyledLinkBtn to={backLink.current}>
         {!backLink.current.pathname ? textHome : textBack}
       </StyledLinkBtn>
@@ -153,6 +153,6 @@ export default function ActorPage({
           )}
         </>
       )}
-    </Box>
+    </PageWrap>
   );
 }

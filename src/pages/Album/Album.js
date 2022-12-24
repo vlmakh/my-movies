@@ -1,4 +1,4 @@
-import { Box } from 'components/Box/Box';
+import { PageWrap } from 'components/Box/Box';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { PageTitle, List, Item } from '../Home/Home.styled';
@@ -18,7 +18,7 @@ export default function Album({ actors, currentLang }) {
   }, [currentLang, actors]);
 
   return (
-    <Box p={4} mt="48px" textAlign="center">
+    <PageWrap p={4} mt="48px" textAlign="center">
       <PageTitle>
         {currentLang === 'uk-UA' ? 'Улюблені актори' : 'Favorite actors'}
       </PageTitle>
@@ -32,6 +32,6 @@ export default function Album({ actors, currentLang }) {
           </Item>
         ))}
       </List>
-    </Box>
+    </PageWrap>
   );
 }

@@ -33,10 +33,8 @@ export const Header = styled.div`
 
   transition: background-color 250ms linear;
 
-  @media (max-width: 480px) {
-    /* flex-wrap: wrap; */
-    padding-left: ${p => p.theme.space[2]}px;
-    padding-right: ${p => p.theme.space[2]}px;
+  @media (max-width: 479.98px) {
+    padding: ${p => p.theme.space[2]}px;
   }
 `;
 

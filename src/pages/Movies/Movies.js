@@ -5,7 +5,7 @@ import { PaginationStyled } from 'components/Pagination/Pagination';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
-import { Box } from 'components/Box/Box';
+import { Box, PageWrap } from 'components/Box/Box';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
@@ -79,7 +79,7 @@ export default function Movies({ currentLang }) {
   };
 
   return (
-    <Box p={4} textAlign="center" mt="48px">
+    <PageWrap textAlign="center">
       <SearchForm onSubmit={handleSubmit}>
         <Box position="relative" flexGrow="1">
           <SearchInput
@@ -120,6 +120,6 @@ export default function Movies({ currentLang }) {
         disabledLinkClassName="disabled"
         activeClassName="activePage"
       />
-    </Box>
+    </PageWrap>
   );
 }

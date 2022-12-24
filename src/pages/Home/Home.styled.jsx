@@ -8,8 +8,8 @@ export const Name = styled.h1`
 `;
 
 export const PageTitle = styled.h2`
-  margin-top: ${p => p.theme.space[4]}px;
-  color: ${p => p.theme.colors.textPrimary}
+  color: ${p => p.theme.colors.textPrimary};
+  text-align: center;
 `
 
 export const List = styled.ul`
