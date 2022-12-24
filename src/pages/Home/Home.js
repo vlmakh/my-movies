@@ -30,7 +30,7 @@ export default function Home({ currentLang }) {
   };
 
   return (
-    <PageWrap textAlign="center">
+    <PageWrap>
       <PageTitle>
         {currentLang === 'uk-UA' ? 'Популярні сьогодні' : 'Trending Today'}
       </PageTitle>

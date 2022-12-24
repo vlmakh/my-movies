@@ -80,7 +80,7 @@ export default function Movies({ currentLang }) {
   };
 
   return (
-    <PageWrap textAlign="center">
+    <PageWrap>
       <SearchForm onSubmit={handleSubmit}>
         <Box position="relative" flexGrow="1">
           <SearchInput

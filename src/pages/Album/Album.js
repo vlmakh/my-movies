@@ -18,7 +18,7 @@ export default function Album({ actors, currentLang }) {
   }, [currentLang, actors]);
 
   return (
-    <PageWrap p={4} mt="48px" textAlign="center">
+    <PageWrap>
       <PageTitle>
         {currentLang === 'uk-UA' ? 'Улюблені актори' : 'Favorite actors'}
       </PageTitle>

@@ -18,7 +18,7 @@ export default function Library({ movies, currentLang }) {
   }, [currentLang, movies]);
 
   return (
-    <PageWrap textAlign="center">
+    <PageWrap>
       <PageTitle>
         {currentLang === 'uk-UA' ? 'Улюблені фільми' : 'Favorite movies'}
       </PageTitle>

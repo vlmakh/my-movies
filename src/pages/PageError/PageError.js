@@ -11,9 +11,9 @@ export default function PageError({ currentLang }) {
   //     : "Something's wrong... probably information isn't added yet, please try later";
 
   return (
-    <PageWrap textAlign="center">
+    <PageWrap>
       {/* <ErrorDescr>{errorMsg}</ErrorDescr> */}
-      <Box mt={3} maxWidth="800px" mx="auto">
+      <Box maxWidth="800px" mx="auto">
         <img src={errorImage} alt="error 404" width="100%" />
       </Box>
     </PageWrap>
