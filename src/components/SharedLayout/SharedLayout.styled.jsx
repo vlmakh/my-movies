@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 // `;
 
 export const Layout = styled.div`
-  min-width: 100vw;
+  min-width: calc(100vw-24px);
   min-height: 100vh;
   padding-top: ${p => p.theme.space[1]}px;
   /* padding-right: ${p => p.theme.space[4]}px; */
@@ -79,8 +79,6 @@ export const NavMobile = styled.nav`
     display: none;
   }
 `;
-
-
 
 export const LangBtn = styled.button`
   border: none;
