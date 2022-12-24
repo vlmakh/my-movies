@@ -1,7 +1,13 @@
 import { MovieImg, MovieDescr } from './MovieItem.styled';
 import { Name } from 'pages/Home/Home.styled';
 import { StyledBtn, StyledLinkBtn } from 'components/Buttons/Buttons';
-import { PageWrap, Box, Container, BtnContainer } from 'components/Box/Box';
+import {
+  PageWrap,
+  Box,
+  Container,
+  BtnContainer,
+  ImgThumb,
+} from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
@@ -69,14 +75,9 @@ export default function MovieItem({
         <>
           <Name>{movieItem.title}</Name>
           <Container>
-            <Box
-              width="200px"
-              height="300px"
-              boxShadow="0 0 8px rgba(0, 0, 0, 0.6)"
-            >
+            <ImgThumb>
               <MovieImg
                 width="200"
-                height="100%"
                 src={
                   movieItem.poster_path
                     ? `https://image.tmdb.org/t/p/w200/${movieItem.poster_path}`
@@ -85,7 +86,7 @@ export default function MovieItem({
                 alt={`${movieItem.title}`}
                 onClick={toggleModal}
               />
-            </Box>
+            </ImgThumb>
 
             <Box>
               <MovieDescr>

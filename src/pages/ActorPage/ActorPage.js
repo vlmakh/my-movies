@@ -1,7 +1,13 @@
 import { ActorImg, ActorDescr } from './ActorPage.styled';
 import { Name } from 'pages/Home/Home.styled';
 import { StyledBtn, StyledLinkBtn } from 'components/Buttons/Buttons';
-import { PageWrap, Box, Container, BtnContainer } from 'components/Box/Box';
+import {
+  PageWrap,
+  Box,
+  Container,
+  BtnContainer,
+  ImgThumb,
+} from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchActorById } from 'services/api';
@@ -70,15 +76,14 @@ export default function ActorPage({
         <>
           <Name>{personInfo.name}</Name>
           <Container>
-            <Box
-              width="200px"
-              height="300px"
-              boxShadow="0 0 8px rgba(0, 0, 0, 0.6)"
-              // overflow="hidden"
+            <ImgThumb
+            // width="200px"
+            // height="300px"
+            // boxShadow="0 0 8px rgba(0, 0, 0, 0.6)"
+            // overflow="hidden"
             >
               <ActorImg
                 width="200"
-                height="100%"
                 src={
                   personInfo.profile_path
                     ? `https://image.tmdb.org/t/p/w200/${personInfo.profile_path}`
@@ -87,7 +92,7 @@ export default function ActorPage({
                 alt={`${personInfo.name}`}
                 onClick={toggleModal}
               />
-            </Box>
+            </ImgThumb>
 
             <Box>
               {personInfo.birthday && (

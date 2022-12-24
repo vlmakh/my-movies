@@ -48,3 +48,18 @@ export const BtnContainer = styled.div`
   flex-wrap: wrap;
   gap: ${p => p.theme.space[2]}px;
 `;
+
+
+export const ImgThumb = styled.div`
+    width: 200px;
+    height: 300px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  
+  @media (max-width: 479.98px) {
+    margin: 0 auto;
+  }
+
+  @media (min-width: 480px) {
+    margin: 0;
+  }
+`
