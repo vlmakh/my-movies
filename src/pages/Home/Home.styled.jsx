@@ -1,6 +1,14 @@
 import styled from '@emotion/styled';
 
+export const Name = styled.h1`
+  margin-top: 0;
+  font-size: ${p => p.theme.fontSizes.l};
+  color: ${p => p.theme.colors.textTitle};
+  text-align: center;
+`;
+
 export const PageTitle = styled.h2`
+  margin-top: ${p => p.theme.space[4]}px;
   color: ${p => p.theme.colors.textPrimary}
 `
 

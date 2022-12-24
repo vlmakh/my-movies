@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieTrailer } from 'services/api';
 import { Box } from 'components/Box/Box';
-import { Text } from './Trailer.styled';
+import { IframeStyled, Text } from './Trailer.styled';
 
 export default function Trailer({ currentLang }) {
   const params = useParams();
@@ -32,9 +32,7 @@ export default function Trailer({ currentLang }) {
       {!trailer ? (
         <Text>{notFound}</Text>
       ) : (
-        <iframe
-          width="640"
-          height="360"
+        <IframeStyled
           src={trailer}
           title={trailer}
           frameBorder="0"

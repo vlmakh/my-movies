@@ -7,10 +7,10 @@ import { NavLink } from 'react-router-dom';
 // `;
 
 export const Layout = styled.div`
-  min-width: calc(100vw - 24px);
+  min-width: 100vw;
   min-height: 100vh;
   padding-top: ${p => p.theme.space[1]}px;
-  padding-right: ${p => p.theme.space[4]}px;
+  /* padding-right: ${p => p.theme.space[4]}px; */
   background-color: ${p => p.theme.colors.bcgMain};
 
   transition: background-color 250ms linear;
@@ -32,6 +32,12 @@ export const Header = styled.div`
   box-shadow: ${p => p.theme.shadows.headerShadow};
 
   transition: background-color 250ms linear;
+
+  @media (max-width: 480px) {
+    flex-wrap: wrap;
+    padding-left: ${p => p.theme.space[2]}px;
+  padding-right: ${p => p.theme.space[2]}px;
+  }
 `;
 
 export const HeaderLink = styled(NavLink)`

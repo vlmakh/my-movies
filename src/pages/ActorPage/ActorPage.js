@@ -1,4 +1,5 @@
-import { ActorName, ActorImg, ActorDescr } from './ActorPage.styled';
+import { ActorImg, ActorDescr } from './ActorPage.styled';
+import { Name } from 'pages/Home/Home.styled';
 import { StyledBtn, StyledLinkBtn } from 'components/Buttons/Buttons';
 import { Box, Container, BtnContainer } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
@@ -67,7 +68,7 @@ export default function ActorPage({
 
       {personInfo && (
         <>
-          <ActorName>{personInfo.name}</ActorName>
+          <Name>{personInfo.name}</Name>
           <Container>
             <Box
               width="200px"

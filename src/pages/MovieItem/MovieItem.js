@@ -1,4 +1,5 @@
-import { MovieTitle, MovieImg, MovieDescr } from './MovieItem.styled';
+import { MovieImg, MovieDescr } from './MovieItem.styled';
+import { Name } from 'pages/Home/Home.styled';
 import { StyledBtn, StyledLinkBtn } from 'components/Buttons/Buttons';
 import { Box, Container, BtnContainer } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
@@ -57,7 +58,7 @@ export default function MovieItem({
   }, [currentLang, params.movieId]);
 
   return (
-    <Box p={4} mt="48px" textAlign="left">
+    <Box p={4} mt="48px">
       <StyledLinkBtn to={backLink.current}>
         {!backLink.current.pathname ? textHome : textBack}
       </StyledLinkBtn>
@@ -66,7 +67,7 @@ export default function MovieItem({
 
       {movieItem && (
         <>
-          <MovieTitle>{movieItem.title}</MovieTitle>
+          <Name>{movieItem.title}</Name>
           <Container>
             <Box
               width="200px"
