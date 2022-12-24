@@ -34,7 +34,7 @@ export const PageWrap = styled.div`
 `;
 
 export const Container = styled.div`
-margin-top: ${p => p.theme.space[4]}px;
+  margin-top: ${p => p.theme.space[4]}px;
 
   @media (min-width: 480px) {
     display: flex;
@@ -49,12 +49,11 @@ export const BtnContainer = styled.div`
   gap: ${p => p.theme.space[2]}px;
 `;
 
-
 export const ImgThumb = styled.div`
-    width: 200px;
-    height: 300px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-  
+  width: 200px;
+  height: 300px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+
   @media (max-width: 479.98px) {
     margin: 0 auto;
   }
@@ -62,4 +61,4 @@ export const ImgThumb = styled.div`
   @media (min-width: 480px) {
     margin: 0;
   }
-`
+`;

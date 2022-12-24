@@ -76,12 +76,7 @@ export default function ActorPage({
         <>
           <Name>{personInfo.name}</Name>
           <Container>
-            <ImgThumb
-            // width="200px"
-            // height="300px"
-            // boxShadow="0 0 8px rgba(0, 0, 0, 0.6)"
-            // overflow="hidden"
-            >
+            <ImgThumb>
               <ActorImg
                 width="200"
                 src={
