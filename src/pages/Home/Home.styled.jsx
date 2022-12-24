@@ -23,6 +23,7 @@ export const List = styled.ul`
 
 export const Item = styled.li`
   box-shadow: none;
+  cursor: pointer;
 
   transition: box-shadow 250ms linear;
 

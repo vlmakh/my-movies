@@ -1,4 +1,5 @@
-import { ImageList, ImageCard, ImgItemStyled } from './ActorImages.styled';
+import { ImgItemStyled } from './ActorImages.styled';
+import { List, Item } from 'pages/Home/Home.styled';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchImagesByActor } from 'services/api';
@@ -45,11 +46,10 @@ export default function ActorImages() {
 
   return (
     <>
-      <ImageList>
+      <List>
         {images.map((image, idx) => (
-          <ImageCard key={image.file_path}>
+          <Item key={image.file_path}>
             <ImgItemStyled
-              width="200"
               src={
                 image.file_path
                   ? `https://image.tmdb.org/t/p/w200${image.file_path}`
@@ -59,9 +59,9 @@ export default function ActorImages() {
               loading="lazy"
               onClick={() => onImageClick(idx)}
             />
-          </ImageCard>
+          </Item>
         ))}
-      </ImageList>
+      </List>
 
       {showModal && (
         <Modal onClose={toggleModal}>

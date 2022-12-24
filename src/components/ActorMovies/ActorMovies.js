@@ -1,6 +1,7 @@
-import { MovieList, MovieItem, StyledNavLink } from './ActorMovies.styled';
+// import { MovieList, MovieItem, StyledNavLink } from './ActorMovies.styled';
+import { List, Item } from 'pages/Home/Home.styled';
 import { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, NavLink } from 'react-router-dom';
 import { fetchMoviesByActor } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 
@@ -19,7 +20,7 @@ export default function ActorMovies({ currentLang }) {
 
   return (
     <>
-      <MovieList>
+      <List>
         {movies
           .sort((a, b) =>
             (b.release_date ?? b.first_air_date) >
@@ -28,16 +29,13 @@ export default function ActorMovies({ currentLang }) {
               : -1
           )
           .map(movie => (
-            <MovieItem key={movie.id}>
-              <StyledNavLink
-                to={`/movies/${movie.id}`}
-                state={{ from: location }}
-              >
+            <Item key={movie.id}>
+              <NavLink to={`/movies/${movie.id}`} state={{ from: location }}>
                 <MovieCard movie={movie} />
-              </StyledNavLink>
-            </MovieItem>
+              </NavLink>
+            </Item>
           ))}
-      </MovieList>
+      </List>
     </>
   );
 }
