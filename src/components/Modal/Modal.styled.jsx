@@ -18,4 +18,8 @@ export const ModalWindow = styled.div`
   max-height: calc(100vh - 24px);
   overflow-y: clip;
   overflow-x: visible;  
+
+ @media (max-width: 480px) {
+    width: 100%;
+  }
 `;

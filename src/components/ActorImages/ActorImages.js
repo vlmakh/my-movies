@@ -40,7 +40,7 @@ export default function ActorImages() {
     slidesToScroll: 1,
     initialSlide: bigPhotoIdx,
     lazyLoad: 'ondemand',
-    draggable: false,
+    draggable: true,
   };
 
   return (
@@ -69,6 +69,7 @@ export default function ActorImages() {
             {images.map(image => (
               <Box key={image.file_path} display="flex" alignItems="center">
                 <img
+                  width="100%"
                   src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
                   alt={image.file_path}
                 />

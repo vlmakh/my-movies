@@ -138,6 +138,7 @@ export default function MovieItem({
           {showModal && (
             <Modal onClose={toggleModal}>
               <img
+                width="100%"
                 src={
                   movieItem.poster_path
                     ? `https://image.tmdb.org/t/p/w500/${movieItem.poster_path}`

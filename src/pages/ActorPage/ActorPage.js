@@ -141,6 +141,7 @@ export default function ActorPage({
           {showModal && (
             <Modal onClose={toggleModal}>
               <img
+                width="100%"
                 src={
                   personInfo.profile_path
                     ? `https://image.tmdb.org/t/p/w500${personInfo.profile_path}`
