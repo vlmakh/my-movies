@@ -1,6 +1,6 @@
-import { CastList, CastCard, StyledNavLink } from './Cast.styled';
+import { List, Item } from 'pages/Home/Home.styled';
 import { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, NavLink } from 'react-router-dom';
 import { fetchCastById } from 'services/api';
 import { ActorCard } from 'components/ActorCard/ActorCard';
 
@@ -19,18 +19,15 @@ export default function Cast({ currentLang }) {
 
   return (
     <>
-      <CastList>
+      <List>
         {cast.map(actor => (
-          <CastCard key={actor.cast_id}>
-            <StyledNavLink
-              to={`/actors/${actor.id}`}
-              state={{ from: location }}
-            >
+          <Item key={actor.cast_id}>
+            <NavLink to={`/actors/${actor.id}`} state={{ from: location }}>
               <ActorCard actor={actor} />
-            </StyledNavLink>
-          </CastCard>
+            </NavLink>
+          </Item>
         ))}
-      </CastList>
+      </List>
     </>
   );
 }

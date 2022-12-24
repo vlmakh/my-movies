@@ -1,4 +1,3 @@
-// import css from './MovieCard.module.css';
 import {
   ActorThumb,
   ActorImg,
