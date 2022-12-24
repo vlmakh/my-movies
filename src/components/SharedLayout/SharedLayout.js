@@ -4,6 +4,7 @@ import {
   Header,
   HeaderLink,
   Nav,
+  NavMobile,
   LangBtn,
 } from './SharedLayout.styled';
 import { Suspense } from 'react';
@@ -11,6 +12,12 @@ import { Box } from 'components/Box/Box';
 import logo from 'images/logo.png';
 import { ThreeCircles } from 'react-loader-spinner';
 import { HiSun, HiMoon } from 'react-icons/hi2';
+import {
+  MdMovie,
+  MdMovieFilter,
+  MdPhotoCameraFront,
+  MdMonochromePhotos,
+} from 'react-icons/md';
 import { ThemeBtn } from 'components/Buttons/Buttons';
 
 export const SharedLayout = ({
@@ -40,6 +47,24 @@ export const SharedLayout = ({
             {currentLang === 'uk-UA' ? 'Фотоальбом' : 'Photoalbum'}
           </HeaderLink>
         </Nav>
+
+        <NavMobile>
+          <HeaderLink to="/">
+            <img src={logo} alt="logo" width="32" height="32" />
+          </HeaderLink>
+          <HeaderLink to="/movies">
+            <MdMovie size="24" />
+          </HeaderLink>
+          <HeaderLink to="/actors">
+            <MdPhotoCameraFront size="24" />
+          </HeaderLink>
+          <HeaderLink to="/library">
+            <MdMovieFilter size="24" />
+          </HeaderLink>
+          <HeaderLink to="/album">
+            <MdMonochromePhotos size="24" />
+          </HeaderLink>
+        </NavMobile>
 
         <Box display="flex" gap="16px" alignItems="center">
           <Box display="flex" mr={4} height="48px">

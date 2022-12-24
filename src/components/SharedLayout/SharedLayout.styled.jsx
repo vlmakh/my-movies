@@ -63,7 +63,24 @@ export const Nav = styled.nav`
   align-items: center;
   height: 48px;
   gap: ${p => p.theme.space[4]}px;
+
+  @media (max-width: 479.98px) {
+    display: none;
+  }
 `;
+
+export const NavMobile = styled.nav`
+  display: flex;
+  align-items: center;
+  height: 48px;
+  gap: ${p => p.theme.space[4]}px;
+
+  @media (min-width: 480px) {
+    display: none;
+  }
+`;
+
+
 
 export const LangBtn = styled.button`
   border: none;
