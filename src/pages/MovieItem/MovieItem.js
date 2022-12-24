@@ -122,7 +122,7 @@ export default function MovieItem({
 
           <Suspense
             fallback={
-              <Box pt={6} pl={6}>
+              <Box display="flex" alignItems="center">
                 <ThreeCircles
                   height="100"
                   width="100"
