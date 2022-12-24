@@ -73,7 +73,6 @@ export default function MovieItem({
               width="200px"
               height="300px"
               boxShadow="0 0 8px rgba(0, 0, 0, 0.6)"
-              // overflow="hidden"
             >
               <MovieImg
                 width="200"

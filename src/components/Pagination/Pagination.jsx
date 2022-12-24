@@ -31,4 +31,8 @@ export const PaginationStyled = styled(ReactPaginate)`
     padding: 0 8px;
     cursor: pointer;
   }
+
+  & a.disabled {
+    cursor: default;
+  }
 `;

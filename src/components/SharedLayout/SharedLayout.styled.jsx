@@ -1,16 +1,9 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
-// import { Switch } from 'theme-ui';
-
-// export const StyledSwitch = styled(Switch)`
-//   background-color: ${p => p.theme.colors.textPrimary};
-// `;
 
 export const Layout = styled.div`
-  min-width: calc(100vw-24px);
   min-height: 100vh;
   padding-top: ${p => p.theme.space[1]}px;
-  /* padding-right: ${p => p.theme.space[4]}px; */
   background-color: ${p => p.theme.colors.bcgMain};
 
   transition: background-color 250ms linear;
