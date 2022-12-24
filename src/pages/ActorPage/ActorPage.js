@@ -119,24 +119,24 @@ export default function ActorPage({
                   {saved ? textSaved : textSave}
                 </StyledBtn>
               </BtnContainer>
-
-              <Suspense
-                fallback={
-                  <Box pt={6} pl={6}>
-                    <ThreeCircles
-                      height="100"
-                      width="100"
-                      color="#bcc3ce"
-                      ariaLabel="Three-Circles-rotating"
-                      visible={true}
-                    />
-                  </Box>
-                }
-              >
-                <Outlet />
-              </Suspense>
             </Box>
           </Container>
+
+          <Suspense
+            fallback={
+              <Box pt={6} pl={6}>
+                <ThreeCircles
+                  height="100"
+                  width="100"
+                  color="#bcc3ce"
+                  ariaLabel="Three-Circles-rotating"
+                  visible={true}
+                />
+              </Box>
+            }
+          >
+            <Outlet />
+          </Suspense>
 
           {showModal && (
             <Modal onClose={toggleModal}>

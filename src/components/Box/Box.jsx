@@ -36,7 +36,7 @@ export const PageWrap = styled.div`
 export const Container = styled.div`
 margin-top: ${p => p.theme.space[4]}px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 480px) {
     display: flex;
     gap: ${p => p.theme.space[4]}px;
   }
