@@ -66,7 +66,7 @@ export const NavMobile = styled.nav`
   display: flex;
   align-items: center;
   height: 48px;
-  gap: ${p => p.theme.space[4]}px;
+  gap: ${p => p.theme.space[3]}px;
 
   @media (min-width: 480px) {
     display: none;

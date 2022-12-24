@@ -50,8 +50,8 @@ export const lightTheme = {
     xs: '12px',
     s: '16px',
     m: '20px',
-    l: '36px',
-    xl: '44px',
+    l: '28px',
+    xl: '40px',
   },
 
   borders: {

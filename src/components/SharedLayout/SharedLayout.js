@@ -66,8 +66,8 @@ export const SharedLayout = ({
           </HeaderLink>
         </NavMobile>
 
-        <Box display="flex" gap="16px" alignItems="center">
-          <Box display="flex" mr={4} height="48px">
+        <Box display="flex" alignItems="center">
+          <Box display="flex" mr={3} height="48px">
             <LangBtn
               type="button"
               onClick={turnEnLang}
@@ -83,10 +83,7 @@ export const SharedLayout = ({
               UA
             </LangBtn>
           </Box>
-          {/* <StyledSwitch
-            onChange={toggleTheme}
-            checked={currentTheme === 'darkTheme' ? false : true}
-          /> */}
+
           <ThemeBtn onClick={toggleTheme}>
             {currentTheme === 'darkTheme' ? (
               <HiMoon size="20" />
