@@ -99,6 +99,7 @@ export default function MovieItem({
                 )}
               </MovieDescr>
               {/* <MovieDescr>{movieItem.overview}</MovieDescr> */}
+
               <BtnContainer>
                 <StyledLinkBtn to="overview" state={movieItem.overview}>
                   {currentLang === 'uk-UA' ? 'Опис' : 'Overview'}

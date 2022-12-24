@@ -47,6 +47,10 @@ export const BtnContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: ${p => p.theme.space[2]}px;
+
+  @media (max-width: 479.98px) {
+    justify-content: center;
+  }
 `;
 
 export const ImgThumb = styled.div`

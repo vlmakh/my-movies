@@ -1,4 +1,3 @@
-// import { MovieList, MovieItem, StyledNavLink } from './ActorMovies.styled';
 import { List, Item } from 'pages/Home/Home.styled';
 import { useState, useEffect } from 'react';
 import { useParams, useLocation, NavLink } from 'react-router-dom';

@@ -50,6 +50,7 @@ export default function ActorImages() {
         {images.map((image, idx) => (
           <Item key={image.file_path}>
             <ImgItemStyled
+              width="200"
               src={
                 image.file_path
                   ? `https://image.tmdb.org/t/p/w200${image.file_path}`
