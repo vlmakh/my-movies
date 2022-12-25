@@ -1,4 +1,4 @@
-import { ActorImg, ActorDescr } from './ActorPage.styled';
+import { ActorImg, ActorDescr, ActorHomePage } from './ActorPage.styled';
 import { Name } from 'pages/Home/Home.styled';
 import { StyledBtn, StyledLinkBtn } from 'components/Buttons/Buttons';
 import {
@@ -102,6 +102,18 @@ export default function ActorPage({
                   {currentLang === 'uk-UA'
                     ? `Дата смерті: ${formatDateUa(personInfo.deathday)}`
                     : `Death date: ${formatDateEn(personInfo.deathday)}`}
+                </ActorDescr>
+              )}
+              {personInfo.homepage && (
+                <ActorDescr>
+                  {currentLang === 'uk-UA' ? 'Сторінка: ' : 'Homepage: '}
+                  <ActorHomePage
+                    href={personInfo.homepage}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {personInfo.homepage}
+                  </ActorHomePage>
                 </ActorDescr>
               )}
 

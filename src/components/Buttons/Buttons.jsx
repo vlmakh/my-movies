@@ -74,7 +74,7 @@ export const StyledLinkBtn = styled(NavLink)`
 
   transition: color 250ms linear;
 
-  :hover {
+  :hover, :focus {
     color: ${p => p.theme.colors.accent};
   }
 `;

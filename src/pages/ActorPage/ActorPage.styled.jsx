@@ -12,3 +12,16 @@ export const ActorDescr = styled.p`
     text-align: center;
   }
 `;
+
+export const ActorHomePage = styled.a`
+  margin-top: ${p => p.theme.space[4]}px;
+  color: ${p => p.theme.colors.textPrimary};
+  text-decoration: none;
+  
+  transition: color 250ms linear;
+
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
+  }
+`;
