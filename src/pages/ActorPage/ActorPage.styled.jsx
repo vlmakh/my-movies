@@ -7,4 +7,8 @@ export const ActorImg = styled.img`
 export const ActorDescr = styled.p`
   margin-top: ${p => p.theme.space[4]}px;
   color: ${p => p.theme.colors.textPrimary};
+
+  @media (max-width: 479.98px) {
+    text-align: center;
+  }
 `;
