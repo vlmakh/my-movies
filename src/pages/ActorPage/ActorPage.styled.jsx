@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 
 export const ActorImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   cursor: pointer;
 `;
 
@@ -17,7 +20,7 @@ export const ActorHomePage = styled.a`
   margin-top: ${p => p.theme.space[4]}px;
   color: ${p => p.theme.colors.textPrimary};
   text-decoration: none;
-  
+
   transition: color 250ms linear;
 
   :hover,

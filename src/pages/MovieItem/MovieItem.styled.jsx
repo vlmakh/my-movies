@@ -1,7 +1,10 @@
 import styled from '@emotion/styled';
 
 export const MovieImg = styled.img`
-  cursor: pointer;   
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
 `;
 
 export const MovieDescr = styled.p`

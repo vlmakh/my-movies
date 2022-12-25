@@ -10,7 +10,7 @@ export const Name = styled.h1`
 export const PageTitle = styled.h2`
   color: ${p => p.theme.colors.textPrimary};
   text-align: center;
-`
+`;
 
 export const List = styled.ul`
   display: flex;
