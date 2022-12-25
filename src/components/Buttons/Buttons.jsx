@@ -7,6 +7,12 @@ export const ThemeBtn = styled.button`
   background-color: transparent;
   color: ${p => p.theme.colors.bcgBtn};
   cursor: pointer;
+
+  transition: color 250ms linear;
+
+  :hover {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
 
 export const ClearBtn = styled.button`
