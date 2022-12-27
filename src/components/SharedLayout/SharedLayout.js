@@ -7,6 +7,8 @@ import {
   Nav,
   NavMobile,
   LangBtn,
+  Footer,
+  MyMailLink,
 } from './SharedLayout.styled';
 import { Suspense } from 'react';
 import { Box } from 'components/Box/Box';
@@ -112,6 +114,11 @@ export const SharedLayout = ({
       >
         <Outlet />
       </Suspense>
+
+      <Footer>
+        <p>Made by</p>
+        <MyMailLink href="mailto:vlmakh@gmail.com">vlmakh@gmail.com</MyMailLink>
+      </Footer>
     </Layout>
   );
 };

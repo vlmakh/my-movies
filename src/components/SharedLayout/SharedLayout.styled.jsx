@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const Layout = styled.div`
+  display: grid;
+  grid-template-rows: 1fr auto;
   min-height: 100vh;
   padding-top: ${p => p.theme.space[1]}px;
   background-color: ${p => p.theme.colors.bcgMain};
@@ -97,6 +99,37 @@ export const LangBtn = styled.button`
   }
 
   :hover:not(:disabled) {
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${p => p.theme.space[3]}px;
+  border-top: 1px solid grey;
+  width: 100%;
+  height: 36px;
+  background: ${p => p.theme.colors.bcgHeader};
+  font-size: ${p => p.theme.fontSizes.s};
+  color: ${p => p.theme.colors.textPrimary};
+  z-index: 100;
+  box-shadow: ${p => p.theme.shadows.footerShadow};
+
+  transition: background-color 250ms linear;
+`;
+
+export const MyMailLink = styled.a`
+  color: ${p => p.theme.colors.textPrimary};
+  font-size: ${p => p.theme.fontSizes.s};
+  text-decoration: none;
+  cursor: pointer;
+  
+  transition: color 250ms linear;
+
+  :hover,
+  :focus {
     color: ${p => p.theme.colors.accent};
   }
 `;
