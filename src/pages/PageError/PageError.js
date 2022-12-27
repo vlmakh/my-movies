@@ -1,5 +1,4 @@
-import { PageWrap, Box } from 'components/Box/Box';
-// import { ErrorDescr } from './PageError.styled';
+import { Box } from 'components/Box/Box';
 import errorImage from 'images/error-404.jpg';
 
 export default function PageError({ currentLang }) {
@@ -11,11 +10,8 @@ export default function PageError({ currentLang }) {
   //     : "Something's wrong... probably information isn't added yet, please try later";
 
   return (
-    <PageWrap>
-      {/* <ErrorDescr>{errorMsg}</ErrorDescr> */}
-      <Box maxWidth="800px" mx="auto">
-        <img src={errorImage} alt="error 404" width="100%" />
-      </Box>
-    </PageWrap>
+    <Box maxWidth="800px" mx="auto" mt={4}>
+      <img src={errorImage} alt="error 404" width="100%" />
+    </Box>
   );
 }

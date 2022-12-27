@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { lazy, useState, useEffect } from 'react';
 import { ThemeProvider } from 'theme-ui';
@@ -34,7 +34,12 @@ export const App = () => {
   const [favActors, setFavActors] = useState(state.album);
 
   useEffect(() => {
-    setState({ theme: currentTheme.name, lang: currentLang, lib: libMovies, album: favActors });
+    setState({
+      theme: currentTheme.name,
+      lang: currentLang,
+      lib: libMovies,
+      album: favActors,
+    });
   }, [currentTheme.name, currentLang, libMovies, favActors]);
 
   useEffect(() => {
@@ -112,7 +117,7 @@ export const App = () => {
               path="trailer"
               element={<Trailer currentLang={currentLang} />}
             />
-            <Route path="*" element={<PageError currentLang={currentLang} />} />
+            {/* <Route path="*" element={<PageError currentLang={currentLang} />} /> */}
           </Route>
           <Route path="actors" element={<Actors currentLang={currentLang} />} />
           <Route
@@ -142,9 +147,10 @@ export const App = () => {
           <Route
             path="album"
             element={<Album currentLang={currentLang} actors={favActors} />}
-          />
-          <Route path="*" element={<Navigate to="/" />}></Route>
+          />          
+          <Route path="*" element={<div>Searching...</div>} />
         </Route>
+        <Route path="*" element={<PageError currentLang={currentLang} />} />
       </Routes>
       <Toaster
         position="top-right"

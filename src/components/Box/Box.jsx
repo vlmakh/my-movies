@@ -55,8 +55,6 @@ export const Main = styled.div`
   }
 `;
 
-
-
 export const BtnContainer = styled.div`
   margin-top: ${p => p.theme.space[4]}px;
   display: flex;
