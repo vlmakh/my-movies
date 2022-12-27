@@ -4,7 +4,7 @@ import { StyledBtn, StyledLinkBtn } from 'components/Buttons/Buttons';
 import {
   PageWrap,
   Box,
-  Container,
+  Main,
   BtnContainer,
   ImgThumb,
 } from 'components/Box/Box';
@@ -74,7 +74,7 @@ export default function MovieItem({
       {movieItem && (
         <>
           <Name>{movieItem.title}</Name>
-          <Container>
+          <Main>
             <ImgThumb>
               <MovieImg
                 width="200"
@@ -118,7 +118,7 @@ export default function MovieItem({
                 </StyledBtn>
               </BtnContainer>
             </Box>
-          </Container>
+          </Main>
 
           <Suspense
             fallback={

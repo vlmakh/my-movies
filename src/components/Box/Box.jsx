@@ -21,6 +21,15 @@ export const Box = styled('div')(
   shadow
 );
 
+export const Container = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 1280px) {
+    width: 1280px;
+  }
+`;
+
 export const PageWrap = styled.div`
   margin-top: 48px;
 
@@ -33,7 +42,7 @@ export const PageWrap = styled.div`
   }
 `;
 
-export const Container = styled.div`
+export const Main = styled.div`
   margin-top: ${p => p.theme.space[4]}px;
 
   @media (min-width: 480px) {
@@ -41,6 +50,8 @@ export const Container = styled.div`
     gap: ${p => p.theme.space[4]}px;
   }
 `;
+
+
 
 export const BtnContainer = styled.div`
   margin-top: ${p => p.theme.space[4]}px;
