@@ -30,6 +30,7 @@ export const darkTheme = {
   shadows: {
     blackShadow: '0 0 8px rgba(0, 0, 0, 0.6)',
     headerShadow: '0 4px 8px rgba(255, 255, 255, 0.6)',
+    footerShadow: '0 -2px 8px rgba(255, 255, 255, 0.6)',
   },
 };
 
@@ -66,5 +67,6 @@ export const lightTheme = {
   shadows: {
     blackShadow: '0 0 8px rgba(0, 0, 0, 0.6)',
     headerShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
+    footerShadow: '0 -2px 8px rgba(0, 0, 0, 0.6)',
   },
 };
