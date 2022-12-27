@@ -10,11 +10,6 @@ export const Layout = styled.div`
 `;
 
 export const Header = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: ${p => p.theme.space[4]}px;
-  padding-right: ${p => p.theme.space[4]}px;
   border-bottom: 1px solid grey;
   position: fixed;
   width: 100%;
@@ -25,9 +20,23 @@ export const Header = styled.div`
   box-shadow: ${p => p.theme.shadows.headerShadow};
 
   transition: background-color 250ms linear;
+`;
+
+export const HeaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: ${p => p.theme.space[4]}px;
+  padding-right: ${p => p.theme.space[4]}px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media (max-width: 479.98px) {
     padding: ${p => p.theme.space[2]}px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 1280px;
   }
 `;
 

@@ -31,7 +31,7 @@ export const Container = styled.div`
 `;
 
 export const PageWrap = styled.div`
-  margin-top: 48px;
+  margin: 48px auto 0;
 
   @media (max-width: 479.98px) {
     padding: ${p => p.theme.space[3]}px;
@@ -39,6 +39,10 @@ export const PageWrap = styled.div`
 
   @media (min-width: 480px) {
     padding: ${p => p.theme.space[4]}px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 1280px;
   }
 `;
 

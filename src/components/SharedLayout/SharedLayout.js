@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import {
   Layout,
   Header,
+  HeaderContainer,
   HeaderLink,
   Nav,
   NavMobile,
@@ -30,68 +31,70 @@ export const SharedLayout = ({
   return (
     <Layout>
       <Header>
-        <Nav>
-          <HeaderLink to="/">
-            <img src={logo} alt="logo" width="32" height="32" />
-          </HeaderLink>
-          <HeaderLink to="/movies">
-            {currentLang === 'uk-UA' ? 'Фільми' : 'Movies'}
-          </HeaderLink>
-          <HeaderLink to="/actors">
-            {currentLang === 'uk-UA' ? 'Актори' : 'Actors'}
-          </HeaderLink>
-          <HeaderLink to="/library">
-            {currentLang === 'uk-UA' ? 'Бібліотека' : 'Library'}
-          </HeaderLink>
-          <HeaderLink to="/album">
-            {currentLang === 'uk-UA' ? 'Фотоальбом' : 'Photoalbum'}
-          </HeaderLink>
-        </Nav>
+        <HeaderContainer>
+          <Nav>
+            <HeaderLink to="/">
+              <img src={logo} alt="logo" width="32" height="32" />
+            </HeaderLink>
+            <HeaderLink to="/movies">
+              {currentLang === 'uk-UA' ? 'Фільми' : 'Movies'}
+            </HeaderLink>
+            <HeaderLink to="/actors">
+              {currentLang === 'uk-UA' ? 'Актори' : 'Actors'}
+            </HeaderLink>
+            <HeaderLink to="/library">
+              {currentLang === 'uk-UA' ? 'Бібліотека' : 'Library'}
+            </HeaderLink>
+            <HeaderLink to="/album">
+              {currentLang === 'uk-UA' ? 'Фотоальбом' : 'Photoalbum'}
+            </HeaderLink>
+          </Nav>
 
-        <NavMobile>
-          <HeaderLink to="/">
-            <img src={logo} alt="logo" width="32" height="32" />
-          </HeaderLink>
-          <HeaderLink to="/movies">
-            <MdMovie size="24" />
-          </HeaderLink>
-          <HeaderLink to="/actors">
-            <MdPhotoCameraFront size="24" />
-          </HeaderLink>
-          <HeaderLink to="/library">
-            <MdMovieFilter size="24" />
-          </HeaderLink>
-          <HeaderLink to="/album">
-            <MdMonochromePhotos size="24" />
-          </HeaderLink>
-        </NavMobile>
+          <NavMobile>
+            <HeaderLink to="/">
+              <img src={logo} alt="logo" width="32" height="32" />
+            </HeaderLink>
+            <HeaderLink to="/movies">
+              <MdMovie size="24" />
+            </HeaderLink>
+            <HeaderLink to="/actors">
+              <MdPhotoCameraFront size="24" />
+            </HeaderLink>
+            <HeaderLink to="/library">
+              <MdMovieFilter size="24" />
+            </HeaderLink>
+            <HeaderLink to="/album">
+              <MdMonochromePhotos size="24" />
+            </HeaderLink>
+          </NavMobile>
 
-        <Box display="flex" alignItems="center">
-          <Box display="flex" mr={3} height="48px">
-            <LangBtn
-              type="button"
-              onClick={turnEnLang}
-              disabled={currentLang === 'en-US' ? true : false}
-            >
-              EN
-            </LangBtn>
-            <LangBtn
-              type="button"
-              onClick={turnUaLang}
-              disabled={currentLang === 'uk-UA' ? true : false}
-            >
-              UA
-            </LangBtn>
+          <Box display="flex" alignItems="center">
+            <Box display="flex" mr={3} height="48px">
+              <LangBtn
+                type="button"
+                onClick={turnEnLang}
+                disabled={currentLang === 'en-US' ? true : false}
+              >
+                EN
+              </LangBtn>
+              <LangBtn
+                type="button"
+                onClick={turnUaLang}
+                disabled={currentLang === 'uk-UA' ? true : false}
+              >
+                UA
+              </LangBtn>
+            </Box>
+
+            <ThemeBtn onClick={toggleTheme}>
+              {currentTheme === 'darkTheme' ? (
+                <HiMoon size="20" />
+              ) : (
+                <HiSun size="20" />
+              )}
+            </ThemeBtn>
           </Box>
-
-          <ThemeBtn onClick={toggleTheme}>
-            {currentTheme === 'darkTheme' ? (
-              <HiMoon size="20" />
-            ) : (
-              <HiSun size="20" />
-            )}
-          </ThemeBtn>
-        </Box>
+        </HeaderContainer>
       </Header>
 
       <Suspense
