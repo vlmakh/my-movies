@@ -17,6 +17,7 @@ import imageplaceholder from 'images/noposter.jpg';
 import { formatDateEn, formatDateUa } from 'services/formatDate';
 import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 
 export default function ActorPage({
   actors,
@@ -168,3 +169,9 @@ export default function ActorPage({
     </PageWrap>
   );
 }
+
+ActorPage.propTypes = {
+  toggleActorsInAlbum: PropTypes.func.isRequired,
+  currentLang: PropTypes.string.isRequired,
+  actors: PropTypes.array.isRequired,
+};

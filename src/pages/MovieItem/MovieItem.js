@@ -16,6 +16,7 @@ import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/noposter.jpg';
 import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 
 export default function MovieItem({
   toggleMovieInLibrary,
@@ -154,3 +155,9 @@ export default function MovieItem({
     </PageWrap>
   );
 }
+
+MovieItem.propTypes = {
+  toggleMovieInLibrary: PropTypes.func.isRequired,
+  currentLang: PropTypes.string.isRequired,
+  movies: PropTypes.array.isRequired,
+};

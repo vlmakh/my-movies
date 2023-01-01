@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useLocation, NavLink } from 'react-router-dom';
 import { fetchCastById } from 'services/api';
 import { ActorCard } from 'components/ActorCard/ActorCard';
+import PropTypes from 'prop-types';
 
 export default function Cast({ currentLang }) {
   const params = useParams();
@@ -31,3 +32,7 @@ export default function Cast({ currentLang }) {
     </>
   );
 }
+
+Cast.propTypes = {
+  currentLang: PropTypes.string.isRequired,
+};

@@ -7,6 +7,7 @@ import {
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviewsById } from 'services/api';
+import PropTypes from 'prop-types';
 
 export default function Reviews({ currentLang }) {
   const params = useParams();
@@ -41,3 +42,7 @@ export default function Reviews({ currentLang }) {
     </>
   );
 }
+
+Reviews.propTypes = {
+  currentLang: PropTypes.string.isRequired,
+};

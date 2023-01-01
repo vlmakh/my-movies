@@ -150,7 +150,7 @@ export const App = () => {
           />          
           <Route path="*" element={<div>Searching...</div>} />
         </Route>
-        <Route path="*" element={<PageError currentLang={currentLang} />} />
+        <Route path="*" element={<PageError />} />
       </Routes>
       <Toaster
         position="top-right"

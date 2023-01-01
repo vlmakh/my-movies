@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { fetchMovieTrailer } from 'services/api';
 import { Box } from 'components/Box/Box';
 import { IframeStyled, Text } from './Trailer.styled';
+import PropTypes from 'prop-types';
 
 export default function Trailer({ currentLang }) {
   const params = useParams();
@@ -42,3 +43,7 @@ export default function Trailer({ currentLang }) {
     </Box>
   );
 }
+
+Trailer.propTypes = {
+  currentLang: PropTypes.string.isRequired,
+};

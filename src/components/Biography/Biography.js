@@ -1,6 +1,7 @@
 // import { Box } from 'components/Box/Box';
 import { OverviewText } from './Biography.styled';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function Biography({ currentLang }) {
   const location = useLocation();
@@ -12,3 +13,7 @@ export default function Biography({ currentLang }) {
     <OverviewText>{location.state ? location.state : notFoundMsg}</OverviewText>
   );
 }
+
+Biography.propTypes = {
+  currentLang: PropTypes.string.isRequired,
+};

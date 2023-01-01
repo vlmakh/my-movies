@@ -5,6 +5,7 @@ import {
   MovieYear,
 } from 'components/MovieCard/MovieCard.styled';
 import imageplaceholder from 'images/noposter.jpg';
+import PropTypes from 'prop-types';
 
 export const MovieCard = ({ movie }) => {
   let movieYear = '';
@@ -30,4 +31,8 @@ export const MovieCard = ({ movie }) => {
       </MovieTitle>
     </MovieThumb>
   );
+};
+
+MovieCard.propTypes = {
+  movie: PropTypes.object.isRequired,
 };

@@ -6,6 +6,7 @@ import { PageTitle, List, Item } from './Home.styled';
 import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { PaginationStyled } from 'components/Pagination/Pagination';
+import PropTypes from 'prop-types';
 
 export default function Home({ currentLang }) {
   const [trends, setTrends] = useState([]);
@@ -59,3 +60,7 @@ export default function Home({ currentLang }) {
     </PageWrap>
   );
 }
+
+Home.propTypes = {
+  currentLang: PropTypes.string.isRequired,
+};

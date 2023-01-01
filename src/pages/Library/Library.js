@@ -5,6 +5,7 @@ import { PageTitle, List, Item } from '../Home/Home.styled';
 import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { fetchLibraryMovies } from 'services/api';
+import PropTypes from 'prop-types';
 
 export default function Library({ movies, currentLang }) {
   const [library, setLibrary] = useState([]);
@@ -35,3 +36,8 @@ export default function Library({ movies, currentLang }) {
     </PageWrap>
   );
 }
+
+Library.propTypes = {
+  currentLang: PropTypes.string.isRequired,
+  movies: PropTypes.array.isRequired,
+};

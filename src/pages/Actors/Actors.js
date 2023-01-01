@@ -11,8 +11,9 @@ import { useState, useEffect } from 'react';
 import { fetchActors } from 'services/api';
 import { IoIosCloseCircle } from 'react-icons/io';
 import toast from 'react-hot-toast';
+import PropTypes from 'prop-types';
 
-export default function Movies({ currentLang }) {
+export default function Actors({ currentLang }) {
   const [actorsFound, setActorsFound] = useState([]);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search');
@@ -124,3 +125,7 @@ export default function Movies({ currentLang }) {
     </PageWrap>
   );
 }
+
+Actors.propTypes = {
+  currentLang: PropTypes.string.isRequired,
+};

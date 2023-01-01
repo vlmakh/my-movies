@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useLocation, NavLink } from 'react-router-dom';
 import { fetchMoviesByActor } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
+import PropTypes from 'prop-types';
 
 export default function ActorMovies({ currentLang }) {
   const params = useParams();
@@ -38,3 +39,7 @@ export default function ActorMovies({ currentLang }) {
     </>
   );
 }
+
+ActorMovies.propTypes = {
+  currentLang: PropTypes.string.isRequired,
+};

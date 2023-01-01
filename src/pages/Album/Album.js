@@ -5,6 +5,7 @@ import { PageTitle, List, Item } from '../Home/Home.styled';
 import 'index.css';
 import { ActorCard } from 'components/ActorCard/ActorCard';
 import { fetchAlbumActors } from 'services/api';
+import PropTypes from 'prop-types';
 
 export default function Album({ actors, currentLang }) {
   const [album, setAlbum] = useState([]);
@@ -35,3 +36,8 @@ export default function Album({ actors, currentLang }) {
     </PageWrap>
   );
 }
+
+Album.propTypes = {
+  currentLang: PropTypes.string.isRequired,
+  actors: PropTypes.array.isRequired,
+};

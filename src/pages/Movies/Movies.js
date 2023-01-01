@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import { fetchMovies } from 'services/api';
 import { IoIosCloseCircle } from 'react-icons/io';
 import toast from 'react-hot-toast';
+import PropTypes from 'prop-types';
 
 export default function Movies({ currentLang }) {
   const [moviesFound, setMoviesFound] = useState([]);
@@ -123,3 +124,7 @@ export default function Movies({ currentLang }) {
     </PageWrap>
   );
 }
+
+Movies.propTypes = {
+  currentLang: PropTypes.string.isRequired,
+};

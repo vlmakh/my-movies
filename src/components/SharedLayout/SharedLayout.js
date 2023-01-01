@@ -22,6 +22,7 @@ import {
   MdMonochromePhotos,
 } from 'react-icons/md';
 import { ThemeBtn } from 'components/Buttons/Buttons';
+import PropTypes from 'prop-types';
 
 export const SharedLayout = ({
   toggleTheme,
@@ -121,4 +122,12 @@ export const SharedLayout = ({
       </Footer>
     </Layout>
   );
+};
+
+SharedLayout.propTypes = {
+  toggleTheme: PropTypes.func.isRequired,
+  currentTheme: PropTypes.string.isRequired,
+  currentLang: PropTypes.string.isRequired,
+  turnEnLang: PropTypes.func.isRequired,
+  turnUaLang: PropTypes.func.isRequired,
 };

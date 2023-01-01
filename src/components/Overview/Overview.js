@@ -1,6 +1,6 @@
-// import { Box } from 'components/Box/Box';
 import { OverviewText } from './Overview.styled';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function Overview({ currentLang }) {
   const location = useLocation();
@@ -12,3 +12,7 @@ export default function Overview({ currentLang }) {
     <OverviewText>{location.state ? location.state : notFoundMsg}</OverviewText>
   );
 }
+
+Overview.propTypes = {
+  currentLang: PropTypes.string.isRequired,
+};

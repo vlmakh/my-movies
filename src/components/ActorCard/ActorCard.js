@@ -5,6 +5,7 @@ import {
   Character,
 } from 'components/ActorCard/ActorCard.styled';
 import imageplaceholder from 'images/noposter.jpg';
+import PropTypes from 'prop-types';
 
 export const ActorCard = ({ actor }) => {
   return (
@@ -24,4 +25,8 @@ export const ActorCard = ({ actor }) => {
       </ActorTitle>
     </ActorThumb>
   );
+};
+
+ActorCard.propTypes = {
+  actor: PropTypes.object.isRequired,
 };
