@@ -74,10 +74,6 @@ export const StyledLinkBtn = styled(NavLink)`
   font-size: 16px;
   font-weight: 700;
 
-  &.active {
-    color: ${p => p.theme.colors.accent};
-  }
-
   transition: color 250ms linear;
 
   :hover, :focus {
