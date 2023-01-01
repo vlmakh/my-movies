@@ -60,7 +60,7 @@ export const StyledBtn = styled.button`
 
   transition: color 250ms linear;
 
-  :hover {
+  :hover, :focus {
     color: ${p => p.theme.colors.accent};
   }
 `;
@@ -73,6 +73,10 @@ export const StyledLinkBtn = styled(NavLink)`
   text-decoration: none;
   font-size: 16px;
   font-weight: 700;
+
+  &.active {
+    color: ${p => p.theme.colors.accent};
+  }
 
   transition: color 250ms linear;
 
