@@ -117,7 +117,7 @@ export const App = () => {
               path="trailer"
               element={<Trailer currentLang={currentLang} />}
             />
-            {/* <Route path="*" element={<PageError currentLang={currentLang} />} /> */}
+            <Route path="*" element={<PageError currentLang={currentLang} />} />
           </Route>
           <Route path="actors" element={<Actors currentLang={currentLang} />} />
           <Route
@@ -148,9 +148,9 @@ export const App = () => {
             path="album"
             element={<Album currentLang={currentLang} actors={favActors} />}
           />          
-          <Route path="*" element={<div>Searching...</div>} />
+          <Route path="*" element={<PageError currentLang={currentLang} />} />
         </Route>
-        <Route path="*" element={<PageError />} />
+        {/* <Route path="*" element={<PageError />} /> */}
       </Routes>
       <Toaster
         position="top-right"

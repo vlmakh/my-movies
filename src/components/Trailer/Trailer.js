@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieTrailer } from 'services/api';
 import { Box } from 'components/Box/Box';
 import { IframeStyled, Text } from './Trailer.styled';
 import PropTypes from 'prop-types';
+import { ThreeCircles } from 'react-loader-spinner';
 
 export default function Trailer({ currentLang }) {
   const params = useParams();
@@ -30,16 +31,28 @@ export default function Trailer({ currentLang }) {
 
   return (
     <Box mt={4}>
-      {!trailer ? (
-        <Text>{notFound}</Text>
-      ) : (
-        <IframeStyled
-          src={trailer}
-          title={trailer}
-          frameBorder="0"
-          allowFullScreen
-        />
-      )}
+      <Suspense
+        fallback={
+          <ThreeCircles
+            height="100"
+            width="100"
+            color="#bcc3ce"
+            ariaLabel="Three-Circles-rotating"
+            visible={true}
+          />
+        }
+      >
+        {!trailer ? (
+          <Text>{notFound}</Text>
+        ) : (
+          <IframeStyled
+            src={trailer}
+            title={trailer}
+            frameBorder="0"
+            allowFullScreen
+          />
+        )}
+      </Suspense>
     </Box>
   );
 }
