@@ -16,13 +16,13 @@ import PropTypes from 'prop-types';
 export default function Movies({ currentLang }) {
   const [moviesFound, setMoviesFound] = useState([]);
   const [searchQuery, setSearchQuery] = useSearchParams();
-  const query = searchQuery.get('search' ?? '');
-  const currentPage = searchQuery.get('page' ?? '');
+  const query = searchQuery.get('search');
+  const currentPage = searchQuery.get('page');
   const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
-  const [input, setInput] = useState(query ? query : '');
+  const [input, setInput] = useState(query ?? '');
   const location = useLocation();
   // console.log(location);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   const noResults =
     currentLang === 'uk-UA'
       ? 'Немає результатів за вашим пошуковим запитом'
@@ -31,6 +31,8 @@ export default function Movies({ currentLang }) {
     currentLang === 'uk-UA'
       ? 'Порожній запит. Введіть щось для пошуку'
       : 'Empty query. Please input something for search';
+
+  console.log('initialPage: ', page - 1);
 
   useEffect(() => {
     if (!query) {
@@ -42,7 +44,7 @@ export default function Movies({ currentLang }) {
         if (!data.results.length) {
           return toast.error(noResults);
         } else {
-          // console.log(data.results);
+          // console.log(data);
           setTotalPages(data.total_pages);
           setMoviesFound([...data.results]);
         }
@@ -110,17 +112,20 @@ export default function Movies({ currentLang }) {
         ))}
       </List>
 
-      <PaginationStyled
-        breakLabel="..."
-        nextLabel=">"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={totalPages}
-        previousLabel="<"
-        renderOnZeroPageCount={null}
-        disabledLinkClassName="disabled"
-        activeClassName="activePage"
-      />
+      {moviesFound.length > 0 && (
+        <PaginationStyled
+          breakLabel="..."
+          nextLabel=">"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={totalPages}
+          previousLabel="<"
+          renderOnZeroPageCount={null}
+          disabledLinkClassName="disabled"
+          activeClassName="activePage"
+          initialPage={page - 1}
+        />
+      )}
     </PageWrap>
   );
 }
