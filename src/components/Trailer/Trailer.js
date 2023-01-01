@@ -49,7 +49,7 @@ export default function Trailer({ currentLang }) {
             src={trailer}
             title={trailer}
             frameBorder="0"
-            allowFullScreen
+            allowfullscreen
           />
         )}
       </Suspense>
