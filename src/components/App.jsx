@@ -147,10 +147,9 @@ export const App = () => {
           <Route
             path="album"
             element={<Album currentLang={currentLang} actors={favActors} />}
-          />          
-          <Route path="*" element={<PageError currentLang={currentLang} />} />
+          />      
         </Route>
-        {/* <Route path="*" element={<PageError />} /> */}
+        <Route path="*" element={<PageError />} />
       </Routes>
       <Toaster
         position="top-right"
