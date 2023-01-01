@@ -22,7 +22,7 @@ export default function Actors({ currentLang }) {
   const [input, setInput] = useState(query ? query : '');
   const location = useLocation();
   // console.log(location);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   const noResults =
     currentLang === 'uk-UA'
       ? 'Немає результатів за вашим пошуковим запитом'
@@ -111,17 +111,20 @@ export default function Actors({ currentLang }) {
         ))}
       </List>
 
-      <PaginationStyled
-        breakLabel="..."
-        nextLabel=">"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={totalPages}
-        previousLabel="<"
-        renderOnZeroPageCount={null}
-        disabledLinkClassName="disabled"
-        activeClassName="activePage"
-      />
+      {actorsFound.length > 0 && (
+        <PaginationStyled
+          breakLabel="..."
+          nextLabel=">"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={totalPages}
+          previousLabel="<"
+          renderOnZeroPageCount={null}
+          disabledLinkClassName="disabled"
+          activeClassName="activePage"
+          initialPage={page - 1}
+        />
+      )}
     </PageWrap>
   );
 }
