@@ -1,5 +1,5 @@
 import { PageWrap } from 'components/Box/Box';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchTrends } from 'services/api';
 import { PageTitle, List, Item } from './Home.styled';
@@ -10,9 +10,11 @@ import PropTypes from 'prop-types';
 
 export default function Home({ currentLang }) {
   const [trends, setTrends] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
-  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const location = useLocation();
+  const [searchQuery, setSearchQuery] = useSearchParams();
+  const currentPage = searchQuery.get('page');
+  const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
 
   useEffect(() => {
     fetchTrends(currentLang, page)
@@ -22,12 +24,12 @@ export default function Home({ currentLang }) {
         setTotalPages(data.total_pages);
       })
       .catch(error => console.log(error));
-  }, [currentLang, page]);
+  }, [currentLang, page, setSearchQuery]);
 
   const handlePageClick = e => {
     // console.log(e);
     setPage(e.selected + 1);
-    // setSearchQuery({ search: input, page: e.selected + 1 });
+    setSearchQuery({ page: e.selected + 1 });
   };
 
   return (
@@ -46,17 +48,20 @@ export default function Home({ currentLang }) {
         ))}
       </List>
 
-      <PaginationStyled
-        breakLabel="..."
-        nextLabel=">"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={totalPages}
-        previousLabel="<"
-        renderOnZeroPageCount={null}
-        disabledLinkClassName="disabled"
-        activeClassName="activePage"
-      />
+      {trends.length > 0 && (
+        <PaginationStyled
+          breakLabel="..."
+          nextLabel=">"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={totalPages}
+          previousLabel="<"
+          renderOnZeroPageCount={null}
+          disabledLinkClassName="disabled"
+          activeClassName="activePage"
+          initialPage={page - 1}
+        />
+      )}
     </PageWrap>
   );
 }

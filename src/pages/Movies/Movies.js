@@ -32,8 +32,6 @@ export default function Movies({ currentLang }) {
       ? 'Порожній запит. Введіть щось для пошуку'
       : 'Empty query. Please input something for search';
 
-  // console.log('initialPage: ', page - 1);
-
   useEffect(() => {
     if (!query) {
       return;
