@@ -62,7 +62,7 @@ export default function Movies({ currentLang }) {
     }
     if (input.trim() !== query) {
       setMoviesFound([]);
-      setSearchQuery({ search: input.trim(), page: 0 });
+      setSearchQuery({ search: input.trim(), page: 1 });
     }
   };
 
@@ -120,7 +120,7 @@ export default function Movies({ currentLang }) {
           renderOnZeroPageCount={null}
           disabledLinkClassName="disabled"
           activeClassName="activePage"
-          initialPage={currentPage - 1}
+          forcePage={currentPage - 1}
         />
       )}
     </PageWrap>

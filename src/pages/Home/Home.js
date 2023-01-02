@@ -59,7 +59,7 @@ export default function Home({ currentLang }) {
           renderOnZeroPageCount={null}
           disabledLinkClassName="disabled"
           activeClassName="activePage"
-          initialPage={currentPage - 1}
+          forcePage={currentPage - 1}
         />
       )}
     </PageWrap>
