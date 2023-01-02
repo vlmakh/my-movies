@@ -85,4 +85,18 @@ export const StyledLinkBtn = styled(NavLink)`
   }
 `;
 
+export const BackLinkBtn = styled(NavLink)`
+  display: inline-block;
+  padding: 4px 8px;
+  color: ${p => p.theme.colors.textSecondary};
+  background-color: ${p => p.theme.colors.bcgBtn};
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
 
+  transition: color 250ms linear;
+
+  :hover, :focus {
+    color: ${p => p.theme.colors.accent};
+  }
+`;

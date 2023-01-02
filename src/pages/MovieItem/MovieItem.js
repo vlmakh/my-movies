@@ -1,6 +1,10 @@
 import { MovieImg, MovieDescr } from './MovieItem.styled';
 import { Name } from 'pages/Home/Home.styled';
-import { StyledBtn, StyledLinkBtn } from 'components/Buttons/Buttons';
+import {
+  StyledBtn,
+  StyledLinkBtn,
+  BackLinkBtn,
+} from 'components/Buttons/Buttons';
 import {
   PageWrap,
   Box,
@@ -66,9 +70,9 @@ export default function MovieItem({
 
   return (
     <PageWrap>
-      <StyledLinkBtn to={backLink.current}>
+      <BackLinkBtn to={backLink.current}>
         {!backLink.current.pathname ? textHome : textBack}
-      </StyledLinkBtn>
+      </BackLinkBtn>
 
       {error && <PageError />}
 
