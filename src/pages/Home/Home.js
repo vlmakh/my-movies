@@ -16,7 +16,6 @@ export default function Home({ currentLang }) {
   const currentPage = Number(searchQuery.get('page'))
     ? Number(searchQuery.get('page'))
     : 1;
-  // const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
 
   useEffect(() => {
     fetchTrends(currentLang, currentPage)
@@ -30,7 +29,6 @@ export default function Home({ currentLang }) {
 
   const handlePageClick = e => {
     // console.log(e);
-    // setPage(e.selected + 1);
     setSearchQuery({ page: e.selected + 1 });
   };
 

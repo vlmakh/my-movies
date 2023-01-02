@@ -17,12 +17,13 @@ export default function Movies({ currentLang }) {
   const [moviesFound, setMoviesFound] = useState([]);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search');
-  const currentPage = searchQuery.get('page');
-  const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
+  const currentPage = Number(searchQuery.get('page'))
+    ? Number(searchQuery.get('page'))
+    : 1;
   const [input, setInput] = useState(query ?? '');
   const location = useLocation();
   // console.log(location);
-  const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const noResults =
     currentLang === 'uk-UA'
       ? 'Немає результатів за вашим пошуковим запитом'
@@ -37,7 +38,7 @@ export default function Movies({ currentLang }) {
       return;
     }
 
-    fetchMovies(query, page, currentLang)
+    fetchMovies(query, currentPage, currentLang)
       .then(data => {
         if (!data.results.length) {
           return toast.error(noResults);
@@ -48,7 +49,7 @@ export default function Movies({ currentLang }) {
         }
       })
       .catch(error => console.log(error));
-  }, [currentLang, noResults, page, query]);
+  }, [currentLang, noResults, currentPage, query]);
 
   const onSearchInput = event => {
     setInput(event.target.value);
@@ -60,9 +61,8 @@ export default function Movies({ currentLang }) {
       return toast.error(emptyQuery);
     }
     if (input.trim() !== query) {
-      setPage(1);
       setMoviesFound([]);
-      setSearchQuery({ search: input.trim(), page: Number(page) });
+      setSearchQuery({ search: input.trim(), page: 0 });
     }
   };
 
@@ -75,7 +75,6 @@ export default function Movies({ currentLang }) {
 
   const handlePageClick = e => {
     // console.log(e);
-    setPage(e.selected + 1);
     setSearchQuery({ search: input, page: e.selected + 1 });
   };
 
@@ -110,7 +109,7 @@ export default function Movies({ currentLang }) {
         ))}
       </List>
 
-      {moviesFound.length > 0 && (
+      {totalPages > 1 && (
         <PaginationStyled
           breakLabel="..."
           nextLabel=">"
@@ -121,7 +120,7 @@ export default function Movies({ currentLang }) {
           renderOnZeroPageCount={null}
           disabledLinkClassName="disabled"
           activeClassName="activePage"
-          initialPage={page - 1}
+          initialPage={currentPage - 1}
         />
       )}
     </PageWrap>
