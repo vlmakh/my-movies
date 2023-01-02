@@ -10,25 +10,27 @@ import PropTypes from 'prop-types';
 
 export default function Home({ currentLang }) {
   const [trends, setTrends] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useSearchParams();
-  const currentPage = searchQuery.get('page');
-  const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
+  const currentPage = Number(searchQuery.get('page'))
+    ? Number(searchQuery.get('page'))
+    : 1;
+  // const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
 
   useEffect(() => {
-    fetchTrends(currentLang, page)
+    fetchTrends(currentLang, currentPage)
       .then(data => {
         // console.log(data.results);
         setTrends(data.results);
         setTotalPages(data.total_pages);
       })
       .catch(error => console.log(error));
-  }, [currentLang, page, setSearchQuery]);
+  }, [currentLang, currentPage, setSearchQuery]);
 
   const handlePageClick = e => {
     // console.log(e);
-    setPage(e.selected + 1);
+    // setPage(e.selected + 1);
     setSearchQuery({ page: e.selected + 1 });
   };
 
@@ -48,7 +50,7 @@ export default function Home({ currentLang }) {
         ))}
       </List>
 
-      {trends.length > 0 && (
+      {totalPages > 1 && (
         <PaginationStyled
           breakLabel="..."
           nextLabel=">"
@@ -59,7 +61,7 @@ export default function Home({ currentLang }) {
           renderOnZeroPageCount={null}
           disabledLinkClassName="disabled"
           activeClassName="activePage"
-          initialPage={page - 1}
+          initialPage={currentPage - 1}
         />
       )}
     </PageWrap>
