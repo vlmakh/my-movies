@@ -17,9 +17,10 @@ export default function Actors({ currentLang }) {
   const [actorsFound, setActorsFound] = useState([]);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search');
-  const currentPage = searchQuery.get('page');
-  const [page, setPage] = useState(currentPage ? Number(currentPage) : 1);
-  const [input, setInput] = useState(query ? query : '');
+  const currentPage = Number(searchQuery.get('page'))
+    ? Number(searchQuery.get('page'))
+    : 1;
+  const [input, setInput] = useState(query ?? '');
   const location = useLocation();
   // console.log(location);
   const [totalPages, setTotalPages] = useState(1);
@@ -37,19 +38,18 @@ export default function Actors({ currentLang }) {
       return;
     }
 
-    fetchActors(query, page, currentLang)
+    fetchActors(query, currentPage, currentLang)
       .then(data => {
         if (!data.results.length) {
           return toast.error(noResults);
         } else {
           // console.log(data.results);
-          // setTotalFound(data.total_results);
           setTotalPages(data.total_pages);
           setActorsFound([...data.results]);
         }
       })
       .catch(error => console.log(error));
-  }, [currentLang, noResults, page, query]);
+  }, [currentLang, noResults, currentPage, query]);
 
   const onSearchInput = event => {
     setInput(event.target.value);
@@ -61,9 +61,8 @@ export default function Actors({ currentLang }) {
       return toast.error(emptyQuery);
     }
     if (input.trim() !== query) {
-      setPage(1);
       setActorsFound([]);
-      setSearchQuery({ search: input.trim(), page: Number(page) });
+      setSearchQuery({ search: input.trim(), page: 1 });
     }
   };
 
@@ -76,7 +75,6 @@ export default function Actors({ currentLang }) {
 
   const handlePageClick = e => {
     // console.log(e);
-    setPage(e.selected + 1);
     setSearchQuery({ search: input, page: e.selected + 1 });
   };
 
@@ -111,7 +109,7 @@ export default function Actors({ currentLang }) {
         ))}
       </List>
 
-      {actorsFound.length > 0 && (
+      {totalPages > 1 && (
         <PaginationStyled
           breakLabel="..."
           nextLabel=">"
@@ -122,7 +120,7 @@ export default function Actors({ currentLang }) {
           renderOnZeroPageCount={null}
           disabledLinkClassName="disabled"
           activeClassName="activePage"
-          initialPage={page - 1}
+          forcePage={currentPage - 1}
         />
       )}
     </PageWrap>
