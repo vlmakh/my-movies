@@ -21,15 +21,6 @@ export const Box = styled('div')(
   shadow
 );
 
-export const Container = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-
-  @media screen and (min-width: 1280px) {
-    width: 1280px;
-  }
-`;
-
 export const PageWrap = styled.div`
   margin: 48px auto 0;
 
