@@ -25,7 +25,7 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  @media (min-width: 1280px) {
+  @media screen and (min-width: 1280px) {
     width: 1280px;
   }
 `;
@@ -33,15 +33,18 @@ export const Container = styled.div`
 export const PageWrap = styled.div`
   margin: 48px auto 0;
 
-  @media (max-width: 479.98px) {
+  @media screen and (max-width: 479.98px) {
     padding: ${p => p.theme.space[3]}px;
+    width: 100%;
   }
 
-  @media (min-width: 480px) {
+  @media screen and (min-width: 480px) and (max-width: 1279.98px)  {
     padding: ${p => p.theme.space[4]}px;
+    width: 100%;
   }
 
-  @media (min-width: 1280px) {
+  @media screen and (min-width: 1280px) {
+    padding: ${p => p.theme.space[4]}px;
     width: 1280px;
   }
 `;
@@ -49,7 +52,7 @@ export const PageWrap = styled.div`
 export const Main = styled.div`
   margin-top: ${p => p.theme.space[4]}px;
 
-  @media (min-width: 480px) {
+  @media screen and (min-width: 480px) {
     display: flex;
     gap: ${p => p.theme.space[4]}px;
   }
@@ -61,7 +64,7 @@ export const BtnContainer = styled.div`
   flex-wrap: wrap;
   gap: ${p => p.theme.space[2]}px;
 
-  @media (max-width: 479.98px) {
+  @media screen and (max-width: 479.98px) {
     justify-content: center;
   }
 `;
@@ -71,11 +74,11 @@ export const ImgThumb = styled.div`
   height: 300px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 
-  @media (max-width: 479.98px) {
+  @media screen and (max-width: 479.98px) {
     margin: 0 auto;
   }
 
-  @media (min-width: 480px) {
+  @media screen and (min-width: 480px) {
     margin: 0;
   }
 `;
