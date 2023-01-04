@@ -23,4 +23,4 @@ Added slider to photos section of Actor.
 Added Library and Photoalbum to save favorite Films and Actors using
 localStorage.
 
-Added breakpoints for Mobile, Tablet and Desctop versions.
+Added breakpoints 480px and 1280px.
