@@ -8,7 +8,7 @@ import {
 import {
   PageWrap,
   Box,
-  Main,
+  MainInfo,
   BtnContainer,
   ImgThumb,
 } from 'components/Box/Box';
@@ -80,7 +80,7 @@ export default function ActorPage({
       {personInfo && (
         <>
           <Name>{personInfo.name}</Name>
-          <Main>
+          <MainInfo>
             <ImgThumb>
               <ActorImg
                 width="200"
@@ -137,7 +137,7 @@ export default function ActorPage({
                 </StyledBtn>
               </BtnContainer>
             </Box>
-          </Main>
+          </MainInfo>
 
           <Suspense
             fallback={

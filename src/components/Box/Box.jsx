@@ -40,7 +40,7 @@ export const PageWrap = styled.div`
   }
 `;
 
-export const Main = styled.div`
+export const MainInfo = styled.div`
   margin-top: ${p => p.theme.space[4]}px;
 
   @media screen and (min-width: 480px) {

@@ -8,7 +8,7 @@ import {
 import {
   PageWrap,
   Box,
-  Main,
+  MainInfo,
   BtnContainer,
   ImgThumb,
 } from 'components/Box/Box';
@@ -79,7 +79,7 @@ export default function MovieItem({
       {movieItem && (
         <>
           <Name>{movieItem.title}</Name>
-          <Main>
+          <MainInfo>
             <ImgThumb>
               <MovieImg
                 width="200"
@@ -123,7 +123,7 @@ export default function MovieItem({
                 </StyledBtn>
               </BtnContainer>
             </Box>
-          </Main>
+          </MainInfo>
 
           <Suspense
             fallback={
