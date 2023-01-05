@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { lazy, useState, useEffect } from 'react';
 import { ThemeProvider } from 'theme-ui';
@@ -149,7 +149,7 @@ export const App = () => {
             element={<Album currentLang={currentLang} actors={favActors} />}
           />      
         </Route>
-        <Route path="*" element={<PageError />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Toaster
         position="top-right"
