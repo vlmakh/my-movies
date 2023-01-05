@@ -36,7 +36,6 @@ export default function ActorPage({
     actors.includes(params.actorId) ? true : false
   );
   const backLink = useRef(location.state?.from ?? '/');
-  // console.log(location);
   const [showModal, setShowModal] = useState(false);
   const textSave = currentLang === 'uk-UA' ? 'Зберегти' : 'Save';
   const textSaved = currentLang === 'uk-UA' ? 'Збережено' : 'Saved';
@@ -51,11 +50,8 @@ export default function ActorPage({
     fetchActorById(params.actorId, currentLang)
       .then(data => {
         setPersonInfo(data);
-        // console.log(data);
       })
       .catch(error => {
-        // console.log(error.message);
-        // alert(error.message);
         setError(true);
       });
   }, [currentLang, params.actorId]);

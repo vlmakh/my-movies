@@ -14,7 +14,6 @@ export default function Library({ movies, currentLang }) {
   useEffect(() => {
     fetchLibraryMovies(movies, currentLang).then(data => {
       setLibrary(data);
-      //   console.log(data);
     });
   }, [currentLang, movies]);
 

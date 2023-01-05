@@ -59,11 +59,8 @@ export default function MovieItem({
     fetchMovieById(params.movieId, currentLang)
       .then(data => {
         setMovieItem(data);
-        // console.log(data);
       })
       .catch(error => {
-        // console.log(error.message);
-        // alert(error.message);
         setError(true);
       });
   }, [currentLang, params.movieId]);

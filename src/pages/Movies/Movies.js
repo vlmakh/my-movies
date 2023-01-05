@@ -22,7 +22,6 @@ export default function Movies({ currentLang }) {
     : 1;
   const [input, setInput] = useState(query ?? '');
   const location = useLocation();
-  // console.log(location);
   const [totalPages, setTotalPages] = useState(0);
   const noResults =
     currentLang === 'uk-UA'
@@ -74,7 +73,6 @@ export default function Movies({ currentLang }) {
   };
 
   const handlePageClick = e => {
-    // console.log(e);
     setSearchQuery({ search: input, page: e.selected + 1 });
   };
 

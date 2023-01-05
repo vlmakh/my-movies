@@ -20,7 +20,6 @@ export default function Home({ currentLang }) {
   useEffect(() => {
     fetchTrends(currentLang, currentPage)
       .then(data => {
-        // console.log(data.results);
         setTrends(data.results);
         setTotalPages(data.total_pages);
       })

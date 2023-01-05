@@ -14,7 +14,6 @@ export default function Album({ actors, currentLang }) {
   useEffect(() => {
     fetchAlbumActors(actors, currentLang).then(data => {
       setAlbum(data);
-      //   console.log(data);
     });
   }, [currentLang, actors]);
 
