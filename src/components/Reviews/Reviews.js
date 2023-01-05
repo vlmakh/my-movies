@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 
 export default function Reviews({ currentLang }) {
   const params = useParams();
-  //   console.log(params);
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {

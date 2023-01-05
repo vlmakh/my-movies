@@ -7,13 +7,11 @@ import PropTypes from 'prop-types';
 
 export default function Cast({ currentLang }) {
   const params = useParams();
-  // console.log(params);
   const [cast, setCast] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
     fetchCastById(params.movieId, currentLang).then(data => {
-      // console.log(data.cast);
       setCast(data.cast);
     });
   }, [currentLang, params.movieId]);

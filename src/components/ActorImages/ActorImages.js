@@ -12,7 +12,6 @@ import { Box } from 'components/Box/Box';
 
 export default function ActorImages() {
   const params = useParams();
-  // console.log(params.actorId);
   const [images, setImages] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [bigPhotoIdx, setBigPhotoIdx] = useState(0);
@@ -28,7 +27,6 @@ export default function ActorImages() {
 
   useEffect(() => {
     fetchImagesByActor(params.actorId).then(data => {
-      // console.log(data);
       setImages(data.profiles);
     });
   }, [params.actorId]);

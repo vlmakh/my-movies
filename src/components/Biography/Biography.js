@@ -1,11 +1,9 @@
-// import { Box } from 'components/Box/Box';
 import { OverviewText } from './Biography.styled';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default function Biography({ currentLang }) {
   const location = useLocation();
-  // console.log(location);
   const notFoundMsg =
     currentLang === 'uk-UA' ? 'Немає інформації' : 'No information added';
 

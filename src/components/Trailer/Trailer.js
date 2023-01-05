@@ -8,16 +8,12 @@ import { ThreeCircles } from 'react-loader-spinner';
 
 export default function Trailer({ currentLang }) {
   const params = useParams();
-  //   console.log(params);
   const [trailer, setTrailer] = useState('plugtext');
-  //   console.log(trailer);
   const notFound =
     currentLang === 'uk-UA' ? 'Не знайдено' : 'No information found';
 
   useEffect(() => {
     fetchMovieTrailer(params.movieId, currentLang).then(data => {
-      //   console.log(data.results);
-
       const objTrailer = data.results.find(movie => movie.type === 'Trailer');
 
       if (!objTrailer) {
