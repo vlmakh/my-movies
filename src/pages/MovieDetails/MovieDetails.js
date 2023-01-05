@@ -1,4 +1,4 @@
-import { MovieImg, MovieDescr } from './MovieItem.styled';
+import { MovieImg, MovieDescr } from './MovieDetails.styled';
 import { Name } from 'pages/Home/Home.styled';
 import {
   StyledBtn,
@@ -22,7 +22,7 @@ import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 
-export default function MovieItem({
+export default function MovieDetails({
   toggleMovieInLibrary,
   currentLang,
   movies,
@@ -32,7 +32,6 @@ export default function MovieItem({
   const location = useLocation();
   const params = useParams();
   const backLink = useRef(location.state?.from ?? '/');
-  // console.log(location);
   const [saved, setSaved] = useState(
     movies.includes(params.movieId) ? true : false
   );
@@ -100,7 +99,6 @@ export default function MovieItem({
                   4
                 )}
               </MovieDescr>
-              {/* <MovieDescr>{movieItem.overview}</MovieDescr> */}
 
               <BtnContainer>
                 <StyledLinkBtn to="overview" state={movieItem.overview}>
@@ -157,7 +155,7 @@ export default function MovieItem({
   );
 }
 
-MovieItem.propTypes = {
+MovieDetails.propTypes = {
   toggleMovieInLibrary: PropTypes.func.isRequired,
   currentLang: PropTypes.string.isRequired,
   movies: PropTypes.array.isRequired,

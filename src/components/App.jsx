@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast';
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
 const Actors = lazy(() => import('pages/Actors/Actors'));
-const MovieItem = lazy(() => import('pages/MovieItem/MovieItem'));
+const MovieItem = lazy(() => import('pages/MovieDetails/MovieDetails'));
 const ActorPage = lazy(() => import('pages/ActorPage/ActorPage'));
 const Biography = lazy(() => import('components/Biography/Biography'));
 const ActorMovies = lazy(() => import('components/ActorMovies/ActorMovies'));
