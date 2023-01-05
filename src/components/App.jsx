@@ -8,8 +8,8 @@ import { Toaster } from 'react-hot-toast';
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
 const Actors = lazy(() => import('pages/Actors/Actors'));
-const MovieItem = lazy(() => import('pages/MovieDetails/MovieDetails'));
-const ActorPage = lazy(() => import('pages/ActorPage/ActorPage'));
+const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
+const ActorDetails = lazy(() => import('pages/ActorDetails/ActorDetails'));
 const Biography = lazy(() => import('components/Biography/Biography'));
 const ActorMovies = lazy(() => import('components/ActorMovies/ActorMovies'));
 const ActorImages = lazy(() => import('components/ActorImages/ActorImages'));
@@ -97,7 +97,7 @@ export const App = () => {
           <Route
             path="movies/:movieId"
             element={
-              <MovieItem
+              <MovieDetails
                 toggleMovieInLibrary={toggleMovieInLibrary}
                 currentLang={currentLang}
                 movies={libMovies}
@@ -123,7 +123,7 @@ export const App = () => {
           <Route
             path="actors/:actorId"
             element={
-              <ActorPage
+              <ActorDetails
                 currentLang={currentLang}
                 toggleActorsInAlbum={toggleActorsInAlbum}
                 actors={favActors}

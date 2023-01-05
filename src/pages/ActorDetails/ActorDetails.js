@@ -1,4 +1,4 @@
-import { ActorImg, ActorDescr, ActorHomePage } from './ActorPage.styled';
+import { ActorImg, ActorDescr, ActorHomePage } from './ActorDetails.styled';
 import { Name } from 'pages/Home/Home.styled';
 import {
   StyledBtn,
@@ -23,7 +23,7 @@ import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 
-export default function ActorPage({
+export default function ActorDetails({
   actors,
   currentLang,
   toggleActorsInAlbum,
@@ -170,7 +170,7 @@ export default function ActorPage({
   );
 }
 
-ActorPage.propTypes = {
+ActorDetails.propTypes = {
   toggleActorsInAlbum: PropTypes.func.isRequired,
   currentLang: PropTypes.string.isRequired,
   actors: PropTypes.array.isRequired,
