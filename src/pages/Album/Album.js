@@ -8,7 +8,7 @@ import { fetchAlbumActors } from 'services/api';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
 
-export default function Album({ actors, currentLang }) {
+export default function Album({ actors }) {
   const [album, setAlbum] = useState([]);
   const location = useLocation();
   const lang = t('lang');

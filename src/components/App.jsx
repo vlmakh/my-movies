@@ -39,23 +39,19 @@ export const App = () => {
   const changeLanguage = useCallback(language => {
     i18n.changeLanguage(language);
   }, [i18n]);
-  const lang = t('lang');
-
+  
   useEffect(() => {
-    if (currentLang === lang) {
-      return;
-    }
     changeLanguage(currentLang.slice(0,2));
+
     setState({
       theme: currentTheme.name,
       lang: currentLang,
       lib: libMovies,
       album: favActors,
     });
-  }, [currentTheme.name, currentLang, libMovies, favActors, lang, changeLanguage]);
+  }, [currentTheme.name, currentLang, libMovies, favActors, changeLanguage]);
 
   useEffect(() => {
-    // console.log(state)
     localStorage.setItem('movieteka', JSON.stringify(state));
   }, [state]);
 
@@ -100,7 +96,6 @@ export const App = () => {
             <SharedLayout
               toggleTheme={toggleTheme}
               currentTheme={currentTheme.name}
-              currentLang={currentLang}
               turnEnLang={turnEnLang}
               turnUaLang={turnUaLang}
             />
