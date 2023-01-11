@@ -28,10 +28,11 @@ import { t } from 'i18next';
 export const SharedLayout = ({
   toggleTheme,
   currentTheme,
+  currentLang,
   turnEnLang,
   turnUaLang,
 }) => {
-  const lang = t('lang');
+  // const lang = t('lang');
 
   return (
     <Layout>
@@ -70,14 +71,14 @@ export const SharedLayout = ({
               <LangBtn
                 type="button"
                 onClick={turnEnLang}
-                disabled={lang === 'en-US' ? true : false}
+                disabled={currentLang === 'en-US' ? true : false}
               >
                 EN
               </LangBtn>
               <LangBtn
                 type="button"
                 onClick={turnUaLang}
-                disabled={lang === 'uk-UA' ? true : false}
+                disabled={currentLang === 'uk-UA' ? true : false}
               >
                 UA
               </LangBtn>

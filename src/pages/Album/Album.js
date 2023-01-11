@@ -21,9 +21,7 @@ export default function Album({ actors, currentLang }) {
 
   return (
     <PageWrap>
-      <PageTitle>
-        {currentLang === 'uk-UA' ? 'Улюблені актори' : 'Favorite actors'}
-      </PageTitle>
+      <PageTitle>{t('title.photoalbum')}</PageTitle>
 
       <List>
         {album.map(actor => (

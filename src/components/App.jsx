@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
-import { lazy, useState, useEffect } from 'react';
+import { lazy, useState, useEffect, useCallback } from 'react';
 import { ThemeProvider } from 'theme-ui';
 import { darkTheme, lightTheme } from 'theme';
 import { Toaster } from 'react-hot-toast';
@@ -36,25 +36,23 @@ export const App = () => {
   const [favActors, setFavActors] = useState(state.album);
 
   const { i18n } = useTranslation();
-  const changeLanguage = language => {
+  const changeLanguage = useCallback(language => {
     i18n.changeLanguage(language);
-  };
-  // const lang = t('lang');
-  // changeLanguage(currentLang.slice(0,2));
-  console.log(currentLang.slice(0, 2))
+  }, [i18n]);
+  const lang = t('lang');
 
   useEffect(() => {
-    // if (currentLang === t('lang')) {
-    //   return;
-    // }
-
+    if (currentLang === lang) {
+      return;
+    }
+    changeLanguage(currentLang.slice(0,2));
     setState({
       theme: currentTheme.name,
       lang: currentLang,
       lib: libMovies,
       album: favActors,
     });
-  }, [currentTheme.name, currentLang, libMovies, favActors]);
+  }, [currentTheme.name, currentLang, libMovies, favActors, lang, changeLanguage]);
 
   useEffect(() => {
     // console.log(state)
@@ -102,6 +100,7 @@ export const App = () => {
             <SharedLayout
               toggleTheme={toggleTheme}
               currentTheme={currentTheme.name}
+              currentLang={currentLang}
               turnEnLang={turnEnLang}
               turnUaLang={turnUaLang}
             />

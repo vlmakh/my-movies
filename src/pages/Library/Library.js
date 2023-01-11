@@ -21,9 +21,7 @@ export default function Library({ movies, currentLang }) {
 
   return (
     <PageWrap>
-      <PageTitle>
-        {currentLang === 'uk-UA' ? 'Улюблені фільми' : 'Favorite movies'}
-      </PageTitle>
+      <PageTitle>{t('title.library')}</PageTitle>
 
       <List>
         {library.map(movie => (

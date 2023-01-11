@@ -98,10 +98,10 @@ i18n
   // модуль инициализации
   .use(initReactI18next)
   .init({
-    // lng: 'en',
+    lng: 'en',
     // Стандартный язык
-    fallbackLng: 'en',
-    debug: true,
+    // fallbackLng: 'en',
+    // debug: true,
     // Распознавание и кэширование языковых кук
     detection: {
       order: ['queryString', 'cookie'],
