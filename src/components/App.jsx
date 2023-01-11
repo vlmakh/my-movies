@@ -60,12 +60,10 @@ export const App = () => {
   };
 
   const turnEnLang = () => {
-    // changeLanguage('en');
     setCurrentLang('en-US');
   };
 
   const turnUaLang = () => {
-    // changeLanguage('uk');
     setCurrentLang('uk-UA');
   };
 
