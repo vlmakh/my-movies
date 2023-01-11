@@ -46,7 +46,7 @@ const resources = {
       emptyQuery: 'Empty query. Please input something for search',
     },
   },
-  ua: {
+  uk: {
     translation: {
       lang: 'uk-UA',
       title: {
@@ -98,6 +98,7 @@ i18n
   // модуль инициализации
   .use(initReactI18next)
   .init({
+    // lng: 'en',
     // Стандартный язык
     fallbackLng: 'en',
     debug: true,

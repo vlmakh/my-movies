@@ -23,7 +23,7 @@ const Library = lazy(() => import('pages/Library/Library'));
 const Album = lazy(() => import('pages/Album/Album'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
-const startData = { theme: 'darkTheme', lang: 'en-US', lib: [], album: [] };
+const startData = { theme: 'darkTheme', lang: t('lang'), lib: [], album: [] };
 const savedData = JSON.parse(localStorage.getItem('movieteka'));
 
 export const App = () => {
@@ -31,7 +31,7 @@ export const App = () => {
   const [currentTheme, setCurrentTheme] = useState(
     state.theme === 'darkTheme' ? darkTheme : lightTheme
   );
-  // const [currentLang, setCurrentLang] = useState(state.lang);
+  const [currentLang, setCurrentLang] = useState(state.lang);
   const [libMovies, setLibMovies] = useState(state.lib);
   const [favActors, setFavActors] = useState(state.album);
 
@@ -39,16 +39,22 @@ export const App = () => {
   const changeLanguage = language => {
     i18n.changeLanguage(language);
   };
-  const lang = t('lang');
+  // const lang = t('lang');
+  // changeLanguage(currentLang.slice(0,2));
+  console.log(currentLang.slice(0, 2))
 
   useEffect(() => {
+    // if (currentLang === t('lang')) {
+    //   return;
+    // }
+
     setState({
       theme: currentTheme.name,
-      lang: lang,
+      lang: currentLang,
       lib: libMovies,
       album: favActors,
     });
-  }, [currentTheme.name, lang, libMovies, favActors]);
+  }, [currentTheme.name, currentLang, libMovies, favActors]);
 
   useEffect(() => {
     // console.log(state)
@@ -61,12 +67,12 @@ export const App = () => {
 
   const turnEnLang = () => {
     changeLanguage('en');
-    // setCurrentLang('en-US');
+    setCurrentLang('en-US');
   };
 
   const turnUaLang = () => {
-    changeLanguage('ua');
-    // setCurrentLang('uk-UA');
+    changeLanguage('uk');
+    setCurrentLang('uk-UA');
   };
 
   const toggleMovieInLibrary = movieId => {
