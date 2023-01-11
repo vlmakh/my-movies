@@ -89,16 +89,16 @@ export default function ActorDetails({ actors, toggleActorsInAlbum }) {
                 <ActorDescr>
                   {t('actor.birth')}
                   {lang === 'uk-UA'
-                    ? `: ${formatDateUa(personInfo.birthday)}`
-                    : `: ${formatDateEn(personInfo.birthday)}`}
+                    ? `${formatDateUa(personInfo.birthday)}`
+                    : `${formatDateEn(personInfo.birthday)}`}
                 </ActorDescr>
               )}
               {personInfo.deathday && (
                 <ActorDescr>
                   {t('actor.death')}
                   {lang === 'uk-UA'
-                    ? `: ${formatDateUa(personInfo.deathday)}`
-                    : `: ${formatDateEn(personInfo.deathday)}`}
+                    ? `${formatDateUa(personInfo.deathday)}`
+                    : `${formatDateEn(personInfo.deathday)}`}
                 </ActorDescr>
               )}
               {personInfo.homepage && (
