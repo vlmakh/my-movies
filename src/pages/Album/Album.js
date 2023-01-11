@@ -6,16 +6,18 @@ import 'index.css';
 import { ActorCard } from 'components/ActorCard/ActorCard';
 import { fetchAlbumActors } from 'services/api';
 import PropTypes from 'prop-types';
+import { t } from 'i18next';
 
 export default function Album({ actors, currentLang }) {
   const [album, setAlbum] = useState([]);
   const location = useLocation();
+  const lang = t('lang');
 
   useEffect(() => {
-    fetchAlbumActors(actors, currentLang).then(data => {
+    fetchAlbumActors(actors, lang).then(data => {
       setAlbum(data);
     });
-  }, [currentLang, actors]);
+  }, [lang, actors]);
 
   return (
     <PageWrap>
@@ -37,6 +39,5 @@ export default function Album({ actors, currentLang }) {
 }
 
 Album.propTypes = {
-  currentLang: PropTypes.string.isRequired,
   actors: PropTypes.array.isRequired,
 };

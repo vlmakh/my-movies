@@ -21,6 +21,7 @@ export const MovieTitle = styled.div`
   padding-bottom: ${p => p.theme.space[2]}px;
   background-color:  ${p => p.theme.colors.bcgTitle};
   color:  ${p => p.theme.colors.textSecondary};
+  font-size: 18px;
   font-weight: 700;
   text-align: center;
 

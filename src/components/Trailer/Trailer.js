@@ -3,17 +3,16 @@ import { useParams } from 'react-router-dom';
 import { fetchMovieTrailer } from 'services/api';
 import { Box } from 'components/Box/Box';
 import { IframeStyled, Text } from './Trailer.styled';
-import PropTypes from 'prop-types';
 import { ThreeCircles } from 'react-loader-spinner';
+import { t } from 'i18next';
 
-export default function Trailer({ currentLang }) {
+export default function Trailer() {
   const params = useParams();
   const [trailer, setTrailer] = useState('plugtext');
-  const notFound =
-    currentLang === 'uk-UA' ? 'Не знайдено' : 'No information found';
+  const lang = t('lang');
 
   useEffect(() => {
-    fetchMovieTrailer(params.movieId, currentLang).then(data => {
+    fetchMovieTrailer(params.movieId, lang).then(data => {
       const objTrailer = data.results.find(movie => movie.type === 'Trailer');
 
       if (!objTrailer) {
@@ -23,7 +22,7 @@ export default function Trailer({ currentLang }) {
 
       setTrailer(`https://www.youtube.com/embed/${objTrailer.key}`);
     });
-  }, [currentLang, params.movieId, trailer]);
+  }, [lang, params.movieId, trailer]);
 
   return (
     <Box mt={4}>
@@ -39,7 +38,7 @@ export default function Trailer({ currentLang }) {
         }
       >
         {!trailer ? (
-          <Text>{notFound}</Text>
+          <Text>{t('notFoundMsg')}</Text>
         ) : (
           <IframeStyled
             src={trailer}
@@ -52,7 +51,3 @@ export default function Trailer({ currentLang }) {
     </Box>
   );
 }
-
-Trailer.propTypes = {
-  currentLang: PropTypes.string.isRequired,
-};

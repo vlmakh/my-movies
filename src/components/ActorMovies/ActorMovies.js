@@ -3,18 +3,19 @@ import { useState, useEffect } from 'react';
 import { useParams, useLocation, NavLink } from 'react-router-dom';
 import { fetchMoviesByActor } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
-import PropTypes from 'prop-types';
+import { t } from 'i18next';
 
-export default function ActorMovies({ currentLang }) {
+export default function ActorMovies() {
   const params = useParams();
   const [movies, setMovies] = useState([]);
   const location = useLocation();
+  const lang = t('lang');
 
   useEffect(() => {
-    fetchMoviesByActor(params.actorId, currentLang).then(data => {
+    fetchMoviesByActor(params.actorId, lang).then(data => {
       setMovies(data.cast);
     });
-  }, [currentLang, params.actorId]);
+  }, [lang, params.actorId]);
 
   return (
     <>
@@ -37,7 +38,3 @@ export default function ActorMovies({ currentLang }) {
     </>
   );
 }
-
-ActorMovies.propTypes = {
-  currentLang: PropTypes.string.isRequired,
-};

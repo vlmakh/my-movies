@@ -1,0 +1,36 @@
+{
+  "title": {
+    "home": "Trending today",
+    "library": "Favorite movies",
+    "photoalbum": "Favotite actors"
+  },
+  "nav": {
+    "movies": "Movies",
+    "actors": "Actors",
+    "library": "Library",
+    "photoalbum": "Photoalbum"
+  },
+  "buttons": {
+    "search": "Search",
+    "back": "Back",
+    "home": "Home",
+    "overview": "Overview",
+    "cast": "Cast",
+    "reviews": "Reviews",
+    "trailer": "Trailer",
+    "save": "Save",
+    "saved": "Saved",
+    "biography": "Biography",
+    "movies": "Movies",
+    "photo": "Photo"
+  },
+  "placeholders": {
+    "name": "Name",
+    "film": "Film"
+  },
+  "actor": {
+    "birth": "Birth date",
+    "death": "Death date",
+    "homepage": "Homepage"
+  }
+}

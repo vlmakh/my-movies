@@ -21,12 +21,9 @@ import imageplaceholder from 'images/noposter.jpg';
 import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
 import PropTypes from 'prop-types';
+import { t } from 'i18next';
 
-export default function MovieDetails({
-  toggleMovieInLibrary,
-  currentLang,
-  movies,
-}) {
+export default function MovieDetails({ toggleMovieInLibrary, movies }) {
   const [movieItem, setMovieItem] = useState(null);
   const [error, setError] = useState(false);
   const location = useLocation();
@@ -36,10 +33,7 @@ export default function MovieDetails({
     movies.includes(params.movieId) ? true : false
   );
   const [showModal, setShowModal] = useState(false);
-  const textSave = currentLang === 'uk-UA' ? 'Зберегти' : 'Save';
-  const textSaved = currentLang === 'uk-UA' ? 'Збережено' : 'Saved';
-  const textBack = currentLang === 'uk-UA' ? 'Назад' : 'Back';
-  const textHome = currentLang === 'uk-UA' ? 'Старт' : 'Home';
+  const lang = t('lang');
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -55,19 +49,19 @@ export default function MovieDetails({
   };
 
   useEffect(() => {
-    fetchMovieById(params.movieId, currentLang)
+    fetchMovieById(params.movieId, lang)
       .then(data => {
         setMovieItem(data);
       })
       .catch(error => {
         setError(true);
       });
-  }, [currentLang, params.movieId]);
+  }, [lang, params.movieId]);
 
   return (
     <PageWrap>
       <BackLinkBtn to={backLink.current}>
-        {!backLink.current.pathname ? textHome : textBack}
+        {!backLink.current.pathname ? t('buttons.home') : t('buttons.back')}
       </BackLinkBtn>
 
       {error && <PageError />}
@@ -102,19 +96,17 @@ export default function MovieDetails({
 
               <BtnContainer>
                 <StyledLinkBtn to="overview" state={movieItem.overview}>
-                  {currentLang === 'uk-UA' ? 'Опис' : 'Overview'}
+                  {t('buttons.overview')}
                 </StyledLinkBtn>
-                <StyledLinkBtn to="cast">
-                  {currentLang === 'uk-UA' ? 'В ролях' : 'Cast'}
-                </StyledLinkBtn>
+                <StyledLinkBtn to="cast">{t('buttons.cast')}</StyledLinkBtn>
                 <StyledLinkBtn to="reviews">
-                  {currentLang === 'uk-UA' ? 'Відгуки' : 'Reviews'}
+                  {t('buttons.reviews')}
                 </StyledLinkBtn>
                 <StyledLinkBtn to="trailer">
-                  {currentLang === 'uk-UA' ? 'Трейлер' : 'Trailer'}
+                  {t('buttons.trailer')}
                 </StyledLinkBtn>
                 <StyledBtn onClick={handleSaveToLib} saved={saved}>
-                  {saved ? textSaved : textSave}
+                  {saved ? t('buttons.saved') : t('buttons.save')}
                 </StyledBtn>
               </BtnContainer>
             </Box>
@@ -157,6 +149,5 @@ export default function MovieDetails({
 
 MovieDetails.propTypes = {
   toggleMovieInLibrary: PropTypes.func.isRequired,
-  currentLang: PropTypes.string.isRequired,
   movies: PropTypes.array.isRequired,
 };

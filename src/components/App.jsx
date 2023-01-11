@@ -4,6 +4,8 @@ import { lazy, useState, useEffect } from 'react';
 import { ThemeProvider } from 'theme-ui';
 import { darkTheme, lightTheme } from 'theme';
 import { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
@@ -25,22 +27,28 @@ const startData = { theme: 'darkTheme', lang: 'en-US', lib: [], album: [] };
 const savedData = JSON.parse(localStorage.getItem('movieteka'));
 
 export const App = () => {
-  const [state, setState] = useState(savedData ? savedData : startData);
+  const [state, setState] = useState(savedData ?? startData);
   const [currentTheme, setCurrentTheme] = useState(
     state.theme === 'darkTheme' ? darkTheme : lightTheme
   );
-  const [currentLang, setCurrentLang] = useState(state.lang);
+  // const [currentLang, setCurrentLang] = useState(state.lang);
   const [libMovies, setLibMovies] = useState(state.lib);
   const [favActors, setFavActors] = useState(state.album);
+
+  const { i18n } = useTranslation();
+  const changeLanguage = language => {
+    i18n.changeLanguage(language);
+  };
+  const lang = t('lang');
 
   useEffect(() => {
     setState({
       theme: currentTheme.name,
-      lang: currentLang,
+      lang: lang,
       lib: libMovies,
       album: favActors,
     });
-  }, [currentTheme.name, currentLang, libMovies, favActors]);
+  }, [currentTheme.name, lang, libMovies, favActors]);
 
   useEffect(() => {
     // console.log(state)
@@ -52,11 +60,13 @@ export const App = () => {
   };
 
   const turnEnLang = () => {
-    setCurrentLang('en-US');
+    changeLanguage('en');
+    // setCurrentLang('en-US');
   };
 
   const turnUaLang = () => {
-    setCurrentLang('uk-UA');
+    changeLanguage('ua');
+    // setCurrentLang('uk-UA');
   };
 
   const toggleMovieInLibrary = movieId => {
@@ -86,68 +96,44 @@ export const App = () => {
             <SharedLayout
               toggleTheme={toggleTheme}
               currentTheme={currentTheme.name}
-              currentLang={currentLang}
               turnEnLang={turnEnLang}
               turnUaLang={turnUaLang}
             />
           }
         >
-          <Route index element={<Home currentLang={currentLang} />} />
-          <Route path="movies" element={<Movies currentLang={currentLang} />} />
+          <Route index element={<Home />} />
+          <Route path="movies" element={<Movies />} />
           <Route
             path="movies/:movieId"
             element={
               <MovieDetails
                 toggleMovieInLibrary={toggleMovieInLibrary}
-                currentLang={currentLang}
                 movies={libMovies}
               />
             }
           >
-            <Route
-              path="overview"
-              element={<Overview currentLang={currentLang} />}
-            />
-            <Route path="cast" element={<Cast currentLang={currentLang} />} />
-            <Route
-              path="reviews"
-              element={<Reviews currentLang={currentLang} />}
-            />
-            <Route
-              path="trailer"
-              element={<Trailer currentLang={currentLang} />}
-            />
-            <Route path="*" element={<PageError currentLang={currentLang} />} />
+            <Route path="overview" element={<Overview />} />
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="trailer" element={<Trailer />} />
+            <Route path="*" element={<PageError />} />
           </Route>
-          <Route path="actors" element={<Actors currentLang={currentLang} />} />
+          <Route path="actors" element={<Actors />} />
           <Route
             path="actors/:actorId"
             element={
               <ActorDetails
-                currentLang={currentLang}
                 toggleActorsInAlbum={toggleActorsInAlbum}
                 actors={favActors}
               />
             }
           >
-            <Route
-              path="biography"
-              element={<Biography currentLang={currentLang} />}
-            />
-            <Route
-              path="movies"
-              element={<ActorMovies currentLang={currentLang} />}
-            />
+            <Route path="biography" element={<Biography />} />
+            <Route path="movies" element={<ActorMovies />} />
             <Route path="images" element={<ActorImages />} />
           </Route>
-          <Route
-            path="library"
-            element={<Library movies={libMovies} currentLang={currentLang} />}
-          />
-          <Route
-            path="album"
-            element={<Album currentLang={currentLang} actors={favActors} />}
-          />      
+          <Route path="library" element={<Library movies={libMovies} />} />
+          <Route path="album" element={<Album actors={favActors} />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

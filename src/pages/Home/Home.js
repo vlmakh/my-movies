@@ -6,9 +6,9 @@ import { PageTitle, List, Item } from './Home.styled';
 import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { PaginationStyled } from 'components/Pagination/Pagination';
-import PropTypes from 'prop-types';
+import { t } from 'i18next';
 
-export default function Home({ currentLang }) {
+export default function Home() {
   const [trends, setTrends] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const location = useLocation();
@@ -16,26 +16,24 @@ export default function Home({ currentLang }) {
   const currentPage = Number(searchQuery.get('page'))
     ? Number(searchQuery.get('page'))
     : 1;
+  const lang = t('lang');
 
   useEffect(() => {
-    fetchTrends(currentLang, currentPage)
+    fetchTrends(lang, currentPage)
       .then(data => {
         setTrends(data.results);
         setTotalPages(data.total_pages);
       })
       .catch(error => console.log(error));
-  }, [currentLang, currentPage, setSearchQuery]);
+  }, [lang, currentPage, setSearchQuery]);
 
   const handlePageClick = e => {
-    // console.log(e);
     setSearchQuery({ page: e.selected + 1 });
   };
 
   return (
     <PageWrap>
-      <PageTitle>
-        {currentLang === 'uk-UA' ? 'Популярні сьогодні' : 'Trending Today'}
-      </PageTitle>
+      <PageTitle>{t('title.home')}</PageTitle>
 
       <List>
         {trends.map(trend => (
@@ -64,7 +62,3 @@ export default function Home({ currentLang }) {
     </PageWrap>
   );
 }
-
-Home.propTypes = {
-  currentLang: PropTypes.string.isRequired,
-};

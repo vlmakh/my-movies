@@ -7,27 +7,24 @@ import {
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviewsById } from 'services/api';
-import PropTypes from 'prop-types';
+import { t } from 'i18next';
 
-export default function Reviews({ currentLang }) {
+export default function Reviews() {
   const params = useParams();
   const [reviews, setReviews] = useState([]);
+  const lang = t('lang');
 
   useEffect(() => {
-    fetchReviewsById(params.movieId, currentLang).then(data => {
+    fetchReviewsById(params.movieId, lang).then(data => {
       // console.log(data.results);
       setReviews(data.results);
     });
-  }, [currentLang, params.movieId]);
+  }, [lang, params.movieId]);
 
   return (
     <>
       {!reviews.length ? (
-        <ReviewNot>
-          {currentLang === 'uk-UA'
-            ? 'Немає інформації'
-            : 'No information added'}
-        </ReviewNot>
+        <ReviewNot>{t('notFoundMsg')}</ReviewNot>
       ) : (
         <ReviewList>
           {reviews.map(review => (
@@ -41,7 +38,3 @@ export default function Reviews({ currentLang }) {
     </>
   );
 }
-
-Reviews.propTypes = {
-  currentLang: PropTypes.string.isRequired,
-};
