@@ -26,13 +26,13 @@ const startData = { theme: 'darkTheme', lang: 'en-US', lib: [], album: [] };
 const savedData = JSON.parse(localStorage.getItem('movieteka'));
 
 export const App = () => {
-  const [state, setState] = useState(savedData ?? startData);
+  const [data, setData] = useState(savedData ?? startData);
   const [currentTheme, setCurrentTheme] = useState(
-    state.theme === 'darkTheme' ? darkTheme : lightTheme
+    data.theme === 'darkTheme' ? darkTheme : lightTheme
   );
-  const [currentLang, setCurrentLang] = useState(state.lang);
-  const [libMovies, setLibMovies] = useState(state.lib);
-  const [favActors, setFavActors] = useState(state.album);
+  const [currentLang, setCurrentLang] = useState(data.lang);
+  const [libMovies, setLibMovies] = useState(data.lib);
+  const [favActors, setFavActors] = useState(data.album);
 
   const { i18n } = useTranslation();
   const changeLanguage = useCallback(language => {
@@ -42,7 +42,7 @@ export const App = () => {
   useEffect(() => {
     changeLanguage(currentLang.slice(0,2));
 
-    setState({
+    setData({
       theme: currentTheme.name,
       lang: currentLang,
       lib: libMovies,
@@ -51,8 +51,8 @@ export const App = () => {
   }, [currentTheme.name, currentLang, libMovies, favActors, changeLanguage]);
 
   useEffect(() => {
-    localStorage.setItem('movieteka', JSON.stringify(state));
-  }, [state]);
+    localStorage.setItem('movieteka', JSON.stringify(data));
+  }, [data]);
 
   const toggleTheme = () => {
     setCurrentTheme(currentTheme.name === 'darkTheme' ? lightTheme : darkTheme);
