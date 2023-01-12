@@ -11,9 +11,9 @@ import { useState, useEffect } from 'react';
 import { fetchActors } from 'services/api';
 import { IoIosCloseCircle } from 'react-icons/io';
 import toast from 'react-hot-toast';
-import PropTypes from 'prop-types';
+import { t } from 'i18next';
 
-export default function Actors({ currentLang }) {
+export default function Actors() {
   const [actorsFound, setActorsFound] = useState([]);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search');
@@ -23,24 +23,17 @@ export default function Actors({ currentLang }) {
   const [input, setInput] = useState(query ?? '');
   const location = useLocation();
   const [totalPages, setTotalPages] = useState(1);
-  const noResults =
-    currentLang === 'uk-UA'
-      ? 'Немає результатів за вашим пошуковим запитом'
-      : 'No results found due to your search inquiry';
-  const emptyQuery =
-    currentLang === 'uk-UA'
-      ? 'Порожній запит. Введіть щось для пошуку'
-      : 'Empty query. Please input something for search';
+  const lang = t('lang');
 
   useEffect(() => {
     if (!query) {
       return;
     }
 
-    fetchActors(query, currentPage, currentLang)
+    fetchActors(query, currentPage, lang)
       .then(data => {
         if (!data.results.length) {
-          return toast.error(noResults);
+          return toast.error(t('noResults'));
         } else {
           // console.log(data.results);
           setTotalPages(data.total_pages);
@@ -48,7 +41,7 @@ export default function Actors({ currentLang }) {
         }
       })
       .catch(error => console.log(error));
-  }, [currentLang, noResults, currentPage, query]);
+  }, [lang, currentPage, query]);
 
   const onSearchInput = event => {
     setInput(event.target.value);
@@ -57,7 +50,7 @@ export default function Actors({ currentLang }) {
   const handleSubmit = event => {
     event.preventDefault();
     if (!input.trim()) {
-      return toast.error(emptyQuery);
+      return toast.error(t('emptyQuery'));
     }
     if (input.trim() !== query) {
       setActorsFound([]);
@@ -84,15 +77,13 @@ export default function Actors({ currentLang }) {
             type="text"
             value={input}
             onChange={onSearchInput}
-            placeholder={currentLang === 'uk-UA' ? "Ім'я" : 'Name'}
+            placeholder={t('placeholders.name')}
           />
           <ClearBtn type="button" onClick={clearAll}>
             <IoIosCloseCircle size="20" />
           </ClearBtn>
         </Box>
-        <SearchBtn type="submit">
-          {currentLang === 'uk-UA' ? 'Пошук' : 'Search'}
-        </SearchBtn>
+        <SearchBtn type="submit">{t('buttons.search')}</SearchBtn>
       </SearchForm>
 
       {!actorsFound.length && <Background />}
@@ -124,7 +115,3 @@ export default function Actors({ currentLang }) {
     </PageWrap>
   );
 }
-
-Actors.propTypes = {
-  currentLang: PropTypes.string.isRequired,
-};

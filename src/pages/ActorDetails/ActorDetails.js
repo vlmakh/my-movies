@@ -22,12 +22,9 @@ import { formatDateEn, formatDateUa } from 'services/formatDate';
 import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
 import PropTypes from 'prop-types';
+import { t } from 'i18next';
 
-export default function ActorDetails({
-  actors,
-  currentLang,
-  toggleActorsInAlbum,
-}) {
+export default function ActorDetails({ actors, toggleActorsInAlbum }) {
   const [personInfo, setPersonInfo] = useState(null);
   const [error, setError] = useState(false);
   const location = useLocation();
@@ -37,24 +34,21 @@ export default function ActorDetails({
   );
   const backLink = useRef(location.state?.from ?? '/');
   const [showModal, setShowModal] = useState(false);
-  const textSave = currentLang === 'uk-UA' ? 'Зберегти' : 'Save';
-  const textSaved = currentLang === 'uk-UA' ? 'Збережено' : 'Saved';
-  const textBack = currentLang === 'uk-UA' ? 'Назад' : 'Back';
-  const textHome = currentLang === 'uk-UA' ? 'Старт' : 'Home';
+  const lang = t('lang');
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
   useEffect(() => {
-    fetchActorById(params.actorId, currentLang)
+    fetchActorById(params.actorId, lang)
       .then(data => {
         setPersonInfo(data);
       })
       .catch(error => {
         setError(true);
       });
-  }, [currentLang, params.actorId]);
+  }, [lang, params.actorId]);
 
   const toggleSaveBtn = () => {
     setSaved(!saved);
@@ -68,7 +62,7 @@ export default function ActorDetails({
   return (
     <PageWrap>
       <BackLinkBtn to={backLink.current}>
-        {!backLink.current.pathname ? textHome : textBack}
+        {!backLink.current.pathname ? t('buttons.home') : t('buttons.back')}
       </BackLinkBtn>
 
       {error && <PageError />}
@@ -93,21 +87,23 @@ export default function ActorDetails({
             <Box>
               {personInfo.birthday && (
                 <ActorDescr>
-                  {currentLang === 'uk-UA'
-                    ? `Дата народження: ${formatDateUa(personInfo.birthday)}`
-                    : `Birth date: ${formatDateEn(personInfo.birthday)}`}
+                  {t('actor.birth')}
+                  {lang === 'uk-UA'
+                    ? `${formatDateUa(personInfo.birthday)}`
+                    : `${formatDateEn(personInfo.birthday)}`}
                 </ActorDescr>
               )}
               {personInfo.deathday && (
                 <ActorDescr>
-                  {currentLang === 'uk-UA'
-                    ? `Дата смерті: ${formatDateUa(personInfo.deathday)}`
-                    : `Death date: ${formatDateEn(personInfo.deathday)}`}
+                  {t('actor.death')}
+                  {lang === 'uk-UA'
+                    ? `${formatDateUa(personInfo.deathday)}`
+                    : `${formatDateEn(personInfo.deathday)}`}
                 </ActorDescr>
               )}
               {personInfo.homepage && (
                 <ActorDescr>
-                  {currentLang === 'uk-UA' ? 'Сторінка: ' : 'Homepage: '}
+                  {t('actor.homepage')}
                   <ActorHomePage
                     href={personInfo.homepage}
                     target="_blank"
@@ -120,16 +116,12 @@ export default function ActorDetails({
 
               <BtnContainer>
                 <StyledLinkBtn to="biography" state={personInfo.biography}>
-                  {currentLang === 'uk-UA' ? 'Біографія' : 'Biography'}
+                  {t('buttons.biography')}
                 </StyledLinkBtn>
-                <StyledLinkBtn to="movies">
-                  {currentLang === 'uk-UA' ? 'Фільми' : 'Movies'}
-                </StyledLinkBtn>
-                <StyledLinkBtn to="images">
-                  {currentLang === 'uk-UA' ? 'Фото' : 'Photos'}
-                </StyledLinkBtn>
+                <StyledLinkBtn to="movies">{t('buttons.movies')}</StyledLinkBtn>
+                <StyledLinkBtn to="images">{t('buttons.photo')}</StyledLinkBtn>
                 <StyledBtn onClick={handleSaveToAlbum} saved={saved}>
-                  {saved ? textSaved : textSave}
+                  {saved ? t('buttons.saved') : t('buttons.save')}
                 </StyledBtn>
               </BtnContainer>
             </Box>
@@ -172,6 +164,5 @@ export default function ActorDetails({
 
 ActorDetails.propTypes = {
   toggleActorsInAlbum: PropTypes.func.isRequired,
-  currentLang: PropTypes.string.isRequired,
   actors: PropTypes.array.isRequired,
 };

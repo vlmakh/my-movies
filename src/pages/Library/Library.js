@@ -6,22 +6,22 @@ import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { fetchLibraryMovies } from 'services/api';
 import PropTypes from 'prop-types';
+import { t } from 'i18next';
 
 export default function Library({ movies, currentLang }) {
   const [library, setLibrary] = useState([]);
   const location = useLocation();
+  const lang = t('lang');
 
   useEffect(() => {
-    fetchLibraryMovies(movies, currentLang).then(data => {
+    fetchLibraryMovies(movies, lang).then(data => {
       setLibrary(data);
     });
-  }, [currentLang, movies]);
+  }, [lang, movies]);
 
   return (
     <PageWrap>
-      <PageTitle>
-        {currentLang === 'uk-UA' ? 'Улюблені фільми' : 'Favorite movies'}
-      </PageTitle>
+      <PageTitle>{t('title.library')}</PageTitle>
 
       <List>
         {library.map(movie => (
@@ -37,6 +37,5 @@ export default function Library({ movies, currentLang }) {
 }
 
 Library.propTypes = {
-  currentLang: PropTypes.string.isRequired,
   movies: PropTypes.array.isRequired,
 };

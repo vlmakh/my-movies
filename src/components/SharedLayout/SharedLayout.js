@@ -23,14 +23,16 @@ import {
 } from 'react-icons/md';
 import { ThemeBtn } from 'components/Buttons/Buttons';
 import PropTypes from 'prop-types';
+import { t } from 'i18next';
 
 export const SharedLayout = ({
   toggleTheme,
   currentTheme,
-  currentLang,
   turnEnLang,
   turnUaLang,
 }) => {
+  const lang = t('lang');
+
   return (
     <Layout>
       <Header>
@@ -39,18 +41,10 @@ export const SharedLayout = ({
             <HeaderLink to="/">
               <img src={logo} alt="logo" width="32" height="32" />
             </HeaderLink>
-            <HeaderLink to="/movies">
-              {currentLang === 'uk-UA' ? 'Фільми' : 'Movies'}
-            </HeaderLink>
-            <HeaderLink to="/actors">
-              {currentLang === 'uk-UA' ? 'Актори' : 'Actors'}
-            </HeaderLink>
-            <HeaderLink to="/library">
-              {currentLang === 'uk-UA' ? 'Бібліотека' : 'Library'}
-            </HeaderLink>
-            <HeaderLink to="/album">
-              {currentLang === 'uk-UA' ? 'Фотоальбом' : 'Photoalbum'}
-            </HeaderLink>
+            <HeaderLink to="/movies">{t('nav.movies')}</HeaderLink>
+            <HeaderLink to="/actors">{t('nav.actors')}</HeaderLink>
+            <HeaderLink to="/library">{t('nav.library')}</HeaderLink>
+            <HeaderLink to="/album">{t('nav.photoalbum')}</HeaderLink>
           </Nav>
 
           <NavMobile>
@@ -76,14 +70,14 @@ export const SharedLayout = ({
               <LangBtn
                 type="button"
                 onClick={turnEnLang}
-                disabled={currentLang === 'en-US' ? true : false}
+                disabled={lang === 'en-US' ? true : false}
               >
                 EN
               </LangBtn>
               <LangBtn
                 type="button"
                 onClick={turnUaLang}
-                disabled={currentLang === 'uk-UA' ? true : false}
+                disabled={lang === 'uk-UA' ? true : false}
               >
                 UA
               </LangBtn>
@@ -127,7 +121,6 @@ export const SharedLayout = ({
 SharedLayout.propTypes = {
   toggleTheme: PropTypes.func.isRequired,
   currentTheme: PropTypes.string.isRequired,
-  currentLang: PropTypes.string.isRequired,
   turnEnLang: PropTypes.func.isRequired,
   turnUaLang: PropTypes.func.isRequired,
 };
