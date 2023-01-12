@@ -5,7 +5,6 @@ import { ThemeProvider } from 'theme-ui';
 import { darkTheme, lightTheme } from 'theme';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-import { t } from 'i18next';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
@@ -23,7 +22,7 @@ const Library = lazy(() => import('pages/Library/Library'));
 const Album = lazy(() => import('pages/Album/Album'));
 const PageError = lazy(() => import('pages/PageError/PageError'));
 
-const startData = { theme: 'darkTheme', lang: t('lang'), lib: [], album: [] };
+const startData = { theme: 'darkTheme', lang: 'en-US', lib: [], album: [] };
 const savedData = JSON.parse(localStorage.getItem('movieteka'));
 
 export const App = () => {
