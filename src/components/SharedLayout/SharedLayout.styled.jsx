@@ -123,6 +123,7 @@ export const Footer = styled.div`
 export const MyMailLink = styled.a`
   color: ${p => p.theme.colors.textPrimary};
   font-size: ${p => p.theme.fontSizes.s};
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
   

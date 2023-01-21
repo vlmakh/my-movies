@@ -111,7 +111,9 @@ export const SharedLayout = ({
       </Suspense>
 
       <Footer>
-        <p>Made by</p>
+        <p>
+          <b>2022</b>
+        </p>
         <MyMailLink href="mailto:vlmakh@gmail.com">vlmakh@gmail.com</MyMailLink>
       </Footer>
     </Layout>
