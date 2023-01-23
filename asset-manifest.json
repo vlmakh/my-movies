@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/goit-react-hw-05-movies/static/css/main.79637082.css",
-    "main.js": "/goit-react-hw-05-movies/static/js/main.3d6b0aec.js",
+    "main.js": "/goit-react-hw-05-movies/static/js/main.7d6f7c08.js",
     "static/js/75.6127d407.chunk.js": "/goit-react-hw-05-movies/static/js/75.6127d407.chunk.js",
     "static/js/547.b2a1dcf3.chunk.js": "/goit-react-hw-05-movies/static/js/547.b2a1dcf3.chunk.js",
     "static/js/64.bed2fc8f.chunk.js": "/goit-react-hw-05-movies/static/js/64.bed2fc8f.chunk.js",
@@ -28,13 +28,14 @@
     "static/media/bcg-movies01.jpg": "/goit-react-hw-05-movies/static/media/bcg-movies01.15f8126b6e71a507dca7.jpg",
     "static/media/bcg-actors01.jpg": "/goit-react-hw-05-movies/static/media/bcg-actors01.e45287c4933840992fcd.jpg",
     "static/media/error-404.jpg": "/goit-react-hw-05-movies/static/media/error-404.e9f7e60adc7856fc4f69.jpg",
+    "static/media/vm_logo.svg": "/goit-react-hw-05-movies/static/media/vm_logo.b99d6aec24749ad70cc7cbdd64db851d.svg",
     "static/media/slick.svg": "/goit-react-hw-05-movies/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/goit-react-hw-05-movies/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/goit-react-hw-05-movies/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/goit-react-hw-05-movies/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/goit-react-hw-05-movies/index.html",
     "main.79637082.css.map": "/goit-react-hw-05-movies/static/css/main.79637082.css.map",
-    "main.3d6b0aec.js.map": "/goit-react-hw-05-movies/static/js/main.3d6b0aec.js.map",
+    "main.7d6f7c08.js.map": "/goit-react-hw-05-movies/static/js/main.7d6f7c08.js.map",
     "75.6127d407.chunk.js.map": "/goit-react-hw-05-movies/static/js/75.6127d407.chunk.js.map",
     "547.b2a1dcf3.chunk.js.map": "/goit-react-hw-05-movies/static/js/547.b2a1dcf3.chunk.js.map",
     "64.bed2fc8f.chunk.js.map": "/goit-react-hw-05-movies/static/js/64.bed2fc8f.chunk.js.map",
@@ -61,6 +62,6 @@
   },
   "entrypoints": [
     "static/css/main.79637082.css",
-    "static/js/main.3d6b0aec.js"
+    "static/js/main.7d6f7c08.js"
   ]
 }
