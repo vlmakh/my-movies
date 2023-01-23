@@ -24,6 +24,7 @@ import {
 import { ThemeBtn } from 'components/Buttons/Buttons';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
+import { Logo } from 'components/Logo/Logo';
 
 export const SharedLayout = ({
   toggleTheme,
@@ -111,9 +112,13 @@ export const SharedLayout = ({
       </Suspense>
 
       <Footer>
-        <p>
-          <b>2022</b>
-        </p>
+        <MyMailLink
+          href="https://vlmakh.github.io/my-portfolio/"
+          target="blank"
+        >
+          <Logo />
+        </MyMailLink>
+        <p>2022</p>
         <MyMailLink href="mailto:vlmakh@gmail.com">vlmakh@gmail.com</MyMailLink>
       </Footer>
     </Layout>

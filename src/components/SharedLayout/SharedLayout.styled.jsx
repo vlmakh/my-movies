@@ -107,7 +107,7 @@ export const Footer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: ${p => p.theme.space[3]}px;
+  gap: ${p => p.theme.space[4]}px;
   border-top: 1px solid grey;
   width: 100%;
   height: 36px;
