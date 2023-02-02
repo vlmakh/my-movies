@@ -3,7 +3,7 @@ import {
   DetailsImg,
   DetailsHomePage,
   DetailsName,
-} from 'components/Details/Details';
+} from 'components/DetailsComps/DetailsComps';
 import {
   StyledBtn,
   StyledLinkBtn,
