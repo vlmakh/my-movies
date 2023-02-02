@@ -1,5 +1,10 @@
-import { SearchInput, Background, SearchForm } from './Actors.styled';
-import { List, Item } from '../Home/Home.styled';
+import { BcgActors } from 'components/Background/Background';
+import {
+  List,
+  Item,
+  SearchForm,
+  SearchInput,
+} from 'components/PageDetails/PageDetails';
 import { SearchBtn, ClearBtn } from 'components/Buttons/Buttons';
 import { PaginationStyled } from 'components/Pagination/Pagination';
 import { ActorCard } from 'components/ActorCard/ActorCard';
@@ -35,7 +40,6 @@ export default function Actors() {
         if (!data.results.length) {
           return toast.error(t('noResults'));
         } else {
-          // console.log(data.results);
           setTotalPages(data.total_pages);
           setActorsFound([...data.results]);
         }
@@ -86,7 +90,7 @@ export default function Actors() {
         <SearchBtn type="submit">{t('buttons.search')}</SearchBtn>
       </SearchForm>
 
-      {!actorsFound.length && <Background />}
+      {!actorsFound.length && <BcgActors />}
 
       <List>
         {actorsFound.map(actor => (

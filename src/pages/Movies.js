@@ -1,5 +1,10 @@
-import { SearchForm, SearchInput, Background } from './Movies.styled';
-import { List, Item } from '../Home/Home.styled';
+import { BcgMovies } from 'components/Background/Background';
+import {
+  List,
+  Item,
+  SearchForm,
+  SearchInput,
+} from 'components/PageDetails/PageDetails';
 import { SearchBtn, ClearBtn } from 'components/Buttons/Buttons';
 import { PaginationStyled } from 'components/Pagination/Pagination';
 import { MovieCard } from 'components/MovieCard/MovieCard';
@@ -35,7 +40,6 @@ export default function Movies() {
         if (!data.results.length) {
           return toast.error(t('noResults'));
         } else {
-          // console.log(data);
           setTotalPages(data.total_pages);
           setMoviesFound([...data.results]);
         }
@@ -86,7 +90,7 @@ export default function Movies() {
         <SearchBtn type="submit">{t('buttons.search')}</SearchBtn>
       </SearchForm>
 
-      {!moviesFound.length && <Background />}
+      {!moviesFound.length && <BcgMovies />}
 
       <List>
         {moviesFound.map(movie => (

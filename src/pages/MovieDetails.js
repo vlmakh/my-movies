@@ -1,5 +1,8 @@
-import { MovieImg, MovieDescr } from './MovieDetails.styled';
-import { Name } from 'pages/Home/Home.styled';
+import {
+  DetailsDescr,
+  DetailsImg,
+  Name,
+} from 'components/PageDetails/PageDetails';
 import {
   StyledBtn,
   StyledLinkBtn,
@@ -15,7 +18,7 @@ import {
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieById } from 'services/api';
-import PageError from 'pages/PageError/PageError';
+import PageError from 'pages/PageError';
 import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/noposter.jpg';
 import { Suspense } from 'react';
@@ -71,7 +74,7 @@ export default function MovieDetails({ toggleMovieInLibrary, movies }) {
           <Name>{movieItem.title}</Name>
           <MainInfo>
             <ImgThumb>
-              <MovieImg
+              <DetailsImg
                 width="200"
                 src={
                   movieItem.poster_path
@@ -84,15 +87,15 @@ export default function MovieDetails({ toggleMovieInLibrary, movies }) {
             </ImgThumb>
 
             <Box>
-              <MovieDescr>
+              <DetailsDescr>
                 {movieItem.genres.map(genre => genre.name).join(', ')}
-              </MovieDescr>
-              <MovieDescr>
+              </DetailsDescr>
+              <DetailsDescr>
                 {(movieItem.release_date ?? movieItem.first_air_date).slice(
                   0,
                   4
                 )}
-              </MovieDescr>
+              </DetailsDescr>
 
               <BtnContainer>
                 <StyledLinkBtn to="overview" state={movieItem.overview}>
