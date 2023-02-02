@@ -1,13 +1,20 @@
 import styled from '@emotion/styled';
 
-export const ActorImg = styled.img`
+export const DetailsName = styled.h1`
+  margin-top: ${p => p.theme.space[4]}px;
+  font-size: ${p => p.theme.fontSizes.l};
+  color: ${p => p.theme.colors.textTitle};
+  text-align: center;
+`;
+
+export const DetailsImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   cursor: pointer;
 `;
 
-export const ActorDescr = styled.p`
+export const DetailsDescr = styled.p`
   margin-top: ${p => p.theme.space[4]}px;
   color: ${p => p.theme.colors.textPrimary};
 
@@ -16,7 +23,7 @@ export const ActorDescr = styled.p`
   }
 `;
 
-export const ActorHomePage = styled.a`
+export const DetailsHomePage = styled.a`
   margin-top: ${p => p.theme.space[4]}px;
   color: ${p => p.theme.colors.textPrimary};
   text-decoration: none;

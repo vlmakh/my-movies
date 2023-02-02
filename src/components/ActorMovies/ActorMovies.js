@@ -1,4 +1,4 @@
-import { List, Item } from 'pages/Home/Home.styled';
+import { List, Item } from 'components/BaseComps/BaseComps';
 import { useState, useEffect } from 'react';
 import { useParams, useLocation, NavLink } from 'react-router-dom';
 import { fetchMoviesByActor } from 'services/api';

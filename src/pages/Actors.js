@@ -1,20 +1,21 @@
-import { SearchForm, SearchInput, Background } from './Movies.styled';
-import { List, Item } from '../Home/Home.styled';
+import { BcgActors } from 'components/Background/Background';
+import { List, Item } from 'components/BaseComps/BaseComps';
+import { SearchForm, SearchInput } from 'components/SearchComps/SearchComps';
 import { SearchBtn, ClearBtn } from 'components/Buttons/Buttons';
 import { PaginationStyled } from 'components/Pagination/Pagination';
-import { MovieCard } from 'components/MovieCard/MovieCard';
+import { ActorCard } from 'components/ActorCard/ActorCard';
 import 'index.css';
 import { NavLink } from 'react-router-dom';
-import { Box, PageWrap } from 'components/Box/Box';
+import { PageWrap, Box } from 'components/Box/Box';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { fetchMovies } from 'services/api';
+import { fetchActors } from 'services/api';
 import { IoIosCloseCircle } from 'react-icons/io';
 import toast from 'react-hot-toast';
 import { t } from 'i18next';
 
-export default function Movies() {
-  const [moviesFound, setMoviesFound] = useState([]);
+export default function Actors() {
+  const [actorsFound, setActorsFound] = useState([]);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const query = searchQuery.get('search');
   const currentPage = Number(searchQuery.get('page'))
@@ -22,7 +23,7 @@ export default function Movies() {
     : 1;
   const [input, setInput] = useState(query ?? '');
   const location = useLocation();
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   const lang = t('lang');
 
   useEffect(() => {
@@ -30,14 +31,13 @@ export default function Movies() {
       return;
     }
 
-    fetchMovies(query, currentPage, lang)
+    fetchActors(query, currentPage, lang)
       .then(data => {
         if (!data.results.length) {
           return toast.error(t('noResults'));
         } else {
-          // console.log(data);
           setTotalPages(data.total_pages);
-          setMoviesFound([...data.results]);
+          setActorsFound([...data.results]);
         }
       })
       .catch(error => console.log(error));
@@ -53,14 +53,14 @@ export default function Movies() {
       return toast.error(t('emptyQuery'));
     }
     if (input.trim() !== query) {
-      setMoviesFound([]);
+      setActorsFound([]);
       setSearchQuery({ search: input.trim(), page: 1 });
     }
   };
 
   const clearAll = () => {
     setInput('');
-    setMoviesFound([]);
+    setActorsFound([]);
     setSearchQuery({ search: '', page: 0 });
     setTotalPages(0);
   };
@@ -77,7 +77,7 @@ export default function Movies() {
             type="text"
             value={input}
             onChange={onSearchInput}
-            placeholder={t('placeholders.film')}
+            placeholder={t('placeholders.name')}
           />
           <ClearBtn type="button" onClick={clearAll}>
             <IoIosCloseCircle size="20" />
@@ -86,13 +86,13 @@ export default function Movies() {
         <SearchBtn type="submit">{t('buttons.search')}</SearchBtn>
       </SearchForm>
 
-      {!moviesFound.length && <Background />}
+      {!actorsFound.length && <BcgActors />}
 
       <List>
-        {moviesFound.map(movie => (
-          <Item key={movie.id}>
-            <NavLink to={`${movie.id}`} state={{ from: location }}>
-              <MovieCard movie={movie} />
+        {actorsFound.map(actor => (
+          <Item key={actor.id}>
+            <NavLink to={`${actor.id}`} state={{ from: location }}>
+              <ActorCard actor={actor} />
             </NavLink>
           </Item>
         ))}

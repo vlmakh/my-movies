@@ -1,7 +1,7 @@
 import { PageWrap } from 'components/Box/Box';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { PageTitle, List, Item } from '../Home/Home.styled';
+import { PageTitle, List, Item } from 'components/BaseComps/BaseComps';
 import 'index.css';
 import { ActorCard } from 'components/ActorCard/ActorCard';
 import { fetchAlbumActors } from 'services/api';

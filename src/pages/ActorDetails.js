@@ -1,5 +1,9 @@
-import { ActorImg, ActorDescr, ActorHomePage } from './ActorDetails.styled';
-import { Name } from 'pages/Home/Home.styled';
+import {
+  DetailsDescr,
+  DetailsImg,
+  DetailsHomePage,
+  DetailsName,
+} from 'components/DetailsComps/DetailsComps';
 import {
   StyledBtn,
   StyledLinkBtn,
@@ -15,7 +19,7 @@ import {
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchActorById } from 'services/api';
-import PageError from 'pages/PageError/PageError';
+import PageError from 'pages/PageError';
 import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/noposter.jpg';
 import { formatDateEn, formatDateUa } from 'services/formatDate';
@@ -69,10 +73,10 @@ export default function ActorDetails({ actors, toggleActorsInAlbum }) {
 
       {personInfo && (
         <>
-          <Name>{personInfo.name}</Name>
+          <DetailsName>{personInfo.name}</DetailsName>
           <MainInfo>
             <ImgThumb>
-              <ActorImg
+              <DetailsImg
                 width="200"
                 src={
                   personInfo.profile_path
@@ -86,32 +90,32 @@ export default function ActorDetails({ actors, toggleActorsInAlbum }) {
 
             <Box>
               {personInfo.birthday && (
-                <ActorDescr>
+                <DetailsDescr>
                   {t('actor.birth')}
                   {lang === 'uk-UA'
                     ? `${formatDateUa(personInfo.birthday)}`
                     : `${formatDateEn(personInfo.birthday)}`}
-                </ActorDescr>
+                </DetailsDescr>
               )}
               {personInfo.deathday && (
-                <ActorDescr>
+                <DetailsDescr>
                   {t('actor.death')}
                   {lang === 'uk-UA'
                     ? `${formatDateUa(personInfo.deathday)}`
                     : `${formatDateEn(personInfo.deathday)}`}
-                </ActorDescr>
+                </DetailsDescr>
               )}
               {personInfo.homepage && (
-                <ActorDescr>
+                <DetailsDescr>
                   {t('actor.homepage')}
-                  <ActorHomePage
+                  <DetailsHomePage
                     href={personInfo.homepage}
                     target="_blank"
                     rel="noreferrer"
                   >
                     {personInfo.homepage}
-                  </ActorHomePage>
-                </ActorDescr>
+                  </DetailsHomePage>
+                </DetailsDescr>
               )}
 
               <BtnContainer>
