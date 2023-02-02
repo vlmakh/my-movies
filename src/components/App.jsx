@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { lazy, useState, useEffect, useCallback } from 'react';
 import { ThemeProvider } from 'theme-ui';
-import { darkTheme, lightTheme } from 'theme';
+import { darkTheme, lightTheme } from 'services/theme';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
