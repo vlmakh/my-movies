@@ -1,10 +1,6 @@
 import { BcgActors } from 'components/Background/Background';
-import {
-  List,
-  Item,
-  SearchForm,
-  SearchInput,
-} from 'components/PageDetails/PageDetails';
+import { List, Item } from 'components/PageDetails/PageDetails';
+import { SearchForm, SearchInput } from 'components/SearchComps/SearchComps';
 import { SearchBtn, ClearBtn } from 'components/Buttons/Buttons';
 import { PaginationStyled } from 'components/Pagination/Pagination';
 import { ActorCard } from 'components/ActorCard/ActorCard';
