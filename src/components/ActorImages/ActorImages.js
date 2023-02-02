@@ -1,5 +1,5 @@
 import { ImgItemStyled } from './ActorImages.styled';
-import { List, Item } from 'components/PageDetails/PageDetails';
+import { List, Item } from 'components/BaseComps/BaseComps';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchImagesByActor } from 'services/api';

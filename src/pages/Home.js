@@ -2,7 +2,7 @@ import { PageWrap } from 'components/Box/Box';
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchTrends } from 'services/api';
-import { PageTitle, List, Item } from 'components/PageDetails/PageDetails';
+import { PageTitle, List, Item } from 'components/BaseComps/BaseComps';
 import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { PaginationStyled } from 'components/Pagination/Pagination';

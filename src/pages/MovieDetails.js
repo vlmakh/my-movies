@@ -1,8 +1,8 @@
 import {
   DetailsDescr,
   DetailsImg,
-  Name,
-} from 'components/PageDetails/PageDetails';
+  DetailsName,
+} from 'components/Details/Details';
 import {
   StyledBtn,
   StyledLinkBtn,
@@ -71,7 +71,7 @@ export default function MovieDetails({ toggleMovieInLibrary, movies }) {
 
       {movieItem && (
         <>
-          <Name>{movieItem.title}</Name>
+          <DetailsName>{movieItem.title}</DetailsName>
           <MainInfo>
             <ImgThumb>
               <DetailsImg

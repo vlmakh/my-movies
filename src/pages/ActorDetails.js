@@ -2,8 +2,8 @@ import {
   DetailsDescr,
   DetailsImg,
   DetailsHomePage,
-  Name,
-} from 'components/PageDetails/PageDetails';
+  DetailsName,
+} from 'components/Details/Details';
 import {
   StyledBtn,
   StyledLinkBtn,
@@ -73,7 +73,7 @@ export default function ActorDetails({ actors, toggleActorsInAlbum }) {
 
       {personInfo && (
         <>
-          <Name>{personInfo.name}</Name>
+          <DetailsName>{personInfo.name}</DetailsName>
           <MainInfo>
             <ImgThumb>
               <DetailsImg

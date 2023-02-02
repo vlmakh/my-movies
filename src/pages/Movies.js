@@ -1,5 +1,5 @@
 import { BcgMovies } from 'components/Background/Background';
-import { List, Item } from 'components/PageDetails/PageDetails';
+import { List, Item } from 'components/BaseComps/BaseComps';
 import { SearchForm, SearchInput } from 'components/SearchComps/SearchComps';
 import { SearchBtn, ClearBtn } from 'components/Buttons/Buttons';
 import { PaginationStyled } from 'components/Pagination/Pagination';
