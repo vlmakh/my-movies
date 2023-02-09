@@ -1,4 +1,4 @@
-# My Movieteka
+# My Movies
 
 Free themoviedb.org API as backend is connected.
 

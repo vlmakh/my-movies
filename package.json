@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-05-movies",
+  "name": "my-movies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vlmakh.github.io/goit-react-hw-05-movies/",
+  "homepage": "https://vlmakh.github.io/my-movies/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
