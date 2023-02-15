@@ -45,11 +45,10 @@ export default function ActorDetails({ actors, toggleActorsInAlbum }) {
   };
 
   useEffect(() => {
-    document.title = `My Movies | ${t('nav.actors')}`;
-
     fetchActorById(params.actorId, lang)
       .then(data => {
         setPersonInfo(data);
+        document.title = `My Movies | ${data.name}`;
       })
       .catch(error => {
         setError(true);

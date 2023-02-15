@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <PageWrap>
-      <PageTitle>{t('title.home')}</PageTitle>
+      <PageTitle>{t('title.trending')}</PageTitle>
 
       <List>
         {trends.map(trend => (

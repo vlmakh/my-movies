@@ -7,7 +7,8 @@ const resources = {
     translation: {
       lang: 'en-US',
       title: {
-        home: 'Trending today',
+        home: 'Home',
+        trending: 'Trending today',
         library: 'Favorite movies',
         photoalbum: 'Favorite actors',
         error: 'Error',
@@ -50,7 +51,8 @@ const resources = {
     translation: {
       lang: 'uk-UA',
       title: {
-        home: 'Популярні сьогодні',
+        home: 'Домашня',
+        trending: 'Популярні сьогодні',
         library: 'Улюблені фільми',
         photoalbum: 'Улюблені актори',
         error: 'Помилка',
