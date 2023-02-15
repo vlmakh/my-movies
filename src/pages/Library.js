@@ -14,6 +14,8 @@ export default function Library({ movies, currentLang }) {
   const lang = t('lang');
 
   useEffect(() => {
+    document.title = `My Movies | ${t('nav.library')}`;
+
     fetchLibraryMovies(movies, lang).then(data => {
       setLibrary(data);
     });

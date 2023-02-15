@@ -19,6 +19,8 @@ export default function Home() {
   const lang = t('lang');
 
   useEffect(() => {
+    document.title = 'My Movies';
+
     fetchTrends(lang, currentPage)
       .then(data => {
         setTrends(data.results);

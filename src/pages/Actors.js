@@ -27,6 +27,8 @@ export default function Actors() {
   const lang = t('lang');
 
   useEffect(() => {
+    document.title = `My Movies | ${t('nav.actors')}`;
+
     if (!query) {
       return;
     }

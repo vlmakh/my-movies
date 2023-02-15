@@ -52,6 +52,8 @@ export default function MovieDetails({ toggleMovieInLibrary, movies }) {
   };
 
   useEffect(() => {
+    document.title = `My Movies | ${t('nav.movies')}`;
+
     fetchMovieById(params.movieId, lang)
       .then(data => {
         setMovieItem(data);

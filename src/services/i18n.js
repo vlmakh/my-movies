@@ -9,7 +9,8 @@ const resources = {
       title: {
         home: 'Trending today',
         library: 'Favorite movies',
-        photoalbum: 'Favotite actors',
+        photoalbum: 'Favorite actors',
+        error: 'Error',
       },
       nav: {
         movies: 'Movies',
@@ -52,6 +53,7 @@ const resources = {
         home: 'Популярні сьогодні',
         library: 'Улюблені фільми',
         photoalbum: 'Улюблені актори',
+        error: 'Помилка',
       },
       nav: {
         movies: 'Фільми',

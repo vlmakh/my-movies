@@ -27,6 +27,8 @@ export default function Movies() {
   const lang = t('lang');
 
   useEffect(() => {
+    document.title = `My Movies | ${t('nav.movies')}`;
+
     if (!query) {
       return;
     }

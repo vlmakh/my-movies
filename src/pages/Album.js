@@ -14,6 +14,8 @@ export default function Album({ actors }) {
   const lang = t('lang');
 
   useEffect(() => {
+    document.title = `My Movies | ${t('nav.photoalbum')}`;
+
     fetchAlbumActors(actors, lang).then(data => {
       setAlbum(data);
     });
