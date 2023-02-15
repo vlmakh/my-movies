@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_movies=self.webpackChunkmy_movies||[]).push([[155],{2155:function(t,e,r){r.r(e),r.d(e,{default:function(){return s}});var n=r(3682),c=r(3525),i=r(2791),u=r(1105),o=r(184);function s(){return(0,i.useEffect)((function(){document.title="My Movies | ".concat((0,u.t)("nav.error"))})),(0,o.jsx)(n.xu,{maxWidth:"800px",mx:"auto",mt:6,children:(0,o.jsx)("img",{src:c,alt:"error 404",width:"100%"})})}},3525:function(t,e,r){t.exports=r.p+"static/media/error-404.e9f7e60adc7856fc4f69.jpg"}}]);
+//# sourceMappingURL=155.63c4bc73.chunk.js.map
