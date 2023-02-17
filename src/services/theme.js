@@ -37,7 +37,7 @@ export const darkTheme = {
 export const lightTheme = {
   name: 'lightTheme',
   colors: {
-    bcgMain: '#fff',
+    bcgMain: '#dfdfdf',
     bcgHeader: '#bcc3ce',
     bcgBtn: '#333',
     bcgTitle: '#333333cc',

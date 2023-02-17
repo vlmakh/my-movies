@@ -89,13 +89,18 @@ export default function MovieDetails({ toggleMovieInLibrary, movies }) {
 
             <Box>
               <DetailsDescr>
-                {movieItem.genres.map(genre => genre.name).join(', ')}
-              </DetailsDescr>
-              <DetailsDescr>
                 {(movieItem.release_date ?? movieItem.first_air_date).slice(
                   0,
                   4
                 )}
+              </DetailsDescr>
+              <DetailsDescr>
+                {movieItem.genres.map(genre => genre.name).join(', ')}
+              </DetailsDescr>
+              <DetailsDescr>{movieItem.runtime} min</DetailsDescr>
+              <DetailsDescr>
+                {movieItem.vote_average.toFixed(1)}/10 of {movieItem.vote_count}{' '}
+                votes
               </DetailsDescr>
 
               <BtnContainer>
