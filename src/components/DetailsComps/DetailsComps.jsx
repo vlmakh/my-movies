@@ -17,10 +17,15 @@ export const DetailsImg = styled.img`
 export const DetailsDescr = styled.p`
   margin-top: ${p => p.theme.space[4]}px;
   color: ${p => p.theme.colors.textPrimary};
+  
 
   @media (max-width: 479.98px) {
     text-align: center;
   }
+`;
+
+export const Bold = styled.span`
+  font-weight: ${p => p.bold ? '700' : '400'};
 `;
 
 export const DetailsHomePage = styled.a`

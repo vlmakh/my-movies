@@ -2,6 +2,7 @@ import {
   DetailsDescr,
   DetailsImg,
   DetailsName,
+  Bold,
 } from 'components/DetailsComps/DetailsComps';
 import {
   StyledBtn,
@@ -25,6 +26,8 @@ import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
+import { formatRuntimeEn, formatRuntimeUa } from 'services/formatRuntime';
+import { ImStarHalf } from 'react-icons/im';
 
 export default function MovieDetails({ toggleMovieInLibrary, movies }) {
   const [movieItem, setMovieItem] = useState(null);
@@ -89,14 +92,33 @@ export default function MovieDetails({ toggleMovieInLibrary, movies }) {
 
             <Box>
               <DetailsDescr>
-                {movieItem.genres.map(genre => genre.name).join(', ')}
-              </DetailsDescr>
-              <DetailsDescr>
                 {(movieItem.release_date ?? movieItem.first_air_date).slice(
                   0,
                   4
                 )}
               </DetailsDescr>
+
+              <DetailsDescr>
+                {movieItem.genres.map(genre => genre.name).join(', ')}
+              </DetailsDescr>
+
+              {movieItem.runtime > 0 && (
+                <DetailsDescr>
+                  {lang === 'uk-UA'
+                    ? `${formatRuntimeUa(movieItem.runtime)}`
+                    : `${formatRuntimeEn(movieItem.runtime)}`}
+                </DetailsDescr>
+              )}
+
+              {movieItem.vote_average > 0 && (
+                <DetailsDescr>
+                  <ImStarHalf />{' '}
+                  <Bold bold={movieItem.vote_average > 7}>
+                    {movieItem.vote_average.toFixed(1)}
+                  </Bold>
+                  /10
+                </DetailsDescr>
+              )}
 
               <BtnContainer>
                 <StyledLinkBtn to="overview" state={movieItem.overview}>
