@@ -2,7 +2,7 @@ export const formatRuntimeEn = time => {
   if (time) {
     const hours = Math.floor(time / 60);
     const min = time % 60;
-    const result = `${hours}h ${min}m`;
+    const result = hours > 0 ? `${hours}h ${min}m` : `${min}m`;
     return result;
   }
 };
@@ -11,7 +11,7 @@ export const formatRuntimeUa = time => {
   if (time) {
     const hours = Math.floor(time / 60);
     const min = time % 60;
-    const result = `${hours}г ${min}хв`;
+    const result = hours > 0 ? `${hours}г ${min}хв` : `${min}хв`;
     return result;
   }
 };

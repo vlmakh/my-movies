@@ -97,21 +97,28 @@ export default function MovieDetails({ toggleMovieInLibrary, movies }) {
                   4
                 )}
               </DetailsDescr>
+
               <DetailsDescr>
                 {movieItem.genres.map(genre => genre.name).join(', ')}
               </DetailsDescr>
-              <DetailsDescr>
-                {lang === 'uk-UA'
-                  ? `${formatRuntimeUa(movieItem.runtime)}`
-                  : `${formatRuntimeEn(movieItem.runtime)}`}
-              </DetailsDescr>
-              <DetailsDescr>
-                <ImStarHalf />{' '}
-                <Bold bold={movieItem.vote_average > 7}>
-                  {movieItem.vote_average.toFixed(1)}
-                </Bold>
-                /10
-              </DetailsDescr>
+
+              {movieItem.runtime > 0 && (
+                <DetailsDescr>
+                  {lang === 'uk-UA'
+                    ? `${formatRuntimeUa(movieItem.runtime)}`
+                    : `${formatRuntimeEn(movieItem.runtime)}`}
+                </DetailsDescr>
+              )}
+
+              {movieItem.vote_average > 0 && (
+                <DetailsDescr>
+                  <ImStarHalf />{' '}
+                  <Bold bold={movieItem.vote_average > 7}>
+                    {movieItem.vote_average.toFixed(1)}
+                  </Bold>
+                  /10
+                </DetailsDescr>
+              )}
 
               <BtnContainer>
                 <StyledLinkBtn to="overview" state={movieItem.overview}>
