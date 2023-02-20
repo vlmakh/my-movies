@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-const MAIN_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '7944ae355bdc42ac579681e106149d6b';
+const MAIN_URL = process.env.REACT_APP_MAIN_URL;
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const fetchTrends = async (lang, page) => {
   const response = await axios.get(
