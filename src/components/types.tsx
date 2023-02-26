@@ -4,3 +4,9 @@ export type StateType = {
     lib: string[],
     album: string[],
 }
+
+export interface IActor {
+    name: string,
+    character: string,
+    profile_path: string,
+}

@@ -4,10 +4,15 @@ import {
   ActorTitle,
   Character,
 } from 'components/ActorCard/ActorCard.styled';
-import imageplaceholder from 'images/noposter.jpg';
+import { noposter } from 'images';
 import PropTypes from 'prop-types';
+import { IActor } from 'components/types';
 
-export const ActorCard = ({ actor }) => {
+type Actor = {
+  actor: IActor;
+};
+
+export const ActorCard = ({ actor }: Actor) => {
   return (
     <ActorThumb>
       <ActorImg
@@ -15,7 +20,7 @@ export const ActorCard = ({ actor }) => {
         src={
           actor.profile_path
             ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
-            : imageplaceholder
+            : noposter
         }
         alt={actor.name}
       />
