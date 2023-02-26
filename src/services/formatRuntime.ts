@@ -1,4 +1,4 @@
-export const formatRuntimeEn = time => {
+export const formatRuntimeEn = (time: number) => {
   if (time) {
     const hours = Math.floor(time / 60);
     const min = time % 60;
@@ -7,7 +7,7 @@ export const formatRuntimeEn = time => {
   }
 };
 
-export const formatRuntimeUa = time => {
+export const formatRuntimeUa = (time: number) => {
   if (time) {
     const hours = Math.floor(time / 60);
     const min = time % 60;
