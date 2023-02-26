@@ -5,6 +5,7 @@ import { ThemeProvider } from 'theme-ui';
 import { darkTheme, lightTheme } from 'services/theme';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { StateType } from './types';
 
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
@@ -22,8 +23,19 @@ const Library = lazy(() => import('pages/Library'));
 const Album = lazy(() => import('pages/Album'));
 const PageError = lazy(() => import('pages/PageError'));
 
-const startData = { theme: 'darkTheme', lang: 'en-US', lib: [], album: [] };
-const savedData = JSON.parse(localStorage.getItem('movieteka'));
+const startData: StateType = {
+  theme: 'darkTheme',
+  lang: 'en-US',
+  lib: [],
+  album: [],
+};
+
+const value = localStorage.getItem('movieteka');
+let savedData: StateType | null = null;
+
+if (typeof value === 'string') {
+  savedData = JSON.parse(value);
+}
 
 export const App = () => {
   const [data, setData] = useState(savedData ?? startData);
@@ -35,12 +47,15 @@ export const App = () => {
   const [favActors, setFavActors] = useState(data.album);
 
   const { i18n } = useTranslation();
-  const changeLanguage = useCallback(language => {
-    i18n.changeLanguage(language);
-  }, [i18n]);
-  
+  const changeLanguage = useCallback(
+    (language: string) => {
+      i18n.changeLanguage(language);
+    },
+    [i18n]
+  );
+
   useEffect(() => {
-    changeLanguage(currentLang.slice(0,2));
+    changeLanguage(currentLang.slice(0, 2));
 
     setData({
       theme: currentTheme.name,
@@ -66,18 +81,18 @@ export const App = () => {
     setCurrentLang('uk-UA');
   };
 
-  const toggleMovieInLibrary = movieId => {
+  const toggleMovieInLibrary = (movieId: string) => {
     if (libMovies.includes(movieId)) {
-      setLibMovies(libMovies.filter(id => id !== movieId));
+      setLibMovies(libMovies.filter((id: string) => id !== movieId));
       return;
     }
 
     setLibMovies([...libMovies, movieId]);
   };
 
-  const toggleActorsInAlbum = actorId => {
+  const toggleActorsInAlbum = (actorId: string) => {
     if (favActors.includes(actorId)) {
-      setFavActors(favActors.filter(id => id !== actorId));
+      setFavActors(favActors.filter((id: string) => id !== actorId));
       return;
     }
 

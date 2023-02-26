@@ -5,7 +5,7 @@ import { App } from 'components/App';
 import './index.css';
 import './services/i18n';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement).render(
   <React.StrictMode>
     <BrowserRouter basename="/my-movies">
       <App />

@@ -8,7 +8,7 @@ import { fetchLibraryMovies } from 'services/api';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
 
-export default function Library({ movies, currentLang }) {
+export default function Library({ movies }) {
   const [library, setLibrary] = useState([]);
   const location = useLocation();
   const lang = t('lang');
