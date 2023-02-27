@@ -7,12 +7,13 @@ import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { PaginationStyled } from 'components/Pagination/Pagination';
 import { t } from 'i18next';
+import { IMovie } from 'components/types';
 
 export default function Home() {
-  const [trends, setTrends] = useState([]);
+  const [trends, setTrends] = useState<Array<IMovie>>([]);
   const [totalPages, setTotalPages] = useState(0);
   const location = useLocation();
-  const [searchQuery, setSearchQuery] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useSearchParams() as any;
   const currentPage = Number(searchQuery.get('page'))
     ? Number(searchQuery.get('page'))
     : 1;
@@ -29,7 +30,7 @@ export default function Home() {
       .catch(error => console.log(error));
   }, [lang, currentPage, setSearchQuery]);
 
-  const handlePageClick = e => {
+  const handlePageClick = (e: { selected: number; }) => {
     setSearchQuery({ page: e.selected + 1 });
   };
 
@@ -55,7 +56,6 @@ export default function Home() {
           pageRangeDisplayed={5}
           pageCount={totalPages}
           previousLabel="<"
-          renderOnZeroPageCount={null}
           disabledLinkClassName="disabled"
           activeClassName="activePage"
           forcePage={currentPage - 1}
