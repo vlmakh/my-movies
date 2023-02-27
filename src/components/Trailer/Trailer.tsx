@@ -5,15 +5,18 @@ import { Box } from 'components/Box/Box';
 import { IframeStyled, Text } from './Trailer.styled';
 import { ThreeCircles } from 'react-loader-spinner';
 import { t } from 'i18next';
+import { IMovie } from 'components/types';
 
 export default function Trailer() {
-  const params = useParams();
+  const params = useParams() as any;
   const [trailer, setTrailer] = useState('plugtext');
   const lang = t('lang');
 
   useEffect(() => {
     fetchMovieTrailer(params.movieId, lang).then(data => {
-      const objTrailer = data.results.find(movie => movie.type === 'Trailer');
+      const objTrailer = data.results.find(
+        (movie: IMovie) => movie.type === 'Trailer'
+      );
 
       if (!objTrailer) {
         setTrailer('');
@@ -41,10 +44,9 @@ export default function Trailer() {
           <Text>{t('notFoundMsg')}</Text>
         ) : (
           <IframeStyled
-            src={trailer}
+            url={trailer}
             title={trailer}
-            frameBorder="0"
-            allowfullscreen
+            allowFullScreen
           />
         )}
       </Suspense>

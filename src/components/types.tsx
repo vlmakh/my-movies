@@ -25,6 +25,7 @@ export interface IMovie {
   release_date: string;
   first_air_date: string;
   poster_path: string;
+  type: string;
 }
 
 export interface ICast extends IActor {
