@@ -5,9 +5,13 @@ import {
   MovieYear,
 } from 'components/MovieCard/MovieCard.styled';
 import imageplaceholder from 'images/noposter.jpg';
-import PropTypes from 'prop-types';
+import { IMovie } from 'components/types';
 
-export const MovieCard = ({ movie }) => {
+type MovieType = {
+  movie: IMovie;
+};
+
+export const MovieCard = ({ movie }: MovieType) => {
   let movieYear = '';
   if (movie.release_date ?? movie.first_air_date) {
     movieYear = (movie.release_date ?? movie.first_air_date).slice(0, 4);
@@ -31,8 +35,4 @@ export const MovieCard = ({ movie }) => {
       </MovieTitle>
     </MovieThumb>
   );
-};
-
-MovieCard.propTypes = {
-  movie: PropTypes.object.isRequired,
 };

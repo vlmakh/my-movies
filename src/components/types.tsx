@@ -17,10 +17,14 @@ export type ImageType = {
     file_path: string,
 }
 
-export type MovieType = {
+export interface IMovie {
     id: string,
+    name: string,
+    title: string,
+    original_title: string,
     release_date: string,
     first_air_date: string,
+    poster_path: string,
 }
 
 export interface ICast extends IActor {
