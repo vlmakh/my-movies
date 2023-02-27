@@ -9,10 +9,11 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Box } from 'components/Box/Box';
+import { ImageType } from 'components/types';
 
 export default function ActorImages() {
-  const params = useParams();
-  const [images, setImages] = useState([]);
+  const { actorId } = useParams<{actorId: string | undefined}>() as any;
+  const [images, setImages] = useState<Array<ImageType>>([]);
   const [showModal, setShowModal] = useState(false);
   const [bigPhotoIdx, setBigPhotoIdx] = useState(0);
 
@@ -20,16 +21,16 @@ export default function ActorImages() {
     setShowModal(!showModal);
   };
 
-  const onImageClick = idx => {
+  const onImageClick = (idx: number) => {
     setBigPhotoIdx(idx);
     toggleModal();
   };
 
   useEffect(() => {
-    fetchImagesByActor(params.actorId).then(data => {
+    fetchImagesByActor(actorId).then(data => {
       setImages(data.profiles);
     });
-  }, [params.actorId]);
+  }, [actorId]);
 
   const settings = {
     dots: false,
@@ -38,7 +39,7 @@ export default function ActorImages() {
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: bigPhotoIdx,
-    lazyLoad: 'ondemand',
+    // lazyLoad: 'ondemand',
     draggable: true,
   };
 

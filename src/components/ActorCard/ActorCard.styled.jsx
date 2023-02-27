@@ -37,4 +37,4 @@ export const ActorTitle = styled.div`
 export const Character = styled.p`
   font-style: italic;
   font-weight: 400;
-`
+`;

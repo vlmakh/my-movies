@@ -1,3 +1,5 @@
+// import { ThemeType } from 'components/types';
+
 export const darkTheme = {
   name: 'darkTheme',
   colors: {
