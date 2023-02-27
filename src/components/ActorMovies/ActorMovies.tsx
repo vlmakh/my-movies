@@ -4,18 +4,19 @@ import { useParams, useLocation, NavLink } from 'react-router-dom';
 import { fetchMoviesByActor } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { t } from 'i18next';
+import { MovieType } from 'components/types';
 
 export default function ActorMovies() {
-  const params = useParams();
-  const [movies, setMovies] = useState([]);
+  const { actorId } = useParams() as any;
+  const [movies, setMovies] = useState<Array<MovieType>>([]);
   const location = useLocation();
   const lang = t('lang');
 
   useEffect(() => {
-    fetchMoviesByActor(params.actorId, lang).then(data => {
+    fetchMoviesByActor(actorId, lang).then(data => {
       setMovies(data.cast);
     });
-  }, [lang, params.actorId]);
+  }, [lang, actorId]);
 
   return (
     <>

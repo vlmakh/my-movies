@@ -17,9 +17,11 @@ export type ImageType = {
     file_path: string,
 }
 
-// type ImagesType {
-//     file_path: string,
-// }
+export type MovieType = {
+    id: string,
+    release_date: string,
+    first_air_date: string,
+}
 
 // const makeTheme = <T extends Theme>(t: T) => t
 
