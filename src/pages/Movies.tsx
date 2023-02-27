@@ -13,10 +13,11 @@ import { fetchMovies } from 'services/api';
 import { IoIosCloseCircle } from 'react-icons/io';
 import toast from 'react-hot-toast';
 import { t } from 'i18next';
+import { IMovie } from 'components/types';
 
 export default function Movies() {
-  const [moviesFound, setMoviesFound] = useState([]);
-  const [searchQuery, setSearchQuery] = useSearchParams();
+  const [moviesFound, setMoviesFound] = useState<Array<IMovie>>([]);
+  const [searchQuery, setSearchQuery] = useSearchParams() as any;
   const query = searchQuery.get('search');
   const currentPage = Number(searchQuery.get('page'))
     ? Number(searchQuery.get('page'))
@@ -45,11 +46,11 @@ export default function Movies() {
       .catch(error => console.log(error));
   }, [lang, currentPage, query]);
 
-  const onSearchInput = event => {
+  const onSearchInput = (event: { target: { value: string; }; }) => {
     setInput(event.target.value);
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     if (!input.trim()) {
       return toast.error(t('emptyQuery'));
@@ -67,7 +68,7 @@ export default function Movies() {
     setTotalPages(0);
   };
 
-  const handlePageClick = e => {
+  const handlePageClick = (e: { selected: number; }) => {
     setSearchQuery({ search: input, page: e.selected + 1 });
   };
 
@@ -79,7 +80,7 @@ export default function Movies() {
             type="text"
             value={input}
             onChange={onSearchInput}
-            placeholder={t('placeholders.film')}
+            // placeholder={t('placeholders.film')}
           />
           <ClearBtn type="button" onClick={clearAll}>
             <IoIosCloseCircle size="20" />
@@ -108,7 +109,7 @@ export default function Movies() {
           pageRangeDisplayed={5}
           pageCount={totalPages}
           previousLabel="<"
-          renderOnZeroPageCount={null}
+          // renderOnZeroPageCount={null}
           disabledLinkClassName="disabled"
           activeClassName="activePage"
           forcePage={currentPage - 1}

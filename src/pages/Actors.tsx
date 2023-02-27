@@ -8,7 +8,7 @@ import 'index.css';
 import { NavLink } from 'react-router-dom';
 import { PageWrap, Box } from 'components/Box/Box';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { useState, useEffect, SetStateAction } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchActors } from 'services/api';
 import { IoIosCloseCircle } from 'react-icons/io';
 import toast from 'react-hot-toast';
@@ -46,7 +46,7 @@ export default function Actors() {
       .catch(error => console.log(error));
   }, [lang, currentPage, query]);
 
-  const onSearchInput = (event: { target: { value: SetStateAction<string>; }; }) => {
+  const onSearchInput = (event: { target: { value: string}; }) => {
     setInput(event.target.value);
   };
 
