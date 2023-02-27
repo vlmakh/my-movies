@@ -1,4 +1,4 @@
-import { Theme } from 'theme-ui';
+// import { Theme } from '@emotion/react';
 
 export type StateType = {
   theme: string;
@@ -22,6 +22,10 @@ export type ImageType = {
   file_path: string;
 };
 
+interface IGenre {
+  name: string;
+}
+
 export interface IMovie {
   id: string;
   name: string;
@@ -31,6 +35,10 @@ export interface IMovie {
   first_air_date: string;
   poster_path: string;
   type: string;
+  overview: string;
+  vote_average: number;
+  runtime: number;
+  genres: Array<IGenre>;
 }
 
 export interface ICast extends IActor {
@@ -64,40 +72,43 @@ export type ActorDetailsType = {
   toggleActorsInAlbum: (x: string) => void;
 };
 
-// const makeTheme = <T extends Theme>(t: T) => t
+export type MovieDetailsType = {
+  movies: Array<string>;
+  toggleMovieInLibrary: (x: string) => void;
+};
 
-export interface ThemeType extends Theme {
+export interface ThemeType {
   name: string;
-  //   colors: {
-  //     bcgMain: string,
-  //     bcgHeader: string,
-  //     bcgBtn: string,
-  //     bcgTitle: string,
-  //     textPrimary: string,
-  //     textSecondary: string,
-  //     textTitle: string,
-  //     accent: string,
-  //   },
-  //   space: number[],
-  //   fontSizes: {
-  //     xs: string,
-  //     s: string,
-  //     m: string,
-  //     l: string,
-  //     xl: string,
-  //   },
-  //   borders: {
-  //     none: string,
-  //     normal: string,
-  //   },
-  //   radii: {
-  //     none:string,
-  //     normal: string,
-  //     round: string,
-  //   },
-  //   shadows: {
-  //     blackShadow: string,
-  //     headerShadow: string,
-  //     footerShadow: string,
-  //   },
+  colors: {
+    bcgMain: string;
+    bcgHeader: string;
+    bcgBtn: string;
+    bcgTitle: string;
+    textPrimary: string;
+    textSecondary: string;
+    textTitle: string;
+    accent: string;
+  };
+  space: number[];
+  fontSizes: {
+    xs: string;
+    s: string;
+    m: string;
+    l: string;
+    xl: string;
+  };
+  borders: {
+    none: string;
+    normal: string;
+  };
+  radii: {
+    none: string;
+    normal: string;
+    round: string;
+  };
+  shadows: {
+    blackShadow: string;
+    headerShadow: string;
+    footerShadow: string;
+  };
 }
