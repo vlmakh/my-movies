@@ -11,6 +11,6 @@ export const SearchInput = styled.input`
   padding: 4px 8px;
 
   &:hover + button {
-    color: ${p => p.theme.colors.bcgBtn};
+    color: ${(p: { theme: { colors: { bcgBtn: string; }; }; }) => p.theme.colors.bcgBtn};
   }
 `;

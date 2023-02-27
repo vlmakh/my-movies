@@ -14,7 +14,7 @@ export const IframeStyled = styled(Iframe)`
 `;
 
 export const Text = styled.p`
-  margin-top: ${p => p.theme.space[4]}px;
-  font-size: ${p => p.theme.fontSizes.s};
-  color: ${p => p.theme.colors.textPrimary};
+  margin-top: ${(p: { theme: { space: number[]; }; }) => p.theme.space[4]}px;
+  font-size: ${(p: { theme: { fontSizes: { s: string; }; }; }) => p.theme.fontSizes.s};
+  color: ${(p: { theme: { colors: { textPrimary: string; }; }; }) => p.theme.colors.textPrimary};
 `;

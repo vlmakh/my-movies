@@ -6,7 +6,7 @@ export const PaginationStyled = styled(ReactPaginate)`
   list-style: none;
   justify-content: center;
   margin-top: 16px;
-  font-size: ${p => p.theme.fontSizes.s};
+  font-size: ${(p: { theme: { fontSizes: { s: string; }; }; }) => p.theme.fontSizes.s};
   font-weight: 700;
 
   @media (max-width: 479.98px) {
@@ -14,17 +14,17 @@ export const PaginationStyled = styled(ReactPaginate)`
   }
 
   & li {
-    color: ${p => p.theme.colors.textPrimary};
+    color: ${(p: { theme: { colors: { textPrimary: string; }; }; }) => p.theme.colors.textPrimary};
 
     transition: color 250ms linear;
 
     :hover:not(.disabled) {
-      color: ${p => p.theme.colors.accent};
+      color: ${(p: { theme: { colors: { accent: string; }; }; }) => p.theme.colors.accent};
     }
   }
 
   & .activePage {
-    color: ${p => p.theme.colors.accent};
+    color: ${(p: { theme: { colors: { accent: string; }; }; }) => p.theme.colors.accent};
   }
 
   & a {
