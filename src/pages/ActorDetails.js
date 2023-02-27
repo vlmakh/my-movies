@@ -25,7 +25,6 @@ import imageplaceholder from 'images/noposter.jpg';
 import { formatDateEn, formatDateUa } from 'services/formatDate';
 import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
-import PropTypes from 'prop-types';
 import { t } from 'i18next';
 
 export default function ActorDetails({ actors, toggleActorsInAlbum }) {
@@ -166,8 +165,3 @@ export default function ActorDetails({ actors, toggleActorsInAlbum }) {
     </PageWrap>
   );
 }
-
-ActorDetails.propTypes = {
-  toggleActorsInAlbum: PropTypes.func.isRequired,
-  actors: PropTypes.array.isRequired,
-};

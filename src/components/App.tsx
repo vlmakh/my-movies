@@ -5,7 +5,7 @@ import { ThemeProvider } from 'theme-ui';
 import { darkTheme, lightTheme } from 'services/theme';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-import { StateType } from './types';
+import { StateType, ThemeType } from './types';
 
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
@@ -23,6 +23,7 @@ const Library = lazy(() => import('pages/Library'));
 const Album = lazy(() => import('pages/Album'));
 const PageError = lazy(() => import('pages/PageError'));
 
+
 const startData: StateType = {
   theme: 'darkTheme',
   lang: 'en-US',
@@ -39,7 +40,7 @@ if (typeof value === 'string') {
 
 export const App = () => {
   const [data, setData] = useState(savedData ?? startData);
-  const [currentTheme, setCurrentTheme] = useState(
+  const [currentTheme, setCurrentTheme] = useState<ThemeType>(
     data.theme === 'darkTheme' ? darkTheme : lightTheme
   );
   const [currentLang, setCurrentLang] = useState(data.lang);

@@ -24,7 +24,6 @@ import Modal from 'components/Modal/Modal';
 import imageplaceholder from 'images/noposter.jpg';
 import { Suspense } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
-import PropTypes from 'prop-types';
 import { t } from 'i18next';
 import { formatRuntimeEn, formatRuntimeUa } from 'services/formatRuntime';
 import { ImStarHalf } from 'react-icons/im';
@@ -172,8 +171,3 @@ export default function MovieDetails({ toggleMovieInLibrary, movies }) {
     </PageWrap>
   );
 }
-
-MovieDetails.propTypes = {
-  toggleMovieInLibrary: PropTypes.func.isRequired,
-  movies: PropTypes.array.isRequired,
-};
