@@ -46,6 +46,10 @@ export type LayoutType = {
   turnUaLang: () => void;
 };
 
+export type Movies = {
+  movies: Array<string>
+}
+
 // const makeTheme = <T extends Theme>(t: T) => t
 
 export interface ThemeType extends Theme {

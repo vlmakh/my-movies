@@ -43,7 +43,7 @@ export const App = () => {
     data.theme === 'darkTheme' ? darkTheme : lightTheme
   );
   const [currentLang, setCurrentLang] = useState(data.lang);
-  const [libMovies, setLibMovies] = useState(data.lib);
+  const [libMovies, setLibMovies] = useState<Array<string>>(data.lib);
   const [favActors, setFavActors] = useState(data.album);
 
   const { i18n } = useTranslation();

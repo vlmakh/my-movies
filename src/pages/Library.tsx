@@ -5,11 +5,11 @@ import { PageTitle, List, Item } from 'components/BaseComps/BaseComps';
 import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { fetchLibraryMovies } from 'services/api';
-import PropTypes from 'prop-types';
 import { t } from 'i18next';
+import { IMovie, Movies } from 'components/types';
 
-export default function Library({ movies }) {
-  const [library, setLibrary] = useState([]);
+export default function Library({ movies }: Movies) {
+  const [library, setLibrary] = useState<Array<IMovie>>([]);
   const location = useLocation();
   const lang = t('lang');
 
@@ -37,7 +37,3 @@ export default function Library({ movies }) {
     </PageWrap>
   );
 }
-
-Library.propTypes = {
-  movies: PropTypes.array.isRequired,
-};
