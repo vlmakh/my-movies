@@ -8,15 +8,15 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviewsById } from 'services/api';
 import { t } from 'i18next';
+import { IReview } from 'components/types';
 
 export default function Reviews() {
-  const params = useParams();
-  const [reviews, setReviews] = useState([]);
+  const params = useParams() as any;
+  const [reviews, setReviews] = useState<Array<IReview>>([]);
   const lang = t('lang');
 
   useEffect(() => {
     fetchReviewsById(params.movieId, lang).then(data => {
-      // console.log(data.results);
       setReviews(data.results);
     });
   }, [lang, params.movieId]);
