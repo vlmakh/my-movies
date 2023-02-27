@@ -78,7 +78,7 @@ export const SharedLayout = ({
               <LangBtn
                 type="button"
                 onClick={turnUaLang}
-                disabled={lang === 'uk-UA' ? true : false}
+                disabled={lang === 'en-US' ? false : true}
               >
                 UA
               </LangBtn>

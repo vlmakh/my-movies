@@ -5,7 +5,7 @@ import { t } from 'i18next';
 
 export default function PageError() {
   useEffect(() => {
-    document.title = `My Movies | ${t('nav.error')}`;
+    document.title = `My Movies | ${t('title.error')}`;
   });
 
   return (
