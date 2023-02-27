@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, ReactNode } from 'react';
 import { Overlay, ModalWindow } from './Modal.styled';
 import { createPortal } from 'react-dom';
 
-const modalRoot = document.querySelector('#modal-root');
+type PortalPropsType = {
+  children: ReactNode;
+  onClose: () => void;
+};
 
-export default function Modal({ onClose, children }) {
+const modalRoot = document.querySelector('#modal-root') as HTMLDivElement;
+
+export default function Modal({ onClose, children }: PortalPropsType) {
   useEffect(() => {
     window.addEventListener('keydown', handleEscape);
 
@@ -14,13 +19,13 @@ export default function Modal({ onClose, children }) {
     };
   });
 
-  const handleEscape = event => {
+  const handleEscape = (event: { code: string; }) => {
     if (event.code === 'Escape') {
       onClose();
     }
   };
 
-  const handleBackdrop = event => {
+  const handleBackdrop = (event: { currentTarget: any; target: any; }) => {
     if (event.currentTarget === event.target) {
       onClose();
     }
