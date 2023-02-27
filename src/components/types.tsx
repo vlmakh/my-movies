@@ -38,6 +38,13 @@ export interface IReview {
   content: string;
 }
 
+export type LayoutType = {
+  toggleTheme: () => void;
+  currentTheme: string;
+  turnEnLang: () => void;
+  turnUaLang: () => void;
+};
+
 // const makeTheme = <T extends Theme>(t: T) => t
 
 export interface ThemeType extends Theme {

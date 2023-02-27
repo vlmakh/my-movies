@@ -22,16 +22,16 @@ import {
   MdMonochromePhotos,
 } from 'react-icons/md';
 import { ThemeBtn } from 'components/Buttons/Buttons';
-import PropTypes from 'prop-types';
 import { t } from 'i18next';
 import { Logo } from 'components/Logo/Logo';
+import { LayoutType } from 'components/types';
 
 export const SharedLayout = ({
   toggleTheme,
   currentTheme,
   turnEnLang,
   turnUaLang,
-}) => {
+}: LayoutType) => {
   const lang = t('lang');
 
   return (
@@ -123,11 +123,4 @@ export const SharedLayout = ({
       </Footer>
     </Layout>
   );
-};
-
-SharedLayout.propTypes = {
-  toggleTheme: PropTypes.func.isRequired,
-  currentTheme: PropTypes.string.isRequired,
-  turnEnLang: PropTypes.func.isRequired,
-  turnUaLang: PropTypes.func.isRequired,
 };
