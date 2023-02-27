@@ -5,11 +5,11 @@ import { PageTitle, List, Item } from 'components/BaseComps/BaseComps';
 import 'index.css';
 import { ActorCard } from 'components/ActorCard/ActorCard';
 import { fetchAlbumActors } from 'services/api';
-import PropTypes from 'prop-types';
 import { t } from 'i18next';
+import { Actors, IActor } from 'components/types';
 
-export default function Album({ actors }) {
-  const [album, setAlbum] = useState([]);
+export default function Album({ actors }: Actors) {
+  const [album, setAlbum] = useState<Array<IActor>>([]);
   const location = useLocation();
   const lang = t('lang');
 
@@ -37,7 +37,3 @@ export default function Album({ actors }) {
     </PageWrap>
   );
 }
-
-Album.propTypes = {
-  actors: PropTypes.array.isRequired,
-};

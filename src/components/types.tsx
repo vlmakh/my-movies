@@ -8,6 +8,7 @@ export type StateType = {
 };
 
 export interface IActor {
+  id: string;
   name: string;
   character: string;
   profile_path: string;
@@ -47,8 +48,12 @@ export type LayoutType = {
 };
 
 export type Movies = {
-  movies: Array<string>
-}
+  movies: Array<string>;
+};
+
+export type Actors = {
+  actors: Array<string>;
+};
 
 // const makeTheme = <T extends Theme>(t: T) => t
 
