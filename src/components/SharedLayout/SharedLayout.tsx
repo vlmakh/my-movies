@@ -12,7 +12,7 @@ import {
 } from './SharedLayout.styled';
 import { Suspense } from 'react';
 import { Box } from 'components/Box/Box';
-import logo from 'images/logo.png';
+import { logo } from 'images';
 import { ThreeCircles } from 'react-loader-spinner';
 import { HiSun, HiMoon } from 'react-icons/hi2';
 import {
@@ -23,7 +23,7 @@ import {
 } from 'react-icons/md';
 import { ThemeBtn } from 'components/Buttons/Buttons';
 import { t } from 'i18next';
-import { Logo } from 'components/Logo/Logo';
+import { LogoVM } from 'components/LogoVM/LogoVM';
 import { LayoutType } from 'components/types';
 
 export const SharedLayout = ({
@@ -116,7 +116,7 @@ export const SharedLayout = ({
           href="https://vlmakh.github.io/my-portfolio/"
           target="blank"
         >
-          <Logo />
+          <LogoVM />
         </MyMailLink>
         <p>2022</p>
         <MyMailLink href="mailto:vlmakh@gmail.com">vlmakh@gmail.com</MyMailLink>

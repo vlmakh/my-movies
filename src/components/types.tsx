@@ -1,5 +1,3 @@
-// import { Theme } from '@emotion/react';
-
 export type StateType = {
   theme: string;
   lang: string;

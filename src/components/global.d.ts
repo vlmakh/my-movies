@@ -1,7 +1,3 @@
-// declare module App {
-//   type Theme = { colors: { brand: string } };
-// }
-
 declare module "@emotion/styled" {
   import { CreateStyled } from "@emotion/styled/types/index";
 
