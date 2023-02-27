@@ -26,6 +26,7 @@ export default function Movies() {
   const location = useLocation();
   const [totalPages, setTotalPages] = useState(0);
   const lang = t('lang');
+  const film = t('placeholders.film')
 
   useEffect(() => {
     document.title = `My Movies | ${t('nav.movies')}`;
@@ -46,7 +47,7 @@ export default function Movies() {
       .catch(error => console.log(error));
   }, [lang, currentPage, query]);
 
-  const onSearchInput = (event: { target: { value: string; }; }) => {
+  const onSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
   };
 
@@ -80,7 +81,7 @@ export default function Movies() {
             type="text"
             value={input}
             onChange={onSearchInput}
-            // placeholder={t('placeholders.film')}
+            placeholder={film}
           />
           <ClearBtn type="button" onClick={clearAll}>
             <IoIosCloseCircle size="20" />

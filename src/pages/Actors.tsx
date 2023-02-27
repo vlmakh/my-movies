@@ -26,6 +26,7 @@ export default function Actors() {
   const location = useLocation();
   const [totalPages, setTotalPages] = useState(1);
   const lang = t('lang');
+  const actorName = t('placeholders.name')
 
   useEffect(() => {
     document.title = `My Movies | ${t('nav.actors')}`;
@@ -80,7 +81,7 @@ export default function Actors() {
             type="text"
             value={input}
             onChange={onSearchInput}
-            // placeholder={t('placeholders.name')}
+            placeholder={actorName}
           />
           <ClearBtn type="button" onClick={clearAll}>
             <IoIosCloseCircle size="20" />
