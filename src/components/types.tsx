@@ -23,6 +23,11 @@ export type MovieType = {
     first_air_date: string,
 }
 
+export interface ICast extends IActor {
+    cast_id: string,
+    id: string,
+}
+
 // const makeTheme = <T extends Theme>(t: T) => t
 
 export interface ThemeType extends Theme {

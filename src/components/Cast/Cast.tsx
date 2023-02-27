@@ -4,10 +4,11 @@ import { useParams, useLocation, NavLink } from 'react-router-dom';
 import { fetchCastById } from 'services/api';
 import { ActorCard } from 'components/ActorCard/ActorCard';
 import { t } from 'i18next';
+import { ICast } from 'components/types';
 
 export default function Cast() {
-  const params = useParams();
-  const [cast, setCast] = useState([]);
+  const params = useParams() as any;
+  const [cast, setCast] = useState<Array<ICast>>([]);
   const location = useLocation();
   const lang = t('lang');
 
