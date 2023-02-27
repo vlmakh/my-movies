@@ -1,8 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { lazy, useState, useEffect, useCallback } from 'react';
-// import { ThemeProvider } from 'theme-ui';
-import { ThemeProvider } from '@emotion/react'
+import { ThemeProvider } from '@emotion/react';
 import { darkTheme, lightTheme } from 'services/theme';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
@@ -23,7 +22,6 @@ const Trailer = lazy(() => import('components/Trailer/Trailer'));
 const Library = lazy(() => import('pages/Library'));
 const Album = lazy(() => import('pages/Album'));
 const PageError = lazy(() => import('pages/PageError'));
-
 
 const startData: StateType = {
   theme: 'darkTheme',

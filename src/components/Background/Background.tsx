@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import bcgMovies from 'images/bcg-movies01.jpg';
-import bcgActors from 'images/bcg-actors01.jpg';
+import {bcgMovies, bcgActors} from 'images';
 
 export const BcgMovies = styled.div`
   margin: ${(p: { theme: { space: number[]; }; }) => p.theme.space[4]}px auto 0;

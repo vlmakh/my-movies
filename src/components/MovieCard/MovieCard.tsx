@@ -4,7 +4,7 @@ import {
   MovieTitle,
   MovieYear,
 } from 'components/MovieCard/MovieCard.styled';
-import imageplaceholder from 'images/noposter.jpg';
+import { noposter } from 'images';
 import { IMovie } from 'components/types';
 
 type MovieType = {
@@ -24,7 +24,7 @@ export const MovieCard = ({ movie }: MovieType) => {
         src={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-            : imageplaceholder
+            : noposter
         }
         alt={movie.original_title ?? movie.name}
         loading="lazy"

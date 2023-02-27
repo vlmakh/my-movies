@@ -1,5 +1,5 @@
 import { Box } from 'components/Box/Box';
-import errorImage from 'images/error-404.jpg';
+import {errorImage }from 'images';
 import { useEffect } from 'react';
 import { t } from 'i18next';
 
