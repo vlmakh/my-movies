@@ -11,7 +11,11 @@ export interface IActor {
   id: string;
   name: string;
   character: string;
-  profile_path: string;
+    profile_path: string;
+    birthday: string,
+    deathday: string,
+    homepage: string,
+    biography: string,
 }
 
 export type ImageType = {
@@ -54,6 +58,11 @@ export type Movies = {
 export type Actors = {
   actors: Array<string>;
 };
+
+export type ActorDetailsType = {
+    actors: Array<string>;
+    toggleActorsInAlbum: (x: string) => void
+}
 
 // const makeTheme = <T extends Theme>(t: T) => t
 
