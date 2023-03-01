@@ -12,7 +12,7 @@ import { Box } from 'components/Box/Box';
 import { IImage } from 'components/types';
 
 export default function ActorImages() {
-  const { actorId } = useParams<{actorId: string | undefined}>() as any;
+  const { actorId } = useParams() as any;
   const [images, setImages] = useState<Array<IImage>>([]);
   const [showModal, setShowModal] = useState(false);
   const [bigPhotoIdx, setBigPhotoIdx] = useState(0);

@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { Theme } from 'theme-ui';
 
 export interface IState {
@@ -79,3 +80,8 @@ export type MovieDetailsType = {
 export interface ITheme extends Theme {
   name: string;
 }
+
+export interface IPortalProps {
+  children: ReactNode;
+  onClose: () => void;
+};
