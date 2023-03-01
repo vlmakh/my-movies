@@ -6,9 +6,9 @@ import 'index.css';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { fetchLibraryMovies } from 'services/api';
 import { t } from 'i18next';
-import { IMovie, Movies } from 'components/types';
+import { IMovie, MoviesType } from 'components/types';
 
-export default function Library({ movies }: Movies) {
+export default function Library({ movies }: MoviesType) {
   const [library, setLibrary] = useState<Array<IMovie>>([]);
   const location = useLocation();
   const lang = t('lang');

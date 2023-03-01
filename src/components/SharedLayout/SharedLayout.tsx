@@ -24,14 +24,14 @@ import {
 import { ThemeBtn } from 'components/Buttons/Buttons';
 import { t } from 'i18next';
 import { LogoVM } from 'components/LogoVM/LogoVM';
-import { LayoutType } from 'components/types';
+import { ILayout } from 'components/types';
 
 export const SharedLayout = ({
   toggleTheme,
   currentTheme,
   turnEnLang,
   turnUaLang,
-}: LayoutType) => {
+}: ILayout) => {
   const lang = t('lang');
 
   return (

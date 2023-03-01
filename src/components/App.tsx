@@ -5,7 +5,7 @@ import { ThemeProvider } from '@emotion/react';
 import { darkTheme, lightTheme } from 'services/theme';
 import { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-import { StateType, ThemeType } from './types';
+import { IState, ITheme } from './types';
 
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
@@ -23,7 +23,7 @@ const Library = lazy(() => import('pages/Library'));
 const Album = lazy(() => import('pages/Album'));
 const PageError = lazy(() => import('pages/PageError'));
 
-const startData: StateType = {
+const startData: IState = {
   theme: 'darkTheme',
   lang: 'en-US',
   lib: [],
@@ -31,7 +31,7 @@ const startData: StateType = {
 };
 
 const value = localStorage.getItem('movieteka');
-let savedData: StateType | null = null;
+let savedData: IState | null = null;
 
 if (typeof value === 'string') {
   savedData = JSON.parse(value);
@@ -39,7 +39,7 @@ if (typeof value === 'string') {
 
 export const App = () => {
   const [data, setData] = useState(savedData ?? startData);
-  const [currentTheme, setCurrentTheme] = useState<ThemeType>(
+  const [currentTheme, setCurrentTheme] = useState<ITheme>(
     data.theme === 'darkTheme' ? darkTheme : lightTheme
   );
   const [currentLang, setCurrentLang] = useState(data.lang);

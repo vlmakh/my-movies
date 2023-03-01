@@ -6,9 +6,9 @@ import 'index.css';
 import { ActorCard } from 'components/ActorCard/ActorCard';
 import { fetchAlbumActors } from 'services/api';
 import { t } from 'i18next';
-import { Actors, IActor } from 'components/types';
+import { ActorsType, IActor } from 'components/types';
 
-export default function Album({ actors }: Actors) {
+export default function Album({ actors }: ActorsType) {
   const [album, setAlbum] = useState<Array<IActor>>([]);
   const location = useLocation();
   const lang = t('lang');

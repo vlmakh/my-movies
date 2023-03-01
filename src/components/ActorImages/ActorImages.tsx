@@ -9,11 +9,11 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Box } from 'components/Box/Box';
-import { ImageType } from 'components/types';
+import { IImage } from 'components/types';
 
 export default function ActorImages() {
   const { actorId } = useParams<{actorId: string | undefined}>() as any;
-  const [images, setImages] = useState<Array<ImageType>>([]);
+  const [images, setImages] = useState<Array<IImage>>([]);
   const [showModal, setShowModal] = useState(false);
   const [bigPhotoIdx, setBigPhotoIdx] = useState(0);
 

@@ -1,6 +1,6 @@
-import { ThemeType } from 'components/types';
+import { ITheme } from 'components/types';
 
-export const darkTheme: ThemeType = {
+export const darkTheme: ITheme = {
   name: 'darkTheme',
   colors: {
     bcgMain: '#3b4351',
@@ -36,7 +36,7 @@ export const darkTheme: ThemeType = {
   },
 };
 
-export const lightTheme: ThemeType = {
+export const lightTheme: ITheme = {
   name: 'lightTheme',
   colors: {
     bcgMain: '#dfdfdf',

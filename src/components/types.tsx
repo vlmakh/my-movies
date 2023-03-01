@@ -1,4 +1,4 @@
-export type StateType = {
+export interface IState {
   theme: string;
   lang: string;
   lib: string[];
@@ -16,7 +16,7 @@ export interface IActor {
   biography: string;
 }
 
-export type ImageType = {
+export interface IImage {
   file_path: string;
 };
 
@@ -41,7 +41,6 @@ export interface IMovie {
 
 export interface ICast extends IActor {
   cast_id: string;
-  id: string;
 }
 
 export interface IReview {
@@ -50,18 +49,18 @@ export interface IReview {
   content: string;
 }
 
-export type LayoutType = {
+export interface ILayout {
   toggleTheme: () => void;
   currentTheme: string;
   turnEnLang: () => void;
   turnUaLang: () => void;
 };
 
-export type Movies = {
+export type MoviesType = {
   movies: Array<string>;
 };
 
-export type Actors = {
+export type ActorsType = {
   actors: Array<string>;
 };
 
@@ -75,7 +74,7 @@ export type MovieDetailsType = {
   toggleMovieInLibrary: (x: string) => void;
 };
 
-export interface ThemeType {
+export interface ITheme {
   name: string;
   colors: {
     bcgMain: string;
