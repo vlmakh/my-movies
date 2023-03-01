@@ -6,12 +6,13 @@ import {
 } from 'components/MovieCard/MovieCard.styled';
 import { noposter } from 'images';
 import { IMovie } from 'components/types';
+import { FC } from 'react';
 
 type MovieType = {
   movie: IMovie;
 };
 
-export const MovieCard = ({ movie }: MovieType) => {
+export const MovieCard: FC<MovieType> = ({ movie }) => {
   let movieYear = '';
   if (movie.release_date ?? movie.first_air_date) {
     movieYear = (movie.release_date ?? movie.first_air_date).slice(0, 4);
