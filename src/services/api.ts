@@ -3,10 +3,9 @@ import axios from 'axios';
 const MAIN_URL = process.env.REACT_APP_MAIN_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const fetchTrends = async (lang: string, page: number) => {
+const fetchTrends = async (lang: string, page: number, abortSignal: AbortSignal) => {
   const response = await axios.get(
-    `${MAIN_URL}/trending/all/day?api_key=${API_KEY}&language=${lang}&page=${page}`
-  );
+    `${MAIN_URL}/trending/all/day?api_key=${API_KEY}&language=${lang}&page=${page}`, {signal: abortSignal});
   return response.data;
 };
 

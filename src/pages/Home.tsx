@@ -20,14 +20,19 @@ export default function Home() {
   const lang = t('lang');
 
   useEffect(() => {
+    const controller = new AbortController();
     document.title = 'My Movies';
 
-    fetchTrends(lang, currentPage)
+    fetchTrends(lang, currentPage, controller.signal)
       .then(data => {
         setTrends(data.results);
         setTotalPages(data.total_pages);
       })
       .catch(error => console.log(error));
+    
+    return () => {
+      controller.abort();
+    }
   }, [lang, currentPage, setSearchQuery]);
 
   const handlePageClick = (e: { selected: number; }) => {
