@@ -47,11 +47,11 @@ export default function Actors() {
       .catch(error => console.log(error));
   }, [lang, currentPage, query]);
 
-  const onSearchInput = (event: { target: { value: string}; }) => {
+  const onSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!input.trim()) {
       return toast.error(t('emptyQuery'));

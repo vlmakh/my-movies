@@ -51,7 +51,7 @@ export default function Movies() {
     setInput(event.target.value);
   };
 
-  const handleSubmit = (event: { preventDefault: () => void; }) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!input.trim()) {
       return toast.error(t('emptyQuery'));
@@ -110,7 +110,6 @@ export default function Movies() {
           pageRangeDisplayed={5}
           pageCount={totalPages}
           previousLabel="<"
-          // renderOnZeroPageCount={null}
           disabledLinkClassName="disabled"
           activeClassName="activePage"
           forcePage={currentPage - 1}
