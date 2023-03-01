@@ -1,3 +1,5 @@
+import { Theme } from 'theme-ui';
+
 export interface IState {
   theme: string;
   lang: string;
@@ -74,38 +76,6 @@ export type MovieDetailsType = {
   toggleMovieInLibrary: (x: string) => void;
 };
 
-export interface ITheme {
+export interface ITheme extends Theme {
   name: string;
-  colors: {
-    bcgMain: string;
-    bcgHeader: string;
-    bcgBtn: string;
-    bcgTitle: string;
-    textPrimary: string;
-    textSecondary: string;
-    textTitle: string;
-    accent: string;
-  };
-  space: number[];
-  fontSizes: {
-    xs: string;
-    s: string;
-    m: string;
-    l: string;
-    xl: string;
-  };
-  borders: {
-    none: string;
-    normal: string;
-  };
-  radii: {
-    none: string;
-    normal: string;
-    round: string;
-  };
-  shadows: {
-    blackShadow: string;
-    headerShadow: string;
-    footerShadow: string;
-  };
 }
