@@ -8,11 +8,11 @@ import { nophoto } from 'images';
 import { IActor } from 'components/types';
 import { FC } from 'react';
 
-type Actor = {
+type ActorProps = {
   actor: IActor;
 };
 
-export const ActorCard: FC<Actor> = ({ actor }) => (
+export const ActorCard: FC<ActorProps> = ({ actor }) => (
   <ActorThumb>
     <ActorImg
       width="200"
