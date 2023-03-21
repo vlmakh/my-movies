@@ -40,6 +40,7 @@ export interface IMovie {
   vote_average: number;
   runtime: number;
   genres: Array<IGenre>;
+  backdrop_path: string,
 }
 
 export interface ICast extends IActor {

@@ -66,7 +66,7 @@ export default function MovieDetails({ toggleMovieInLibrary, movies }: MovieDeta
   }, [lang, params.movieId]);
 
   return (
-    <PageWrap>
+    <PageWrap backdrop={movieItem?.backdrop_path}>
       <BackLinkBtn to={backLink.current}>
         {!backLink.current.pathname ? t('buttons.home') : t('buttons.back')}
       </BackLinkBtn>
