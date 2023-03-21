@@ -14,7 +14,7 @@ import {
   Box,
   MainInfo,
   BtnContainer,
-  ImgThumb,
+  ImgThumb, BackDrop,
 } from 'components/Box/Box';
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
@@ -66,7 +66,8 @@ export default function MovieDetails({ toggleMovieInLibrary, movies }: MovieDeta
   }, [lang, params.movieId]);
 
   return (
-    <PageWrap backdrop={movieItem?.backdrop_path}>
+    <BackDrop backdrop={movieItem?.backdrop_path}>
+    <PageWrap>
       <BackLinkBtn to={backLink.current}>
         {!backLink.current.pathname ? t('buttons.home') : t('buttons.back')}
       </BackLinkBtn>
@@ -169,6 +170,7 @@ export default function MovieDetails({ toggleMovieInLibrary, movies }: MovieDeta
           )}
         </>
       )}
-    </PageWrap>
+      </PageWrap>
+      </BackDrop>
   );
 }

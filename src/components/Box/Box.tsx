@@ -23,34 +23,54 @@ export const Box = styled('div')(
 
 export const PageWrap = styled.div`
   margin: 48px auto 0;
-  background-repeat: no-repeat;
-  background-position: 50% 0;
 
   @media screen and (max-width: 480px) {
     padding: ${(p: { theme: { space: number[] } }) => p.theme.space[3]}px;
     width: 100%;
   }
 
-  @media screen and (min-width: 481px) and (max-width: 780px) {
-    padding: ${(p: { theme: { space: number[] } }) => p.theme.space[4]}px;
-    width: 100%;
-  }
-
-  @media screen and (min-width: 781px) and (max-width: 1280px) {
+  @media screen and (min-width: 481px) and (max-width: 1280px) {
     padding: ${(p: { theme: { space: number[] } }) => p.theme.space[4]}px;
     width: 100%;
   }
 
   @media screen and (min-width: 1281px) {
     padding: ${(p: { theme: { space: number[] } }) => p.theme.space[4]}px;
-    width: 1280px;
+    width: 1280px;    
+  }
+`;
 
-    background-image: radial-gradient(
-      at center,
-      rgba(59, 67, 81, 0.2),
-      ${(p: { theme: { colors: { bcgMain: string; }; }; }) => p.theme.colors.bcgMain} 70%
+export const BackDrop = styled.div`
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+
+  @media screen and (min-width: 481px) and (max-width: 780px) {
+    background-image: linear-gradient(
+      to bottom,
+      rgba(59, 67, 81, 0.8),
+      ${(p: { theme: { colors: { bcgMain: string; }; }; }) => p.theme.colors.bcgMain} 80%
     ),
-    url(${(p: { backdrop: any; }) => `https://image.tmdb.org/t/p/w1280/${p.backdrop}`});
+    url(${(p: { backdrop: string; }) => `https://image.tmdb.org/t/p/w1280${p.backdrop}`});
+  }
+
+  @media screen and (min-width: 781px) and (max-width: 1280px) {
+    
+    background-image: linear-gradient(
+      to bottom,
+      rgba(59, 67, 81, 0.8),
+      ${(p: { theme: { colors: { bcgMain: string; }; }; }) => p.theme.colors.bcgMain} 80%
+    ),
+    url(${(p: { backdrop: string; }) => `https://image.tmdb.org/t/p/w1280${p.backdrop}`});
+  }
+
+  @media screen and (min-width: 1281px) {
+    background-size: contain;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(59, 67, 81, 0.8) ,
+      ${(p: { theme: { colors: { bcgMain: string; }; }; }) => p.theme.colors.bcgMain} 80%
+    ),
+    url(${(p: { backdrop: string; }) => `https://image.tmdb.org/t/p/original${p.backdrop}`});
   }
 `;
 
