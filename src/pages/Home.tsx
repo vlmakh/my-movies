@@ -28,7 +28,7 @@ export default function Home() {
         setTrends(data.results);
         setTotalPages(data.total_pages);
       })
-      .catch(error => console.log(error));
+      .catch(error => {});
     
     return () => {
       controller.abort();
