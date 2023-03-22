@@ -42,7 +42,10 @@ export const PageWrap = styled.div`
 
 export const BackDrop = styled.div`
   background-repeat: no-repeat;
-  background-position: 50% 0;
+  background-position: 50% 48px;
+  background-size: cover;
+  background-attachment: fixed;
+  
 
   @media screen and (min-width: 481px) and (max-width: 780px) {
     background-image: linear-gradient(
@@ -64,10 +67,9 @@ export const BackDrop = styled.div`
   }
 
   @media screen and (min-width: 1281px) {
-    background-size: contain;
     background-image: linear-gradient(
       to bottom,
-      rgba(59, 67, 81, 0.8) ,
+      rgba(59, 67, 81, 0.8),
       ${(p: { theme: { colors: { bcgMain: string; }; }; }) => p.theme.colors.bcgMain} 80%
     ),
     url(${(p: { backdrop: string; }) => `https://image.tmdb.org/t/p/original${p.backdrop}`});
