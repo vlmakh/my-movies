@@ -1,6 +1,11 @@
 import { List, Item } from 'components/BaseComps/BaseComps';
 import { useState, useEffect } from 'react';
-import { useParams, useLocation, NavLink, useSearchParams } from 'react-router-dom';
+import {
+  useParams,
+  useLocation,
+  NavLink,
+  useSearchParams,
+} from 'react-router-dom';
 import { fetchMoviesByActor } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { t } from 'i18next';
@@ -13,52 +18,56 @@ export default function ActorMovies() {
   const location = useLocation();
   const lang = t('lang');
   const [totalPages, setTotalPages] = useState(1);
-  // const [currentPage, setCurrentPage] = useState(1);
-  const [moviesToShow, setMoviesToShow] = useState<IMovie[]>([])
+  const [moviesToShow, setMoviesToShow] = useState<IMovie[]>([]);
   const [searchQuery, setSearchQuery] = useSearchParams() as any;
   const currentPage = Number(searchQuery.get('page'))
     ? Number(searchQuery.get('page'))
     : 1;
-  
-  console.log('currentPage: ', currentPage)
-  console.log(moviesToShow)
+
+  const itemsPerPage = 20;
 
   useEffect(() => {
     fetchMoviesByActor(actorId, lang).then(data => {
-      setMovies(data.cast.sort((a: { release_date: any; first_air_date: any; }, b: { release_date: any; first_air_date: any; }) =>
+      setMovies(
+        data.cast.sort(
+          (
+            a: { release_date: any; first_air_date: any },
+            b: { release_date: any; first_air_date: any }
+          ) =>
             (b.release_date ?? b.first_air_date) >
             (a.release_date ?? a.first_air_date)
               ? 1
               : -1
-      ));
-      setMoviesToShow(data.cast.splice(0, 6));
-      // setMoviesToShow([...movies.splice(6 * (e.selected), 6 * e.selected)]);
-      setTotalPages(Math.ceil(data.cast.length / 6));
+        )
+      );
+
+      setMoviesToShow([
+        ...data.cast.filter((_: any, ind: number) => ind >= 0 && ind < itemsPerPage),
+      ]);
+
+      setTotalPages(Math.ceil(data.cast.length / itemsPerPage));
     });
   }, [lang, actorId]);
 
-  // useEffect(() => {
-  //     setMoviesToShow([...movies.splice(0, 6)]);
-  // }, [movies, moviesToShow])
-
-  const handlePageClick = (e: { selected: number; }) => {
-    // setCurrentPage(e.selected + 1);
+  const handlePageClick = (e: { selected: number }) => {
     setSearchQuery({ page: e.selected + 1 });
-    
-    setMoviesToShow([...movies.splice(6 * (e.selected), 6 * e.selected)]);
+
+    const start = itemsPerPage * e.selected;
+    const end = itemsPerPage * (e.selected + 1);
+
+    setMoviesToShow([...movies.filter((el, ind) => ind >= start && ind < end)]);
   };
 
   return (
     <>
       <List>
-        {moviesToShow          
-          .map(movie => (
-            <Item key={movie.id}>
-              <NavLink to={`/movies/${movie.id}`} state={{ from: location }}>
-                <MovieCard movie={movie} />
-              </NavLink>
-            </Item>
-          ))}
+        {moviesToShow.map(movie => (
+          <Item key={movie.id}>
+            <NavLink to={`/movies/${movie.id}`} state={{ from: location }}>
+              <MovieCard movie={movie} />
+            </NavLink>
+          </Item>
+        ))}
       </List>
 
       {totalPages > 1 && (
@@ -71,7 +80,7 @@ export default function ActorMovies() {
           previousLabel="<"
           disabledLinkClassName="disabled"
           activeClassName="activePage"
-          forcePage={currentPage-1}
+          forcePage={currentPage - 1}
         />
       )}
     </>
