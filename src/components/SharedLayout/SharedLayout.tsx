@@ -113,7 +113,7 @@ export const SharedLayout = ({
 
       <Footer>
         <MyMailLink
-          href="https://vlmakh.github.io/my-portfolio/"
+          href="https://vlad-makhnenko.netlify.app/"
           target="blank"
         >
           <LogoVM />

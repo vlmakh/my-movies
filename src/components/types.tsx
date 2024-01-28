@@ -6,7 +6,7 @@ export interface IState {
   lang: string;
   lib: string[];
   album: string[];
-};
+}
 
 export interface IActor {
   id: string;
@@ -21,7 +21,7 @@ export interface IActor {
 
 export interface IImage {
   file_path: string;
-};
+}
 
 interface IGenre {
   name: string;
@@ -40,7 +40,7 @@ export interface IMovie {
   vote_average: number;
   runtime: number;
   genres: Array<IGenre>;
-  backdrop_path: string,
+  backdrop_path: string;
 }
 
 export interface ICast extends IActor {
@@ -58,7 +58,7 @@ export interface ILayout {
   currentTheme: string;
   turnEnLang: () => void;
   turnUaLang: () => void;
-};
+}
 
 export type MoviesType = {
   movies: Array<string>;
@@ -85,4 +85,4 @@ export interface ITheme extends Theme {
 export interface IPortalProps {
   children: ReactNode;
   onClose: () => void;
-};
+}
