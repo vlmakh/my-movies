@@ -112,14 +112,11 @@ export const SharedLayout = ({
       </Suspense>
 
       <Footer>
-        <MyMailLink
-          href="https://vlad-makhnenko.netlify.app/"
-          target="blank"
-        >
+        <p>2022</p>
+        <span>By</span>
+        <MyMailLink href="https://vlad-makhnenko.netlify.app/" target="blank">
           <LogoVM />
         </MyMailLink>
-        <p>2022</p>
-        <MyMailLink href="mailto:vlmakh@gmail.com">vlmakh@gmail.com</MyMailLink>
       </Footer>
     </Layout>
   );
